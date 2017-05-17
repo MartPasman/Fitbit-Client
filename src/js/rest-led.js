@@ -1,7 +1,9 @@
 /**
  * Created on 17-05-17.
  */
-$(document).ready(function () {
+const check = function () {
+    console.log("Checking REST service availability...");
+
     $('.led-good').attr('class', 'led-bad');
 
     $.ajax({
@@ -14,4 +16,10 @@ $(document).ready(function () {
             }
         }
     });
+};
+
+$(document).ready(function () {
+    // check every minute if the REST is still online
+    check();
+    setInterval(check, 60 * 1000);
 });
