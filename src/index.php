@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    <meta charset="UTF-8">
-    <title>Goals</title>
-</head>
-<body>
+<?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: sveno
+ * Date: 17-5-2017
+ * Time: 17:47
+ */
+?>
 
 <!-- error modal -->
 <div id="modal-login-error" class="modal fade" tabindex="-1" role="dialog">
@@ -26,9 +25,10 @@
     </div>
 </div>
 
-<div w3-include-html="header.html"></div>
+<?php include 'header.php'; ?>
+
 <div class="container">
-    <img src="img/goals.png" class="loginTopImage"/>
+    <img src="img/goals.png" class="login-top-image"/>
 
 
 
@@ -76,9 +76,6 @@
 
 
 <script src="js/login.js"></script>
-<script>
-    w3.includeHTML();
-</script>
 
 </body>
 </html>
