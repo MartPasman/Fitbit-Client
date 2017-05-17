@@ -1,18 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
+<head>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
 
-    <div w3-include-html="header.html"></div>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-    NORMAL PAGE
-    <script>
-        w3.includeHTML();
-    </script>
+<div w3-include-html="header.html"></div>
+<div class="container">
+<img src="img/goals.png" class="loginTopImage"/>
 
-    </body>
+<div style="margin-top:30px">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title"><strong>Inloggen</strong></h3>
+            </div>
+
+            <div class="panel-body">
+                <form role="form">
+                    <div class="alert alert-danger">
+                        <a class="close" data-dismiss="alert" href="#">×</a>Onjuist ID of wachtwoord.
+                    </div>
+                    <div style="margin-bottom: 12px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="login-username" type="text" class="form-control" name="id" value=""
+                               placeholder="ID">
+                    </div>
+
+                    <div style="margin-bottom: 12px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="login-password" type="password" class="form-control" name="password"
+                               placeholder="Wachtwoord">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="checkbox" style="margin-top: 0px;">
+                            <label>
+                                <input id="login-remember" type="checkbox" name="remember" value="1">Onthoud mij
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Inloggen</button>
+
+                    <hr style="margin-top:10px;margin-bottom:10px;">
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    w3.includeHTML();
+</script>
+
+</body>
 </html>
