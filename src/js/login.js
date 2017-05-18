@@ -9,47 +9,76 @@ $(document).ready(function () {
         var password = $("#password").val().trim();
         var modal = $('#modal-login-error');
 
+        $("#passdiv").removeClass("has-error");
+        $("#iddiv").removeClass("has-error");
 
-        $.ajax({
-            url: 'http://localhost:3000/accounts/login',
-            method: 'POST',
-            data: {
-                id: id,
-                password: password
-            },
-            statusCode: {
-                201: function (data) {
-                    console.dir(data.token);
-                    localStorage["token"] = data.success;
-                    if(data.permission>1){
-                        location.replace();
-                    }else{
-                        location.replace();
-                    }
-                },
-                400: function (err) {
-                    $("#error").toggle('show');
-                },
-                500: function (err) {
-                    // set the modal title
-                    modal.find('.modal-title').html('Er is iets misgegaan!');
-                    // set the modal body
-                    modal.find('.modal-body').html("Het is niet jou fout, probeer het later nog eens");
-                    // show the modal
-                    modal.modal();
-                },
-                default: function (err) {
-                    // set the modal title
-                    modal.find('.modal-title').html('Er is iets misgegaan!');
-                    // set the modal body
-                    modal.find('.modal-body').html("Probeer het nog eens");
-                    // show the modal
-                    modal.modal();
-                }
+        if (isEmpty(id) || isEmpty(password) || !id.match(/^\d+$/)) {
+
+            if (isEmpty(password)) {
+                $("#passdiv").addClass("has-error");
             }
-        });
+            if (isEmpty(id)) {
+                $("#iddiv").addClass("has-error");
+            }
+            if(!id.match(/^\d+$/)) {
+                $("#iddiv").addClass("has-error");
+            }
+
+
+        } else {
+
+            $.ajax({
+                url: 'http://localhost:3000/accounts/login',
+                method: 'POST',
+                data: {
+                    id: id,
+                    password: password
+                },
+                statusCode: {
+                    201: function (data) {
+                        console.dir(data.token);
+                        localStorage["token"] = data.success;
+                        switch (data.permission){
+                            case 1:
+                                location.replace("results.php");
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                location.replace("admin-dashboard.php");
+                                break;
+                        }
+                    },
+                    400: function (err) {
+                        if ($("#error").is(':hidden')) {
+                            $("#error").toggle();
+                        }
+                    },
+                    500: function (err) {
+                        // set the modal title
+                        modal.find('.modal-title').html('Er is iets misgegaan!');
+                        // set the modal body
+                        modal.find('.modal-body').html("Het is niet jou fout, probeer het later nog eens");
+                        // show the modal
+                        modal.modal();
+                    },
+                    default: function (err) {
+                        // set the modal title
+                        modal.find('.modal-title').html('Er is iets misgegaan!');
+                        // set the modal body
+                        modal.find('.modal-body').html("Probeer het nog eens");
+                        // show the modal
+                        modal.modal();
+                    }
+                }
+            });
+        }
     });
 });
 
+
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
 
 
