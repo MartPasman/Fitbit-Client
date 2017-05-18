@@ -28,7 +28,7 @@ $(document).ready(function () {
         } else {
 
             $.ajax({
-                url: 'http://localhost:3000/accounts/login',
+                url: REST + '/accounts/login',
                 method: 'POST',
                 data: {
                     id: id,
