@@ -3,7 +3,7 @@ $title = "Goals";
 include './include/header.php';
 ?>
 
-    <!-- error modal -->
+    <!-- error modal asfdsafads-->
     <div id="modal-login-error" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -35,13 +35,13 @@ include './include/header.php';
                             <div class="alert alert-danger" id="error">
                                 <a class="close" data-dismiss="alert" href="#">×</a>Onjuist ID of wachtwoord.
                             </div>
-                            <div style="margin-bottom: 12px" class="input-group">
+                            <div style="margin-bottom: 12px" class="input-group" id="iddiv">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input id="id" type="text" class="form-control" name="id" value=""
                                        placeholder="ID">
                             </div>
 
-                            <div style="margin-bottom: 12px" class="input-group">
+                            <div style="margin-bottom: 12px" class="input-group" id="passdiv">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 <input id="password" type="password" class="form-control" name="password"
                                        placeholder="Wachtwoord">
