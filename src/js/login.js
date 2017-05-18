@@ -28,7 +28,7 @@ $(document).ready(function () {
         } else {
 
             $.ajax({
-                url: 'http://localhost:3000/accounts/login',
+                url: REST + '/accounts/login',
                 method: 'POST',
                 data: {
                     id: id,
@@ -66,7 +66,7 @@ $(document).ready(function () {
                         // set the modal title
                         modal.find('.modal-title').html('Er is iets misgegaan!');
                         // set the modal body
-                        modal.find('.modal-body').html("Het is niet jou fout, probeer het later nog eens.");
+                        modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens.");
                         // show the modal
                         modal.modal();
                     },

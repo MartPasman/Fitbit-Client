@@ -10,8 +10,7 @@ const check = function () {
 
     // try to turn it green or red
     $.ajax({
-        // TODO: change to localhost
-        url: 'http://178.21.116.109:3000/api',
+        url: REST + '/api',
         method: 'GET',
         success: function () {
             $('.led-off').attr('class', 'led-good');

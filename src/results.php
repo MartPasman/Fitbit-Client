@@ -8,6 +8,8 @@ include './include/header.php';
         <!-- Activity data -->
         <div id="activity-data" class="block col-sm-6">
             <h2>Activiteit</h2>
+
+            KOMT DIT AAN AUTOMAGISCH?
         </div>
 
         <!-- Sleep data -->
