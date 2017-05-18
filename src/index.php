@@ -3,7 +3,7 @@ $title = "Goals";
 include './include/header.php';
 ?>
 
-    <!-- error modal -->
+    <!-- error modal asfdsafads-->
     <div id="modal-login-error" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
