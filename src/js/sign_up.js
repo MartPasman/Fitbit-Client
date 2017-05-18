@@ -45,6 +45,7 @@ $(document).ready(function () {
 
 
         if (!validateEmail(email)){
+            errorMsg.text("Vul een geldig email adres in.");
             $("#error").toggle('show');
             valid = false;
             return;
@@ -68,6 +69,8 @@ $(document).ready(function () {
 
         } else if(email != undefined && password2 != undefined && password1 != undefined
             && handicap != undefined && type != undefined ) {
+
+
             if (valid = false){
                 errorMsg.text("Vul alle velden in.");
                 errorMsg.toggle('show');
