@@ -57,6 +57,9 @@ h1, h2, h3, h4, h5, h6 {
     background-color: lawngreen;
 }
 
+.large-tooltip {
+    width: 500px;
+}
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes led-bad {
     0% {
@@ -105,4 +108,17 @@ h1, h2, h3, h4, h5, h6 {
     100% {
         background-color: lawngreen;
     }
+}
+
+.total {
+    position: absolute;
+    right: 1em;
+    top: 2em;
+
+    font-size: 2em;
+    font-weight: bold;
+    padding: .5em 1em;
+    border: 1px solid #eee;
+    border-radius: 1em;
+    display: inline-block;
 }

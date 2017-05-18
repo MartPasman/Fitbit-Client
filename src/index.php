@@ -10,7 +10,7 @@ include './include/header.php';
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Er is iets misgegaan!</h4>
+                    <h4 class="modal-title">Er is iets mis gegaan!</h4>
                 </div>
                 <div class="modal-body">
                 </div>
@@ -35,13 +35,13 @@ include './include/header.php';
                             <div class="alert alert-danger" id="error">
                                 <a class="close" data-dismiss="alert" href="#">×</a>Onjuist ID of wachtwoord.
                             </div>
-                            <div style="margin-bottom: 12px" class="input-group">
+                            <div style="margin-bottom: 12px" class="input-group" id="iddiv">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input id="id" type="text" class="form-control" name="id" value=""
                                        placeholder="ID">
                             </div>
 
-                            <div style="margin-bottom: 12px" class="input-group">
+                            <div style="margin-bottom: 12px" class="input-group" id="passdiv">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 <input id="password" type="password" class="form-control" name="password"
                                        placeholder="Wachtwoord">

@@ -4,16 +4,20 @@
 const check = function () {
     console.log("Checking REST service availability...");
 
-    $('.led-good').attr('class', 'led-bad');
+    // turn the LED off
+    $('.led-good').attr('class', 'led-off');
+    $('.led-bad').attr('class', 'led-off');
 
+    // try to turn it green or red
     $.ajax({
-        // TODO: change to localhost
-        url: 'http://178.21.116.109:3000/api',
+        url: REST + '/api',
         method: 'GET',
-        statusCode: {
-            200: function () {
-                $('.led-bad').attr('class', 'led-good');
-            }
+        success: function () {
+            $('.led-off').attr('class', 'led-good');
+        },
+        timeout: 1000,
+        error: function () {
+            $('.led-off').attr('class', 'led-bad');
         }
     });
 };
