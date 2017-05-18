@@ -10,3 +10,6 @@
 
 <!-- Flickering led if the REST is online -->
 <script src="../js/rest-led.js"></script>
+
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../js/jquery/excanvas.js"></script><![endif]-->
+<script language="javascript" type="text/javascript" src="../js/jquery/jquery.jqplot.min.js"></script>
