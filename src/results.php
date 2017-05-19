@@ -70,36 +70,7 @@ include './include/header.php';
 <?php include './include/scripts.php'; ?>
 
     <!-- your scripts -->
-    <script type="text/javascript">
-        $('#today').text(getTodaysDate());
-
-        const act = $('#activity-data');
-        const slp = $('#sleep-data');
-
-        const drawStepsChart = function () {
-            drawLineChart('#chart-steps', [
-                {label: '17/05', value: 4788}, {label: '18/05', value: 5901}, {label: '19/05', value: 3870},
-                {label: '20/05', value: 3822}, {label: '21/05', value: 5520}, {label: '22/05', value: 6302}
-            ], 'datum', 'stappen', '', act.width(), 200);
-        };
-
-        const drawSleepChart = function () {
-            drawColumnChart('#chart-sleep', [
-                {label: '17/05', value: 6}, {label: '18/05', value: 8}, {label: '19/05', value: 9},
-                {label: '20/05', value: 8}, {label: '21/05', value: 7}, {label: '22/05', value: 6}
-            ], 'datum', 'uren', false, '', slp.width(), 200);
-        };
-
-        $(document).ready(function () {
-            drawStepsChart();
-            drawSleepChart();
-        });
-
-        $(window).on('resize', function () {
-            drawStepsChart();
-            drawSleepChart();
-        });
-    </script>
+    <script src="js/my-results.js" type="text/javascript"></script>
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>
