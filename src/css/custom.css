@@ -150,6 +150,15 @@ h2 {
     display: inline-block;
 }
 
+.total.button:hover {
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+.total.button:active {
+    background-color: #dedede;
+}
+
 @media all and (max-width: 768px) {
     .total {
         font-size: 1.6em;

@@ -13,7 +13,7 @@ include './include/header.php';
             <h2>Activiteit</h2>
 
             <div id="today-steps" class="total">
-                <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> 5488
+                <span class="glyphicon glyphicon-tree-conifer"></span> 5488
             </div>
 
             <div id="chart-steps" class="chart"></div>
@@ -24,7 +24,7 @@ include './include/header.php';
             <h2>Slaap</h2>
 
             <div class="total">
-                <span class="glyphicon glyphicon-bed" aria-hidden="true"></span> 7 uur
+                <span class="glyphicon glyphicon-bed"></span> 7 uur
             </div>
 
             <div id="chart-sleep" class="chart"></div>
@@ -33,6 +33,10 @@ include './include/header.php';
         <!-- Goals (history) -->
         <div id="goal-data" class="block col-xs-12">
             <h2>Doelstellingen</h2>
+
+            <div class="total button">
+                Nieuw
+            </div>
 
             <div id="goal-history">
                 <div id="goal-history-inside">
@@ -49,7 +53,7 @@ include './include/header.php';
                     <div class="goal">
                         <h2><span class="not-achieved">3677 / </span>5000</h2>
                         21/05 - 27/05<br/>
-                        <span class="goal-icon glyphicon glyphicon-option-horizontal"></span>
+                        <span class="goal-icon glyphicon glyphicon-remove"></span>
 
                     </div>
                     <div class="goal">
