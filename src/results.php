@@ -4,7 +4,7 @@ include './include/header.php';
 ?>
 
     <!-- today -->
-    <div id="today">vrijdag 19 mei</div>
+    <div id="today"></div>
 
     <div class="container">
 
@@ -31,8 +31,34 @@ include './include/header.php';
         </div>
 
         <!-- Goals (history) -->
-        <div id="goal-history" class="block col-xs-12">
+        <div id="goal-data" class="block col-xs-12">
             <h2>Doelstellingen</h2>
+
+            <div id="goal-history">
+                <div id="goal-history-inside">
+                    <div class="goal achieved">
+                        <h2>2000</h2>
+                        17/05 - 18/05<br/>
+                        <span class="goal-icon glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="goal achieved">
+                        <h2>4000</h2>
+                        19/05 - 20/05<br/>
+                        <span class="goal-icon glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="goal">
+                        <h2><span class="not-achieved">3677 / </span>5000</h2>
+                        21/05 - 27/05<br/>
+                        <span class="goal-icon glyphicon glyphicon-option-horizontal"></span>
+
+                    </div>
+                    <div class="goal">
+                        <h2><span class="not-achieved">4825 / </span>5000</h2>
+                        28/05 - 30/05<br/>
+                        <span class="goal-icon glyphicon glyphicon-option-horizontal"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -41,6 +67,8 @@ include './include/header.php';
 
     <!-- your scripts -->
     <script type="text/javascript">
+        $('#today').text(getTodaysDate());
+
         const act = $('#activity-data');
         const slp = $('#sleep-data');
 

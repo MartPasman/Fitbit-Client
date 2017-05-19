@@ -19,3 +19,6 @@
 
 <!-- Line and pie charts -->
 <script src="../js/charts.js"></script>
+
+<!-- Date utilities -->
+<script src="../js/dates.js"></script>

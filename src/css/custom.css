@@ -1,9 +1,13 @@
+body {
+    color: #333;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
 h2 {
-    margin-top: .2em;
+    margin-top: .1em;
 }
 
 .navbar-default {
@@ -152,11 +156,53 @@ h2 {
     }
 }
 
-.raphael-group-25-TB_MASTER2 {
-    display: none;
-}
-
 .chart {
     margin-top: 40px;
 }
 
+#goal-history {
+    width: 100%;
+    height: 190px;
+    margin-top: 40px;
+    border: 1px solid #eee;
+    border-radius: 1em;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#goal-history-inside {
+    width: 1200px;
+    height: 100%;
+}
+
+.goal {
+    display: inline-block;
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid #eee;
+    border-radius: 1em;
+    height: calc(100% - 2em);
+    width: 200px;
+    float: left;
+    text-align: center;
+}
+
+.goal.achieved {
+    color: #fff;
+    background-color: #49dc90;
+    border: none;
+}
+
+.goal-icon {
+    font-size: 4em;
+    margin-top: 0.1em;
+}
+
+.not-achieved {
+    color: #999;
+}
+
+.goal h2 {
+    font-weight: bold;
+}
