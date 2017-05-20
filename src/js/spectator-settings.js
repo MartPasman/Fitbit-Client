@@ -49,7 +49,7 @@ $(document).ready(function () {
 
             //Call to add a goal
             $.ajax({
-                url: REST + '/users/addGoal',
+                url: REST + '/users/goal/add',
                 method: 'POST',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
