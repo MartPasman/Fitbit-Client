@@ -49,16 +49,24 @@ $(document).ready(function () {
                                 break;
                         }
                     },
-                    400: function (err) {
+                    401: function (err) {
                         if ($("#error").is(':hidden')) {
                             $("#error").toggle();
                         }
+                    },
+                    403: function (err) {
+                        // set the modal title
+                        modal.find('.modal-title').html('Er is iets misgegaan!');
+                        // set the modal body
+                        modal.find('.modal-body').html("Dit account is op inactief gesteld. Neem contact op met de administrator.");
+                        // show the modal
+                        modal.modal();
                     },
                     500: function (err) {
                         // set the modal title
                         modal.find('.modal-title').html('Er is iets misgegaan!');
                         // set the modal body
-                        modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens");
+                        modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens.");
                         // show the modal
                         modal.modal();
                     },
@@ -66,7 +74,7 @@ $(document).ready(function () {
                         // set the modal title
                         modal.find('.modal-title').html('Er is iets misgegaan!');
                         // set the modal body
-                        modal.find('.modal-body').html("Probeer het nog eens");
+                        modal.find('.modal-body').html("Probeer het nog eens.");
                         // show the modal
                         modal.modal();
                     }
