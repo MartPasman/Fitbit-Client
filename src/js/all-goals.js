@@ -40,7 +40,7 @@ $(document).ready(function () {
 function loadGoals(offset) {
     //Ajax call for loading the goals
     $.ajax({
-        url: REST + '/accounts/users/getGoals/'+offset,
+        url: REST + '/users/goal/'+offset,
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
@@ -114,7 +114,7 @@ function loadGoals(offset) {
 
 function removeGoal(id, offset) {
     $.ajax({
-        url: REST + '/accounts/users/deleteGoal/'+id,
+        url: REST + '/users/goal/delete/'+id,
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
@@ -124,13 +124,27 @@ function removeGoal(id, offset) {
                 loadGoals(offset)
             },
             401: function (err) {
-
+                //show error message
+                $("#error-message-all").html("<strong>Foutje!</strong> Je bent niet ingelogd.");
+                if ($("#error-message-all").is(':hidden')){
+                    $("#error-message-all").toggle();
+                }
             },
 
             500: function (err) {
+                //Show error message
+                $("#error-message-all").html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
+                if ($("#error-message-all").is(':hidden')){
+                    $("#error-message-all").toggle();
+                }
 
             },
             default: function (err) {
+                //Show error message
+                $("#error-message-all").html("<strong>Foutje!</strong> Probeer het later nog eens.");
+                if ($("#error-message-all").is(':hidden')){
+                    $("#error-message-all").toggle();
+                }
 
             }
         }
