@@ -103,7 +103,7 @@ $(document).ready(function () {
 
 
             $.ajax({
-                url: 'http://localhost:3000/accounts/users',
+                url: REST + '/accounts/users',
                 method: 'POST',
                 headers: {
                     Authorization: localStorage.getItem('token')
