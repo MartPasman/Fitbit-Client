@@ -37,7 +37,8 @@ $(document).ready(function () {
                 statusCode: {
                     201: function (data) {
                         console.dir(data.token);
-                        localStorage["token"] = data.success;
+                        localStorage.setItem("token", data.success);
+                        localStorage.setItem("userid", data.userid);
                         switch (data.permission){
                             case 1:
                                 location.replace("results.php");
