@@ -140,7 +140,7 @@ include './include/header.php';
 <?php include './include/scripts.php'; ?>
 
     <!-- your scripts -->
-    <script src="js/sign_up.js"></script>
+    <script src="js/sign-up.js"></script>
 
 
     <!-- end of body -->

@@ -40,7 +40,7 @@ $(document).ready(function () {
 function loadGoals(offset) {
     //Ajax call for loading the goals
     $.ajax({
-        url: REST + '/accounts/users/getGoals/'+offset,
+        url: REST + '/users/getGoals/' + offset,
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
@@ -114,7 +114,7 @@ function loadGoals(offset) {
 
 function removeGoal(id, offset) {
     $.ajax({
-        url: REST + '/accounts/users/deleteGoal/'+id,
+        url: REST + '/users/deleteGoal/' + id,
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
