@@ -26,6 +26,9 @@ $(document).ready(function () {
     $.ajax({
         url: REST + '/accounts/users/' + localStorage.getItem('userid') + '/stats/total',
         method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
         dataType: 'JSON',
         statusCode: {
             200: function (data) {
@@ -57,6 +60,9 @@ $(document).ready(function () {
         url: REST + '/accounts/users/' + localStorage.getItem('userid') + '/stats/weeks/last',
         method: 'GET',
         dataType: 'JSON',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
         statusCode: {
             200: function (data) {
                 stepsData = data.success.steps;
