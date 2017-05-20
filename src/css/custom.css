@@ -1,9 +1,25 @@
+body {
+    color: #333;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+h2 {
+    margin-top: .1em;
+}
+
 .navbar-default {
     border-radius: 0;
+}
+
+.navbar {
+    margin: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+    font-size: 1.2em;
 }
 
 .login-top-image {
@@ -68,6 +84,7 @@ h1, h2, h3, h4, h5, h6 {
 .large-tooltip {
     width: 500px;
 }
+
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes led-bad {
     0% {
@@ -116,6 +133,107 @@ h1, h2, h3, h4, h5, h6 {
     100% {
         background-color: lawngreen;
     }
+}
+
+#today {
+    background-color: #dc4f62;
+    width: 100%;
+    height: 64px;
+    margin-bottom: 20px;
+
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    line-height: 64px;
+    vertical-align: middle;
+}
+
+.total {
+    position: absolute;
+    right: .6em;
+    top: .6em;
+
+    font-size: 2em;
+    font-weight: bold;
+    padding: .3em .7em;
+    border: 1px solid #eee;
+    border-radius: 1em;
+    display: inline-block;
+}
+
+.total.button:hover {
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+.total.button:active {
+    background-color: #dedede;
+}
+
+@media all and (max-width: 768px) {
+    .total {
+        font-size: 1.6em;
+        padding: .35em .6em;
+    }
+}
+
+.chart {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.chart .glyphicon {
+    margin-top: .6em;
+    font-size: 1.6em;
+}
+
+#goal-history {
+    width: 100%;
+    height: 190px;
+    margin-top: 40px;
+    border: 1px solid #eee;
+    border-radius: 1em;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#goal-history-inside {
+    width: 1200px;
+    height: 100%;
+}
+
+.goal {
+    display: inline-block;
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid #eee;
+    border-radius: 1em;
+    height: calc(100% - 2em);
+    width: 200px;
+    float: left;
+    text-align: center;
+}
+
+.goal.achieved {
+    color: #fff;
+    background-color: #49dc90;
+    border: none;
+}
+
+.goal-icon {
+    font-size: 4em;
+    margin-top: .1em;
+}
+
+.not-achieved {
+    color: #999;
+}
+
+.goal h2 {
+    font-weight: bold;
 }
 
 .center {

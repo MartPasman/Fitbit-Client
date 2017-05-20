@@ -51,31 +51,6 @@ include './include/header.php';
                                 </div>
                             </div>
 
-                            <div class="row form-group">
-                                <label class="col-md-3 control-label" for="wachtwoord">Wachtwoord</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-			                <span class="input-group-addon">
-			                <i class="glyphicon glyphicon-lock"></i>
-			            </span>
-                                        <input id="wachtwoord" name="wachtwoord" placeholder="wachtwoord"
-                                               class="form-control input-md" type="password">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <label class="col-md-3 control-label" for="wachtwoord2">Wachtwoord</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-			                <span class="input-group-addon">
-			                <i class="glyphicon glyphicon-lock"></i>
-			            </span>
-                                        <input id="wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"
-                                               class="form-control input-md" type="password">
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row form-group" id="handicap">
                                 <label class="col-md-3 control-label" for="handicap">Handicap</label>
@@ -87,10 +62,10 @@ include './include/header.php';
                                                 Handicap <span class="caret"></span>
                                             </button>
                                             <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                                               title="De handicap houdt rekening met de fitaliteit van een deelnemer.
-                                            Wanneer een persoon minder goed ter been is, krijgt hij meer punten bij een aantal stappen,
-                                            dan een persoon die goed ter been is. Wanneer een persoon slecht ter been is, krijgt hij meer punten bij een aantal stappen,
-dan een persoon die minder goed ter been is.">Uitleg</a>
+                                               title="De handicap houdt rekening met de vitaliteit van een deelnemer.
+                                               Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
+                                               bij een aantal stappen."
+                                            ><span class="glyphicon glyphicon-info-sign" style="color: #DC4F62; font-size: 1.2em;"></span></a>
                                             <div class="large-tooltip"><i class="icon ion-help-circled" rel="tooltip"
                                                                           title="Hint"></i>
                                             </div>
@@ -123,6 +98,32 @@ dan een persoon die minder goed ter been is.">Uitleg</a>
                                 </div>
                             </div>
 
+
+                            <div class="row form-group">
+                                <label class="col-md-3 control-label" for="wachtwoord">Wachtwoord</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-lock"></i>
+			            </span>
+                                        <input id="wachtwoord" name="wachtwoord" placeholder="wachtwoord"
+                                               class="form-control input-md" type="password">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label class="col-md-3 control-label" for="wachtwoord2">Wachtwoord</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-lock"></i>
+			            </span>
+                                        <input id="wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"
+                                               class="form-control input-md" type="password">
+                                    </div>
+                                </div>
+                            </div>
 
                             <button type="button" id="save" class="btn btn-success">Account aanmaken</button>
 
