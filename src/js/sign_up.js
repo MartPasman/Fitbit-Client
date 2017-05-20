@@ -4,7 +4,7 @@
 
 $("#error").hide();
 $(document).ready(function () {
-    var modal = $('#modal-login-error');
+    var modal = $('#modal-account-error');
 
 
     $('[data-toggle="tooltip"]').tooltip();
@@ -45,7 +45,7 @@ $(document).ready(function () {
 
 
         if (!validateEmail(email)){
-            errorMsg.text("Vul een geldig email adres in.");
+            errorMsg.text("Vul een geldig e-mailadres in.");
             $("#error").toggle('show');
             valid = false;
             return;
@@ -119,30 +119,46 @@ $(document).ready(function () {
                         modal.find('.modal-body').html("Onthoud dit id goed: " + data.id + ".");
                         // show the modal
                         modal.modal();
-
-
                     },
                     400: function (err) {
                         // set the modal title
                         modal.find('.modal-title').html('Er is iets misgegaan!');
                         // set the modal body
-                        modal.find('.modal-body').html("Controleer of je elk veld ingevuld hebt.");
+                        modal.find('.modal-body').html("Controleer of je elk veld correct ingevuld hebt.");
                         // show the modal
                         modal.modal();
                     },
+                    401: function (err) {
+                        // set the modal title
+                        modal.find('.modal-title').html('Verboden toegang');
+                        // set the modal body
+                        modal.find('.modal-body').html("Je bent niet geautoriseerd om een account aan te maken." +
+                            "Controleer of je ingelogd bent.");
+                        // show the modal
+                        modal.modal();
+                    },
+                    403: function (err) {
+                        // set the modal title
+                        modal.find('.modal-title').html('Verboden toegang.');
+                        // set the modal body
+                        modal.find('.modal-body').html("Je bent niet geautoriseerd om een account aan te maken.");
+                        // show the modal
+                        modal.modal();
+                    },
+
                     500: function (err) {
                         // set the modal title
-                        modal.find('.modal-title').html('Er is iets misgegaan!');
+                        modal.find('.modal-title').html('Er is iets misgegaan.');
                         // set the modal body
-                        modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens");
+                        modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens.");
                         // show the modal
                         modal.modal();
                     },
                     default: function (err) {
                         // set the modal title
-                        modal.find('.modal-title').html('Er is iets misgegaan!');
+                        modal.find('.modal-title').html('Er is iets misgegaan.');
                         // set the modal body
-                        modal.find('.modal-body').html("Probeer het nog eens");
+                        modal.find('.modal-body').html("Probeer het later nog eens.");
                         // show the modal
                         modal.modal();
                     }
