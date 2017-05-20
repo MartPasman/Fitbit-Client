@@ -5,10 +5,17 @@
 var stepsData = [];
 var sleepData = [];
 
+var stepsChart;
+var sleepChart;
+
+var dataLoaded = false;
+
 // redraw charts when the screen resizes
 $(window).on('resize', function () {
-    drawStepsChart(stepsData);
-    drawSleepChart(sleepData);
+    if (dataLoaded) {
+        drawStepsChart(stepsData);
+        drawSleepChart(sleepData);
+    }
 });
 
 $(document).ready(function () {
@@ -25,22 +32,22 @@ $(document).ready(function () {
                 $('#total-steps').find('.value').html(data.success.steps);
             },
             400: function (error) {
-
+                console.log(error.error);
             },
             401: function (error) {
-
+                console.log(error.error);
             },
             403: function (error) {
-
+                console.log(error.error);
             },
             404: function (error) {
-
+                console.log(error.error);
             },
             412: function (error) {
-
+                console.log(error.error);
             },
             500: function (error) {
-
+                console.log(error.error);
             }
         }
     });
@@ -52,40 +59,49 @@ $(document).ready(function () {
         dataType: 'JSON',
         statusCode: {
             200: function (data) {
-                stepsData = data.success;
+                stepsData = data.success.steps;
+                sleepData = data.success.sleep;
+                dataLoaded = true;
                 drawStepsChart(stepsData);
+                drawSleepChart(sleepData);
             },
-            400: function (error) {
+            400: function () {
                 printStepsChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
+                printSleepChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
             },
-            401: function (error) {
+            401: function () {
                 printStepsChartError('Geen gebruiker ingelogd.');
+                printSleepChartError('Geen gebruiker ingelogd.');
             },
-            403: function (error) {
+            403: function () {
                 printStepsChartError('Geen toegang.');
+                printSleepChartError('Geen toegang.');
             },
-            404: function (error) {
+            404: function () {
                 printStepsChartError('Gebruiker niet bekend.');
+                printSleepChartError('Gebruiker niet bekend.');
             },
-            412: function (error) {
+            412: function () {
                 printStepsChartError('Dit account is nog niet aan een Fitbit gekoppeld.');
+                printSleepChartError('Dit account is nog niet aan een Fitbit gekoppeld.');
             },
-            500: function (error) {
+            429: function () {
+                printStepsChartError('We hebben even rust nodig.');
+                printSleepChartError('We hebben even rust nodig.');
+            },
+            500: function () {
                 printStepsChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
+                printSleepChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
             }
         }
     });
-
-    // initially draw the charts
-    // TODO ajax call
-    // drawSleepChart(sleepData);
 });
 
-const printStepsChartError = function(message) {
+const printStepsChartError = function (message) {
     $('#chart-steps').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
 };
 
-const printSleepChartError = function(message) {
+const printSleepChartError = function (message) {
     $('#chart-sleep').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
 };
 
@@ -100,13 +116,17 @@ const drawStepsChart = function (data) {
         };
     }
 
-    drawLineChart('#chart-steps', steps, 'datum', 'stappen', '', $('#activity-data').width(), 200);
+    if (steps.length > 0) {
+        stepsChart = drawLineChart('#chart-steps', steps, 'datum', 'stappen', '', $('#activity-data').width(), 200);
+    } else {
+        printStepsChartError('Er zijn nog geen activiteitgegevens bekend.');
+    }
 };
 
-// TODO
 const drawSleepChart = function (data) {
-    drawColumnChart('#chart-sleep', [
-        {label: '17/05', value: 6}, {label: '18/05', value: 8}, {label: '19/05', value: 9},
-        {label: '20/05', value: 8}, {label: '21/05', value: 7}, {label: '22/05', value: 6}
-    ], 'datum', 'uren', false, '', $('#sleep-data').width(), 200);
+    if (sleepData.length > 0) {
+        sleepChart = drawColumnChart('#chart-sleep', data, 'datum', 'uren', false, '', $('#sleep-data').width(), 200);
+    } else {
+        printSleepChartError('Er zijn nog geen slaapgegevens bekend.');
+    }
 };

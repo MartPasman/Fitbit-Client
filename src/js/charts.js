@@ -15,7 +15,7 @@ function drawLineChart(selector, data, xName, yName, valuePrefix, width, height)
     if (selector === undefined || data === undefined || data.length === 0) return console.error("selector parameter or data parameter undefined or empty!");
     if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
 
-    $(selector).insertFusionCharts({
+    return $(selector).insertFusionCharts({
         type: 'line',
         width: width,
         height: height,
@@ -49,7 +49,7 @@ function drawColumnChart(selector, data, xName, yName, yes3d, valuePrefix, width
     if (yes3d !== false && yes3d !== true) yes3d = false;
     if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
 
-    $(selector).insertFusionCharts({
+    return $(selector).insertFusionCharts({
         type: 'column' + (yes3d ? '3d' : '2d'),
         width: width,
         height: height,
