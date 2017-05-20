@@ -23,9 +23,9 @@ include './include/header.php';
         <div id="sleep-data" class="block col-sm-5 col-sm-offset-1">
             <h2>Slaap</h2>
 
-            <div class="total">
-                <span class="glyphicon glyphicon-bed"></span> 7 uur
-            </div>
+<!--            <div class="total">-->
+<!--                <span class="glyphicon glyphicon-bed"></span> 7 uur-->
+<!--            </div>-->
 
             <div id="chart-sleep" class="chart"></div>
         </div>

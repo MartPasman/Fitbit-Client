@@ -66,36 +66,34 @@ $(document).ready(function () {
                 drawSleepChart(sleepData);
             },
             400: function () {
-                printStepsChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
-                printSleepChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
+                printChartsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
             },
             401: function () {
-                printStepsChartError('Geen gebruiker ingelogd.');
-                printSleepChartError('Geen gebruiker ingelogd.');
+                printChartsError('Geen gebruiker ingelogd.');
             },
             403: function () {
-                printStepsChartError('Geen toegang.');
-                printSleepChartError('Geen toegang.');
+                printChartsError('Geen toegang.');
             },
             404: function () {
-                printStepsChartError('Gebruiker niet bekend.');
-                printSleepChartError('Gebruiker niet bekend.');
+                printChartsError('Gebruiker niet bekend.');
             },
             412: function () {
-                printStepsChartError('Dit account is nog niet aan een Fitbit gekoppeld.');
-                printSleepChartError('Dit account is nog niet aan een Fitbit gekoppeld.');
+                printChartsError('Dit account is nog niet aan een Fitbit gekoppeld.');
             },
             429: function () {
-                printStepsChartError('We hebben even rust nodig.');
-                printSleepChartError('We hebben even rust nodig.');
+                printChartsError('We hebben even rust nodig.');
             },
             500: function () {
-                printStepsChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
-                printSleepChartError('Er ging iets mis.<br/>Probeer het later opnieuw.');
+                printChartsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
             }
         }
     });
 });
+
+const printChartsError = function (message) {
+    printStepsChartError(message);
+    printSleepChartError(message);
+};
 
 const printStepsChartError = function (message) {
     $('#chart-steps').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
