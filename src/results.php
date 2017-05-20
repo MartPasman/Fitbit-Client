@@ -12,8 +12,8 @@ include './include/header.php';
         <div id="activity-data" class="block col-sm-6">
             <h2>Activiteit</h2>
 
-            <div id="today-steps" class="total">
-                <span class="glyphicon glyphicon-tree-conifer"></span> 5488
+            <div id="total-steps" class="total">
+                <span class="glyphicon glyphicon-map-marker"></span> <span class="value"></span>
             </div>
 
             <div id="chart-steps" class="chart"></div>

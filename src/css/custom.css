@@ -18,6 +18,10 @@ h2 {
     margin: 0;
 }
 
+.navbar-default .navbar-nav > li > a {
+    font-size: 1.2em;
+}
+
 .login-top-image {
     position: relative;
     width: 50%;
@@ -144,7 +148,7 @@ h2 {
 
     font-size: 2em;
     font-weight: bold;
-    padding: .5em 1em;
+    padding: .3em .7em;
     border: 1px solid #eee;
     border-radius: 1em;
     display: inline-block;
@@ -162,11 +166,19 @@ h2 {
 @media all and (max-width: 768px) {
     .total {
         font-size: 1.6em;
+        padding: .35em .6em;
     }
 }
 
 .chart {
     margin-top: 40px;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.chart .glyphicon {
+    margin-top: .6em;
+    font-size: 1.6em;
 }
 
 #goal-history {
@@ -205,7 +217,7 @@ h2 {
 
 .goal-icon {
     font-size: 4em;
-    margin-top: 0.1em;
+    margin-top: .1em;
 }
 
 .not-achieved {

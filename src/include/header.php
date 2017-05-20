@@ -23,9 +23,21 @@
         </div>
         <div class="collapse navbar-collapse" id="important-id-for-collapsing">
             <ul class="nav navbar-nav">
-                <li><a href="#">Link #1</a></li>
-                <li><a href="#">Link #2</a></li>
-                <li><a href="#">Link #3</a></li>
+                <li>
+                    <a href="/results.php">
+                        <span class="glyphicon glyphicon-dashboard"></span> Resultaten en doelstellingen
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-user"></span> Mijn profiel
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-log-out"></span> Verlaten
+                    </a>
+                </li>
             </ul>
         </div>
 
