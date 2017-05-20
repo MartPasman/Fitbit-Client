@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     // total stats
     $.ajax({
-        url: /*REST*/'http://localhost:3000' + '/accounts/users/' + 123/*localStorage.getItem('userid')*/ + '/stats/total',
+        url: REST + '/accounts/users/' + localStorage.getItem('userid') + '/stats/total',
         method: 'GET',
         dataType: 'JSON',
         statusCode: {
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     // get last weeks steps
     $.ajax({
-        url: /*REST*/'http://localhost:3000' + '/accounts/users/' + 123/*localStorage.getItem('userid')*/ + '/stats/weeks/last',
+        url: REST + '/accounts/users/' + localStorage.getItem('userid') + '/stats/weeks/last',
         method: 'GET',
         dataType: 'JSON',
         statusCode: {
