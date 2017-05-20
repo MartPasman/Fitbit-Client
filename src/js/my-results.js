@@ -127,6 +127,7 @@ const drawStepsChart = function (data) {
     }
 };
 
+// TODO: US12
 const drawSleepChart = function (data) {
     if (sleepData.length > 0) {
         sleepChart = drawColumnChart('#chart-sleep', data, 'datum', 'uren', false, '', $('#sleep-data').width(), 200);
@@ -134,3 +135,5 @@ const drawSleepChart = function (data) {
         printSleepChartError('Er zijn nog geen slaapgegevens bekend.');
     }
 };
+
+// TODO: US11 Goals history
