@@ -52,7 +52,7 @@ $(document).ready(function () {
         }
 
         //check if passwords are the same
-        if (password1 != password2 || password1.length < 8) {
+        if (password1 !== password2 || password1.length < 8) {
             errorMsg.text("Wachtwoorden komen niet overeen of zijn niet lang genoeg (minimaal 8 tekens lang).");
             errorMsg.toggle('show');
             valid = false;
@@ -60,15 +60,15 @@ $(document).ready(function () {
         }
 
         //check if some fields are left empty and show error
-        if (email == undefined || password2 == undefined || password1 == undefined
-            || handicap == undefined || type == undefined) {
+        if (email === undefined || password2 === undefined || password1 === undefined
+            || handicap === undefined || type === undefined) {
             errorMsg.text("Vul alle velden in.");
             errorMsg.toggle('show');
             valid = false;
             return;
 
-        } else if(email != undefined && password2 != undefined && password1 != undefined
-            && handicap != undefined && type != undefined ) {
+        } else if(email !== undefined && password2 !== undefined && password1 !== undefined
+            && handicap !== undefined && type !== undefined ) {
 
 
             if (valid = false){
@@ -79,11 +79,11 @@ $(document).ready(function () {
 
             //check which handicap is entered and change to int
             handicap.toLowerCase();
-            if (handicap == "goed ter been") {
+            if (handicap === "goed ter been") {
                 handicap = 1;
-            } else if (handicap == "minder goed ter been") {
+            } else if (handicap === "minder goed ter been") {
                 handicap = 2;
-            } else if (handicap == "slecht ter been") {
+            } else if (handicap === "slecht ter been") {
                 handicap = 3;
             } else {
                 handicap = 1;
@@ -91,11 +91,11 @@ $(document).ready(function () {
 
             //check which type is entered and change to int
             type.toLowerCase();
-            if (type == "deelnemer") {
+            if (type === "deelnemer") {
                 type = 1;
-            } else if (type == "arts/fysiotherapeut") {
+            } else if (type === "arts/fysiotherapeut") {
                 type = 2;
-            } else if (type == "administrator") {
+            } else if (type === "administrator") {
                 type = 3;
             } else {
                 type = 1;
