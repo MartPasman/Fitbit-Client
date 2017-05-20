@@ -114,7 +114,7 @@ include './include/header.php';
 
             <h5><b>Alle doelstellingen:</b></h5>
             <p></p>
-            <button type="button" data-toggle="modal" data-target="#item-modal" class="btn btn-success" id="new-goal">
+            <button type="button" data-toggle="modal" data-target="#item-modal" class="btn btn-success" id="all-goals">
                 Doelstellingen
             </button>
 

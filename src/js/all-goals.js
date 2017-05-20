@@ -14,6 +14,11 @@ $(document).ready(function () {
     loadGoals(offset);
 
     //Next button
+    $('#all-goals').click(function () {
+        loadGoals(offset)
+    });
+
+    //Next button
     $('#next').click(function () {
         offset += 5;
         loadGoals(offset)
