@@ -1,4 +1,3 @@
-allow from all
 ErrorDocument 400 /error-page.php
 ErrorDocument 401 /error-page.php
 ErrorDocument 403 /error-page.php
