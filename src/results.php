@@ -23,14 +23,10 @@ include './include/header.php';
         <div id="sleep-data" class="block col-sm-5 col-sm-offset-1">
             <h2>Slaap</h2>
 
-<!--            <div class="total">-->
-<!--                <span class="glyphicon glyphicon-bed"></span> 7 uur-->
-<!--            </div>-->
-
             <div id="chart-sleep" class="chart"></div>
         </div>
 
-        <!-- Goals (history) -->
+        <!-- TODO US11 Goals (history) -->
         <div id="goal-data" class="block col-xs-12">
             <h2>Doelstellingen</h2>
 
