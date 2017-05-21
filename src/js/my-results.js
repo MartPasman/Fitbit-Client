@@ -127,7 +127,7 @@ const drawStepsChart = function (data) {
     }
 };
 
-// TODO: US12
+// TODO: US12 Sleep stats
 const drawSleepChart = function (data) {
     if (sleepData.length > 0) {
         sleepChart = drawColumnChart('#chart-sleep', data, 'datum', 'uren', false, '', $('#sleep-data').width(), 200);
