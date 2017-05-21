@@ -115,7 +115,7 @@ function loadGoals(offset) {
 function removeGoal(id, offset) {
     $.ajax({
         url: REST + '/users/goal/delete/'+id,
-        method: 'GET',
+        method: 'DELETE',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
