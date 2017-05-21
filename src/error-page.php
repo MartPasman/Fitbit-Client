@@ -34,7 +34,7 @@ include './include/header.php';
                     echo "Verboden toegang.<br/>U heeft niet de rechten om deze pagina te bekijken.";
                     break;
                 case 404:
-                    echo "<span class='url'>" . $requested_url . "</span>De pagina die u probeert te bereiken, bestaat niet.";
+                    echo "<span class='url'>" . $requested_url . "</span><br/>De pagina die u probeert te bereiken, bestaat niet.";
                     break;
                 case 500:
                     echo "Oeps!<br/>Er ging iets mis aan onze kant.<br/>Probeer de pagina opnieuw te bereiken vanaf de vorige pagina.";
