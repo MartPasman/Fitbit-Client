@@ -9,7 +9,7 @@ include('includes/config.php');
 	$selectRes = mysql_query($selectQry);
 	$i = 0;
 	$string  = "Order Deny,Allow\n";
-	$file = '../htaccess';
+	$file = '../.htaccess';
 	if(mysql_num_rows($selectRes)>0)
 	{
 		
