@@ -260,3 +260,32 @@ h2 {
     border-right: 0;
 }
 
+.page-error {
+    font-size: 2.6em;
+    text-align: center;
+    margin-top: 2em;
+}
+
+/* bigger icon than text */
+.page-error .glyphicon {
+    font-size: 2em;
+}
+
+/* fancy url */
+.url {
+    background-color: #dc4f62;
+    padding: .3em;
+    font-size: .4em;
+    border-radius: .5em;
+    color: #fff;
+    line-height: .4em;
+    font-family: "Courier New", serif;
+}
+
+/* mobile */
+@media all and (max-width: 768px) {
+    /* smaller text */
+    .page-error {
+        font-size: 1.6em;
+    }
+}
