@@ -25,7 +25,6 @@ $(document).ready(function () {
     $("#type").find(".dropdown-menu li a").click(function () {
         var newText = $(this).text() + ' <span class="caret"></span>';
         $("#typebtn").html(newText);
-        // $("#typebtn").val($(this).text());
 
         type = $(this).text();
     });

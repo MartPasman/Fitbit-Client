@@ -1,5 +1,5 @@
 <?php
-$title = "Registreren";
+$title = "Account aanmaken";
 include './include/header.php';
 ?>
 
@@ -65,7 +65,8 @@ include './include/header.php';
                                                title="De handicap houdt rekening met de vitaliteit van een deelnemer.
                                                Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
                                                bij een aantal stappen."
-                                            ><span class="glyphicon glyphicon-info-sign" style="color: #DC4F62; font-size: 1.2em;"></span></a>
+                                            ><span class="glyphicon glyphicon-info-sign"
+                                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
                                             <div class="large-tooltip"><i class="icon ion-help-circled" rel="tooltip"
                                                                           title="Hint"></i>
                                             </div>
