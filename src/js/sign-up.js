@@ -13,6 +13,27 @@ $(document).ready(function () {
     var type = undefined;
 
 
+    $("#type").find(".dropdown-menu li a").click(function () {
+        var newText = $(this).text() + ' <span class="caret"></span>';
+        $("#typebtn").html(newText);
+
+        type = $(this).text();
+
+        type = type.toLowerCase();
+        if (type === "deelnemer") {
+            type = 1;
+            $("#handicap").show();
+        } else if (type === "arts/fysiotherapeut") {
+            type = 2;
+            $("#handicap").hide();
+        } else if (type === "administrator") {
+            type = 3;
+            $("#handicap").hide();
+        } else {
+            type = 1;
+        }
+    });
+
     $("#handicap").find(".dropdown-menu li a").click(function () {
 
         var newText = $(this).text() + ' <span class="caret"></span>';
@@ -21,14 +42,6 @@ $(document).ready(function () {
         handicap = $(this).text();
 
     });
-
-    $("#type").find(".dropdown-menu li a").click(function () {
-        var newText = $(this).text() + ' <span class="caret"></span>';
-        $("#typebtn").html(newText);
-
-        type = $(this).text();
-    });
-
 
     $('#save').click(function () {
         var errorMsg = $("#error");
@@ -43,7 +56,7 @@ $(document).ready(function () {
         var password2 = $('#wachtwoord2').val();
 
 
-        if (!validateEmail(email)){
+        if (!validateEmail(email)) {
             errorMsg.text("Vul een geldig e-mailadres in.");
             $("#error").toggle('show');
             valid = false;
@@ -66,18 +79,18 @@ $(document).ready(function () {
             valid = false;
             return;
 
-        } else if(email !== undefined && password2 !== undefined && password1 !== undefined
-            && handicap !== undefined && type !== undefined ) {
+        } else if (email !== undefined && password2 !== undefined && password1 !== undefined
+            && handicap !== undefined && type !== undefined) {
 
 
-            if (valid = false){
+            if (valid = false) {
                 errorMsg.text("Vul alle velden in.");
                 errorMsg.toggle('show');
             }
 
 
             //check which handicap is entered and change to int
-            handicap.toLowerCase();
+            handicap = handicap.toLowerCase();
             if (handicap === "goed ter been") {
                 handicap = 1;
             } else if (handicap === "minder goed ter been") {
@@ -89,7 +102,7 @@ $(document).ready(function () {
             }
 
             //check which type is entered and change to int
-            type.toLowerCase();
+            type = type.toLowerCase();
             if (type === "deelnemer") {
                 type = 1;
             } else if (type === "arts/fysiotherapeut") {

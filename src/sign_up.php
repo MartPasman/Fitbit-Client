@@ -51,6 +51,24 @@ include './include/header.php';
                                 </div>
                             </div>
 
+                            <div class="row form-group" id="type">
+                                <label class="col-md-3 control-label" for="type">Type account</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <div class="dropdown">
+                                            <button id="typebtn" class="btn btn-default dropdown-toggle"
+                                                    type="button" data-toggle="dropdown">Account
+                                                <span class="caret"></span></button>
+                                            <ul class="dropdown-menu" id="type">
+                                                <li><a href="#">Deelnemer</a></li>
+                                                <li><a href="#">Arts/fysiotherapeut</a></li>
+                                                <li><a href="#">Administrator</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="row form-group" id="handicap">
                                 <label class="col-md-3 control-label" for="handicap">Handicap</label>
@@ -80,24 +98,6 @@ include './include/header.php';
                                 </div>
                             </div>
 
-
-                            <div class="row form-group" id="type">
-                                <label class="col-md-3 control-label" for="type">Type account</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <div class="dropdown">
-                                            <button id="typebtn" class="btn btn-default dropdown-toggle"
-                                                    type="button" data-toggle="dropdown">Account
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu" id="type">
-                                                <li><a href="#">Deelnemer</a></li>
-                                                <li><a href="#">Arts/fysiotherapeut</a></li>
-                                                <li><a href="#">Administrator</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div class="row form-group">
