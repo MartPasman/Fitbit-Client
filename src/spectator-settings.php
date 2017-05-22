@@ -201,7 +201,7 @@ include './include/header.php';
                     <p></p>
                     <div><div class="glyphicon glyphicon-calendar"></div>&nbsp 28 Mei 1935</div>
                     <p></p>
-                    <div><div class="glyphicon glyphicon-cloud"></div>&nbsp 81 Jaar</div>
+                    <div><div class="glyphicon glyphicon-gift"></div>&nbsp 81 Jaar</div>
                     <p></p>
                     <div><div class="glyphicon glyphicon-heart"></div>&nbsp Goed ter been</div>
                     <p></p>
