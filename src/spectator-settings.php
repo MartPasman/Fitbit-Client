@@ -97,6 +97,9 @@ include './include/header.php';
         </div>
     </div>
 
+<!-- today -->
+<div id="today"></div>
+
     <div class="container">
 
         <!-- Goal data -->

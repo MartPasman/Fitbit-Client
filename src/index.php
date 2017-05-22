@@ -46,7 +46,7 @@ include './include/header.php';
                                 <input id="password" type="password" class="form-control" name="password"
                                        placeholder="Wachtwoord">
                             </div>
-
+<!--
                             <div class="input-group">
                                 <div class="checkbox" style="margin-top: 0px;">
                                     <label>
@@ -54,7 +54,7 @@ include './include/header.php';
                                     </label>
                                 </div>
                             </div>
-
+-->
                             <button type="button" onsubmit="return false;" class="btn btn-success" id="login">Inloggen
                             </button>
 

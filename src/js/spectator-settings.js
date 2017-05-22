@@ -2,7 +2,8 @@
  * Created by sveno on 19-5-2017.
  */
 $(document).ready(function () {
-
+    // get the current date as a string
+    $('#today').text(getTodaysDate());
     //Hide the messages
     $("#success-message").hide();
     $("#error-message").hide();
