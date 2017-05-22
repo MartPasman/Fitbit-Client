@@ -141,6 +141,9 @@ include './include/header.php';
         <!-- Settings data -->
         <div id="settings" class="block-settings col-sm-3">
             <h2>Instellingen</h2>
+            <?php
+            include './include/change-password.php';
+            ?>
         </div>
 
 
