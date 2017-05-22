@@ -1,5 +1,5 @@
 <?php
-$title = "Registreren";
+$title = "Account aanmaken";
 include './include/header.php';
 ?>
 
@@ -51,35 +51,6 @@ include './include/header.php';
                                 </div>
                             </div>
 
-
-                            <div class="row form-group" id="handicap">
-                                <label class="col-md-3 control-label" for="handicap">Handicap</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <div class="dropdown">
-                                            <button id="handicapbtn" class="btn btn-default dropdown-toggle"
-                                                    type="button" data-toggle="dropdown">
-                                                Handicap <span class="caret"></span>
-                                            </button>
-                                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                                               title="De handicap houdt rekening met de vitaliteit van een deelnemer.
-                                               Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
-                                               bij een aantal stappen."
-                                            ><span class="glyphicon glyphicon-info-sign" style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                                            <div class="large-tooltip"><i class="icon ion-help-circled" rel="tooltip"
-                                                                          title="Hint"></i>
-                                            </div>
-                                            <ul class="dropdown-menu" id="handicap">
-                                                <li><a href="#">Goed ter been</a></li>
-                                                <li><a href="#">Minder goed ter been</a></li>
-                                                <li><a href="#">Slecht ter been</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                             <div class="row form-group" id="type">
                                 <label class="col-md-3 control-label" for="type">Type account</label>
                                 <div class="col-md-9">
@@ -97,6 +68,36 @@ include './include/header.php';
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="row form-group" id="handicap">
+                                <label class="col-md-3 control-label" for="handicap">Handicap</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <div class="dropdown">
+                                            <button id="handicapbtn" class="btn btn-default dropdown-toggle"
+                                                    type="button" data-toggle="dropdown">
+                                                Handicap <span class="caret"></span>
+                                            </button>
+                                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
+                                               title="De handicap houdt rekening met de vitaliteit van een deelnemer.
+                                               Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
+                                               bij een aantal stappen."
+                                            ><span class="glyphicon glyphicon-info-sign"
+                                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
+                                            <div class="large-tooltip"><i class="icon ion-help-circled" rel="tooltip"
+                                                                          title="Hint"></i>
+                                            </div>
+                                            <ul class="dropdown-menu" id="handicap">
+                                                <li><a href="#">Goed ter been</a></li>
+                                                <li><a href="#">Minder goed ter been</a></li>
+                                                <li><a href="#">Slecht ter been</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
 
                             <div class="row form-group">
