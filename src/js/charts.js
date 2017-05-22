@@ -24,7 +24,7 @@ function drawLineChart(selector, data, xName, yName, valuePrefix, width, height)
             chart: {
                 xAxisName: xName,
                 yAxisName: yName,
-                exportEnabled: 1,
+                exportEnabled: 0,
                 numberPrefix: valuePrefix,
                 theme: 'goals'
             },
@@ -58,11 +58,35 @@ function drawColumnChart(selector, data, xName, yName, yes3d, valuePrefix, width
             chart: {
                 xAxisName: xName,
                 yAxisName: yName,
-                exportEnabled: 1,
+                exportEnabled: 0,
                 numberPrefix: valuePrefix,
                 theme: 'goals'
             },
             data: data
         }
     });
+}
+
+function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
+    if (selector === undefined || data === undefined || data.length === 0) return console.error("selector parameter or data parameter undefined or empty!");
+    if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
+
+    return $(selector).insertFusionCharts({
+        type: 'bar2d',
+        width: width,
+        height: height,
+        dataFormat: 'json',
+        dataSource: {
+            chart:{
+                xAxisName: xName,
+                yAxisName: yName,
+                exportEnabled: 0,
+                numberPrefix: valuePrefix,
+                theme:'goals'
+            },
+            data: data
+        }
+
+    })
+
 }

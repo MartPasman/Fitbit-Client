@@ -3,6 +3,9 @@ $title = "Dashboard";
 include './include/header.php';
 ?>
 
+
+
+
     <!-- JQuery and Bootstrap scripts -->
 <?php include './include/scripts.php'; ?>
 
