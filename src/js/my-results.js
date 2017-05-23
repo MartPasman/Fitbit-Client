@@ -34,28 +34,13 @@ $(document).ready(function () {
             200: function (data) {
                 $('#total-steps').find('.value').html(data.success.steps);
             },
-            400: function (error) {
-                console.log(error.error);
-            },
-            401: function (error) {
-                console.log(error.error);
-            },
-            403: function (error) {
-                console.log(error.error);
-            },
-            404: function (error) {
-                console.log(error.error);
-            },
-            412: function (error) {
-                console.log(error.error);
-            },
-            500: function (error) {
+            default: function (error) {
                 console.log(error.error);
             }
         }
     });
 
-    // get last weeks steps
+    // get last weeks steps and sleep
     $.ajax({
         url: REST + '/users/' + localStorage.getItem('userid') + '/stats/weeks/last',
         method: 'GET',
@@ -94,6 +79,37 @@ $(document).ready(function () {
             }
         }
     });
+
+    // get the goals history
+    $.ajax({
+        url: REST + '/users/' + localStorage.getItem('userid') + '/goals?offset=' + 0 + '&limit=' + 5,
+        method: 'GET',
+        dataType: 'JSON',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                $('#goal-history').removeClass('block-error');
+                loadGoalsHistory(data.goals);
+            },
+            400: function () {
+                printGoalsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
+            },
+            401: function () {
+                printGoalsError('Geen gebruiker ingelogd.');
+            },
+            403: function () {
+                printGoalsError('Geen toegang.');
+            },
+            404: function () {
+                printGoalsError('Gebruiker niet bekend.');
+            },
+            500: function () {
+                printGoalsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
+            }
+        }
+    });
 });
 
 const printChartsError = function (message) {
@@ -102,11 +118,20 @@ const printChartsError = function (message) {
 };
 
 const printStepsChartError = function (message) {
-    $('#chart-steps').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
+    printError('#chart-steps', message);
 };
 
 const printSleepChartError = function (message) {
-    $('#chart-sleep').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
+    printError('#chart-sleep', message);
+};
+
+const printGoalsError = function (message) {
+    $('#goal-history').addClass('block-error');
+    printError('#goal-history', message);
+};
+
+const printError = function (selector, message) {
+    $(selector).html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
 };
 
 const drawStepsChart = function (data) {
@@ -121,7 +146,7 @@ const drawStepsChart = function (data) {
     }
 
     if (steps.length > 0) {
-        stepsChart = drawLineChart('#chart-steps', steps, 'datum', 'stappen', '', $('#activity-data').width(), 200);
+        stepsChart = drawLineChart('#chart-steps', steps, 'datum', 'stappen', '', $('#activity-data').width(), 222);
     } else {
         printStepsChartError('Er zijn nog geen activiteitgegevens bekend.');
     }
@@ -130,10 +155,68 @@ const drawStepsChart = function (data) {
 // TODO: US12 Sleep stats
 const drawSleepChart = function (data) {
     if (sleepData.length > 0) {
-        sleepChart = drawColumnChart('#chart-sleep', data, 'datum', 'uren', false, '', $('#sleep-data').width(), 200);
+        sleepChart = drawColumnChart('#chart-sleep', data, 'datum', 'uren', false, '', $('#sleep-data').width(), 220);
     } else {
         printSleepChartError('Er zijn nog geen slaapgegevens bekend.');
     }
 };
 
-// TODO: US11 Goals history
+const loadGoalsHistory = function (data) {
+    const goalHistory = $('#goal-history-inside');
+
+    if (data.length < 1) {
+        printGoalsError('Er zijn nog geen doelstellingen gezet.');
+        return;
+    }
+
+    // clear the div
+    goalHistory.html('');
+
+    // set the width depending on the amount of items in it
+    goalHistory.width(230 * data.length);
+
+    // iterate through all goals
+    for (var i = 0; i < data.length; i++) {
+        const goal = data[i];
+
+        // get the dates and parse them to the desired format
+        const startDate = new Date(goal.start);
+        const startDateStr = startDate.getDate() + '/' + (startDate.getMonth() + 1);
+        const endDate = new Date(goal.end);
+        const endDateStr = endDate.getDate() + '/' + (endDate.getMonth() + 1);
+        const period = startDateStr + ' - ' + endDateStr;
+
+        // start the html we are going to add
+        var html = '<div class="goal ' + (goal.percentage === 100 ? 'achieved' : '') + '"><h2>';
+
+        // calculate the right font-size depending on the amount of excess characters
+        var fontSize = 1;
+        var progressChars = goal.goal.toString().length + goal.progress.toString().length - 8; // 8 = max characters
+        if (progressChars > 0) {
+            fontSize -= 0.1 + (progressChars * 0.05);
+            if (fontSize < 0.1) {
+                fontSize = 0.1;
+            }
+        }
+
+        // the right format depending on completion
+        if (goal.percentage === 100) {
+            html += goal.goal + '</h2>';
+        } else {
+            html += '<span class="not-achieved" style="font-size: ' + fontSize + 'em;">' + goal.progress + ' / ' + goal.goal + '</span></h2>';
+        }
+
+        // finish the div with the right icon
+        var inProgress = 'option-horizontal';
+        if (endDate < new Date()) {
+            // if the goal end date is over, user a different icon
+            inProgress = 'remove';
+        }
+        html += period + '<br/>';
+        html += '<span class="goal-icon glyphicon glyphicon-' + (goal.percentage === 100 ? 'ok' : inProgress) + '"></span>' +
+            '</div>';
+
+        // append the goal html
+        goalHistory.append(html);
+    }
+};
