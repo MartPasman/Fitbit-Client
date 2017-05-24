@@ -1,5 +1,5 @@
 <?php
-$title = "Dashboard";
+$title = "Administrator dashboard";
 include './include/header.php';
 ?>
 
