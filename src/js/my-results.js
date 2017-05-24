@@ -82,7 +82,7 @@ $(document).ready(function () {
 
     // get the goals history
     $.ajax({
-        url: REST + '/users/' + localStorage.getItem('userid') + '/goals?offset=' + 0 + '&limit=' + 5,
+        url: REST + '/users/' + localStorage.getItem('userid') + '/goals?offset=' + 0 + '&limit=' + 10,
         method: 'GET',
         dataType: 'JSON',
         headers: {
