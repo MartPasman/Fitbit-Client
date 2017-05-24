@@ -143,6 +143,7 @@ function loadGoals(offset) {
         },
         statusCode: {
             200: function (data) {
+                //Making a table
                 var html = ' <table class="table table-striped"> <thead><tr> <th>Stappen</th> <th>Start datum</th> <th>Eind datum</th> <th>Opties</th> </tr> </thead> <tbody>';
 
                 //Parse all the goals in a table
