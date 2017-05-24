@@ -179,13 +179,17 @@ h2 {
     }
 }
 
-.chart {
-    margin-top: 40px;
+.chart, .block-error {
+    margin-top: 26px;
     text-align: center;
     font-size: 1.8em;
 }
 
-.chart .glyphicon {
+.block-error {
+    padding-top: .4em;
+}
+
+.chart .glyphicon, .block-error .glyphicon {
     margin-top: .6em;
     font-size: 1.6em;
 }
@@ -202,7 +206,6 @@ h2 {
 }
 
 #goal-history-inside {
-    width: 1200px;
     height: 100%;
 }
 

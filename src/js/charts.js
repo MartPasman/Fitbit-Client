@@ -24,7 +24,7 @@ function drawLineChart(selector, data, xName, yName, valuePrefix, width, height)
             chart: {
                 xAxisName: xName,
                 yAxisName: yName,
-                exportEnabled: 1,
+                exportEnabled: 0,
                 numberPrefix: valuePrefix,
                 theme: 'goals'
             },
@@ -58,7 +58,7 @@ function drawColumnChart(selector, data, xName, yName, yes3d, valuePrefix, width
             chart: {
                 xAxisName: xName,
                 yAxisName: yName,
-                exportEnabled: 1,
+                exportEnabled: 0,
                 numberPrefix: valuePrefix,
                 theme: 'goals'
             },

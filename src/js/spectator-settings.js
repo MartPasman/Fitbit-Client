@@ -7,6 +7,8 @@ $(document).ready(function () {
     //Hide the messages
     $("#success-message").hide();
     $("#error-message").hide();
+    $("#succes-message-update").hide();
+    $("#error-message-update").hide();
 
     $('#save-button').click(function () {
 
@@ -50,7 +52,7 @@ $(document).ready(function () {
 
             //Call to add a goal
             $.ajax({
-                url: REST + '/users/goal/add',
+                url: REST + '/users/'+localStorage.getItem("userid")+'/goals',
                 method: 'POST',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("Authorization", localStorage.getItem("token"));

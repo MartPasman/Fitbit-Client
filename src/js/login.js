@@ -50,34 +50,35 @@ $(document).ready(function () {
                                 break;
                         }
                     },
+                    400: function (err) {
+                        $("#error").html("<strong>Foutje!</strong> Je wachtwoord of ID is onjuist");
+                        if ($("#error").is(':hidden')) {
+                            $("#error").toggle();
+                        }
+                    },
                     401: function (err) {
+                        $("#error").html("<strong>Foutje!</strong> Je wachtwoord of ID is onjuist");
                         if ($("#error").is(':hidden')) {
                             $("#error").toggle();
                         }
                     },
                     403: function (err) {
-                        // set the modal title
-                        modal.find('.modal-title').html('Er is iets misgegaan!');
-                        // set the modal body
-                        modal.find('.modal-body').html("Dit account is op inactief gesteld. Neem contact op met de administrator.");
-                        // show the modal
-                        modal.modal();
+                        $("#error").html("<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
+                        if ($("#error").is(':hidden')) {
+                            $("#error").toggle();
+                        }
                     },
                     500: function (err) {
-                        // set the modal title
-                        modal.find('.modal-title').html('Er is iets misgegaan!');
-                        // set the modal body
-                        modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens.");
-                        // show the modal
-                        modal.modal();
+                        $("#error").html("<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
+                        if ($("#error").is(':hidden')) {
+                            $("#error").toggle();
+                        }
                     },
                     default: function (err) {
-                        // set the modal title
-                        modal.find('.modal-title').html('Er is iets misgegaan!');
-                        // set the modal body
-                        modal.find('.modal-body').html("Probeer het nog eens.");
-                        // show the modal
-                        modal.modal();
+                        $("#error").html("<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
+                        if ($("#error").is(':hidden')) {
+                            $("#error").toggle();
+                        }
                     }
                 }
             });
