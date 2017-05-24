@@ -11,12 +11,10 @@ include './include/header.php';
 
 
         <div id="competition-data" class="block col-lg-11">
-            <h1>Competitie</h1>
 
             <span class="glyphicon glyphicon-arrow-left"></span>
             <h4 id="startend">20-04 t/m 27-04</h4>
             <span class="glyphicon glyphicon-arrow-right"></span>
-
             <div id="chart-competition">FusionCharts will render here</div>
 
 

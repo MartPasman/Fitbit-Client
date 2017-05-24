@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#today').text(getTodaysDate());
 
     $.ajax({
-        url: REST + '/competitions/stats/total',
+        url: 'http://localhost:3000' + '/competitions/total',
         method: 'GET',
         headers: {
             Authorization: localStorage.getItem('token')
@@ -15,7 +15,7 @@ $(document).ready(function () {
         dataType: 'JSON',
         statusCode: {
             200: function (response) {
-               drawCompetitionChart(response);
+                drawCompetitionChart(response);
             },
             400: function (error) {
                 console.log(error.error);
@@ -37,26 +37,33 @@ $(document).ready(function () {
             }
         }
     });
-
-
-    const drawCompetitionChart = function (data) {
-        var lastComp = data[data.length - 1];
-        var scoreFromEach = [];
-        for (var i = 0; i < data.length; i++) {
-            scoreFromEach[i] = {
-                id: lastComp.results[i].userid,
-                score: lastComp.results[i].score
-            }
-        }
-        if (scoreFromEach.length > 0) {
-            barchart = drawBarChart('#chart-competition', scoreFromEach, 'Naam', 'Stappen', '', $('#competition-data').width, 800);
-        } else {
-            printBarChartError('Er zijn nog geen competitiegegevens bekend.');
-        }
-    };
-    const printBarChartError = function (message) {
-        $('#chart-competition').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
-    };
-
-
 });
+
+const drawCompetitionChart = function (data) {
+    // console.dir(data);
+    var lastComp = data[data.length-1];
+    var scoreFromEach = [];
+
+    scoreFromEach[0] = {
+        label: data[0].results[0].userid,
+        value: data[0].results[0].score
+    };
+    for (var i = 0; i < data.length; i++) {
+        scoreFromEach[i] = {
+            label: lastComp.results[i].name,
+            value: lastComp.results[i].score
+        }
+    }
+
+    if (scoreFromEach.length > 0) {
+        console.dir(scoreFromEach);
+        barchart = drawBarChart('#chart-competition', scoreFromEach, 'Naam', 'Stappen', '', $('#competition-data').width(), $('#competition-data').height());
+    } else {
+        printBarChartError('Er zijn nog geen competitiegegevens bekend.');
+    }
+};
+const printBarChartError = function (message) {
+    $('#chart-competition').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
+};
+
+

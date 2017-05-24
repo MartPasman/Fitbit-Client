@@ -78,15 +78,17 @@ function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
         dataFormat: 'json',
         dataSource: {
             chart:{
+                placeValuesInside:1,
                 xAxisName: xName,
                 yAxisName: yName,
                 exportEnabled: 0,
                 numberPrefix: valuePrefix,
-                theme:'goals'
+                theme:'goals',
+                valueFontColor: "#ffffff"
             },
             data: data
         }
 
-    })
+    });
 
 }
