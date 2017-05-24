@@ -142,7 +142,8 @@ function loadGoals(offset) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
         statusCode: {
-            201: function (data) {
+            200: function (data) {
+                //Making a table
                 var html = ' <table class="table table-striped"> <thead><tr> <th>Stappen</th> <th>Start datum</th> <th>Eind datum</th> <th>Opties</th> </tr> </thead> <tbody>';
 
                 //Parse all the goals in a table
@@ -150,8 +151,11 @@ function loadGoals(offset) {
                     var startdate = new Date(value.start);
                     var enddate = new Date(value.end);
 
-                    var sdate = startdate.getDay() +'/'+ startdate.getMonth() +'/'+ startdate.getFullYear();
-                    var edate = enddate.getDay() +'/'+ enddate.getMonth() +'/'+ enddate.getFullYear();
+                    var start_month = startdate.getMonth() + 1;
+                    var end_month = enddate.getMonth() + 1;
+
+                    var sdate = startdate.getDate() +'/'+ start_month +'/'+ startdate.getFullYear();
+                    var edate = enddate.getDate() +'/'+ end_month +'/'+ enddate.getFullYear();
 
                     var id = value._id;
                     html += '<tr>';
@@ -255,7 +259,7 @@ function changeGoal(id) {
             xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
         statusCode: {
-            201: function (data) {
+            200: function (data) {
                 if(!Date.parse(data.goals.start) || !Date.parse(data.goals.end) || isEmpty(data.goals.goal || isEmpty(data.goals._id))){
                     $("#error-message-update").html("<strong>Foutje!</strong> Probeer het later nog eens.");
                     if ($("#error-message-update").is(':hidden')){
@@ -266,13 +270,16 @@ function changeGoal(id) {
                 var start = new Date(data.goals.start);
                 var end = new Date(data.goals.end);
 
+                var start_month = start.getMonth() + 1;
+                var end_month = end.getMonth() + 1;
+
                 $("#item-modal").modal("hide");
 
                 $("#success-message-update").hide();
                 $("#error-message-update").hide();
                 $("#steps-update").val(data.goals.goal);
-                $("#start-date-update").val(start.getDay()+'/'+start.getMonth()+'/'+start.getFullYear());
-                $("#end-date-update").val(end.getDay()+'/'+end.getMonth()+'/'+end.getFullYear());
+                $("#start-date-update").val(start.getDate()+'/'+start_month+'/'+start.getFullYear());
+                $("#end-date-update").val(end.getDate()+'/'+end_month+'/'+end.getFullYear());
                 $("#update-button").val(data.goals._id);
                 $("#update-modal").modal("show");
             },

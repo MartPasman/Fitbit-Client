@@ -38,7 +38,6 @@ $(document).ready(function () {
 
         var newText = $(this).text() + ' <span class="caret"></span>';
         $("#handicapbtn").html(newText);
-        // $("#typebtn").val($(this).text());
         handicap = $(this).text();
 
     });
@@ -50,7 +49,8 @@ $(document).ready(function () {
         errorMsg.text("Vul alle velden in.");
         var valid = false;
 
-
+        var firstname = $('#voornaam').val();
+        var lastname = $('#achternaam').val();
         var email = $('#email').val();
         var password1 = $('#wachtwoord').val();
         var password2 = $('#wachtwoord2').val();
@@ -72,14 +72,14 @@ $(document).ready(function () {
         }
 
         //check if some fields are left empty and show error
-        if (email === undefined || password2 === undefined || password1 === undefined
+        if (firstname === undefined || lastname === undefined || email === undefined || password2 === undefined || password1 === undefined
             || handicap === undefined || type === undefined) {
             errorMsg.text("Vul alle velden in.");
             errorMsg.toggle('show');
             valid = false;
             return;
 
-        } else if (email !== undefined && password2 !== undefined && password1 !== undefined
+        } else if (firstname !== undefined || lastname !== undefined || email !== undefined && password2 !== undefined && password1 !== undefined
             && handicap !== undefined && type !== undefined) {
 
 
@@ -89,30 +89,19 @@ $(document).ready(function () {
             }
 
 
-            //check which handicap is entered and change to int
-            handicap = handicap.toLowerCase();
-            if (handicap === "goed ter been") {
-                handicap = 1;
-            } else if (handicap === "minder goed ter been") {
-                handicap = 2;
-            } else if (handicap === "slecht ter been") {
-                handicap = 3;
-            } else {
-                handicap = 1;
+            if(type === 1) {
+                //check which handicap is entered and change to int
+                handicap = handicap.toLowerCase();
+                if (handicap === "goed ter been") {
+                    handicap = 1;
+                } else if (handicap === "minder goed ter been") {
+                    handicap = 2;
+                } else if (handicap === "slecht ter been") {
+                    handicap = 3;
+                } else {
+                    handicap = 1;
+                }
             }
-
-            //check which type is entered and change to int
-            type = type.toLowerCase();
-            if (type === "deelnemer") {
-                type = 1;
-            } else if (type === "arts/fysiotherapeut") {
-                type = 2;
-            } else if (type === "administrator") {
-                type = 3;
-            } else {
-                type = 1;
-            }
-
 
             $.ajax({
                 url: REST + '/accounts',
@@ -121,6 +110,8 @@ $(document).ready(function () {
                     Authorization: localStorage.getItem('token')
                 },
                 data: {
+                    firstname: firstname,
+                    lastname: lastname,
                     email: email,
                     password: password1,
                     handicap: handicap,
