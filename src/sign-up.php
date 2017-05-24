@@ -39,6 +39,32 @@ include './include/header.php';
 
 
                             <div class="row form-group">
+                                <label class="col-md-3 control-label" for="voornaam">Voornaam</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-user"></i>
+			            </span>
+                                        <input id="voornaam" name="voornaam" placeholder="voornaam"
+                                               class="form-control input-md" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label class="col-md-3 control-label" for="achternaam">Achternaam</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-user"></i>
+			            </span>
+                                        <input id="achternaam" name="achternaam" placeholder="achternaam"
+                                               class="form-control input-md" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
                                 <label class="col-md-3 control-label" for="email">E-mailadres</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
@@ -88,7 +114,7 @@ include './include/header.php';
                                             <div class="large-tooltip"><i class="icon ion-help-circled" rel="tooltip"
                                                                           title="Hint"></i>
                                             </div>
-                                            <ul class="dropdown-menu" id="handicap">
+                                            <ul class="dropdown-menu" id="handicapDrop">
                                                 <li><a href="#">Goed ter been</a></li>
                                                 <li><a href="#">Minder goed ter been</a></li>
                                                 <li><a href="#">Slecht ter been</a></li>
