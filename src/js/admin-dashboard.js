@@ -91,7 +91,6 @@ $(document).ready(function () {
                                 200: function (data) {
                                     editModal.modal('hide');
 
-
                                     // set the modal title
                                     modal.find('.modal-title').html('Succes');
                                     // set the modal body
