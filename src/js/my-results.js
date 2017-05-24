@@ -152,10 +152,18 @@ const drawStepsChart = function (data) {
     }
 };
 
-// TODO: US12 Sleep stats
 const drawSleepChart = function (data) {
+    var sleep = [];
+    // reformat date labels
+    for (var i = 0; i < data.length; i++) {
+        sleep[i] = {
+            label: data[i].date.substring(8, 10) + '/' + data[i].date.substring(5, 7),
+            value: data[i].duration
+        };
+    }
+
     if (sleepData.length > 0) {
-        sleepChart = drawColumnChart('#chart-sleep', data, 'datum', 'uren', false, '', $('#sleep-data').width(), 220);
+        sleepChart = drawColumnChart('#chart-sleep', sleep, 'datum', 'uren', false, '', $('#sleep-data').width(), 220);
     } else {
         printSleepChartError('Er zijn nog geen slaapgegevens bekend.');
     }

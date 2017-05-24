@@ -87,7 +87,8 @@ FusionCharts.register("theme", {
             chart: {
                 valueFontColor: "#fff",
                 placeValuesInside: 1,
-                rotateValues: 0
+                rotateValues: 0,
+                decimals: 1
             }
         }
     }
