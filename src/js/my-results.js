@@ -152,7 +152,6 @@ const drawStepsChart = function (data) {
     }
 };
 
-// TODO: US12 Sleep stats
 const drawSleepChart = function (data) {
     var sleep = [];
     // reformat date labels
