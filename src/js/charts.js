@@ -66,3 +66,29 @@ function drawColumnChart(selector, data, xName, yName, yes3d, valuePrefix, width
         }
     });
 }
+
+function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
+    if (selector === undefined || data === undefined || data.length === 0) return console.error("selector parameter or data parameter undefined or empty!");
+    if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
+
+    return $(selector).insertFusionCharts({
+        type: 'bar2d',
+        width: width,
+        height: height,
+        dataFormat: 'json',
+        dataSource: {
+            chart:{
+                placeValuesInside:1,
+                xAxisName: xName,
+                yAxisName: yName,
+                exportEnabled: 0,
+                numberPrefix: valuePrefix,
+                theme:'goals',
+                valueFontColor: "#ffffff"
+            },
+            data: data
+        }
+
+    });
+
+}

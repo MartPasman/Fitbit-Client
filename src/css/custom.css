@@ -241,7 +241,7 @@ h2 {
 }
 
 .center {
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 .modal-header {
@@ -253,9 +253,9 @@ h2 {
 }
 
 .modal-footer .btn-group button {
-    height:40px;
-    border-top-left-radius : 0;
-    border-top-right-radius : 0;
+    height: 40px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     border: none;
     border-right: 1px solid #ddd;
 }
@@ -287,6 +287,27 @@ h2 {
     font-family: "Courier New", serif;
 }
 
+#competition-data {
+    position: absolute;
+    width: 96%;
+    margin-right: 2%;
+    margin-left: 2%;
+    height: 80%;
+    text-align:center;
+}
+
+
+#competition-data h1{
+    float:left;
+    position: static;
+    display: inline;
+}
+
+#startend{
+    position: relative;
+    display: inline;
+
+}
 /* mobile */
 @media all and (max-width: 768px) {
     /* smaller text */
