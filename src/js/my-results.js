@@ -4,6 +4,7 @@
 
 var stepsData = [];
 var sleepData = [];
+var goalsData = [];
 
 var stepsChart;
 var sleepChart;
@@ -91,7 +92,8 @@ $(document).ready(function () {
         statusCode: {
             200: function (data) {
                 $('#goal-history').removeClass('block-error');
-                loadGoalsHistory(data.goals);
+                goalsData = data.goals;
+                loadGoalsHistory(goalsData);
             },
             400: function () {
                 printGoalsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
