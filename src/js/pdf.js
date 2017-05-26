@@ -4,7 +4,6 @@
 var user = undefined;
 var todayString;
 var lastweekString;
-var doc = new jsPDF();
 
 $(document).ready(function () {
     var id = parseInt(localStorage.getItem('userid'));
@@ -25,24 +24,12 @@ $(document).ready(function () {
             },
             statusCode: {
                 200: function (data) {
-
-                    //TODO weghalen
-                    console.dir(data.success);
                     user = data.success;
 
                     getPDF();
                 },
-                400: function (err) {
-                },
-                401: function (err) {
-                },
-                403: function (err) {
-                },
-                404: function (err) {
-                },
-                500: function (err) {
-                },
                 default: function (err) {
+                    alert("Kan de gegevens niet exporteren. Probeer het later nog eens.");
                 }
             }
         });
@@ -51,6 +38,7 @@ $(document).ready(function () {
 
 
 function getPDF() {
+    var doc = new jsPDF();
 
     doc.setFontSize(20);
     if (user !== undefined) {
@@ -94,30 +82,6 @@ function getPDF() {
     for (var j = 0; j < sleepData.length; j++) {
         doc.text(sleepData[j].duration, 51.5 + (j * 20), 87);
     }
-
-    //dates
-    // doc.text("01-07", 52, 67);
-    // doc.text("02-07", 72, 67);
-    // doc.text("03-07", 92, 67);
-    // doc.text("04-07", 112, 67);
-    // doc.text("05-07", 132, 67);
-    // doc.text("06-07", 152, 67);
-    // doc.text("07-07", 172, 67);
-
-    // doc.text("stap1", 51.5, 77);
-    // doc.text("uur1", 51.5, 87);
-    // doc.text("stap2", 71.5, 77);
-    // doc.text("uur2", 71.5, 87);
-    // doc.text("stap3", 91.5, 77);
-    // doc.text("uur3", 91.5, 87);
-    // doc.text("stap4", 111.5, 77);
-    // doc.text("uur4", 111.5, 87);
-    // doc.text("stap5", 131.5, 77);
-    // doc.text("uur5", 131.5, 87);
-    // doc.text("stap6", 151.5, 77);
-    // doc.text("uur6", 151.5, 87);
-    // doc.text("stap7", 171.5, 77);
-    // doc.text("uur7", 171.5, 87);
 
     //goals
     doc.rect(20, 120, 170, 70);
@@ -177,25 +141,9 @@ function getPDF() {
         //lopend
         doc.text(endDate >= today ? "Ja" : "Nee", 51.5 + (k * 20), 167);
 
-
     }
 
-    // doc.text("s1", 51.5, 137);
-    // doc.text("d1", 51.5, 147);
-    // doc.text("g1", 51.5, 157);
-    // doc.text("l1", 51.5, 167);
-    // doc.text("b1", 51.5, 177);
-    // doc.text("e1", 51.5, 187);
-
-    // doc.text("s2", 71.5, 137); etc
-
-
-
-    if (user !== undefined) {
-        doc.save(user.firstname + " " + user.lastname + ".pdf");
-    } else {
-        doc.save("Gegevens Fitbit.pdf")
-    }
+    doc.save(user !== undefined ? user.firstname + " " + user.lastname + ".pdf" : "Gegevens Fitbit.pdf");
 
 }
 
