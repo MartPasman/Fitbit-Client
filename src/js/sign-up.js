@@ -73,14 +73,14 @@ $(document).ready(function () {
 
         //check if some fields are left empty and show error
         if (firstname === undefined || lastname === undefined || email === undefined || password2 === undefined || password1 === undefined
-            || handicap === undefined || type === undefined) {
+             || type === undefined) {
             errorMsg.text("Vul alle velden in.");
             errorMsg.toggle('show');
             valid = false;
             return;
 
-        } else if (firstname !== undefined || lastname !== undefined || email !== undefined && password2 !== undefined && password1 !== undefined
-            && handicap !== undefined && type !== undefined) {
+        } else if (firstname !== undefined && lastname !== undefined && email !== undefined && password2 !== undefined && password1 !== undefined
+           && type !== undefined) {
 
 
             if (valid = false) {
@@ -90,16 +90,20 @@ $(document).ready(function () {
 
 
             if(type === 1) {
-                //check which handicap is entered and change to int
-                handicap = handicap.toLowerCase();
-                if (handicap === "goed ter been") {
-                    handicap = 1;
-                } else if (handicap === "minder goed ter been") {
-                    handicap = 2;
-                } else if (handicap === "slecht ter been") {
-                    handicap = 3;
-                } else {
-                    handicap = 1;
+                if(handicap === undefined){
+                    errorMsg.text("Vul een handicap in");
+                }else {
+                    //check which handicap is entered and change to int
+                    handicap = handicap.toLowerCase();
+                    if (handicap === "goed ter been") {
+                        handicap = 1;
+                    } else if (handicap === "minder goed ter been") {
+                        handicap = 2;
+                    } else if (handicap === "slecht ter been") {
+                        handicap = 3;
+                    } else {
+                        handicap = 1;
+                    }
                 }
             }
 

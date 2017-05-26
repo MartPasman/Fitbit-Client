@@ -159,14 +159,13 @@ include './include/header.php';
 <div class="container">
     <div class="row">
 
-        <div class="col-sm-3">
+        <div class="col-sm-5 col-sm-offset-1 col-xs-12">
             <!-- Goal data -->
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Doelstellingen</h2></div>
                 <div class="panel-body"> In dit vak staan je instellingen wat betreft je doelstellingen. Je kan een
                     nieuwe
                     doelstelling aanmaken,
-                    <br>
                     of een lopende verwijderen.
                     <p></p>
                     <h5><b>Voeg een nieuwe doelstelling toe:</b></h5>
@@ -188,12 +187,9 @@ include './include/header.php';
             </div>
         </div>
 
-        <!-- Space -->
-        <div id="results" class="col-sm-1">
-        </div>
 
         <!-- My personal data -->
-        <div class="col-sm-4">
+        <div class="col-sm-5 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Mijn gegevens</h2></div>
                 <div class="panel-body">
@@ -216,13 +212,8 @@ include './include/header.php';
             </div>
         </div>
 
-        <!-- Space -->
-        <div id="results" class="col-sm-1">
-        </div>
-
-
         <!-- Settings data -->
-        <div class="col-sm-3">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Wachtwoord</h2></div>
                 <div class="panel-body">
