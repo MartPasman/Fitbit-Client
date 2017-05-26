@@ -20,7 +20,7 @@ $(window).on('resize', function () {
 
 $(document).ready(function () {
     // get the current date as a string
-    $('#today').text(getTodaysDate());
+    $('#today').append(getTodaysDate());
 
     // total stats
     $.ajax({

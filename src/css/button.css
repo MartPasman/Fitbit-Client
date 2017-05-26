@@ -52,3 +52,30 @@
     text-align: center;
     font-size: 2em;
 }
+
+#pdf {
+    background-color: #FFFFFF;
+    border:none;
+    color: #DC4F62;
+    position: absolute;
+    right: 14px;
+    font-weight: bold;
+    top: 14px;
+    font-size: 12px;
+    padding: 12px;
+    line-height: 12px;
+    border-radius: 8px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
