@@ -18,3 +18,13 @@ function getYYYYMMDD(date, splitBy) {
         (dd > 9 ? '' : '0') + dd
     ].join(splitBy);
 }
+
+function getDDMMYYYY(date, splitBy) {
+    var mm = date.getMonth() + 1;
+    var dd = date.getDate();
+
+    return [(dd > 9 ? '' : '0') + dd,
+        (mm > 9 ? '' : '0') + mm,
+        date.getFullYear()
+    ].join(splitBy);
+}

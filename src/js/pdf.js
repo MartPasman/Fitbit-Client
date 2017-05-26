@@ -2,17 +2,19 @@
  * Created by romybeugeling on 24-05-17.
  */
 var user = undefined;
-var today;
-var lastweek;
+var todayString;
+var lastweekString;
+var doc = new jsPDF();
 
 $(document).ready(function () {
-    var doc = new jsPDF();
-    var id = localStorage.getItem('userid');
-    id = parseInt(id);
+    var id = parseInt(localStorage.getItem('userid'));
 
-    today = getYYYYMMDD(new Date(), '/');
-    lastweek = (new Date()).setDate((new Date()).getDate() - 7);
-    lastweek = getYYYYMMDD(lastweek, '/');
+    // go a week back
+    var today = new Date();
+    var lastWeek = new Date();
+    lastWeek.setDate(today.getDate() - 6);
+    todayString = getDDMMYYYY(today, '/');
+    lastweekString = getDDMMYYYY(lastWeek, '/');
 
     $("#pdf").on('click', function () {
         $.ajax({
@@ -26,8 +28,7 @@ $(document).ready(function () {
 
                     //TODO weghalen
                     console.dir(data.success);
-                    var user = data.success;
-
+                    user = data.success;
 
                     getPDF();
                 },
@@ -45,11 +46,7 @@ $(document).ready(function () {
                 }
             }
         });
-
-
     });
-
-
 });
 
 
@@ -58,10 +55,10 @@ function getPDF() {
     doc.setFontSize(20);
     if (user !== undefined) {
         doc.text(user.firstname + " " + user.lastname, 20, 20);
-        doc.text("Gegevens Fitbit van " + lastweek + " tot en met " + today, 20, 30);
+        doc.text("Gegevens Fitbit van " + lastweekString + " tot en met " + todayString, 20, 30);
 
     } else {
-        doc.text("Gegevens Fitbit van " + lastweek + " tot en met " + today, 20, 20);
+        doc.text("Gegevens Fitbit van " + lastweekString + " tot en met " + todayString, 20, 20);
     }
 
     doc.text("Activiteit", 20, 55);
@@ -85,41 +82,42 @@ function getPDF() {
     doc.text("Stappen", 21, 77);
     doc.text("Slaap (uren)", 21, 87);
 
-    var steps = [];
 
     for (var i = 0; i < stepsData.length; i++) {
         var date = stepsData[i].dateTime;
-        steps[i] = {
-            label: date.substring(8, 10) + '/' + date.substring(5, 7),
-            value: data[i].value
-        };
-        doc.text(date.substring(8, 10) + '/' + date.substring(5, 7), 32 + ((i + 1) * 20), 67);
 
+        doc.text(date.substring(8, 10) + '/' + date.substring(5, 7), 52 + (i * 20), 67);
+        doc.text(stepsData[i].value, 51.5 + (i * 20), 77);
+    }
+
+
+    for (var j = 0; j < sleepData.length; j++) {
+        doc.text(sleepData[j].duration, 51.5 + (j * 20), 87);
     }
 
     //dates
-    doc.text("01-07", 52, 67);
-    doc.text("02-07", 72, 67);
-    doc.text("03-07", 92, 67);
-    doc.text("04-07", 112, 67);
-    doc.text("05-07", 132, 67);
-    doc.text("06-07", 152, 67);
-    doc.text("07-07", 172, 67);
+    // doc.text("01-07", 52, 67);
+    // doc.text("02-07", 72, 67);
+    // doc.text("03-07", 92, 67);
+    // doc.text("04-07", 112, 67);
+    // doc.text("05-07", 132, 67);
+    // doc.text("06-07", 152, 67);
+    // doc.text("07-07", 172, 67);
 
-    doc.text("stap1", 51.5, 77);
-    doc.text("uur1", 51.5, 87);
-    doc.text("stap2", 71.5, 77);
-    doc.text("uur2", 71.5, 87);
-    doc.text("stap3", 91.5, 77);
-    doc.text("uur3", 91.5, 87);
-    doc.text("stap4", 111.5, 77);
-    doc.text("uur4", 111.5, 87);
-    doc.text("stap5", 131.5, 77);
-    doc.text("uur5", 131.5, 87);
-    doc.text("stap6", 151.5, 77);
-    doc.text("uur6", 151.5, 87);
-    doc.text("stap7", 171.5, 77);
-    doc.text("uur7", 171.5, 87);
+    // doc.text("stap1", 51.5, 77);
+    // doc.text("uur1", 51.5, 87);
+    // doc.text("stap2", 71.5, 77);
+    // doc.text("uur2", 71.5, 87);
+    // doc.text("stap3", 91.5, 77);
+    // doc.text("uur3", 91.5, 87);
+    // doc.text("stap4", 111.5, 77);
+    // doc.text("uur4", 111.5, 87);
+    // doc.text("stap5", 131.5, 77);
+    // doc.text("uur5", 131.5, 87);
+    // doc.text("stap6", 151.5, 77);
+    // doc.text("uur6", 151.5, 87);
+    // doc.text("stap7", 171.5, 77);
+    // doc.text("uur7", 171.5, 87);
 
     //goals
     doc.rect(20, 120, 170, 70);
@@ -148,58 +146,49 @@ function getPDF() {
     doc.text("Stappen", 21, 137);
     doc.text("Doel", 21, 147);
     doc.text("Gehaald", 21, 157);
-    doc.text("Lopende", 21, 167);
+    doc.text("Lopend", 21, 167);
     doc.text("Begindatum", 21, 177);
     doc.text("Einddatum", 21, 187);
 
-    doc.text("s1", 51.5, 137);
-    doc.text("d1", 51.5, 147);
-    doc.text("g1", 51.5, 157);
-    doc.text("l1", 51.5, 167);
-    doc.text("b1", 51.5, 177);
-    doc.text("e1", 51.5, 187);
+    var today = new Date();
 
-    doc.text("s2", 71.5, 137);
-    doc.text("d2", 71.5, 147);
-    doc.text("g2", 71.5, 157);
-    doc.text("l2", 71.5, 167);
-    doc.text("b2", 71.5, 177);
-    doc.text("e2", 71.5, 187);
+    for (var k = 0; k < goalsData.length; k++) {
+        const goal = goalsData[k];
 
-    doc.text("s3", 91.5, 137);
-    doc.text("d3", 91.5, 147);
-    doc.text("g3", 91.5, 157);
-    doc.text("l3", 91.5, 167);
-    doc.text("b3", 91.5, 177);
-    doc.text("e3", 91.5, 187);
+        //stappen
+        doc.text(goal.progress, 51.5 + (k * 20), 137);
 
-    doc.text("s4", 111.5, 137);
-    doc.text("d4", 111.5, 147);
-    doc.text("g4", 111.5, 157);
-    doc.text("l4", 111.5, 167);
-    doc.text("b4", 111.5, 177);
-    doc.text("e4", 111.5, 187);
+        //doel
+        doc.text(goal.goal, 51.5 + (k * 20), 147);
 
-    doc.text("s5", 131.5, 137);
-    doc.text("d5", 131.5, 147);
-    doc.text("g5", 131.5, 157);
-    doc.text("l5", 131.5, 167);
-    doc.text("b5", 131.5, 177);
-    doc.text("e5", 131.5, 187);
+        // begindatum
+        const startDate = new Date(goal.start);
+        const startDateStr = startDate.getDate() + '/' + (startDate.getMonth() + 1);
+        doc.text(startDateStr, 51.5 + (k * 20), 177);
 
-    doc.text("s6", 151.5, 137);
-    doc.text("d6", 151.5, 147);
-    doc.text("g6", 151.5, 157);
-    doc.text("l6", 151.5, 167);
-    doc.text("b6", 151.5, 177);
-    doc.text("e6", 151.5, 187);
+        //einddatum
+        const endDate = new Date(goal.end);
+        const endDateStr = endDate.getDate() + '/' + (endDate.getMonth() + 1);
+        doc.text(endDateStr, 51.5 + (k * 20), 187);
 
-    doc.text("s7", 171.5, 137);
-    doc.text("d7", 171.5, 147);
-    doc.text("g7", 171.5, 157);
-    doc.text("l7", 171.5, 167);
-    doc.text("b7", 171.5, 177);
-    doc.text("e7", 171.5, 187);
+        //gehaald
+        doc.text(goal.percentage === 100 ? "Ja" : "Nee", 51.5 + (k * 20), 157);
+
+        //lopend
+        doc.text(endDate >= today ? "Ja" : "Nee", 51.5 + (k * 20), 167);
+
+
+    }
+
+    // doc.text("s1", 51.5, 137);
+    // doc.text("d1", 51.5, 147);
+    // doc.text("g1", 51.5, 157);
+    // doc.text("l1", 51.5, 167);
+    // doc.text("b1", 51.5, 177);
+    // doc.text("e1", 51.5, 187);
+
+    // doc.text("s2", 71.5, 137); etc
+
 
 
     if (user !== undefined) {
@@ -207,7 +196,6 @@ function getPDF() {
     } else {
         doc.save("Gegevens Fitbit.pdf")
     }
-    ;
 
 }
 
