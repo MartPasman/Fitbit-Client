@@ -254,7 +254,6 @@ include './include/header.php';
 <script src="js/all-goals.js"></script>
 
 
-
 <script>
     $(document).ready(function () {
         var date_input = $('input[name="date"]'); //our date input has the name "date"

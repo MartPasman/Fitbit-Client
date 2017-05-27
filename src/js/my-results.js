@@ -4,6 +4,7 @@
 
 var stepsData = [];
 var sleepData = [];
+var goalsData = [];
 
 var stepsChart;
 var sleepChart;
@@ -20,7 +21,7 @@ $(window).on('resize', function () {
 
 $(document).ready(function () {
     // get the current date as a string
-    $('#today').text(getTodaysDate());
+    $('#today').append(getTodaysDate());
 
     // total stats
     $.ajax({
@@ -91,7 +92,8 @@ $(document).ready(function () {
         statusCode: {
             200: function (data) {
                 $('#goal-history').removeClass('block-error');
-                loadGoalsHistory(data.goals);
+                goalsData = data.goals;
+                loadGoalsHistory(goalsData);
             },
             400: function () {
                 printGoalsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
