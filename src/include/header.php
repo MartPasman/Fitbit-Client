@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/spectator-settings.php">
+                    <a href="/user-settings.php">
                         <span class="glyphicon glyphicon-user"></span> Mijn profiel
                     </a>
                 </li>
