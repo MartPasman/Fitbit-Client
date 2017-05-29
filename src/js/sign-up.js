@@ -131,6 +131,7 @@ $(document).ready(function () {
                         modal.modal();
                     },
                     400: function (err) {
+                        alert(password1);
                         // set the modal title
                         modal.find('.modal-title').html('Er is iets misgegaan!');
                         // set the modal body
