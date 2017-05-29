@@ -24,18 +24,29 @@ $(document).ready(function () {
                     var user = users[i];
 
                     var html = "<div class='user' >" +
-                        "<span class='glyphicon glyphicon-user'></span>" +
-                        user.firstname + " " + user.lastname + " " +
-                        "<button value='" + user.id + "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
-                        "<button value='" + user.id + "' class='btn btn-default pasaan' data-toggle='modal' data-target='#edit-modal';>Pas aan</button>" +
-                        "<hr/> </div>"
-                    ;
+                            "<span class='glyphicon glyphicon-user'></span>" +
+                            user.firstname + " " + user.lastname + " " +
+                            "<button value='" + user.id + "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
+                            "<button value='" + user.id + "' class='btn btn-default pasaan' data-toggle='modal' data-target='#edit-modal';>Pas aan</button>" +
+                            "<hr/> </div>"
+                        ;
                     $("#userlist").append(html);
                 }
                 $(".koppel").click(function () {
                     id = $(this).attr('value');
 
-                    location.replace(REST + "/accounts/" + id + "/connect")
+                    $.ajax({
+                        url: REST + 'accounts' + id + '/connect',
+                        method: 'GET',
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        },
+                        statusCode: {
+
+                        }
+
+
+                    });
                 });
 
                 $("#success-message").hide();
@@ -82,7 +93,7 @@ $(document).ready(function () {
                             url: REST + '/users/' + id + "/handicap",
                             method: 'PUT',
                             data: {
-                                handicap : handicap
+                                handicap: handicap
                             },
                             headers: {
                                 Authorization: localStorage.getItem('token')

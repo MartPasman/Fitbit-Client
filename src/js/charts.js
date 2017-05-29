@@ -82,9 +82,10 @@ function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
                 xAxisName: xName,
                 yAxisName: yName,
                 exportEnabled: 0,
-                numberPrefix: valuePrefix,
+                numberSuffix: valuePrefix,
                 theme:'goals',
-                valueFontColor: "#ffffff"
+                valueFontColor: "#ffffff",
+                yAxisMaxValue: 100
             },
             data: data
         }
