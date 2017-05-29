@@ -9,24 +9,24 @@ $(document).ready(function () {
     // get the current date as a string
     $('#today').text(getTodaysDate());
     loadWithOffset();
-
-    $("#arrow-left").click(function () {
-        old_offset = offset;
-       offset--;
-       loadWithOffset();
-    });
-    $("#arrow-right").click(function () {
-        old_offset = offset;
-        offset++;
-        loadWithOffset();
-    });
+    //
+    // $("#arrow-left").click(function () {
+    //     old_offset = offset;
+    //    offset--;
+    //    loadWithOffset();
+    // });
+    // $("#arrow-right").click(function () {
+    //     old_offset = offset;
+    //     offset++;
+    //     loadWithOffset();
+    // });
 
 
 });
 
 var loadWithOffset = function(){
     $.ajax({
-        url: REST + '/competitions/'+offset,
+        url: REST + '/competitions/',
         method: 'GET',
         headers: {
             Authorization: localStorage.getItem('token')
@@ -65,15 +65,14 @@ var loadWithOffset = function(){
 };
 
 const drawCompetitionChart = function (data) {
-
-    var lastComp = data.competition;
+    var lastComp = data;
     var max = data.total;
     var current = data.current;
     var scoreFromEach = [];
     var goal = lastComp.goal;
-
-    console.dir(data);
-
+    lastComp.results.sort(function (m1, m2) {
+        return m2.score - m1.score;
+    });
 
       for (var i = 0; i < lastComp.results.length; i++) {
 
@@ -96,18 +95,18 @@ const drawCompetitionChart = function (data) {
         var end_date = new Date(lastComp.end);
         $("#startend").html(start_date.getDate() + "-" + (+start_date.getMonth()+1) + "-" + start_date.getFullYear() + " t/m " + end_date.getDate() + "-" + (+end_date.getMonth()+1) + "-" + end_date.getFullYear())
         $("#goal-to-reach").html(lastComp.goal + " punten");
-
-        if(current == 0){
-            $("#arrow-left").removeClass("glyphicon-arrow-left");
-        }else{
-            $("#arrow-left").addClass("glyphicon-arrow-left");
-        }
-
-        if(current >= max){
-            $("#arrow-right").removeClass("glyphicon-arrow-right");
-        }else{
-            $("#arrow-right").addClass("glyphicon-arrow-right");
-        }
+        //
+        // if(current == 0){
+        //     $("#arrow-left").removeClass("glyphicon-arrow-left");
+        // }else{
+        //     $("#arrow-left").addClass("glyphicon-arrow-left");
+        // }
+        //
+        // if(current >= max){
+        //     $("#arrow-right").removeClass("glyphicon-arrow-right");
+        // }else{
+        //     $("#arrow-right").addClass("glyphicon-arrow-right");
+        // }
       } else {
         printBarChartError('Er zijn nog geen competitiegegevens bekend.');
     }
