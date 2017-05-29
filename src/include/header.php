@@ -37,8 +37,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-log-out" id="log-out"></span> Verlaten
+                    <a href="/index.php" id="log-out">
+                        <span class="glyphicon glyphicon-log-out" ></span> Verlaten
                     </a>
                 </li>
             </ul>
@@ -47,5 +47,8 @@
         <span class="led-bad"></span>
     </div>
 </nav>
+
+<!-- Include jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script src="../js/logout.js" type="text/javascript"></script>
