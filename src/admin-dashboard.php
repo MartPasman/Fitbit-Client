@@ -27,7 +27,8 @@ include './include/header.php';
     <div style="margin-top:30px">
         <div class="col-md-5 ">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title"><strong>Deelnemers</strong></h3>
+                <div class="panel-heading"><h3 class="panel-title"><strong>Deelnemers</strong><a id="accountbtn" href="sign-up.php">Nieuw account aanmaken</a></h3>
+
                 </div>
 
                 <div class="panel-body" id="userlist">
