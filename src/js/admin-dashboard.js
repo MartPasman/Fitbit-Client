@@ -10,9 +10,9 @@ $(document).ready(function () {
     $.ajax({
         url: REST + '/accounts/',
         method: 'GET',
-        // headers: {
-        //     Authorization: localStorage.getItem('token')
-        // },
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
         statusCode: {
             200: function (data) {
                 var id;

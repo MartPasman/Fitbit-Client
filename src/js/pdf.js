@@ -1,7 +1,7 @@
 /**
  * Created by romybeugeling on 24-05-17.
  */
-var user = undefined;
+var user;
 var todayString;
 var lastweekString;
 
@@ -35,7 +35,6 @@ $(document).ready(function () {
         });
     });
 });
-
 
 function getPDF() {
     var doc = new jsPDF();
@@ -120,10 +119,10 @@ function getPDF() {
         const goal = goalsData[k];
 
         //stappen
-        doc.text(goal.progress, 51.5 + (k * 20), 137);
+        doc.text(goal.progress.toString(), 51.5 + (k * 20), 137);
 
         //doel
-        doc.text(goal.goal, 51.5 + (k * 20), 147);
+        doc.text(goal.goal.toString(), 51.5 + (k * 20), 147);
 
         // begindatum
         const startDate = new Date(goal.start);
@@ -140,11 +139,9 @@ function getPDF() {
 
         //lopend
         doc.text(endDate >= today ? "Ja" : "Nee", 51.5 + (k * 20), 167);
-
     }
 
     doc.save(user !== undefined ? user.firstname + " " + user.lastname + ".pdf" : "Gegevens Fitbit.pdf");
-
 }
 
 
