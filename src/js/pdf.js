@@ -1,7 +1,7 @@
 /**
  * Created by romybeugeling on 24-05-17.
  */
-var user;
+var user = undefined;
 var todayString;
 var lastweekString;
 
@@ -40,7 +40,7 @@ function getPDF() {
     var doc = new jsPDF();
 
     doc.setFontSize(20);
-    if (user !== undefined) {
+    if (user !== undefined && user.firstname !== undefined && user.lastname !== undefined) {
         doc.text(user.firstname + " " + user.lastname, 20, 20);
         doc.text("Gegevens Fitbit van " + lastweekString + " tot en met " + todayString, 20, 30);
 
@@ -74,12 +74,11 @@ function getPDF() {
         var date = stepsData[i].dateTime;
 
         doc.text(date.substring(8, 10) + '/' + date.substring(5, 7), 52 + (i * 20), 67);
-        doc.text(stepsData[i].value, 51.5 + (i * 20), 77);
+        doc.text(stepsData[i].value.toString(), 51.5 + (i * 20), 77);
     }
 
-
     for (var j = 0; j < sleepData.length; j++) {
-        doc.text(sleepData[j].duration, 51.5 + (j * 20), 87);
+        doc.text((Math.round(sleepData[j].duration * 10) / 10).toString(), 51.5 + (j * 20), 87);
     }
 
     //goals
@@ -141,7 +140,7 @@ function getPDF() {
         doc.text(endDate >= today ? "Ja" : "Nee", 51.5 + (k * 20), 167);
     }
 
-    doc.save(user !== undefined ? user.firstname + " " + user.lastname + ".pdf" : "Gegevens Fitbit.pdf");
+    doc.save(user !== undefined && user.firstname !== undefined && user.lastname !== undefined ? user.firstname + " " + user.lastname + ".pdf" : "Gegevens Fitbit.pdf");
 }
 
 
