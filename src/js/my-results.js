@@ -24,8 +24,6 @@ $(document).ready(function () {
     // get the current date as a string
     $('#today').append(getTodaysDate());
 
-
-
     // total stats
     $.ajax({
         url: REST + '/users/' + localStorage.getItem('userid') + '/stats/total',

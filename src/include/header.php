@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title><?php echo $title ?></title>
 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- double declarations for local testing -->
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -48,7 +51,15 @@
     </div>
 </nav>
 
+<!-- JQuery and Bootstrap scripts -->
+<?php include './include/scripts.php'; ?>
+
 <!-- Include jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- BS JavaScript -->
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+
 
 <script src="../js/logout.js" type="text/javascript"></script>
