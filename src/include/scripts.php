@@ -1,4 +1,4 @@
-<!-- jQuery charts plugin -->
+<!-- Fusion Charts plugin -->
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/fusioncharts.js"></script>
 <script type="text/javascript" src="../js/charts/src/fusioncharts-jquery-plugin.js"></script>
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/themes/fusioncharts.theme.goals.js"></script>
@@ -8,8 +8,8 @@
 
 <!-- REST service address -->
 <script type="text/javascript">
-    //const REST = 'http://178.21.116.109:3000';
-const REST = 'http://localhost:3000';
+    const REST = 'http://178.21.116.109:3000';
+//const REST = 'http://localhost:3000';
 </script>
 
 <!-- Flickering led if the REST is online -->

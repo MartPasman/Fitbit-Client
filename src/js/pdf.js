@@ -28,7 +28,7 @@ $(document).ready(function () {
 
                     getPDF();
                 },
-                default: function (err) {
+                default: function () {
                     alert("Kan de gegevens niet exporteren. Probeer het later nog eens.");
                 }
             }

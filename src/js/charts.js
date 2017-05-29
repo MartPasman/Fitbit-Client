@@ -89,7 +89,5 @@ function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
             },
             data: data
         }
-
     });
-
 }

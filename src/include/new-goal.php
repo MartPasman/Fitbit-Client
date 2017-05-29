@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: sveno
- * Date: 29-5-2017
- * Time: 10:20
- */
-?>
 <!-- New goal modal -->
 <div class="modal fade" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
@@ -158,6 +150,6 @@
 
 
 <!-- your scripts -->
-<script src="js/new-goal-settings.js"></script>
-<script src="js/all-goals.js"></script>
+<script src="/js/new-goal-settings.js"></script>
+<script src="/js/all-goals.js"></script>
 

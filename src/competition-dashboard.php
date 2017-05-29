@@ -2,13 +2,10 @@
 $title = "Dashboard";
 include './include/header.php';
 ?>
-
-
     <!-- today -->
     <div id="today"></div>
 
     <div id="container">
-
 
         <div id="competition-data" class="block col-lg-11">
 <!--            <span class="glyphicon glyphicon-arrow-left" id="arrow-left"></span>-->
@@ -19,11 +16,7 @@ include './include/header.php';
             <h3 id="goal-to-reach"></h3>
 
             <div id="chart-competition">FusionCharts will render here</div>
-
-
         </div>
-
-
     </div>
     <!-- JQuery and Bootstrap scripts -->
 <?php include './include/scripts.php'; ?>

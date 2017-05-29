@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- double declarations for local testing -->
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/custom.css" rel="stylesheet" type="text/css">
@@ -19,6 +18,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <div class="container">
+
+    <span class="led-bad"></span>
+
     <img src="img/goals.png" class="login-top-image"/>
 
     <div style="margin-top:30px">
@@ -55,10 +57,10 @@
     </div>
 </div>
 
-<!-- JQuery and Bootstrap scripts -->
+<!-- JS scripts -->
 <?php include './include/scripts.php'; ?>
 
-<!-- your scripts -->
+<!-- page specific scripts -->
 <script src="js/login.js"></script>
 
 <!-- end of body -->
