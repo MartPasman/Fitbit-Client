@@ -5,13 +5,14 @@
 var before;
 var errorMessageAll;
 var errorMessageUpdate;
+var allGoalsView;
 
 $(document).ready(function () {
 
     before = $('#before');
     errorMessageAll = $("#error-message-all");
     errorMessageUpdate = $("#error-message-update");
-    const allGoalsView = $('#all-goals-view');
+    allGoalsView = $('#all-goals-view');
 
     //Hide te message
     errorMessageAll.hide();
