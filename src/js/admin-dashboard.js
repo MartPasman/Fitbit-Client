@@ -6,6 +6,9 @@ $(document).ready(function () {
 
     var modal = $('#modal-account-error');
     var editModal = $('#edit-modal');
+    var accountModal = $('#account-modal');
+    const errorMessageEdit = $('error-message-edit');
+    const userList = $("#userlist");
 
     $.ajax({
         url: REST + '/accounts/',
@@ -16,42 +19,47 @@ $(document).ready(function () {
         statusCode: {
             200: function (data) {
                 var id;
-                $("#userlist").removeClass("block-error");
-                $("#userlist").html('');
+                userList.removeClass("block-error");
+                userList.html('');
 
                 var users = data.success;
                 for (var i = 0; i < users.length; i++) {
                     var user = users[i];
 
                     var html = "<div class='user' >" +
-                            "<span class='glyphicon glyphicon-user'></span>" +
-                            user.firstname + " " + user.lastname + " " +
-                            "<button value='" + user.id + "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
-                            "<button value='" + user.id + "' class='btn btn-default pasaan' data-toggle='modal' data-target='#edit-modal';>Pas aan</button>" +
-                            "<hr/> </div>"
-                        ;
-                    $("#userlist").append(html);
+                        "<span class='glyphicon glyphicon-user'></span>" +
+                        user.firstname + " " + user.lastname + " " +
+                        "<button value='" + user.id + "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
+                        "<button value='" + user.id + "' class='btn btn-default pasaan' data-toggle='modal' data-target='#edit-modal';>Pas aan</button>" +
+                        "<hr/> </div>"
+                    ;
+                    userList.append(html);
                 }
                 $(".koppel").click(function () {
                     id = $(this).attr('value');
 
                     $.ajax({
-                        url: REST + 'accounts' + id + '/connect',
+                        url: REST + '/accounts/' + id + '/connect',
                         method: 'GET',
                         headers: {
                             Authorization: localStorage.getItem('token')
                         },
                         statusCode: {
-
+                            201: function (data) {
+                                location.replace(data.success);
+                            }
                         }
-
-
                     });
                 });
 
                 $("#success-message").hide();
-                $("#error-message").hide();
+                errorMessageEdit.hide();
                 $('[data-toggle="tooltip"]').tooltip();
+
+                $("#accountbtn").click(function (){
+                    accountModal.modal();
+                });
+
 
                 $(".pasaan").click(function () {
                     id = $(this).attr('value');
@@ -64,17 +72,17 @@ $(document).ready(function () {
                     }
 
                     if (user === undefined) {
-                        $("#error-message").html("Deelnemer is niet gevonden.");
-                        $("#error-message").show();
-                        $("#handicap-div").hide();
+                        errorMessageEdit.html("Deelnemer is niet gevonden.");
+                        errorMessageEdit.show();
+                        $("#edit-handicap-div").hide();
                     } else {
                         $("#lineModalLabel").html("Pas account aan van " + user.firstname + " " + user.lastname);
                     }
 
-                    $("#handicap").find("li a").click(function () {
+                    $("#edit-handicap").find("li a").click(function () {
 
                         var newText = $(this).text() + ' <span class="caret"></span>';
-                        $("#handicapbtn").html(newText);
+                        $("#edit-handicapbtn").html(newText);
                         handicap = $(this).text();
 
                         if (handicap === "goed ter been") {
@@ -87,7 +95,7 @@ $(document).ready(function () {
                             handicap = 1;
                         }
                     });
-                    $("#save-button").click(function () {
+                    $("#edit-save-button").click(function () {
 
                         $.ajax({
                             url: REST + '/users/' + id + "/handicap",
@@ -112,34 +120,34 @@ $(document).ready(function () {
                                 },
                                 400: function (err) {
 
-                                    $("#error-message").html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
-                                    $("#error-message").show();
+                                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
+                                    errorMessageEdit.show();
 
                                 },
                                 401: function (err) {
-                                    $("#error-message").html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
-                                    $("#error-message").show();
+                                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
+                                    errorMessageEdit.show();
 
                                 },
                                 403: function (err) {
-                                    $("#error-message").html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
-                                    $("#error-message").show();
+                                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+                                    errorMessageEdit.show();
 
                                 },
                                 404: function (err) {
-                                    $("#error-message").html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
-                                    $("#error-message").show();
+                                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
+                                    errorMessageEdit.show();
 
                                 },
 
                                 500: function (err) {
-                                    $("#error-message").html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
-                                    $("#error-message").show();
+                                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
+                                    errorMessageEdit.show();
 
                                 },
                                 default: function (err) {
-                                    $("#error-message").html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
-                                    $("#error-message").show();
+                                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
+                                    errorMessageEdit.show();
                                 }
                             }
                         });
@@ -173,8 +181,8 @@ $(document).ready(function () {
                 modal.modal();
             },
             404: function (err) {
-                $("#userlist").addClass("block-error");
-                $("#userlist").html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
+                userList.addClass("block-error");
+                userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
                     "Er zijn geen deelnemers bekend")
             },
 
@@ -197,5 +205,9 @@ $(document).ready(function () {
         }
     });
 
-
 });
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}

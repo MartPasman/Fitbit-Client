@@ -68,7 +68,7 @@
 
 }
 
-#accountbtn {
+#accountbtn, #accountbtn:active{
     color: #DC4F62;
     border-color: #DC4F62;
     float: right;
