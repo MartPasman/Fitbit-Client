@@ -4,7 +4,18 @@
 $(document).ready(function () {
 
     $("#error").hide();
+
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            login();
+        }
+    });
+
     $('#login').click(function () {
+        login();
+    });
+
+    function login(){
         var id = $("#id").val().trim();
         var password = $("#password").val().trim();
         var modal = $('#modal-login-error');
@@ -83,7 +94,7 @@ $(document).ready(function () {
                 }
             });
         }
-    });
+    }
 });
 
 
