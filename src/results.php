@@ -1,6 +1,7 @@
 <?php
 $title = "Mijn resultaten";
 include './include/header.php';
+include './include/new-goal.php';
 ?>
 
     <!-- today -->
@@ -33,7 +34,7 @@ include './include/header.php';
         <div id="goal-data" class="block col-xs-12">
             <h2>Doelstellingen</h2>
 
-            <div class="total button">
+            <div class="total button" type="button" data-toggle="modal" data-target="#form-modal" id="new-goal">
                 Nieuw
             </div>
 
@@ -56,3 +57,5 @@ include './include/header.php';
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>
+
+
