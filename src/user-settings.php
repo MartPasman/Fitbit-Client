@@ -4,34 +4,28 @@ include './include/header.php';
 
 ?>
 
-
-
-
 <!-- today -->
 <div id="today"></div>
 
 <div class="container">
     <div class="row">
-
         <div class="col-sm-5 col-sm-offset-1 col-xs-12">
+
             <!-- Goal data -->
             <div class="panel panel-default">
-                <div class="panel-heading"><h2>Doelstellingen</h2></div>
-                <div class="panel-body"> In dit vak staan je instellingen wat betreft je doelstellingen. Je kan een
-                    nieuwe
-                    doelstelling aanmaken,
-                    of een lopende verwijderen.
-                    <p></p>
+                <div class="panel-heading">
+                    <h2>Doelstellingen</h2>
+                </div>
+                <div class="panel-body">
+                    In dit vak staan je instellingen wat betreft je doelstellingen. Je kan een nieuwe doelstelling
+                    aanmaken, of een lopende verwijderen.
                     <h5><b>Voeg een nieuwe doelstelling toe:</b></h5>
-                    <p></p>
                     <button type="button" data-toggle="modal" data-target="#form-modal"
                             class="col-xs-12 btn btn-success"
                             id="new-goal">
                         Nieuwe doelstelling
                     </button>
-                    <p></p>
                     <h5><b>Alle doelstellingen:</b></h5>
-                    <p></p>
                     <button type="button" data-toggle="modal" data-target="#item-modal"
                             class="col-xs-12 btn btn-success"
                             id="all-goals">
@@ -41,20 +35,15 @@ include './include/header.php';
             </div>
         </div>
 
-
         <!-- My personal data -->
         <div class="col-sm-5 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Mijn gegevens</h2></div>
                 <div class="panel-body">
                     <div><div class="glyphicon glyphicon-user"></div>&nbsp Henk Jan Peters</div>
-                    <p></p>
                     <div><div class="glyphicon glyphicon-calendar"></div>&nbsp 28 Mei 1935</div>
-                    <p></p>
                     <div><div class="glyphicon glyphicon-gift"></div>&nbsp 81 Jaar</div>
-                    <p></p>
                     <div><div class="glyphicon glyphicon-heart"></div>&nbsp Goed ter been</div>
-                    <p></p>
                 </div>
             </div>
         </div>
@@ -70,8 +59,6 @@ include './include/header.php';
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 

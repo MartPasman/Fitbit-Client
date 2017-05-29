@@ -30,6 +30,11 @@
         <div class="collapse navbar-collapse" id="important-id-for-collapsing">
             <ul class="nav navbar-nav">
                 <li>
+                    <a href="/competition-dashboard.php">
+                        <span class="glyphicon glyphicon-knight"></span> Competitie
+                    </a>
+                </li>
+                <li>
                     <a href="/results.php">
                         <span class="glyphicon glyphicon-dashboard"></span> Resultaten en doelstellingen
                     </a>
@@ -41,7 +46,7 @@
                 </li>
                 <li>
                     <a href="/index.php" id="log-out">
-                        <span class="glyphicon glyphicon-log-out" ></span> Verlaten
+                        <span class="glyphicon glyphicon-log-out"></span> Verlaten
                     </a>
                 </li>
             </ul>
@@ -51,12 +56,8 @@
     </div>
 </nav>
 
-<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- BS JavaScript -->
-<script type="text/javascript" src="js/bootstrap.js"></script>
-
-
-
+<!-- log out functionality -->
 <script src="../js/logout.js" type="text/javascript"></script>

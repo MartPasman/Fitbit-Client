@@ -1,6 +1,3 @@
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <!-- jQuery charts plugin -->
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/fusioncharts.js"></script>
 <script type="text/javascript" src="../js/charts/src/fusioncharts-jquery-plugin.js"></script>
@@ -11,8 +8,8 @@
 
 <!-- REST service address -->
 <script type="text/javascript">
-    const REST = 'http://178.21.116.109:3000';
-//    const REST = 'http://localhost:3000';
+//    const REST = 'http://178.21.116.109:3000';
+        const REST = 'http://localhost:3000';
 </script>
 
 <!-- Flickering led if the REST is online -->
@@ -23,3 +20,22 @@
 
 <!-- Date utilities -->
 <script src="../js/dates.js"></script>
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+    const iso = $('.bootstrap-iso form');
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = iso.length > 0 ? iso.parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true
+        })
+    })
+</script>
