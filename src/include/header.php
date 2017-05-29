@@ -38,7 +38,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="glyphicon glyphicon-log-out"></span> Verlaten
+                        <span class="glyphicon glyphicon-log-out" id="log-out"></span> Verlaten
                     </a>
                 </li>
             </ul>
@@ -47,3 +47,5 @@
         <span class="led-bad"></span>
     </div>
 </nav>
+
+<script src="../js/logout.js" type="text/javascript"></script>
