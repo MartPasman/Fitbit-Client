@@ -35,7 +35,7 @@ include './include/header.php';
     <div class="tab-content">
 
         <!-- My personal data -->
-        <div id="personal" class="tab-offset tab-pane fade  in active">
+        <div id="personal" class=" tab-pane fade  in active" style="margin-top:30px;">
             <div class="col-sm-6 col-sm-offset-3 col-xs-12">
                 <div class="panel panel-default">
 
@@ -80,7 +80,7 @@ include './include/header.php';
         </div>
 
         <!-- My goals data -->
-        <div id="goals" class="tab-offset tab-pane fade">
+        <div id="goals" class="tab-pane fade" style="margin-top:30px;">
             <div class="col-sm-6 col-sm-offset-3 col-xs-12">
                 <!-- Goal data -->
                 <div class="panel panel-default">
@@ -111,7 +111,7 @@ include './include/header.php';
         </div>
 
         <!-- Settings data -->
-        <div id="settings" class="tab-offset tab-pane fade">
+        <div id="settings" class="tab-pane fade" style="margin-top:30px;">
             <div class="col-sm-6 col-sm-offset-3 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h2>Wachtwoord</h2></div>
