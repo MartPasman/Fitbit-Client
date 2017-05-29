@@ -30,7 +30,6 @@ include './include/new-goal.php';
             <div id="chart-sleep" class="chart"></div>
         </div>
 
-        <!-- TODO US11 Goals (history) -->
         <div id="goal-data" class="block col-xs-12">
             <h2>Doelstellingen</h2>
 
@@ -53,7 +52,6 @@ include './include/new-goal.php';
     <script src="js/my-results.js" type="text/javascript"></script>
     <script src="js/pdf.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/button.css">
-
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>
