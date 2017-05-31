@@ -83,6 +83,10 @@ $(document).ready(function () {
     });
 
     // get the goals history
+    getGoalsHistory();
+});
+
+const getGoalsHistory = function () {
     $.ajax({
         url: REST + '/users/' + localStorage.getItem('userid') + '/goals?offset=' + 0 + '&limit=' + 10,
         method: 'GET',
@@ -113,7 +117,7 @@ $(document).ready(function () {
             }
         }
     });
-});
+};
 
 const printChartsError = function (message) {
     printStepsChartError(message);

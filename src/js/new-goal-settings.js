@@ -67,6 +67,8 @@ $(document).ready(function () {
                         if ($("#success-message").is(':hidden')) {
                             $("#success-message").toggle();
                         }
+
+                        getGoalsHistory();
                     },
                     401: function (err) {
                         //Unauthorized error message

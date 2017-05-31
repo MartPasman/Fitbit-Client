@@ -45,13 +45,12 @@ include './include/header.php';
 <!-- JQuery and Bootstrap scripts -->
 <?php include './include/scripts.php'; ?>
 
-<?php include './include/new-goal.php'; ?>
-
 <!-- your scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 <script src="js/my-results.js" type="text/javascript"></script>
 <script src="js/pdf.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/button.css">
+<?php include './include/new-goal.php'; ?>
 
 <!-- end of body -->
 <?php include './include/footer.php'; ?>
