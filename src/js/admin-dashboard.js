@@ -7,7 +7,7 @@ $(document).ready(function () {
     var modal = $('#modal-account-error');
     var editModal = $('#edit-modal');
     var accountModal = $('#account-modal');
-    const errorMessageEdit = $('error-message-edit');
+    const errorMessageEdit = $('#error-message-edit');
     const userList = $("#userlist");
 
     $.ajax({
@@ -56,12 +56,15 @@ $(document).ready(function () {
                 errorMessageEdit.hide();
                 $('[data-toggle="tooltip"]').tooltip();
 
-                $("#accountbtn").click(function (){
+                $("#accountbtn").click(function () {
                     accountModal.modal();
                 });
 
 
+
+
                 $(".pasaan").click(function () {
+
                     id = $(this).attr('value');
 
                     var user = undefined;
@@ -153,6 +156,9 @@ $(document).ready(function () {
                         });
 
                     });
+                });
+                editModal.on('hidden.bs.modal', function () {
+                    $(this).find('form').trigger('reset');
                 });
 
             },

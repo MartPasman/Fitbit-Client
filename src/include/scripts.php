@@ -1,4 +1,4 @@
-<!-- Fusion Charts plugin -->
+<!-- jQuery charts plugin -->
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/fusioncharts.js"></script>
 <script type="text/javascript" src="../js/charts/src/fusioncharts-jquery-plugin.js"></script>
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/themes/fusioncharts.theme.goals.js"></script>
@@ -35,7 +35,8 @@
             format: 'dd/mm/yyyy',
             container: container,
             todayHighlight: true,
-            autoclose: true
+            autoclose: true,
+            language: "nl"
         })
     })
 </script>

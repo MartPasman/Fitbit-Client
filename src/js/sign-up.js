@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
 
-    $("#error").hide();
+    // $("#error").hide();
     var modal = $('#modal-account-error');
     var accountModal = $('#account-modal');
     const errorMsg = $("#error-message-account");
@@ -36,11 +36,22 @@ $(document).ready(function () {
     });
 
     $("#new-handicap").find("li a").click(function () {
-
         var newText = $(this).text() + ' <span class="caret"></span>';
         $("#new-handicap-button").html(newText);
         handicap = $(this).text();
     });
+
+    // $('input[name="date"]').click(function () {
+        var date_input = $('input[name="date"]');
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            language: "nl"
+        });
+    // });
 
     $('#new-save-button').click(function () {
 
@@ -52,10 +63,11 @@ $(document).ready(function () {
         var email = $('#new-email').val();
         var password1 = $('#new-wachtwoord').val();
         var password2 = $('#new-wachtwoord2').val();
+        var birthday = $('#new-birthday').val();
 
 
         // check if some fields are left empty and show error
-        if (firstname === undefined || lastname === undefined || email === undefined || password2 === undefined || password1 === undefined
+        if (firstname === undefined || lastname === undefined || birthday === undefined || email === undefined || password2 === undefined || password1 === undefined
             || type === undefined) {
             errorMsg.text("Vul alle velden in.");
             errorMsg.show();
@@ -88,6 +100,8 @@ $(document).ready(function () {
                     handicap = 1;
                 }
             }
+        } else {
+            handicap === undefined;
         }
 
         //check if passwords are the same
@@ -107,6 +121,7 @@ $(document).ready(function () {
                 firstname: firstname,
                 lastname: lastname,
                 email: email,
+                birthday: birthday,
                 password: password1,
                 handicap: handicap,
                 type: type
@@ -147,6 +162,9 @@ $(document).ready(function () {
             }
         });
     });
+    accountModal.on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+    })
 });
 
 function validateEmail(email) {

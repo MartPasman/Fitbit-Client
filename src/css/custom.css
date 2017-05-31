@@ -298,25 +298,45 @@ h2 {
     margin-right: 2%;
     margin-left: 2%;
     height: 80%;
-    text-align:center;
+    text-align: center;
 }
 
-
-#competition-data h1{
-    float:left;
+#competition-data h1 {
+    float: left;
     position: static;
     display: inline;
 }
 
-#startend{
+#startend {
     position: relative;
     display: inline;
 
 }
+
 /* mobile */
 @media all and (max-width: 768px) {
     /* smaller text */
     .page-error {
         font-size: 1.6em;
     }
+}
+
+#userlist {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+/* mobile */
+@media all and (max-height: 600px) {
+
+    #userlist {
+        max-height: 200px;
+    }
+}
+
+input[type="date"].form-control,
+input[type="time"].form-control,
+input[type="datetime-local"].form-control,
+input[type="month"].form-control {
+    line-height: inherit;
 }

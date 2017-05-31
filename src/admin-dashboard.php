@@ -3,32 +3,32 @@ $title = "Dashboard";
 include './include/header.php';
 ?>
 
-    <!-- error modal -->
-    <div id="modal-account-error" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Er is iets mis gegaan, probeer het later nog eens!</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
-                </div>
+<!-- error modal -->
+<div id="modal-account-error" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Er is iets mis gegaan, probeer het later nog eens!</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container">
+<div class="container">
 
     <!-- block for users and competition -->
     <div style="margin-top:30px">
         <div class="col-md-5 ">
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title"><strong>Deelnemers</strong>
-                        <a id="accountbtn">Nieuw account aanmaken</a></h3>
+                        <a class="link-button" id="accountbtn">Nieuw account aanmaken</a></h3>
                 </div>
 
                 <div class="panel-body" id="userlist">
@@ -72,7 +72,7 @@ include './include/header.php';
                     <!-- content goes here -->
                     <form>
                         <div class="input-group" id="edit-handicap-div">
-                            <label class="col-md-3 control-label" for="edit-handicap">Handicap</label>
+                            <label class="col-md-3 control-label" for="edit-handicapbtn">Handicap</label>
                             <div class="col-md-9">
                                 <div class="input-group">
                                     <div class="dropdown">
@@ -176,7 +176,21 @@ include './include/header.php';
                         </div>
 
                         <div class="row form-group">
-                            <label class="col-md-3 control-label" for="new-type">Type account</label>
+                            <label class="col-md-3 control-label" for="new-birthday">Geboortedatum</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-calendar"></i>
+			            </span>
+                                    <input id="new-birthday" name="date" placeholder="geboortedatum"
+                                           class="form-control input-md">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row form-group">
+                            <label class="col-md-3 control-label" for="new-type-button">Type account</label>
                             <div class="col-md-9">
                                 <div class="input-group">
                                     <div class="dropdown">
@@ -193,9 +207,8 @@ include './include/header.php';
                             </div>
                         </div>
 
-
                         <div class="row form-group" id="new-handicap-dropdown">
-                            <label class="col-md-3 control-label" for="new-handicap">Handicap</label>
+                            <label class="col-md-3 control-label" for="new-handicap-button">Handicap</label>
                             <div class="col-md-9">
                                 <div class="input-group">
                                     <div class="dropdown">
@@ -281,4 +294,4 @@ include './include/header.php';
     <link rel="stylesheet" href="css/button.css">
 
     <!-- end of body -->
-<?php include './include/footer.php'; ?>
+    <?php include './include/footer.php'; ?>
