@@ -323,8 +323,15 @@ h2 {
 
 #userlist {
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 600px;
 }
+
+
+#userlist hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 
 /* mobile */
 @media all and (max-height: 600px) {
@@ -333,6 +340,7 @@ h2 {
         max-height: 200px;
     }
 }
+
 
 input[type="date"].form-control,
 input[type="time"].form-control,

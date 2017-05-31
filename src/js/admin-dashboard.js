@@ -6,6 +6,7 @@ var modal;
 var editModal;
 var accountModal;
 var errorMessageEdit;
+var successMessageEdit;
 var userList;
 
 $(document).ready(function () {
@@ -14,6 +15,7 @@ $(document).ready(function () {
     editModal = $('#edit-modal');
     accountModal = $('#account-modal');
     errorMessageEdit = $('#error-message-edit');
+    successMessageEdit = $('#success-message-edit');
     userList = $("#userlist");
 
     loadUsers();
@@ -92,16 +94,18 @@ function actionsDashboard(data) {
         var user = users[i];
         var lastname = user.lastname;
 
-        if (lastname.length > 13) {
-            lastname = lastname.substring(0, 13) + "...";
-        }
-        var html = "<div class='user' >" +
+        var html = "<div class='user row' >" +
+            "<div class='col-xs-12 col-md-6 one-user' " +
             "<span class='glyphicon glyphicon-user'></span>" +
-            user.firstname + " " + lastname + " (" + user.id +")" +
-            "<button value='" + user.id + "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
-            "<button value='" + user.id + "' class='btn btn-default pasaan' data-toggle='modal' data-target='#edit-modal';>Pas aan</button>" +
-            "<hr/> </div>"
-        ;
+            user.firstname + " " + lastname + " </div>" +
+            "<div class='col-xs-12 col-md-6'>" +
+            "<button value='" + user.id +
+            "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
+            "<button value='" + user.id +
+            "' class='btn btn-default pasaan' data-toggle='modal' " +
+            "data-target='#edit-modal';>Pas aan</button>" +
+            "</div> </div> <hr/>";
+
         userList.append(html);
     }
     $(".koppel").click(function () {
@@ -121,7 +125,7 @@ function actionsDashboard(data) {
         });
     });
 
-    $("#success-message").hide();
+    successMessageEdit.hide();
     errorMessageEdit.hide();
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -178,15 +182,8 @@ function actionsDashboard(data) {
                 },
                 statusCode: {
                     200: function (data) {
-                        editModal.modal('hide');
-
-                        // set the modal title
-                        modal.find('.modal-title').html('Succes');
-                        // set the modal body
-                        modal.find('.modal-body').html("Het account is aangepast");
-                        // show the modal
-                        modal.modal();
-
+                        successMessageEdit.html("<strong>Succes</strong> Het account is aangepast");
+                        successMessageEdit.show();
                     },
                     400: function (err) {
 

@@ -6,7 +6,8 @@ $(document).ready(function () {
     // $("#error").hide();
     var modal = $('#modal-account-error');
     var accountModal = $('#account-modal');
-    const errorMsg = $("#error-message-account");
+    const errorMsg = $("#error-message-new");
+    const successMsg = $("#success-message-new");
     errorMsg.hide();
 
     $('[data-toggle="tooltip"]').tooltip();
@@ -41,9 +42,11 @@ $(document).ready(function () {
         handicap = $(this).text();
     });
 
+    errorMsg.hide();
+    successMsg.hide();
     $('#new-save-button').click(function () {
 
-        errorMsg.hide();
+
         errorMsg.text("Vul alle velden in.");
 
         var firstname = $('#new-voornaam').val();
@@ -118,13 +121,8 @@ $(document).ready(function () {
                 201: function (data) {
                     loadUsers();
 
-                    accountModal.modal('hide');
-                    // set the modal title
-                    modal.find('.modal-title').html('Account is aangemaakt.');
-                    // set the modal body
-                    modal.find('.modal-body').html("Onthoud dit id goed: " + data.id + ".");
-                    // show the modal
-                    modal.modal();
+                    successMsg.html("<strong>Het account is aangemaakt.</strong> Onthoud dit id goed: " + data.id + ".");
+                    successMsg.show();
                 },
                 400: function (err) {
 

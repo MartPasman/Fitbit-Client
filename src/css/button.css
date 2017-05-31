@@ -84,7 +84,28 @@
     color: #C9495A !important;
 }
 
+@media (max-width: 600px ) {
+    .pasaan {
+        background-color: #DC4F62;
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+        margin-right: 0.3em;
+        text-decoration: none;
+        float: none;
+        margin-top: 0.3em;
+    }
 
+    .koppel {
+        background-color: #DC4F62;
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-decoration: none;
+        float: none;
+        margin-top: 0.3em;
+    }
+
+
+}
 
 
 
