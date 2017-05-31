@@ -223,7 +223,7 @@ const loadGoalsHistory = function (data) {
 
         // finish the div with the right icon
         var inProgress = 'option-horizontal';
-        if (endDate < new Date()) {
+        if ((endDate.getTime() + 1000 * 60 * 60 * 24) < new Date().getTime()) {
             // if the goal end date is over, user a different icon
             inProgress = 'remove';
         }
