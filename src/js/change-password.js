@@ -75,7 +75,15 @@ $(document).ready(function () {
                     }
 
                 },
+                400: function (err) {
+                    //Unauthorized error message
+                    successMsg.hide();
+                    errorMsg.html("<strong>Foutje!</strong> Probeer het nog eens.");
+                    if (errorMsg.is(':hidden')) {
+                        errorMsg.toggle();
+                    }
 
+                },
                 500: function (err) {
                     //Internal server error message
                     successMsg.hide();
