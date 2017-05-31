@@ -59,4 +59,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <!-- log out functionality -->
-<script src="/js/logout.js" type="text/javascript"></script>
+<script src="../js/logout.js" type="text/javascript"></script>

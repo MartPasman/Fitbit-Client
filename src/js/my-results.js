@@ -83,6 +83,10 @@ $(document).ready(function () {
     });
 
     // get the goals history
+    getGoalsHistory();
+});
+
+const getGoalsHistory = function () {
     $.ajax({
         url: REST + '/users/' + localStorage.getItem('userid') + '/goals?offset=' + 0 + '&limit=' + 10,
         method: 'GET',
@@ -113,7 +117,7 @@ $(document).ready(function () {
             }
         }
     });
-});
+};
 
 const printChartsError = function (message) {
     printStepsChartError(message);
@@ -219,7 +223,7 @@ const loadGoalsHistory = function (data) {
 
         // finish the div with the right icon
         var inProgress = 'option-horizontal';
-        if (endDate < new Date()) {
+        if ((endDate.getTime() + 1000 * 60 * 60 * 24) < new Date().getTime()) {
             // if the goal end date is over, user a different icon
             inProgress = 'remove';
         }
