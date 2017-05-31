@@ -68,13 +68,21 @@
 
 }
 
-#accountbtn, #accountbtn:active{
-    color: #DC4F62;
-    border-color: #DC4F62;
+.link-button {
+    color: #DC4F62 !important;
+    border: none;
     float: right;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
+.link-button:hover {
+    cursor: pointer;
+    color: #B84252 !important;
+}
+
+.link-button:active {
+    color: #C9495A !important;
+}
 
 
 
