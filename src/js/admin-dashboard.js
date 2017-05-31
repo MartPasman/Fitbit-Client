@@ -92,12 +92,12 @@ function actionsDashboard(data) {
         var user = users[i];
         var lastname = user.lastname;
 
-        if (lastname.length >= 13) {
-            lastname = lastname.substring(0, 13) + "...";
+        if (lastname.length > 8) {
+            lastname = lastname.substring(0, 8) + "...";
         }
         var html = "<div class='user' >" +
             "<span class='glyphicon glyphicon-user'></span>" +
-            user.firstname + " " + lastname + " " +
+            user.firstname + " " + lastname + " (" + user.id +")" +
             "<button value='" + user.id + "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
             "<button value='" + user.id + "' class='btn btn-default pasaan' data-toggle='modal' data-target='#edit-modal';>Pas aan</button>" +
             "<hr/> </div>"
