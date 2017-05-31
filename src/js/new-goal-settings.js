@@ -43,9 +43,9 @@ $(document).ready(function () {
 
             //Sets date to javascript date time for in database
             var dateParts = start.split("/");
-            var startdate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0])
+            var startdate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
-            var dateParts = end.split("/");
+            dateParts = end.split("/");
             var enddate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
             //Call to add a goal

@@ -2,37 +2,47 @@
  * Created by sveno on 22-5-2017.
  */
 $(document).ready(function () {
-    $("#success-msg").hide();
-    $("#error-msg").hide();
+
+    const errorMsg = $("#error-msg");
+    const successMsg = $("#success-msg");
+    const oldPass = $("#old-pass");
+    const newPass1 = $("#new-pass1");
+    const newPass2 = $("#new-pass2");
+    const oldIcon = $("#old-icon");
+    const newIcon1 = $("#new-icon1");
+    const newIcon2 = $("#new-icon2");
+
+    successMsg.hide();
+    errorMsg.hide();
 
     $('#change-password').click(function () {
-        var old = $("#old-pass").val().trim();
-        var new1 = $("#new-pass1").val().trim();
-        var new2 = $("#new-pass2").val().trim();
+        var old = oldPass.val().trim();
+        var new1 = newPass1.val().trim();
+        var new2 = newPass2.val().trim();
 
         if (isEmpty(old) || isEmpty(new1) || isEmpty(new2)) {
-            $("#success-msg").hide();
-            $("#error-msg").html("<strong>Foutje!</strong> Vul wel alle informatie in!");
-            if ($("#error-msg").is(':hidden')) {
-                $("#error-msg").toggle();
+            successMsg.hide();
+            errorMsg.html("<strong>Foutje!</strong> Vul wel alle informatie in!");
+            if (errorMsg.is(':hidden')) {
+                errorMsg.toggle();
             }
             return;
         }
 
         if (new1 !== new2) {
-            $("#success-msg").hide();
-            $("#error-msg").html("<strong>Foutje!</strong> De wachtwoorden zijn niet gelijk aan elkaar!");
-            if ($("#error-msg").is(':hidden')) {
-                $("#error-msg").toggle();
+            successMsg.hide();
+            errorMsg.html("<strong>Foutje!</strong> De wachtwoorden zijn niet gelijk aan elkaar!");
+            if (errorMsg.is(':hidden')) {
+                errorMsg.toggle();
             }
             return;
         }
 
-        if (!isLongEnough(old, 8) || !isLongEnough(new1, 8) || !isLongEnough(new2, 8)) {
-            $("#success-msg").hide();
-            $("#error-msg").html("<strong>Foutje!</strong> Een van de wachtwoorden is niet lang genoeg!");
-            if ($("#error-msg").is(':hidden')) {
-                $("#error-msg").toggle();
+        if (old.length < 8 || new1.length < 8 || new2.length < 8) {
+            successMsg.hide();
+            errorMsg.html("<strong>Foutje!</strong> Een van de wachtwoorden is niet lang genoeg!");
+            if (errorMsg.is(':hidden')) {
+                errorMsg.toggle();
             }
             return;
         }
@@ -51,35 +61,35 @@ $(document).ready(function () {
             statusCode: {
                 201: function (data) {
                     //Success message
-                    $("#error-msg").hide();
-                    if ($("#success-msg").is(':hidden')) {
-                        $("#success-msg").toggle();
+                    errorMsg.hide();
+                    if (successMsg.is(':hidden')) {
+                        successMsg.toggle();
                     }
                 },
                 401: function (err) {
                     //Unauthorized error message
-                    $("#success-msg").hide();
-                    $("#error-msg").html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                    if ($("#error-msg").is(':hidden')) {
-                        $("#error-msg").toggle();
+                    successMsg.hide();
+                    errorMsg.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
+                    if (errorMsg.is(':hidden')) {
+                        errorMsg.toggle();
                     }
 
                 },
 
                 500: function (err) {
                     //Internal server error message
-                    $("#success-msg").hide();
-                    $("#error-msg").html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                    if ($("#error-msg").is(':hidden')) {
-                        $("#error-msg").toggle();
+                    successMsg.hide();
+                    errorMsg.html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
+                    if (errorMsg.is(':hidden')) {
+                        errorMsg.toggle();
                     }
                 },
                 default: function (err) {
                     //Default error message
-                    $("#success-msg").hide();
-                    $("#error-msg").html("<strong>Foutje!</strong> Probeer het nog eens.");
-                    if ($("#error-msg").is(':hidden')) {
-                        $("#error-msg").toggle();
+                    successMsg.hide();
+                    errorMsg.html("<strong>Foutje!</strong> Probeer het nog eens.");
+                    if (errorMsg.is(':hidden')) {
+                        errorMsg.toggle();
                     }
                 }
             }
@@ -88,68 +98,68 @@ $(document).ready(function () {
     });
 
     $("input[type=password]").keyup(function () {
-        if($("#old-pass").val().length >= 8){
-            $("#old-icon").removeClass("glyphicon-lock");
-            $("#old-icon").removeClass("glyphicon-remove");
-            $("#old-icon").addClass("glyphicon-ok");
-            $("#old-icon").css("color","#00A41E");
-            $("#old-pass").addClass("has-success");
-        }else if($("#old-pass").val().length >= 1){
-            $("#old-icon").removeClass("glyphicon-ok");
-            $("#old-icon").removeClass("glyphicon-lock");
-            $("#old-icon").addClass("glyphicon-remove");
-            $("#old-icon").css("color","#ff0000");
-            $("#old-pass").removeClass("has-success");
-            $("#old-pass").addClass("has-error");
-        }else{
-            $("#old-icon").removeClass("glyphicon-ok");
-            $("#old-icon").removeClass("glyphicon-remove");
-            $("#old-icon").addClass("glyphicon-lock");
-            $("#old-icon").css("color","#000000");
-            $("#old-pass").removeClass("has-success");
+        if (oldPass.val().length >= 8) {
+            oldIcon.removeClass("glyphicon-lock");
+            oldIcon.removeClass("glyphicon-remove");
+            oldIcon.addClass("glyphicon-ok");
+            oldIcon.css("color", "#00A41E");
+            oldPass.addClass("has-success");
+        } else if (oldPass.val().length >= 1) {
+            oldIcon.removeClass("glyphicon-ok");
+            oldIcon.removeClass("glyphicon-lock");
+            oldIcon.addClass("glyphicon-remove");
+            oldIcon.css("color", "#ff0000");
+            oldPass.removeClass("has-success");
+            oldPass.addClass("has-error");
+        } else {
+            oldIcon.removeClass("glyphicon-ok");
+            oldIcon.removeClass("glyphicon-remove");
+            oldIcon.addClass("glyphicon-lock");
+            oldIcon.css("color", "#000000");
+            oldPass.removeClass("has-success");
         }
 
-        if($("#new-pass1").val().length >= 8){
-            $("#new-icon1").removeClass("glyphicon-lock");
-            $("#new-icon1").removeClass("glyphicon-remove");
-            $("#new-icon1").addClass("glyphicon-ok");
-            $("#new-icon1").css("color","#00A41E");
-            $("#new-pass1").addClass("has-success");
-        }else if($("#new-pass1").val().length >= 1){
-            $("#new-icon1").removeClass("glyphicon-ok");
-            $("#new-icon1").removeClass("glyphicon-lock");
-            $("#new-icon1").addClass("glyphicon-remove");
-            $("#new-icon1").css("color","#ff0000");
-            $("#new-pass1").removeClass("has-success");
-            $("#new-pass1").addClass("has-error");
-        }else{
-            $("#new-icon1").removeClass("glyphicon-ok");
-            $("#new-icon1").removeClass("glyphicon-remove");
-            $("#new-icon1").addClass("glyphicon-lock");
-            $("#new-icon1").css("color","#000000");
-            $("#new-pass1").removeClass("has-success");
+        if (newPass1.val().length >= 8) {
+            newIcon1.removeClass("glyphicon-lock");
+            newIcon1.removeClass("glyphicon-remove");
+            newIcon1.addClass("glyphicon-ok");
+            newIcon1.css("color", "#00A41E");
+            newPass1.addClass("has-success");
+        } else if (newPass1.val().length >= 1) {
+            newIcon1.removeClass("glyphicon-ok");
+            newIcon1.removeClass("glyphicon-lock");
+            newIcon1.addClass("glyphicon-remove");
+            newIcon1.css("color", "#ff0000");
+            newPass1.removeClass("has-success");
+            newPass1.addClass("has-error");
+        } else {
+            newIcon1.removeClass("glyphicon-ok");
+            newIcon1.removeClass("glyphicon-remove");
+            newIcon1.addClass("glyphicon-lock");
+            newIcon1.css("color", "#000000");
+            newPass1.removeClass("has-success");
         }
 
-        if($("#new-pass2").val().length >= 8 && $("#new-pass2").val() === $("#new-pass1").val()){
-            $("#new-icon2").removeClass("glyphicon-lock");
-            $("#new-icon2").removeClass("glyphicon-remove");
-            $("#new-icon2").addClass("glyphicon-ok");
-            $("#new-icon2").css("color","#00A41E");
-            $("#new-pass2").addClass("has-success");
-        }else if($("#new-pass2").val().length >= 1){
-            $("#new-icon2").removeClass("glyphicon-ok");
-            $("#new-icon2").removeClass("glyphicon-lock");
-            $("#new-icon2").addClass("glyphicon-remove");
-            $("#new-icon2").css("color","#ff0000");
-            $("#new-pass2").removeClass("has-success");
-            $("#new-pass2").addClass("has-error");
-        }else{
-            $("#new-icon2").removeClass("glyphicon-ok");
-            $("#new-icon2").removeClass("glyphicon-remove");
-            $("#new-icon2").addClass("glyphicon-lock");
-            $("#new-icon2").css("color","#000000");
-            $("#new-pass2").removeClass("has-success");
-            $("#new-pass2").removeClass("has-error");
+        if (newPass2.val().length >= 8 && newPass2.val() === newPass1.val()) {
+            newIcon2.removeClass("glyphicon-lock");
+            newIcon2.removeClass("glyphicon-remove");
+            newIcon2.addClass("glyphicon-ok");
+            newIcon2.css("color", "#00A41E");
+            newPass2.addClass("has-success");
+        } else if (newPass2.val().length >= 1) {
+            newIcon2.removeClass("glyphicon-ok");
+            newIcon2.removeClass("glyphicon-lock");
+            newIcon2.addClass("glyphicon-remove");
+            newIcon2.css("color", "#ff0000");
+            newPass2.removeClass("has-success");
+            newPass2.addClass("has-error");
+        } else {
+            newIcon2.removeClass("glyphicon-ok");
+            newIcon2.removeClass("glyphicon-remove");
+            newIcon2.addClass("glyphicon-lock");
+            newIcon2.css("color", "#000000");
+            newPass2.removeClass("has-success");
+            newPass2.removeClass("has-error");
         }
     });
 });
@@ -157,9 +167,4 @@ $(document).ready(function () {
 //Check if variable is empty
 function isEmpty(str) {
     return (!str || 0 === str.length);
-}
-
-//Check if variable long enough
-function isLongEnough(str, length) {
-    return (str.length >= length);
 }

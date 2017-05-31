@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#error").hide();
 
     $(document).keypress(function(e) {
-        if(e.which == 13) {
+        if(e.which === 13) {
             login();
         }
     });
@@ -96,7 +96,6 @@ $(document).ready(function () {
         }
     }
 });
-
 
 function isEmpty(str) {
     return (!str || 0 === str.length);

@@ -240,9 +240,9 @@ include './include/header.php';
                             <label class="col-md-3 control-label" for="new-wachtwoord">Wachtwoord</label>
                             <div class="col-md-9">
                                 <div class="input-group">
-			                <span class="input-group-addon">
-			                <i class="glyphicon glyphicon-lock"></i>
-			            </span>
+			                        <span class="input-group-addon">
+			                            <i class="glyphicon glyphicon-lock"></i>
+			                        </span>
                                     <input id="new-wachtwoord" name="wachtwoord" placeholder="wachtwoord"
                                            class="form-control input-md" type="password">
                                 </div>
@@ -266,6 +266,7 @@ include './include/header.php';
 
                     </form>
                 </div>
+
                 <div class="modal-footer">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
