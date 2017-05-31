@@ -183,7 +183,7 @@ include './include/header.php';
 			                <i class="glyphicon glyphicon-calendar"></i>
 			            </span>
                                     <input id="new-birthday" name="date" placeholder="geboortedatum"
-                                           class="form-control input-md" type="date">
+                                           class="form-control input-md">
                                 </div>
                             </div>
 

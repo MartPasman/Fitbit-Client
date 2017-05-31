@@ -65,9 +65,6 @@ $(document).ready(function () {
         var password2 = $('#new-wachtwoord2').val();
         var birthday = $('#new-birthday').val();
 
-        alert(birthday);
-
-
 
         // check if some fields are left empty and show error
         if (firstname === undefined || lastname === undefined || birthday === undefined || email === undefined || password2 === undefined || password1 === undefined
@@ -103,6 +100,8 @@ $(document).ready(function () {
                     handicap = 1;
                 }
             }
+        } else {
+            handicap === undefined;
         }
 
         //check if passwords are the same
