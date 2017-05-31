@@ -66,19 +66,19 @@ $(document).ready(function () {
                         successMsg.toggle();
                     }
                 },
-                401: function (err) {
+                400: function (err) {
                     //Unauthorized error message
                     successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
+                    errorMsg.html("<strong>Foutje!</strong> Probeer het nog eens.");
                     if (errorMsg.is(':hidden')) {
                         errorMsg.toggle();
                     }
 
                 },
-                400: function (err) {
+                401: function (err) {
                     //Unauthorized error message
                     successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Probeer het nog eens.");
+                    errorMsg.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
                     if (errorMsg.is(':hidden')) {
                         errorMsg.toggle();
                     }
