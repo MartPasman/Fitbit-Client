@@ -70,14 +70,14 @@ function getPDF() {
     doc.text("Slaap (uren)", 21, 87);
 
 
-    for (var i = 0; i < stepsData.length; i++) {
+    for (var i = 0; i < Math.min(stepsData.length, 7); i++) {
         var date = stepsData[i].dateTime;
 
         doc.text(date.substring(8, 10) + '/' + date.substring(5, 7), 52 + (i * 20), 67);
         doc.text(stepsData[i].value.toString(), 51.5 + (i * 20), 77);
     }
 
-    for (var j = 0; j < sleepData.length; j++) {
+    for (var j = 0; j < Math.min(sleepData.length, 7); j++) {
         doc.text((Math.round(sleepData[j].duration * 10) / 10).toString(), 51.5 + (j * 20), 87);
     }
 
@@ -114,7 +114,7 @@ function getPDF() {
 
     var today = new Date();
 
-    for (var k = 0; k < goalsData.length; k++) {
+    for (var k = 0; k < Math.min(goalsData.length, 7); k++) {
         const goal = goalsData[k];
 
         //stappen
