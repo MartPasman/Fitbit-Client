@@ -65,10 +65,8 @@ function getPDF() {
     doc.line(110, 60, 110, 90);
     doc.setFontSize(14);
 
-
     doc.text("Stappen", 21, 77);
     doc.text("Slaap (uren)", 21, 87);
-
 
     for (var i = 0; i < Math.min(stepsData.length, 7); i++) {
         var date = stepsData[i].dateTime;
