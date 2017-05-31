@@ -41,18 +41,6 @@ $(document).ready(function () {
         handicap = $(this).text();
     });
 
-    // $('input[name="date"]').click(function () {
-        var date_input = $('input[name="date"]');
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-            language: "nl"
-        });
-    // });
-
     $('#new-save-button').click(function () {
 
         errorMsg.hide();
@@ -128,8 +116,9 @@ $(document).ready(function () {
             },
             statusCode: {
                 201: function (data) {
-                    accountModal.modal('hide');
+                    loadUsers();
 
+                    accountModal.modal('hide');
                     // set the modal title
                     modal.find('.modal-title').html('Account is aangemaakt.');
                     // set the modal body
@@ -161,6 +150,7 @@ $(document).ready(function () {
                 }
             }
         });
+
     });
     accountModal.on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');

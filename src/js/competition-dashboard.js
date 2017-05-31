@@ -9,18 +9,6 @@ $(document).ready(function () {
     // get the current date as a string
     $('#today').text(getTodaysDate());
     loadWithOffset();
-    //
-    // $("#arrow-left").click(function () {
-    //     old_offset = offset;
-    //    offset--;
-    //    loadWithOffset();
-    // });
-    // $("#arrow-right").click(function () {
-    //     old_offset = offset;
-    //     offset++;
-    //     loadWithOffset();
-    // });
-
 
 });
 
