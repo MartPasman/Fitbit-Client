@@ -92,8 +92,8 @@ function actionsDashboard(data) {
         var user = users[i];
         var lastname = user.lastname;
 
-        if (lastname.length > 8) {
-            lastname = lastname.substring(0, 8) + "...";
+        if (lastname.length > 13) {
+            lastname = lastname.substring(0, 13) + "...";
         }
         var html = "<div class='user' >" +
             "<span class='glyphicon glyphicon-user'></span>" +

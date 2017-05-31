@@ -25,7 +25,7 @@ include './include/header.php';
 
     <!-- block for users and competition -->
     <div style="margin-top:30px">
-        <div class="col-md-5 ">
+        <div class="col-md-6 ">
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title"><strong>Deelnemers</strong>
                         <a class="link-button" id="accountbtn">Nieuw account aanmaken</a></h3>
@@ -36,7 +36,7 @@ include './include/header.php';
             </div>
         </div>
 
-        <div class="col-md-5 col-md-offset-2 ">
+        <div class="col-md-5 col-md-offset-1 ">
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title"><strong>Competitie</strong></h3>
                 </div>
