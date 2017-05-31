@@ -293,27 +293,5 @@ include './include/header.php';
 
     <link rel="stylesheet" href="css/button.css">
 
-    <!-- Include Date Range Picker -->
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-
     <!-- end of body -->
     <?php include './include/footer.php'; ?>
-    <script>
-        $(document).ready(function () {
-
-            var date_input = $('input[name="date"]');
-            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-            date_input.datepicker({
-                format: 'dd/mm/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-                language: "nl"
-            });
-
-        });
-    </script>
