@@ -92,7 +92,7 @@ $(document).ready(function () {
                 }
             }
         } else {
-            handicap === undefined;
+            handicap = undefined;
         }
 
         //check if passwords are the same

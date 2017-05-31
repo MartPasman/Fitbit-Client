@@ -73,22 +73,76 @@ include './include/header.php';
                 </div>
                 <!-- content goes here -->
                 <form>
-                    <div class="input-group" id="edit-handicap-div">
-                        <label class="col-md-3 control-label" for="edit-handicapbtn">Handicap
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-voornaam">Voornaam</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-user"></i>
+			            </span>
+                                <input id="edit-voornaam" name="voornaam" placeholder="voornaam"
+                                       class="form-control input-md" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-achternaam">Achternaam</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-user"></i>
+			            </span>
+                                <input id="edit-achternaam" name="achternaam" placeholder="achternaam"
+                                       class="form-control input-md" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-email">E-mailadres</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-envelope"></i>
+			            </span>
+                                <input id="edit-email" name="email" placeholder="e-mailadres"
+                                       class="form-control input-md" type="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-calendar"></i>
+			            </span>
+                                <input id="edit-birthday" name="date" placeholder="geboortedatum"
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row form-group" id="edit-handicap-dropdown">
+                        <label class="col-md-3 control-label" for="edit-handicap-button">Handicap
                             <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
                                title="De handicap houdt rekening met de vitaliteit van een deelnemer.
                                                Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
                                                bij een aantal stappen."
                             ><span class="glyphicon glyphicon-info-sign"
                                    style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                            <div class="large-tooltip"><i class="icon ion-help-circled" rel="tooltip"
-                                                          title="Hint"></i>
+                            <div class="large-tooltip handicap-tooltip"><i class="icon ion-help-circled"
+                                                                           rel="tooltip"
+                                                                           title="Hint"></i>
                             </div>
                         </label>
                         <div class="col-md-9">
                             <div class="input-group">
                                 <div class="dropdown">
-                                    <button id="edit-handicapbtn" class="btn btn-default dropdown-toggle"
+                                    <button id="edit-handicap-button" class="btn btn-default dropdown-toggle"
                                             type="button" data-toggle="dropdown">
                                         Handicap <span class="caret"></span>
                                     </button>
@@ -102,6 +156,43 @@ include './include/header.php';
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-wachtwoord"> Reset wachtwoord
+                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
+                               title="Een wachtwoord moet minstens acht tekens lang zijn."
+                            ><span class="glyphicon glyphicon-info-sign"
+                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
+                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"
+                                                                           rel="tooltip" title="Hint"></i>
+                            </div>
+                        </label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+			                        <span class="input-group-addon">
+			                            <i class="glyphicon glyphicon-lock"></i>
+			                        </span>
+                                <input id="edit-wachtwoord" name="wachtwoord" placeholder="wachtwoord"
+                                       class="form-control input-md" type="password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-wachtwoord2">Herhaal wachtwoord</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+			                <span class="input-group-addon">
+			                <i class="glyphicon glyphicon-lock"></i>
+			            </span>
+                                <input id="edit-wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"
+                                       class="form-control input-md" type="password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="margin-top:10px;margin-bottom:10px;">
 
                 </form>
 
@@ -272,7 +363,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-wachtwoord2">Wachtwoord</label>
+                        <label class="col-md-3 control-label" for="new-wachtwoord2">Herhaal wachtwoord</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">

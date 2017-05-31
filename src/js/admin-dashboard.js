@@ -85,19 +85,18 @@ function loadUsers() {
 
 
 function actionsDashboard(data) {
-    var id;
     userList.removeClass("block-error");
     userList.html('');
+    var id;
 
     var users = data.success;
     for (var i = 0; i < users.length; i++) {
         var user = users[i];
-        var lastname = user.lastname;
 
         var html = "<div class='user row' >" +
             "<div class='col-xs-12 col-md-6 one-user' " +
             "<span class='glyphicon glyphicon-user'></span>" +
-            user.firstname + " " + lastname + " </div>" +
+            user.firstname + " " + user.lastname + " </div>" +
             "<div class='col-xs-12 col-md-6'>" +
             "<button value='" + user.id +
             "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
@@ -133,96 +132,103 @@ function actionsDashboard(data) {
         accountModal.modal();
     });
 
-
     $(".pasaan").click(function () {
-
         id = $(this).attr('value');
-
         var user = undefined;
-        for (var i = 0; i < users.length; i++) {
+
+        for (var i = 0; i <= users.length; i++) {
             if (parseInt(users[i].id) === parseInt(id)) {
                 user = users[i];
             }
         }
-
-        if (user === undefined) {
-            errorMessageEdit.html("Deelnemer is niet gevonden.");
-            errorMessageEdit.show();
-            $("#edit-handicap-div").hide();
-        } else {
-            $("#lineModalLabel").html("Pas account aan van " + user.firstname + " " + user.lastname);
-        }
-
-        $("#edit-handicap").find("li a").click(function () {
-
-            var newText = $(this).text() + ' <span class="caret"></span>';
-            $("#edit-handicapbtn").html(newText);
-            handicap = $(this).text();
-
-            if (handicap === "goed ter been") {
-                handicap = 1;
-            } else if (handicap === "minder goed ter been") {
-                handicap = 2;
-            } else if (handicap === "slecht ter been") {
-                handicap = 3;
-            } else {
-                handicap = 1;
-            }
-        });
-        $("#edit-save-button").click(function () {
-
-            $.ajax({
-                url: REST + '/users/' + id + "/handicap",
-                method: 'PUT',
-                data: {
-                    handicap: handicap
-                },
-                headers: {
-                    Authorization: localStorage.getItem('token')
-                },
-                statusCode: {
-                    200: function (data) {
-                        successMessageEdit.html("<strong>Succes</strong> Het account is aangepast");
-                        successMessageEdit.show();
-                    },
-                    400: function (err) {
-
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
-                        errorMessageEdit.show();
-
-                    },
-                    401: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
-                        errorMessageEdit.show();
-
-                    },
-                    403: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
-                        errorMessageEdit.show();
-
-                    },
-                    404: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
-                        errorMessageEdit.show();
-
-                    },
-
-                    500: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
-                        errorMessageEdit.show();
-
-                    },
-                    default: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
-                        errorMessageEdit.show();
-                    }
-                }
-            });
-
-        });
+        editAccount(user);
     });
+
     editModal.on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
     });
 
+
+}
+
+
+function editAccount(user) {
+
+    if (user === undefined) {
+        errorMessageEdit.html("Deelnemer is niet gevonden.");
+        errorMessageEdit.show();
+        $("#edit-handicap-div").hide();
+    } else {
+        $("#lineModalLabel").html("Pas account aan van " + user.firstname + " " + user.lastname);
+    }
+
+    $("#edit-handicap").find("li a").click(function () {
+
+        var newText = $(this).text() + ' <span class="caret"></span>';
+        $("#edit-handicapbtn").html(newText);
+        handicap = $(this).text();
+
+        if (handicap === "goed ter been") {
+            handicap = 1;
+        } else if (handicap === "minder goed ter been") {
+            handicap = 2;
+        } else if (handicap === "slecht ter been") {
+            handicap = 3;
+        } else {
+            handicap = 1;
+        }
+    });
+
+
+    $("#edit-save-button").click(function () {
+
+        $.ajax({
+            url: REST + '/users/' + id + "/handicap",
+            method: 'PUT',
+            data: {
+                handicap: handicap
+            },
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            statusCode: {
+                200: function (data) {
+                    successMessageEdit.html("<strong>Succes</strong> Het account is aangepast");
+                    successMessageEdit.show();
+                },
+                400: function (err) {
+
+                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
+                    errorMessageEdit.show();
+
+                },
+                401: function (err) {
+                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
+                    errorMessageEdit.show();
+
+                },
+                403: function (err) {
+                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+                    errorMessageEdit.show();
+
+                },
+                404: function (err) {
+                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
+                    errorMessageEdit.show();
+
+                },
+
+                500: function (err) {
+                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
+                    errorMessageEdit.show();
+
+                },
+                default: function (err) {
+                    errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
+                    errorMessageEdit.show();
+                }
+            }
+        });
+
+    });
 }
