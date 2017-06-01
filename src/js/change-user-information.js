@@ -52,7 +52,7 @@ $(document).ready(function () {
                     email: email
                 },
                 statusCode: {
-                    201: function (data) {
+                    200: function (data) {
                         //Success message
                         $("#error").hide();
                         if ($("#success").is(':hidden')) {
