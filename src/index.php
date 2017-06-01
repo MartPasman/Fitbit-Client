@@ -24,7 +24,7 @@
     <img src="img/goals.png" class="login-top-image"/>
 
     <div style="margin-top:30px">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title"><strong>Inloggen</strong></h3>
                 </div>

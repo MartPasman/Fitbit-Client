@@ -185,9 +185,9 @@ h2 {
 }
 
 .chart, .block-error {
-    margin-top: 26px;
+    margin-top: 22px;
     text-align: center;
-    font-size: 1.8em;
+    font-size: 1.4em;
 }
 
 .block-error {
@@ -332,7 +332,6 @@ h2 {
     margin-bottom: 10px;
 }
 
-
 /* mobile */
 @media all and (max-height: 600px) {
 
@@ -340,7 +339,6 @@ h2 {
         max-height: 200px;
     }
 }
-
 
 input[type="date"].form-control,
 input[type="time"].form-control,

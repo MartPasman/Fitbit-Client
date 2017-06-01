@@ -44,10 +44,14 @@
     border-color: #DC4F62;
 }
 
-.block-error {
-    text-align: center;
-    font-size: 2em;
-}
+/*.glyphicon-user {*/
+    /*margin-right: 0.5em;*/
+/*}*/
+
+/*.block-error {*/
+    /*text-align: center;*/
+    /*font-size: 2em;*/
+/*}*/
 
 #pdf {
     background-color: #FFFFFF;
