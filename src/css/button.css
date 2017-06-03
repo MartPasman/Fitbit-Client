@@ -3,7 +3,7 @@
 
 }
 
-.koppel {
+.connect {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
@@ -11,19 +11,19 @@
     text-decoration: none;
 }
 
-.koppel:hover {
+.connect:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.koppel:active {
+.connect:active {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.pasaan {
+.edit {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
@@ -32,13 +32,13 @@
     text-decoration: none;
 }
 
-.pasaan:hover {
+.edit:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.pasaan:active {
+.edit:active {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 600px ) {
-    .pasaan {
+    .edit {
         background-color: #DC4F62;
         color: #FFFFFF;
         border-color: #FFFFFF;
@@ -94,7 +94,7 @@
         margin-top: 0.3em;
     }
 
-    .koppel {
+    .connect {
         background-color: #DC4F62;
         color: #FFFFFF;
         border-color: #FFFFFF;
