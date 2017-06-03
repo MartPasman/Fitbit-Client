@@ -151,5 +151,4 @@
 
 <!-- your scripts -->
 <script src="../js/new-goal-settings.js"></script>
-<script src="../js/all-goals.js"></script>
 

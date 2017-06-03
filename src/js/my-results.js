@@ -153,7 +153,7 @@ const drawStepsChart = function (data) {
     }
 
     if (steps.length > 0) {
-        stepsChart = drawLineChart('#chart-steps', steps, 'datum', 'stappen', '', $('#activity-data').width(), 222);
+        stepsChart = drawLineChart('#chart-steps', steps, 'datum', 'stappen', '', $('#activity-data').width(), 220);
     } else {
         printStepsChartError('Er zijn nog geen activiteitgegevens bekend.');
     }
@@ -177,6 +177,11 @@ const drawSleepChart = function (data) {
 };
 
 const loadGoalsHistory = function (data) {
+    if (data === undefined) {
+        printGoalsError('Doelstellingen kunnen niet geladen worden.');
+        return;
+    }
+
     const goalHistory = $('#goal-history-inside');
 
     if (data.length < 1) {
@@ -188,7 +193,7 @@ const loadGoalsHistory = function (data) {
     goalHistory.html('');
 
     // set the width depending on the amount of items in it
-    goalHistory.width(230 * data.length);
+    goalHistory.width(240 * data.length);
 
     // iterate through all goals
     for (var i = 0; i < data.length; i++) {
@@ -208,7 +213,7 @@ const loadGoalsHistory = function (data) {
         var fontSize = 1;
         var progressChars = goal.goal.toString().length + goal.progress.toString().length - 8; // 8 = max characters
         if (progressChars > 0) {
-            fontSize -= 0.1 + (progressChars * 0.05);
+            fontSize -= 0.1 + (progressChars * 0.08);
             if (fontSize < 0.1) {
                 fontSize = 0.1;
             }

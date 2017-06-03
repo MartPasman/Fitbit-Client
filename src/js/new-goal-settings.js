@@ -24,7 +24,7 @@ $(document).ready(function () {
             //Sets a error
             $("#success-message").hide();
             $("#error-message").html("<strong>Foutje!</strong> Vul wel alle informatie in");
-            if ($("#error-message").is(':hidden')){
+            if ($("#error-message").is(':hidden')) {
                 $("#error-message").toggle();
             }
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
             if (isEmpty(start)) {
                 $("#start-div").addClass("has-error");
             }
-            if(isEmpty(end)) {
+            if (isEmpty(end)) {
                 $("#end-div").addClass("has-error");
             }
 
@@ -50,10 +50,10 @@ $(document).ready(function () {
 
             //Call to add a goal
             $.ajax({
-                url: REST + '/users/'+localStorage.getItem("userid")+'/goals',
+                url: REST + '/users/' + localStorage.getItem("userid") + '/goals',
                 method: 'POST',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
+                headers: {
+                    Authorization: localStorage.getItem("token")
                 },
                 data: {
                     start: startdate,
@@ -64,9 +64,7 @@ $(document).ready(function () {
                     201: function (data) {
                         //Success message
                         $("#error-message").hide();
-                        if ($("#success-message").is(':hidden')) {
-                            $("#success-message").toggle();
-                        }
+                        $("#success-message").show();
 
                         getGoalsHistory();
                     },
@@ -74,7 +72,7 @@ $(document).ready(function () {
                         //Unauthorized error message
                         $("#success-message").hide();
                         $("#error-message").html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                        if ($("#error-message").is(':hidden')){
+                        if ($("#error-message").is(':hidden')) {
                             $("#error-message").toggle();
                         }
 
@@ -84,7 +82,7 @@ $(document).ready(function () {
                         //Internal server error message
                         $("#success-message").hide();
                         $("#error-message").html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                        if ($("#error-message").is(':hidden')){
+                        if ($("#error-message").is(':hidden')) {
                             $("#error-message").toggle();
                         }
                     },
@@ -92,7 +90,7 @@ $(document).ready(function () {
                         //Default error message
                         $("#success-message").hide();
                         $("#error-message").html("<strong>Foutje!</strong> Probeer het nog eens.");
-                        if ($("#error-message").is(':hidden')){
+                        if ($("#error-message").is(':hidden')) {
                             $("#error-message").toggle();
                         }
                     }

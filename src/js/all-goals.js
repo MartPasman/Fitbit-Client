@@ -99,8 +99,8 @@ $(document).ready(function () {
             $.ajax({
                 url: REST + '/users/' + localStorage.getItem("userid") + '/goals/' + $("#update-button").val(),
                 method: 'PUT',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
+                headers: {
+                    Authorization: localStorage.getItem("token")
                 },
                 data: {
                     start: startdate,
@@ -144,8 +144,8 @@ function loadGoals(offset) {
     $.ajax({
         url: REST + '/users/' + localStorage.getItem("userid") + '/goals?offset=' + offset + '&limit=5',
         method: 'GET',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
+        headers: {
+            Authorization: localStorage.getItem("token")
         },
         statusCode: {
             200: function (data) {
@@ -170,7 +170,6 @@ function loadGoals(offset) {
                     html += '<td>' + edate + '</td>';
                     html += '<td><a  id="' + id + '" class="pencil-btn"> <span class="glyphicon glyphicon-pencil"></span></a> &nbsp <a  id="' + id + '" class="trash-btn"><span style="color:#ee5f5b;" class="glyphicon glyphicon-trash"></span></a></td>';
                     html += '</tr>';
-
                 });
 
                 //Check for the buttons can still be used
