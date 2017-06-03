@@ -9,6 +9,9 @@ var errorMessageEdit;
 var successMessageEdit;
 var userList;
 
+var personalValid = false;
+var handicapValid = false;
+
 $(document).ready(function () {
 
     modal = $('#modal-account-error');
@@ -97,15 +100,15 @@ function actionsDashboard(data) {
             user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
             "<div class='col-xs-12 col-md-6'>" +
             "<button value='" + user.id +
-            "' class='btn btn-default koppel'>Koppel Fitbit</button>" +
+            "' class='btn btn-default connect'>Koppel Fitbit</button>" +
             "<button value='" + user.id +
-            "' class='btn btn-default pasaan' data-toggle='modal' " +
+            "' class='btn btn-default edit' data-toggle='modal' " +
             "data-target='#edit-modal'>Pas aan</button>" +
             "</div> </div> <hr/>";
 
         userList.append(html);
     }
-    $(".koppel").click(function () {
+    $(".connect").click(function () {
         id = $(this).attr('value');
 
         $.ajax({
@@ -128,7 +131,7 @@ function actionsDashboard(data) {
         accountModal.modal();
     });
 
-    $(".pasaan").click(function () {
+    $(".edit").click(function () {
         id = $(this).attr('value');
         console.dir(id);
         var user = undefined;
@@ -156,8 +159,8 @@ function editAccount(user) {
 
         $("#edit-handicap-dropdown").hide();
 
-        $("#edit-voornaam").hide();
-        $("#edit-achternaam").hide();
+        $("#edit-firstname").hide();
+        $("#edit-lastname").hide();
         $("#edit-email").hide();
         $("#edit-birthday").hide();
 
@@ -179,12 +182,12 @@ function editAccount(user) {
         var existingActive = user.active;
 
         $("#edit-handicap-button").html(existingHandicap + '<span class="caret"></span>');
-        $("#edit-voornaam").attr('value', existingFirstname);
-        $("#edit-achternaam").attr('value', existingLastname);
+        $("#edit-firstname").attr('value', existingFirstname);
+        $("#edit-lastname").attr('value', existingLastname);
         $("#edit-email").attr('value', existingEmail);
-        if(existingActive){
+        if (existingActive) {
             $('#active-toggle').attr('checked', true);
-        }else{
+        } else {
             $('#active-toggle').attr('checked', false);
         }
 
@@ -215,8 +218,8 @@ function editAccount(user) {
     });
 
     $("#edit-save-button").click(function () {
-        var firstname = $('#edit-voornaam').val();
-        var lastname = $('#edit-achternaam').val();
+        var firstname = $('#edit-firstname').val();
+        var lastname = $('#edit-lastname').val();
         var email = $('#edit-email').val();
         // var password1 = $('#edit-wachtwoord').val();
         // var password2 = $('#edit-wachtwoord2').val();
@@ -251,7 +254,6 @@ function editAccount(user) {
         //     return;
         // }
 
-
         if (firstname !== existingFirstname || lastname !== existingLastname
             || email !== existingEmail || birthday !== existingBirthday) {
             $.ajax({
@@ -268,39 +270,41 @@ function editAccount(user) {
                 },
                 statusCode: {
                     200: function (data) {
+                        successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie is aangepast.");
+                        personalValid = true;
                         successMessageEdit.show();
                         loadUsers();
 
                     },
                     400: function (err) {
 
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
                         errorMessageEdit.show();
 
                     },
                     401: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
                         errorMessageEdit.show();
 
                     },
                     403: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
                         errorMessageEdit.show();
 
                     },
                     404: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
                         errorMessageEdit.show();
 
                     },
 
                     500: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
                         errorMessageEdit.show();
 
                     },
                     default: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
                         errorMessageEdit.show();
                     }
                 }
@@ -322,38 +326,45 @@ function editAccount(user) {
                 },
                 statusCode: {
                     200: function (data) {
+
+                        if(personalValid){
+                            successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie en de handicap zijn aangepast.");
+                        } else {
+                            successMessageEdit.html("<strong>Succes</strong> De handicap is aangepast.");
+                        }
                         successMessageEdit.show();
+                        handicapValid = true;
                         loadUsers();
                     },
                     400: function (err) {
 
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de handicap.</strong> Controleer of de velden correct ingevuld zijn.");
                         errorMessageEdit.show();
 
                     },
                     401: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de handicap.</strong> Controleer of je ingelogd bent.");
                         errorMessageEdit.show();
 
                     },
                     403: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de handicap.</strong> Je bent niet geautoriseerd om een account aan te maken.");
                         errorMessageEdit.show();
 
                     },
                     404: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de handicap.</strong> Deelnemer is niet gevonden of bestaat niet.");
                         errorMessageEdit.show();
 
                     },
 
                     500: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de handicap.</strong> Het is niet jouw fout, probeer het later nog eens.");
                         errorMessageEdit.show();
 
                     },
                     default: function (err) {
-                        errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
+                        errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de handicap.</strong> Probeer het later nog eens.");
                         errorMessageEdit.show();
                     }
                 }
@@ -363,7 +374,7 @@ function editAccount(user) {
 
         successMessageEdit.hide();
 
-        if(existingActive != !!$('#active-toggle').is(':checked')){
+        if (existingActive !== !!$('#active-toggle').is(':checked')) {
             change_active(user.id);
         }
 
@@ -389,38 +400,50 @@ function change_active(id) {
         },
         statusCode: {
             200: function (data) {
+                if(personalValid){
+                    if (handicapValid){
+                        successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie, handicap en actieve status zijn aangepast.");
+                    }else {
+                        successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie en de actieve status zijn aangepast.");
+                    }
+                } else if (handicapValid) {
+                    successMessageEdit.html("<strong>Succes</strong> De handicap en actieve status zijn aangepast.");
+                } else {
+                    successMessageEdit.html("<strong>Succes</strong> De actieve status is aangepast.");
+                }
+
                 successMessageEdit.show();
                 loadUsers();
             },
             400: function (err) {
 
-                errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het (de)activeren.</strong> Controleer of de velden correct ingevuld zijn.");
                 errorMessageEdit.show();
 
             },
             401: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Controleer of je ingelogd bent.");
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het (de)activeren.</strong> Controleer of je ingelogd bent.");
                 errorMessageEdit.show();
 
             },
             403: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het (de)activeren.</strong> Je bent niet geautoriseerd om een account aan te maken.");
                 errorMessageEdit.show();
 
             },
             404: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Deelnemer is niet gevonden of bestaat niet.");
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het (de)activeren.</strong> Deelnemer is niet gevonden of bestaat niet.");
                 errorMessageEdit.show();
 
             },
 
             500: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Het is niet jouw fout, probeer het later nog eens.");
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het (de)activeren.</strong> Het is niet jouw fout, probeer het later nog eens.");
                 errorMessageEdit.show();
 
             },
             default: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan.</strong> Probeer het later nog eens.");
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het (de)activeren.</strong> Probeer het later nog eens.");
                 errorMessageEdit.show();
             }
         }

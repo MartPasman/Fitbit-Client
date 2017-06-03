@@ -25,11 +25,8 @@ $(document).ready(function () {
         if (type === "deelnemer") {
             type = 1;
             $("#new-handicap-dropdown").show();
-        } else if (type === "arts/fysiotherapeut") {
-            type = 2;
-            $("#new-handicap-dropdown").hide();
         } else if (type === "administrator") {
-            type = 3;
+            type = 2;
             $("#new-handicap-dropdown").hide();
         } else {
             type = 1;
@@ -50,11 +47,11 @@ $(document).ready(function () {
 
             errorMsg.text("Vul alle velden in.");
 
-            var firstname = $('#new-voornaam').val();
-            var lastname = $('#new-achternaam').val();
+            var firstname = $('#new-firstname').val();
+            var lastname = $('#new-lastname').val();
             var email = $('#new-email').val();
-            var password1 = $('#new-wachtwoord').val();
-            var password2 = $('#new-wachtwoord2').val();
+            var password1 = $('#new-password').val();
+            var password2 = $('#new-password2').val();
             var birthday = $('#new-birthday').val();
 
 

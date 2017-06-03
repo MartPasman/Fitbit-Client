@@ -55,8 +55,6 @@ $(document).ready(function () {
                                 location.replace("results.php");
                                 break;
                             case 2:
-                                break;
-                            case 3:
                                 location.replace("admin-dashboard.php");
                                 break;
                         }

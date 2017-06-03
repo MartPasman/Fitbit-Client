@@ -78,24 +78,24 @@ include './include/header.php';
                 <!-- content goes here -->
                 <form>
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-voornaam">Voornaam</label>
+                        <label class="col-md-3 control-label" for="edit-firstname">Voornaam</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-user"></i></span>
-                                <input id="edit-voornaam" name="voornaam" placeholder="voornaam"
+                                <input id="edit-firstname" name="firstname" placeholder="voornaam"
                                        class="form-control input-md" type="text">
                             </div>
                         </div>
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-achternaam">Achternaam</label>
+                        <label class="col-md-3 control-label" for="edit-lastname">Achternaam</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-user"></i></span>
-                                <input id="edit-achternaam" name="achternaam" placeholder="achternaam"
+                                <input id="edit-lastname" name="lastname" placeholder="achternaam"
                                        class="form-control input-md" type="text">
                             </div>
                         </div>
@@ -249,26 +249,26 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-voornaam">Voornaam</label>
+                        <label class="col-md-3 control-label" for="new-firstname">Voornaam</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-user"></i>
 			            </span>
-                                <input id="new-voornaam" name="voornaam" placeholder="voornaam"
+                                <input id="new-firstname" name="firstname" placeholder="voornaam"
                                        class="form-control input-md" type="text">
                             </div>
                         </div>
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-achternaam">Achternaam</label>
+                        <label class="col-md-3 control-label" for="new-lastname">Achternaam</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-user"></i>
 			            </span>
-                                <input id="new-achternaam" name="achternaam" placeholder="achternaam"
+                                <input id="new-lastname" name="lastname" placeholder="achternaam"
                                        class="form-control input-md" type="text">
                             </div>
                         </div>
@@ -311,7 +311,6 @@ include './include/header.php';
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu" id="new-type">
                                         <li><a href="#">Deelnemer</a></li>
-                                        <li><a href="#">Arts/fysiotherapeut</a></li>
                                         <li><a href="#">Administrator</a></li>
                                     </ul>
                                 </div>
@@ -352,7 +351,7 @@ include './include/header.php';
 
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-wachtwoord">Wachtwoord
+                        <label class="col-md-3 control-label" for="new-password">Wachtwoord
                             <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
                                title="Een wachtwoord moet minstens acht tekens lang zijn."
                             ><span class="glyphicon glyphicon-info-sign"
@@ -369,7 +368,7 @@ include './include/header.php';
 			                        <span class="input-group-addon">
 			                            <i class="glyphicon glyphicon-lock"></i>
 			                        </span>
-                                <input id="new-wachtwoord" name="wachtwoord" placeholder="wachtwoord"
+                                <input id="new-password" name="password" placeholder="wachtwoord"
                                        class="form-control input-md" type="password">
                             </div>
 
@@ -377,13 +376,13 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-wachtwoord2">Herhaal wachtwoord</label>
+                        <label class="col-md-3 control-label" for="new-password2">Herhaal wachtwoord</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-lock"></i>
 			            </span>
-                                <input id="new-wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"
+                                <input id="new-password2" name="password2" placeholder="wachtwoord"
                                        class="form-control input-md" type="password">
                             </div>
                         </div>
