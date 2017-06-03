@@ -214,7 +214,7 @@ function loadStandardInformation() {
 
                 var age = diff_years(new Date(birthday), new Date());
 
-                $('#id-field').html('<b>#</b>&nbsp ' + data.success.id);
+                $('#id-field').html('<div class="glyphicon glyphicon-barcode"></div> &nbsp ' + data.success.id);
 
                 $('#name-field').html('<div class="glyphicon glyphicon-user"></div> &nbsp ' + data.success.firstname + ' ' + data.success.lastname);
 

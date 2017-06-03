@@ -3,6 +3,7 @@ $title = "Dashboard";
 include './include/header.php';
 ?>
 
+<link rel="stylesheet" href="css/switches.css">
 <!-- error modal -->
 <div id="modal-account-error" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -29,7 +30,10 @@ include './include/header.php';
             <div class="panel panel-default">
                 <div class="panel-heading"
                 <h3 class="panel-title"><strong>Deelnemers</strong></h3>
+
                 <a class="link-button" id="accountbtn">Nieuw account aanmaken</a>
+
+
             </div>
 
 
@@ -155,40 +159,52 @@ include './include/header.php';
                         </div>
                     </div>
 
-<!-- TODO volgende sprint -->
-<!--                    <div class="row form-group">-->
-<!--                        <label class="col-md-3 control-label" for="edit-wachtwoord"> Reset wachtwoord-->
-<!--                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"-->
-<!--                               title="Een wachtwoord moet minstens acht tekens lang zijn."-->
-<!--                            ><span class="glyphicon glyphicon-info-sign"-->
-<!--                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>-->
-<!--                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"-->
-<!--                                                                           rel="tooltip" title="Hint"></i>-->
-<!--                            </div>-->
-<!--                        </label>-->
-<!--                        <div class="col-md-9">-->
-<!--                            <div class="input-group">-->
-<!--			                        <span class="input-group-addon">-->
-<!--			                            <i class="glyphicon glyphicon-lock"></i>-->
-<!--			                        </span>-->
-<!--                                <input id="edit-wachtwoord" name="wachtwoord" placeholder="wachtwoord"-->
-<!--                                       class="form-control input-md" type="password">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="row form-group">-->
-<!--                        <label class="col-md-3 control-label" for="edit-wachtwoord2">Herhaal wachtwoord</label>-->
-<!--                        <div class="col-md-9">-->
-<!--                            <div class="input-group">-->
-<!--			                <span class="input-group-addon">-->
-<!--			                <i class="glyphicon glyphicon-lock"></i>-->
-<!--			            </span>-->
-<!--                                <input id="edit-wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"-->
-<!--                                       class="form-control input-md" type="password">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
+                    <!-- TODO volgende sprint -->
+                    <!--                    <div class="row form-group">-->
+                    <!--                        <label class="col-md-3 control-label" for="edit-wachtwoord"> Reset wachtwoord-->
+                    <!--                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"-->
+                    <!--                               title="Een wachtwoord moet minstens acht tekens lang zijn."-->
+                    <!--                            ><span class="glyphicon glyphicon-info-sign"-->
+                    <!--                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>-->
+                    <!--                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"-->
+                    <!--                                                                           rel="tooltip" title="Hint"></i>-->
+                    <!--                            </div>-->
+                    <!--                        </label>-->
+                    <!--                        <div class="col-md-9">-->
+                    <!--                            <div class="input-group">-->
+                    <!--			                        <span class="input-group-addon">-->
+                    <!--			                            <i class="glyphicon glyphicon-lock"></i>-->
+                    <!--			                        </span>-->
+                    <!--                                <input id="edit-wachtwoord" name="wachtwoord" placeholder="wachtwoord"-->
+                    <!--                                       class="form-control input-md" type="password">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!---->
+                    <!--                    <div class="row form-group">-->
+                    <!--                        <label class="col-md-3 control-label" for="edit-wachtwoord2">Herhaal wachtwoord</label>-->
+                    <!--                        <div class="col-md-9">-->
+                    <!--                            <div class="input-group">-->
+                    <!--			                <span class="input-group-addon">-->
+                    <!--			                <i class="glyphicon glyphicon-lock"></i>-->
+                    <!--			            </span>-->
+                    <!--                                <input id="edit-wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"-->
+                    <!--                                       class="form-control input-md" type="password">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="change-active">Actief: </label>
+                        <div class="col-md-9">
+                            <div class="switch" id="change-active">
+                                <input id="active-toggle" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                                <label for="active-toggle"></label>
+                            </div>
+                        </div>
+
+                    </div>
+
 
                     <hr style="margin-top:10px;margin-bottom:10px;">
 

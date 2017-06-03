@@ -7,11 +7,8 @@ include './include/header.php';
     <div id="today"></div>
 
     <div class="container">
-        <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-           title="Klik op de verschillende tabbladen om bij de verschillende secties van je instellingen te komen."
-        ><span class="glyphicon glyphicon-info-sign" style="color: #DC4F62; font-size: 1.2em;"></span></a>
 
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs pink">
             <li class="active"><a data-toggle="tab" href="#personal">
                     <div class="glyphicon glyphicon-user"></div>
                     &nbsp Persoonlijke informatie</a></li>
@@ -132,12 +129,6 @@ include './include/header.php';
 
     <!-- your scripts -->
     <script src="js/change-user-information.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
 
     <script>
         // get the current date as a string
