@@ -58,14 +58,13 @@
     border:none;
     color: #DC4F62;
     position: absolute;
-    right: 14px;
+    right: 12px;
     font-weight: bold;
-    top: 14px;
-    font-size: 12px;
+    top: 12px;
+    font-size: .6em;
     padding: 12px;
-    line-height: 12px;
+    line-height: 16px;
     border-radius: 8px;
-
 }
 
 .link-button {
