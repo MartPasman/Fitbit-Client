@@ -73,12 +73,18 @@ $(document).ready(function () {
                     if (errorMsg.is(':hidden')) {
                         errorMsg.toggle();
                     }
+                    oldIcon.removeClass("glyphicon-ok");
+                    oldIcon.removeClass("glyphicon-lock");
+                    oldIcon.addClass("glyphicon-remove");
+                    oldIcon.css("color", "#ff0000");
+                    oldPass.removeClass("has-success");
+                    oldPass.addClass("has-error");
 
                 },
                 401: function (err) {
                     //Unauthorized error message
                     successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
+                    errorMsg.html("<strong>Foutje!</strong> Verkeerd wachtwoord.");
                     if (errorMsg.is(':hidden')) {
                         errorMsg.toggle();
                     }
