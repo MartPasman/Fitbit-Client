@@ -3,8 +3,6 @@
  */
 $(document).ready(function () {
 
-    // $("#error").hide();
-    var modal = $('#modal-account-error');
     var accountModal = $('#account-modal');
     const errorMsg = $("#error-message-new");
     const successMsg = $("#success-message-new");

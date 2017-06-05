@@ -2,7 +2,6 @@
  * Created by romybeugeling on 22-05-17.
  */
 
-var modal;
 var editModal;
 var accountModal;
 var errorMessageEdit;
@@ -14,7 +13,6 @@ var handicapValid = false;
 
 $(document).ready(function () {
 
-    modal = $('#modal-account-error');
     editModal = $('#edit-modal');
     accountModal = $('#account-modal');
     errorMessageEdit = $('#error-message-edit');
@@ -36,50 +34,35 @@ function loadUsers() {
                 actionsDashboard(data);
             },
             400: function (err) {
-                // set the modal title
-                modal.find('.modal-title').html('Foute aanvraag');
-                // set the modal body
-                modal.find('.modal-body').html("Controleer of de velden correct ingevuld zijn.");
-                // show the modal
-                modal.modal();
+                userList.addClass("block-error");
+                userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
+                    "Er zijn geen deelnemers bekend.")
             },
             401: function (err) {
-                // set the modal title
-                modal.find('.modal-title').html('Verboden toegang');
-                // set the modal body
-                modal.find('.modal-body').html("Controleer of je ingelogd bent.");
-                // show the modal
-                modal.modal();
+
+                location.replace("index.php");
             },
             403: function (err) {
-                // set the modal title
-                modal.find('.modal-title').html('Verboden toegang.');
-                // set the modal body
-                modal.find('.modal-body').html("Je bent niet geautoriseerd om een account aan te maken.");
-                // show the modal
-                modal.modal();
+                userList.addClass("block-error");
+                userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
+                    "Controleer of je als administrator ingelogd bent.")
             },
             404: function (err) {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
-                    "Er zijn geen deelnemers bekend")
+                    "Er zijn geen deelnemers bekend.")
             },
 
             500: function (err) {
-                // set the modal title
-                modal.find('.modal-title').html('Er is iets fout gegaan.');
-                // set the modal body
-                modal.find('.modal-body').html("Het is niet jouw fout, probeer het later nog eens.");
-                // show the modal
-                modal.modal();
+                userList.addClass("block-error");
+                userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
+                    "Er is iets fout gegaan, probeer het later nog eens.")
+
             },
             default: function (err) {
-                // set the modal title
-                modal.find('.modal-title').html('Er is iets fout gegaan.');
-                // set the modal body
-                modal.find('.modal-body').html("Probeer het later nog eens.");
-                // show the modal
-                modal.modal();
+                userList.addClass("block-error");
+                userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
+                    "Er is iets fout gegaan, probeer het later nog eens.")
             }
         }
     });
@@ -327,7 +310,7 @@ function editAccount(user) {
                 statusCode: {
                     200: function (data) {
 
-                        if(personalValid){
+                        if (personalValid) {
                             successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie en de handicap zijn aangepast.");
                         } else {
                             successMessageEdit.html("<strong>Succes</strong> De handicap is aangepast.");
@@ -400,10 +383,10 @@ function change_active(id) {
         },
         statusCode: {
             200: function (data) {
-                if(personalValid){
-                    if (handicapValid){
+                if (personalValid) {
+                    if (handicapValid) {
                         successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie, handicap en actieve status zijn aangepast.");
-                    }else {
+                    } else {
                         successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie en de actieve status zijn aangepast.");
                     }
                 } else if (handicapValid) {
