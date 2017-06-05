@@ -43,10 +43,12 @@ $(document).ready(function () {
 
             //Sets date to javascript date time for in database
             var dateParts = start.split("/");
-            var startdate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            var startDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            console.log(startDate);
 
-            dateParts = end.split("/");
-            var enddate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            dateParts = end.split('/');
+            var endDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            console.log(endDate);
 
             //Call to add a goal
             $.ajax({
@@ -56,8 +58,8 @@ $(document).ready(function () {
                     Authorization: localStorage.getItem("token")
                 },
                 data: {
-                    start: startdate,
-                    end: enddate,
+                    start: startDate,
+                    end: endDate,
                     goal: steps
                 },
                 statusCode: {
@@ -75,9 +77,7 @@ $(document).ready(function () {
                         if ($("#error-message").is(':hidden')) {
                             $("#error-message").toggle();
                         }
-
                     },
-
                     500: function (err) {
                         //Internal server error message
                         $("#success-message").hide();
