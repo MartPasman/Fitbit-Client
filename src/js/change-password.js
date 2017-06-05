@@ -21,29 +21,17 @@ $(document).ready(function () {
         var new2 = newPass2.val().trim();
 
         if (isEmpty(old) || isEmpty(new1) || isEmpty(new2)) {
-            successMsg.hide();
-            errorMsg.html("<strong>Foutje!</strong> Vul wel alle informatie in!");
-            if (errorMsg.is(':hidden')) {
-                errorMsg.toggle();
-            }
+            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Vul wel alle informatie in.");
             return;
         }
 
         if (new1 !== new2) {
-            successMsg.hide();
-            errorMsg.html("<strong>Foutje!</strong> De wachtwoorden zijn niet gelijk aan elkaar!");
-            if (errorMsg.is(':hidden')) {
-                errorMsg.toggle();
-            }
+            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> De wachtwoorden zijn niet gelijk aan elkaar.");
             return;
         }
 
         if (old.length < 8 || new1.length < 8 || new2.length < 8) {
-            successMsg.hide();
-            errorMsg.html("<strong>Foutje!</strong> Een van de wachtwoorden is niet lang genoeg!");
-            if (errorMsg.is(':hidden')) {
-                errorMsg.toggle();
-            }
+            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Een van de wachtwoorden is niet lang genoeg.");
             return;
         }
 
@@ -61,44 +49,24 @@ $(document).ready(function () {
             statusCode: {
                 201: function (data) {
                     //Success message
-                    errorMsg.hide();
-                    if (successMsg.is(':hidden')) {
-                        successMsg.toggle();
-                    }
+                    messageToggle(successMsg, errorMsg, "<strong>Gelukt!</strong> Je wachtwoord is nu veranderd.");
                 },
                 400: function (err) {
                     //Unauthorized error message
-                    successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Probeer het nog eens.");
-                    if (errorMsg.is(':hidden')) {
-                        errorMsg.toggle();
-                    }
-
+                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
                 },
                 401: function (err) {
                     //Unauthorized error message
-                    successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                    if (errorMsg.is(':hidden')) {
-                        errorMsg.toggle();
-                    }
-
+                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Verkeerd wachtwoord ingevoerd.");
+                    changeIcon(oldIcon, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
                 },
                 500: function (err) {
                     //Internal server error message
-                    successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                    if (errorMsg.is(':hidden')) {
-                        errorMsg.toggle();
-                    }
+                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Het is niet jou fout, probeer het later nog eens.");
                 },
                 default: function (err) {
                     //Default error message
-                    successMsg.hide();
-                    errorMsg.html("<strong>Foutje!</strong> Probeer het nog eens.");
-                    if (errorMsg.is(':hidden')) {
-                        errorMsg.toggle();
-                    }
+                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
                 }
             }
 
@@ -107,67 +75,27 @@ $(document).ready(function () {
 
     $("input[type=password]").keyup(function () {
         if (oldPass.val().length >= 8) {
-            oldIcon.removeClass("glyphicon-lock");
-            oldIcon.removeClass("glyphicon-remove");
-            oldIcon.addClass("glyphicon-ok");
-            oldIcon.css("color", "#00A41E");
-            oldPass.addClass("has-success");
+            changeIcon(oldIcon, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
         } else if (oldPass.val().length >= 1) {
-            oldIcon.removeClass("glyphicon-ok");
-            oldIcon.removeClass("glyphicon-lock");
-            oldIcon.addClass("glyphicon-remove");
-            oldIcon.css("color", "#ff0000");
-            oldPass.removeClass("has-success");
-            oldPass.addClass("has-error");
+            changeIcon(oldIcon, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
         } else {
-            oldIcon.removeClass("glyphicon-ok");
-            oldIcon.removeClass("glyphicon-remove");
-            oldIcon.addClass("glyphicon-lock");
-            oldIcon.css("color", "#000000");
-            oldPass.removeClass("has-success");
+            oldIcon(oldIcon, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
         }
 
         if (newPass1.val().length >= 8) {
-            newIcon1.removeClass("glyphicon-lock");
-            newIcon1.removeClass("glyphicon-remove");
-            newIcon1.addClass("glyphicon-ok");
-            newIcon1.css("color", "#00A41E");
-            newPass1.addClass("has-success");
+            changeIcon(newIcon1, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
         } else if (newPass1.val().length >= 1) {
-            newIcon1.removeClass("glyphicon-ok");
-            newIcon1.removeClass("glyphicon-lock");
-            newIcon1.addClass("glyphicon-remove");
-            newIcon1.css("color", "#ff0000");
-            newPass1.removeClass("has-success");
-            newPass1.addClass("has-error");
+            changeIcon(newIcon1, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
         } else {
-            newIcon1.removeClass("glyphicon-ok");
-            newIcon1.removeClass("glyphicon-remove");
-            newIcon1.addClass("glyphicon-lock");
-            newIcon1.css("color", "#000000");
-            newPass1.removeClass("has-success");
+            changeIcon(newIcon1, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
         }
 
         if (newPass2.val().length >= 8 && newPass2.val() === newPass1.val()) {
-            newIcon2.removeClass("glyphicon-lock");
-            newIcon2.removeClass("glyphicon-remove");
-            newIcon2.addClass("glyphicon-ok");
-            newIcon2.css("color", "#00A41E");
-            newPass2.addClass("has-success");
+            changeIcon(newIcon2, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
         } else if (newPass2.val().length >= 1) {
-            newIcon2.removeClass("glyphicon-ok");
-            newIcon2.removeClass("glyphicon-lock");
-            newIcon2.addClass("glyphicon-remove");
-            newIcon2.css("color", "#ff0000");
-            newPass2.removeClass("has-success");
-            newPass2.addClass("has-error");
+            changeIcon(newIcon2, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
         } else {
-            newIcon2.removeClass("glyphicon-ok");
-            newIcon2.removeClass("glyphicon-remove");
-            newIcon2.addClass("glyphicon-lock");
-            newIcon2.css("color", "#000000");
-            newPass2.removeClass("has-success");
-            newPass2.removeClass("has-error");
+            changeIcon(newIcon2, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
         }
     });
 });
@@ -175,4 +103,20 @@ $(document).ready(function () {
 //Check if variable is empty
 function isEmpty(str) {
     return (!str || 0 === str.length);
+}
+
+
+function changeIcon(object, remove1, remove2, add, color){
+    object.removeClass(remove1);
+    object.removeClass(remove2);
+    object.addClass(add);
+    object.css("color", color);
+}
+
+function messageToggle(object, objecthide, message){
+    objecthide.hide();
+    object.html(message);
+    if (object.is(':hidden')) {
+        object.toggle();
+    }
 }

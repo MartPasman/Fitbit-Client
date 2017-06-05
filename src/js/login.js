@@ -2,8 +2,11 @@
  * Created by sveno on 17-5-2017.
  */
 $(document).ready(function () {
+    var errorMsg =  $("#error");
+    var passdiv = $("#passdiv");
+    var iddiv = $("#iddiv");
 
-    $("#error").hide();
+    errorMsg.hide();
 
     $(document).keypress(function(e) {
         if(e.which === 13) {
@@ -20,19 +23,19 @@ $(document).ready(function () {
         var password = $("#password").val().trim();
         var modal = $('#modal-login-error');
 
-        $("#passdiv").removeClass("has-error");
-        $("#iddiv").removeClass("has-error");
+        passdiv.removeClass("has-error");
+        iddiv.removeClass("has-error");
 
         if (isEmpty(id) || isEmpty(password) || !id.match(/^\d+$/)) {
 
             if (isEmpty(password)) {
-                $("#passdiv").addClass("has-error");
+                passdiv.addClass("has-error");
             }
             if (isEmpty(id)) {
-                $("#iddiv").addClass("has-error");
+                iddiv.addClass("has-error");
             }
             if(!id.match(/^\d+$/)) {
-                $("#iddiv").addClass("has-error");
+                iddiv.addClass("has-error");
             }
 
 
@@ -60,34 +63,21 @@ $(document).ready(function () {
                         }
                     },
                     400: function (err) {
-                        $("#error").html("<strong>Foutje!</strong> Je wachtwoord of ID is onjuist");
-                        if ($("#error").is(':hidden')) {
-                            $("#error").toggle();
-                        }
+                        messageToggle(errorMsg, "<strong>Foutje!</strong> Ongeldige invoer.");
+
                     },
                     401: function (err) {
-                        $("#error").html("<strong>Foutje!</strong> Je wachtwoord of ID is onjuist");
-                        if ($("#error").is(':hidden')) {
-                            $("#error").toggle();
-                        }
+                        messageToggle(errorMsg, "<strong>Foutje!</strong> Je wachtwoord of ID is onjuist.");
+
                     },
                     403: function (err) {
-                        $("#error").html("<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
-                        if ($("#error").is(':hidden')) {
-                            $("#error").toggle();
-                        }
+                        messageToggle(errorMsg, "<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
                     },
                     500: function (err) {
-                        $("#error").html("<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
-                        if ($("#error").is(':hidden')) {
-                            $("#error").toggle();
-                        }
+                        messageToggle(errorMsg, "<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
                     },
                     default: function (err) {
-                        $("#error").html("<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
-                        if ($("#error").is(':hidden')) {
-                            $("#error").toggle();
-                        }
+                        messageToggle(errorMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
                     }
                 }
             });
@@ -97,6 +87,13 @@ $(document).ready(function () {
 
 function isEmpty(str) {
     return (!str || 0 === str.length);
+}
+
+function messageToggle(object, message){
+    object.html(message);
+    if (object.is(':hidden')) {
+        object.toggle();
+    }
 }
 
 

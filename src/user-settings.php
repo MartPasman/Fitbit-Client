@@ -129,6 +129,7 @@ include './include/header.php';
 
     <!-- your scripts -->
     <script src="js/change-user-information.js"></script>
+    <script src="js/all-goals.js"></script>
 
     <script>
         // get the current date as a string
