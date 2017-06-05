@@ -193,7 +193,7 @@ const loadGoalsHistory = function (data) {
     goalHistory.html('');
 
     // set the width depending on the amount of items in it
-    goalHistory.width(240 * data.length);
+    goalHistory.width(232 * data.length);
 
     // iterate through all goals
     for (var i = 0; i < data.length; i++) {
