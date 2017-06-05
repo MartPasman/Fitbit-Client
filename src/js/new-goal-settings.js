@@ -3,10 +3,16 @@
  */
 $(document).ready(function () {
     //Hide the messages
-    $("#success-message").hide();
-    $("#error-message").hide();
-    $("#succes-message-update").hide();
-    $("#error-message-update").hide();
+
+    var successMessage = $("#success-message");
+    var errorMessage = $("#error-message");
+    var successMessageUpdate = $("#success-message-update");
+    var errorMessageUpdate = $("#error-message-update");
+
+    successMessage.hide();
+    errorMessage.hide();
+    successMessageUpdate.hide();
+    errorMessageUpdate.hide();
 
     $('#save-button').click(function () {
 
@@ -22,12 +28,8 @@ $(document).ready(function () {
 
         if (isEmpty(steps) || isEmpty(start) || isEmpty(end)) {
             //Sets a error
-            $("#success-message").hide();
-            $("#error-message").html("<strong>Foutje!</strong> Vul wel alle informatie in");
-            if ($("#error-message").is(':hidden')) {
-                $("#error-message").toggle();
-            }
 
+            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Vul wel alle informatie in.");
             //Make not correctly filled in input group red
             if (isEmpty(steps)) {
                 $("#steps-div").addClass("has-error");
@@ -63,36 +65,24 @@ $(document).ready(function () {
                 statusCode: {
                     201: function (data) {
                         //Success message
-                        $("#error-message").hide();
-                        $("#success-message").show();
+                        messageToggle(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
 
                         getGoalsHistory();
                     },
                     401: function (err) {
                         //Unauthorized error message
-                        $("#success-message").hide();
-                        $("#error-message").html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                        if ($("#error-message").is(':hidden')) {
-                            $("#error-message").toggle();
-                        }
+                        messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Je bent niet ingelogd.");
 
                     },
 
                     500: function (err) {
                         //Internal server error message
-                        $("#success-message").hide();
-                        $("#error-message").html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                        if ($("#error-message").is(':hidden')) {
-                            $("#error-message").toggle();
-                        }
+                        messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
                     },
                     default: function (err) {
                         //Default error message
-                        $("#success-message").hide();
-                        $("#error-message").html("<strong>Foutje!</strong> Probeer het nog eens.");
-                        if ($("#error-message").is(':hidden')) {
-                            $("#error-message").toggle();
-                        }
+                        messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
+
                     }
                 }
             });
@@ -103,4 +93,12 @@ $(document).ready(function () {
 //Check if variable is empty
 function isEmpty(str) {
     return (!str || 0 === str.length);
+}
+
+function messageToggle(object, objecthide, message){
+    objecthide.hide();
+    object.html(message);
+    if (object.is(':hidden')) {
+        object.toggle();
+    }
 }

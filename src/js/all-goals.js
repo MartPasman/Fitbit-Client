@@ -70,10 +70,7 @@ $(document).ready(function () {
         if (isEmpty(steps) || isEmpty(start) || isEmpty(end)) {
             //Sets a error
             $("#success-message-update").hide();
-            errorMessageUpdate.html("<strong>Foutje!</strong> Vul wel alle informatie in");
-            if (errorMessageUpdate.is(':hidden')) {
-                errorMessageUpdate.toggle();
-            }
+            messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Vul wel alle informatie in.");
 
             //Make not correctly filled in input group red
             if (isEmpty(steps)) {
@@ -114,23 +111,17 @@ $(document).ready(function () {
                         $("#success-message-update").show();
                     },
                     401: function () {
-                        //Unauthorized error message
-                        $("#success-message-update").hide();
-                        errorMessageUpdate.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                        errorMessageUpdate.show();
+                        //show error message
+                        messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Je bent niet ingelogd.");
                     },
 
                     500: function () {
-                        //Internal server error message
-                        $("#success-message-update").hide();
-                        errorMessageUpdate.html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                        errorMessageUpdate.show();
+                        //Show error message
+                        messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
                     },
                     default: function () {
-                        //Default error message
-                        $("#success-message-update").hide();
-                        errorMessageUpdate.html("<strong>Foutje!</strong> Probeer het nog eens.");
-                        errorMessageUpdate.show();
+                        //Show error message
+                        messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Probeer het later nog eens.");
                     }
                 }
             });
@@ -184,25 +175,16 @@ function loadGoals(offset) {
             },
             401: function () {
                 //Show error message
-                errorMessageAll.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                if (errorMessageAll.is(':hidden')) {
-                    errorMessageAll.toggle();
-                }
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Je bent niet ingelogd.");
             },
 
             500: function () {
                 //Show error message
-                errorMessageAll.html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                if (errorMessageAll.is(':hidden')) {
-                    errorMessageAll.toggle();
-                }
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Het is niet jou fout probeer het later nog eens.");
             },
             default: function () {
                 //Show error message
-                errorMessageAll.html("<strong>Foutje!</strong> Probeer het nog eens.");
-                if (errorMessageAll.is(':hidden')) {
-                    errorMessageAll.toggle();
-                }
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Probeer het nog eens.");
             }
         }
     });
@@ -221,27 +203,16 @@ function removeGoal(id, offset) {
             },
             401: function () {
                 //show error message
-                errorMessageAll.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                if (errorMessageAll.is(':hidden')) {
-                    errorMessageAll.toggle();
-                }
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Je bent niet ingelogd.");
             },
 
             500: function () {
                 //Show error message
-                errorMessageAll.html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                if (errorMessageAll.is(':hidden')) {
-                    errorMessageAll.toggle();
-                }
-
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Het is niet jou fout probeer het later nog eens.");
             },
             default: function () {
                 //Show error message
-                errorMessageAll.html("<strong>Foutje!</strong> Probeer het later nog eens.");
-                if (errorMessageAll.is(':hidden')) {
-                    errorMessageAll.toggle();
-                }
-
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Probeer het nog eens.");
             }
         }
     });
@@ -257,10 +228,7 @@ function changeGoal(id) {
         statusCode: {
             200: function (data) {
                 if (!Date.parse(data.goals.start) || !Date.parse(data.goals.end) || isEmpty(data.goals.goal || isEmpty(data.goals._id))) {
-                    errorMessageUpdate.html("<strong>Foutje!</strong> Probeer het later nog eens.");
-                    if (errorMessageUpdate.is(':hidden')) {
-                        errorMessageUpdate.toggle();
-                    }
+                    messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Probeer het later nog eens.");
                     return;
                 }
                 var start = new Date(data.goals.start);
@@ -281,27 +249,16 @@ function changeGoal(id) {
             },
             401: function () {
                 //show error message
-                errorMessageUpdate.html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                if (errorMessageUpdate.is(':hidden')) {
-                    errorMessageUpdate.toggle();
-                }
+                messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Je bent niet ingelogd.");
             },
 
             500: function () {
                 //Show error message
-                errorMessageUpdate.html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                if (errorMessageUpdate.is(':hidden')) {
-                    errorMessageUpdate.toggle();
-                }
-
+                messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
             },
             default: function () {
                 //Show error message
-                errorMessageUpdate.html("<strong>Foutje!</strong> Probeer het later nog eens.");
-                if (errorMessageUpdate.is(':hidden')) {
-                    errorMessageUpdate.toggle();
-                }
-
+                messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Probeer het later nog eens.");
             }
         }
     });
@@ -309,4 +266,11 @@ function changeGoal(id) {
 
 function isEmpty(str) {
     return (!str || 0 === str.length);
+}
+
+function messageToggle(object, message){
+    object.html(message);
+    if (object.is(':hidden')) {
+        object.toggle();
+    }
 }
