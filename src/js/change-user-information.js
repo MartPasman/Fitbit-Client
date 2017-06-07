@@ -133,11 +133,11 @@ $(document).ready(function () {
                         ' </div>');
 
 
-                    $('#buttons').html('<button type="button" class="col-sm-3 col-xs-12 btn btn-danger" id="close-change-information">' +
-                        '<i class="glyphicon glyphicon-remove"></i> &nbsp Sluiten' +
+                    $('#buttons').html('<button type="button" class="col-sm-4 col-xs-12 btn btn-danger" id="close-change-information">' +
+                        '<i class="glyphicon glyphicon-remove"></i> Sluiten' +
                         '</button>' +
-                        '<button type="button" class="col-sm-9 col-xs-12 btn btn-success" id="save-change-information">' +
-                        '<i class="glyphicon glyphicon-pencil"></i> &nbsp Opslaan' +
+                        '<button type="button" class="col-sm-4 col-sm-offset-4 col-xs-12 btn btn-success" id="save-change-information">' +
+                        '<i class="glyphicon glyphicon-pencil"></i> Opslaan' +
                         '</button>');
 
                     datePicker();

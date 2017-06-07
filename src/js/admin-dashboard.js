@@ -33,33 +33,30 @@ function loadUsers() {
             200: function (data) {
                 actionsDashboard(data);
             },
-            400: function (err) {
+            400: function () {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
                     "Er zijn geen deelnemers bekend.")
             },
-            401: function (err) {
-
+            401: function () {
                 location.replace("index.php");
             },
-            403: function (err) {
+            403: function () {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
                     "Controleer of je als administrator ingelogd bent.")
             },
-            404: function (err) {
+            404: function () {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
                     "Er zijn geen deelnemers bekend.")
             },
-
-            500: function (err) {
+            500: function () {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
                     "Er is iets fout gegaan, probeer het later nog eens.")
-
             },
-            default: function (err) {
+            default: function () {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
                     "Er is iets fout gegaan, probeer het later nog eens.")
@@ -91,6 +88,7 @@ function actionsDashboard(data) {
 
         userList.append(html);
     }
+
     $(".connect").click(function () {
         id = $(this).attr('value');
 
@@ -257,34 +255,26 @@ function editAccount(user) {
                         personalValid = true;
                         successMessageEdit.show();
                         loadUsers();
-
                     },
                     400: function (err) {
-
                         errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
                         errorMessageEdit.show();
-
                     },
                     401: function (err) {
                         errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
                         errorMessageEdit.show();
-
                     },
                     403: function (err) {
                         errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
                         errorMessageEdit.show();
-
                     },
                     404: function (err) {
                         errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
                         errorMessageEdit.show();
-
                     },
-
                     500: function (err) {
                         errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
                         errorMessageEdit.show();
-
                     },
                     default: function (err) {
                         errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
@@ -354,23 +344,17 @@ function editAccount(user) {
             });
         }
 
-
         successMessageEdit.hide();
 
         if (existingActive !== !!$('#active-toggle').is(':checked')) {
             change_active(user.id);
         }
-
-
     });
 }
 
-
 function change_active(id) {
 
-    var active;
-    active = !!$('#active-toggle').is(':checked');
-
+    var active = !!$('#active-toggle').is(':checked');
 
     $.ajax({
         url: REST + '/users/' + id + '/active',
