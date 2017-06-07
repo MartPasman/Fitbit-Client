@@ -53,6 +53,7 @@ $(document).ready(function () {
                         console.dir(data.token);
                         localStorage.setItem("token", data.success);
                         localStorage.setItem("userid", data.userid);
+                        localStorage.setItem("permission", data.permission);
                         switch (data.permission){
                             case 1:
                                 location.replace("results.php");
