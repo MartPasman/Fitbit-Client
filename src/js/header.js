@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
     if(localStorage.getItem('permission') !== undefined){
-        if(localStorage.getItem('permission') == 1){
+        if(localStorage.getItem('perm') == 1){
             $('#navigation').html(' <li> '+
                ' <a href="/competition-dashboard.php"> '+
                ' <span class="glyphicon glyphicon-knight"></span> Competitie ' +
@@ -14,7 +14,7 @@ $(document).ready(function () {
             '</a></li><li> <a href="/index.php" id="log-out"> '+
               '  <span class="glyphicon glyphicon-log-out"></span> Verlaten </a> </li>');
         }
-        if(localStorage.getItem('permission') == 2){
+        if(localStorage.getItem('perm') == 2){
             $('#navigation').html(' <li> '+
                 ' <a href="/competition-dashboard.php"> '+
                 ' <span class="glyphicon glyphicon-knight"></span> Competitie ' +

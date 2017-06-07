@@ -51,9 +51,10 @@ $(document).ready(function () {
                 statusCode: {
                     201: function (data) {
                         //Set local storage
-                        localStorage.setItem("permission", data.permission);
+
                         localStorage.setItem("token", data.success);
                         localStorage.setItem("userid", data.userid);
+                        localStorage.setItem("perm", data.permission);
 
                         switch (data.permission){
                             case 1:
