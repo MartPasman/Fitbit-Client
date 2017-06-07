@@ -35,8 +35,6 @@ $(document).ready(function () {
                 $("#email-div-update").addClass("has-error");
             }
         } else {
-            var dateParts = birthdate.split("/");
-            var bday = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
             //Call to add a goal
             $.ajax({
