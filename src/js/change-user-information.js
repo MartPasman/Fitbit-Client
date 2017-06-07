@@ -48,7 +48,7 @@ $(document).ready(function () {
                 data: {
                     firstname: first_name,
                     lastname: last_name,
-                    birthday: bday,
+                    birthday: birthdate,
                     email: email
                 },
                 statusCode: {
