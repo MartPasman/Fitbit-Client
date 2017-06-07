@@ -50,7 +50,7 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     201: function (data) {
-                        console.dir(data.token);
+                        //Set local storage
                         localStorage.setItem("token", data.success);
                         localStorage.setItem("userid", data.userid);
                         localStorage.setItem("permission", data.permission);
