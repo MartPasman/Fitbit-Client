@@ -12,7 +12,13 @@ var personalValid = false;
 var handicapValid = false;
 
 $(document).ready(function () {
+    $('#comp-submit-button').width($('#default_goal').width());
 
+    $('#comp-submit-button').height($('#default_goal').height());
+
+
+    $('#success').hide();
+    modal = $('#modal-account-error');
     editModal = $('#edit-modal');
     accountModal = $('#account-modal');
     errorMessageEdit = $('#error-message-edit');
@@ -20,6 +26,31 @@ $(document).ready(function () {
     userList = $("#userlist");
 
     loadUsers();
+
+    $('#comp-submit-button').click(function () {
+        var goal = $('#default_goal').val();
+        $.ajax({
+            url: REST + '/competitions/' + 'lastgoal',
+            method: 'PUT',
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            data: {
+                goal: goal
+            },
+            statusCode:{
+                201: function (data) {
+                    $('#success').show();
+                },
+                404: function (err) {
+
+                },
+                500: function (err) {
+
+                }
+            }
+        });
+    });
 });
 
 function loadUsers() {

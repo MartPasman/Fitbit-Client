@@ -2,7 +2,35 @@
     border-width: medium;
 
 }
+.goal {
+    background-color: #dc4f62;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    text-decoration: none;
+    float:left;
+    padding: 0;
+    margin: 0;
+}
 
+.goal:hover{
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
+.goal:active{
+
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+.koppel {
+    background-color: #DC4F62;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    float: right;
+    text-decoration: none;
+}
 .connect {
     background-color: #DC4F62;
     color: #FFFFFF;
@@ -10,7 +38,6 @@
     float: right;
     text-decoration: none;
 }
-
 .connect:hover {
     background-color: #FFFFFF;
     color: #DC4F62;

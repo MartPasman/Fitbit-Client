@@ -5,6 +5,7 @@ include './include/header.php';
 
 <link rel="stylesheet" href="css/switches.css">
 
+
 <div class="container">
 
     <!-- block for users and competition -->
@@ -18,21 +19,31 @@ include './include/header.php';
 
             </div>
 
-
-            <div class="panel-body" id="userlist">
+                <div class="panel-body" id="userlist">
+                </div>
             </div>
         </div>
 
-    </div>
-    <div class="col-md-5 col-md-offset-1 ">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title"><strong>Competitie</strong></h3>
+        <div class="col-md-5 col-md-offset-1 ">
+            <div class="panel panel-default">
+
+                <div class="panel-heading"><h3 class="panel-title"><strong>Competitie</strong></h3>
+                </div>
+                <div class="panel-body" id="competitionlist">
+                    <div>
+                        <div class="alert alert-success" role="alert" id="success">
+                            <strong>Gelukt!</strong> Je informatie is nu geupdated.
+                        </div>
+                        <form id="competition-form">
+                            Doelstelling voor volgende competitie:<br>
+                            <input type="text" id="default_goal" placeholder="Aantal punten"><br>
+                            <button id="comp-submit-button" type="button" class="btn btn-default goal">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
-            <div class="panel-body" id="competitionlist">
-                <form role="form">
-                </form>
-            </div>
+
         </div>
     </div>
 </div>

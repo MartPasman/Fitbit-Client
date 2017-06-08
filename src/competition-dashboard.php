@@ -12,7 +12,7 @@ include './include/header.php';
             <h4 id="startend">20-04 t/m 27-04</h4>
 <!--            <span class="glyphicon glyphicon-arrow-right" id="arrow-right"></span><br>-->
 
-            <h4>Goal to reach:</h4><br>
+            <h4>Te behalen punten:</h4><br>
             <h3 id="goal-to-reach"></h3>
 
             <div id="chart-competition">FusionCharts will render here</div>

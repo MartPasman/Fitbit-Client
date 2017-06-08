@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     function login(){
         var id = $("#id").val().trim();
-        var password = $("#password").val().trim();
+        var password = $('#password').val();
         var modal = $('#modal-login-error');
 
         passdiv.removeClass("has-error");
