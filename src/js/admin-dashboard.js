@@ -1,55 +1,75 @@
-/**
- * Created by romybeugeling on 22-05-17.
- */
-
 var editModal;
 var accountModal;
 var errorMessageEdit;
 var successMessageEdit;
 var userList;
+var inactiveUserList
 
 var personalValid = false;
 var handicapValid = false;
 
 $(document).ready(function () {
-    $('#comp-submit-button').width($('#default_goal').width());
-
-    $('#comp-submit-button').height($('#default_goal').height());
 
 
-    $('#success').hide();
+    $.ajax({
+        url: REST + '/competitions/',
+        method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode:{
+           200: function (data) {
+                $('#show-last-goal').text('Momenteel: ' + data.defaultGoal);
+           },
+           default: function (err) {
+               console.log(err);
+           }
+        }
+    });
+
+    $('#success-competition').hide();
+    $('#error-competition').hide();
     modal = $('#modal-account-error');
     editModal = $('#edit-modal');
     accountModal = $('#account-modal');
     errorMessageEdit = $('#error-message-edit');
     successMessageEdit = $('#success-message-edit');
     userList = $("#userlist");
+    inactiveUserList = $('#userlist-inactive');
 
     loadUsers();
 
     $('#comp-submit-button').click(function () {
         var goal = $('#default_goal').val();
-        $.ajax({
-            url: REST + '/competitions/' + 'lastgoal',
-            method: 'PUT',
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            data: {
-                goal: goal
-            },
-            statusCode:{
-                201: function (data) {
-                    $('#success').show();
+        if(goal == ''){
+            $('#success-competition').hide();
+            $('#error-competition').show();
+        } else {
+            $.ajax({
+                url: REST + '/competitions/' + 'lastgoal',
+                method: 'PUT',
+                headers: {
+                    Authorization: localStorage.getItem('token')
                 },
-                404: function (err) {
-
+                data: {
+                    goal: goal
                 },
-                500: function (err) {
+                statusCode: {
+                    201: function (data) {
+                        $('#error-competition').hide();
+                        $('#success-competition').show();
+                        $('#show-last-goal').text('Momenteel: ' + goal);
 
+                    },
+                    404: function (err) {
+
+                    },
+                    500: function (err) {
+
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
@@ -105,19 +125,40 @@ function actionsDashboard(data) {
     for (var i = 0; i < users.length; i++) {
         var user = users[i];
 
-        var html = "<div class='user row' >" +
-            "<div class='col-xs-12 col-md-6 one-user' " +
-            "<span class='glyphicon glyphicon-user'></span>" +
-            user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-            "<div class='col-xs-12 col-md-6'>" +
-            "<button value='" + user.id +
-            "' class='btn btn-default connect'>Koppel Fitbit</button>" +
-            "<button value='" + user.id +
-            "' class='btn btn-default edit' data-toggle='modal' " +
-            "data-target='#edit-modal'>Pas aan</button>" +
-            "</div> </div> <hr/>";
+        if(user.active) {
 
-        userList.append(html);
+            var html = "<div class='user row' >" +
+                "<div class='col-xs-12 col-md-6 one-user' " +
+                "<span class='glyphicon glyphicon-user'></span>" +
+                user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
+                "<div class='col-xs-12 col-md-6'>" +
+                "<button value='" + user.id +
+                "' class='btn btn-default connect'>Koppel Fitbit</button>" +
+                "<button value='" + user.id +
+                "' class='btn btn-default edit' data-toggle='modal' " +
+                "data-target='#edit-modal'>Pas aan</button>" +
+                "</div> </div> <hr/>";
+
+            userList.append(html);
+        }
+    }
+
+    for (i = 0; i < users.length; i++){
+        var user = users[i];
+
+        if(!user.active){
+            var html = "<div class='user row' >" +
+                "<div class='col-xs-12 col-md-6 one-user' " +
+                "<span class='glyphicon glyphicon-user'></span>" +
+                " " + user.lastname + " (" + user.id + ")" + " </div>" +
+                "<div class='col-xs-12 col-md-6'>" +
+                "<button value='" + user.id +
+                "' class='btn btn-default edit' data-toggle='modal' " +
+                "data-target='#edit-modal'>Pas aan</button>" +
+                "</div> </div><hr/>";
+
+            inactiveUserList.append(html);
+        }
     }
 
     $(".connect").click(function () {

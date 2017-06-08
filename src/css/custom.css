@@ -316,6 +316,17 @@ h2 {
 
 }
 
+#comp-div{
+    float:right;
+}
+
+#default_goal{
+    display: inline;
+    width:200px;
+    float: left;
+}
+
+
 /* mobile */
 @media all and (max-width: 768px) {
     /* smaller text */
@@ -324,13 +335,13 @@ h2 {
     }
 }
 
-#userlist {
+#userlist #userlist-inactive {
     overflow-y: auto;
     max-height: 600px;
 }
 
 
-#userlist hr {
+#userlist #userlist-inactive hr {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -343,7 +354,7 @@ h2 {
 /* mobile */
 @media all and (max-height: 600px) {
 
-    #userlist {
+    #userlist #userlist-inactive {
         max-height: 200px;
     }
 }
