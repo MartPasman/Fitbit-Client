@@ -376,6 +376,7 @@ input[type="month"].form-control {
 #export {
     margin-right: 1em;
     float: right;
+    width: calc(100% - 2em);
 }
 
 #export:after {
@@ -390,7 +391,7 @@ input[type="month"].form-control {
 .btn-export {
     margin: 1em;
     padding: 1em;
-    border: 1px solid #efefef;
+    border: 1px solid #ddd;
     border-radius: .6em;
     cursor: pointer;
 }
