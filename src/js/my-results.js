@@ -1,15 +1,14 @@
 /**
  * Created on 19-05-17.
  */
+let stepsData = [];
+let sleepData = [];
+let goalsData = [];
 
-var stepsData = [];
-var sleepData = [];
-var goalsData = [];
+let stepsChart;
+let sleepChart;
 
-var stepsChart;
-var sleepChart;
-
-var dataLoaded = false;
+let dataLoaded = false;
 
 // redraw charts when the screen resizes
 $(window).on('resize', function () {
@@ -142,10 +141,10 @@ const printError = function (selector, message) {
 };
 
 const drawStepsChart = function (data) {
-    var steps = [];
+    let steps = [];
     // reformat date labels
-    for (var i = 0; i < data.length; i++) {
-        var date = data[i].dateTime;
+    for (let i = 0; i < data.length; i++) {
+        let date = data[i].dateTime;
         steps[i] = {
             label: date.substring(8, 10) + '/' + date.substring(5, 7),
             value: data[i].value
@@ -160,9 +159,9 @@ const drawStepsChart = function (data) {
 };
 
 const drawSleepChart = function (data) {
-    var sleep = [];
+    let sleep = [];
     // reformat date labels
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         sleep[i] = {
             label: data[i].date.substring(8, 10) + '/' + data[i].date.substring(5, 7),
             value: data[i].duration
@@ -196,7 +195,7 @@ const loadGoalsHistory = function (data) {
     goalHistory.width(232 * data.length);
 
     // iterate through all goals
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         const goal = data[i];
 
         // get the dates and parse them to the desired format
@@ -207,11 +206,11 @@ const loadGoalsHistory = function (data) {
         const period = startDateStr + ' - ' + endDateStr;
 
         // start the html we are going to add
-        var html = '<div class="goal ' + (goal.percentage === 100 ? 'achieved' : '') + '"><h2>';
+        let html = '<div class="goal ' + (goal.percentage === 100 ? 'achieved' : '') + '"><h2>';
 
         // calculate the right font-size depending on the amount of excess characters
-        var fontSize = 1;
-        var progressChars = goal.goal.toString().length + goal.progress.toString().length - 8; // 8 = max characters
+        let fontSize = 1;
+        let progressChars = goal.goal.toString().length + goal.progress.toString().length - 8; // 8 = max characters
         if (progressChars > 0) {
             fontSize -= 0.1 + (progressChars * 0.08);
             if (fontSize < 0.1) {
@@ -227,7 +226,7 @@ const loadGoalsHistory = function (data) {
         }
 
         // finish the div with the right icon
-        var inProgress = 'option-horizontal';
+        let inProgress = 'option-horizontal';
         if ((endDate.getTime() + 1000 * 60 * 60 * 24) < new Date().getTime()) {
             // if the goal end date is over, user a different icon
             inProgress = 'remove';

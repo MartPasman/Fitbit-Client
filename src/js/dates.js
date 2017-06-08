@@ -10,8 +10,8 @@ function getTodaysDate() {
 }
 
 function getYYYYMMDD(date, splitBy) {
-    var mm = date.getMonth() + 1;
-    var dd = date.getDate();
+    const mm = date.getMonth() + 1;
+    const dd = date.getDate();
 
     return [date.getFullYear(),
         (mm > 9 ? '' : '0') + mm,
@@ -20,11 +20,22 @@ function getYYYYMMDD(date, splitBy) {
 }
 
 function getDDMMYYYY(date, splitBy) {
-    var mm = date.getMonth() + 1;
-    var dd = date.getDate();
+    const mm = date.getMonth() + 1;
+    const dd = date.getDate();
 
     return [(dd > 9 ? '' : '0') + dd,
         (mm > 9 ? '' : '0') + mm,
         date.getFullYear()
     ].join(splitBy);
+}
+
+/**
+ * Get the amount of days between start and end
+ * @param start
+ * @param end
+ * @returns {number}
+ */
+function getDaysBetween(start, end) {
+    const oneDay = 24 * 60 * 60 * 1000;
+    return Math.round(Math.abs((start.getTime() - end.getTime()) / (oneDay)));
 }

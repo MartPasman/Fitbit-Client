@@ -8,8 +8,8 @@
 
 <!-- REST service address -->
 <script type="text/javascript">
-   const REST = 'http://178.21.116.109:3000';
-  //    const REST = 'http://localhost:3000';
+        const REST = 'http://178.21.116.109:3000';
+//    const REST = 'http://localhost:3000';
 </script>
 
 <!-- Flickering led if the REST is online -->
@@ -29,14 +29,14 @@
 <script>
     const iso = $('.bootstrap-iso form');
     $(document).ready(function () {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"
-        var container = iso.length > 0 ? iso.parent() : "body";
+        const date_input = $('input[name="date"]'); //our date input has the name "date"
+        const container = iso.length > 0 ? iso.parent() : "body";
         date_input.datepicker({
             format: 'dd/mm/yyyy',
             container: container,
             todayHighlight: true,
             autoclose: true,
             language: "nl"
-        })
-    })
+        });
+    });
 </script>
