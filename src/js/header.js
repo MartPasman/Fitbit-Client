@@ -26,5 +26,4 @@ $(document).ready(function () {
                 '  <span class="glyphicon glyphicon-log-out"></span> Verlaten </a> </li>');
         }
     }
-
 });
