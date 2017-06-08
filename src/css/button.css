@@ -3,7 +3,7 @@
 
 }
 
-.connect {
+.connect, .btn-primary {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
@@ -11,16 +11,24 @@
     text-decoration: none;
 }
 
-.connect:hover {
+.connect:hover, .btn-primary:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.connect:active {
-    background-color: #FFFFFF;
-    color: #DC4F62;
-    border-color: #DC4F62;
+.connect:active, .btn-primary:active {
+    background-color: #FFFFFF !important;
+    color: #DC4F62 !important;
+    border-color: #DC4F62 !important;
+}
+
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:active {
+    background-color: #fff;
+    color: #333;
+    border-color: #ddd;
 }
 
 .edit {
@@ -45,17 +53,17 @@
 }
 
 /*.glyphicon-user {*/
-    /*margin-right: 0.5em;*/
+/*margin-right: 0.5em;*/
 /*}*/
 
 /*.block-error {*/
-    /*text-align: center;*/
-    /*font-size: 2em;*/
+/*text-align: center;*/
+/*font-size: 2em;*/
 /*}*/
 
 #pdf {
     background-color: #FFFFFF;
-    border:none;
+    border: none;
     color: #DC4F62;
     position: absolute;
     right: 12px;
@@ -63,8 +71,8 @@
     top: 12px;
     font-size: .6em;
     padding: 12px;
-    line-height: 16px;
-    border-radius: 8px;
+    line-height: 1em;
+    border-radius: 4px;
 }
 
 .link-button {
@@ -102,8 +110,6 @@
         float: none;
         margin-top: 0.3em;
     }
-
-
 }
 
 

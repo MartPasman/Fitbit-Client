@@ -135,12 +135,11 @@ h2 {
     }
 }
 
-
-.tab-offset{
-    margin-top:30px;
+.tab-offset {
+    margin-top: 30px;
 }
 
-.pink a{
+.pink a {
     color: #dc4f62;
 }
 
@@ -330,7 +329,6 @@ h2 {
     max-height: 600px;
 }
 
-
 #userlist hr {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -349,4 +347,80 @@ input[type="time"].form-control,
 input[type="datetime-local"].form-control,
 input[type="month"].form-control {
     line-height: inherit;
+}
+
+/*
+
+ THE EXPORT MODAL
+
+ */
+#modal-export .modal-body {
+    padding-bottom: 50px;
+}
+
+/* Export button */
+#export {
+    margin-right: 1em;
+    float: right;
+}
+
+#export:after {
+    content: ' Exporteer';
+}
+
+#export[disabled]:after {
+    content: ' Exporteren...';
+}
+
+/* Acts like a radio button */
+.btn-export {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #efefef;
+    border-radius: .6em;
+    cursor: pointer;
+}
+
+.btn-export:hover {
+    -webkit-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
+    -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
+    box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
+    background-color: #fcfcfc;
+}
+
+.btn-export:active {
+    -webkit-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
+    -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
+    box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
+    background-color: #f9f9f9;
+}
+
+/* Hide the Check icon on a selected radio div */
+.btn-export > .radio-div {
+    opacity: 0;
+}
+
+/* Show the Check icon on a selected radio div */
+.selected > .radio-div {
+    opacity: 1;
+}
+
+/* Div inside a btn-export that has the icon that reflects the radio behaviour */
+.radio-div {
+    margin-top: .2em;
+    font-size: 2em;
+    padding-left: 5px;
+}
+
+/* Surrounding error div under the datepicker of the period export option */
+.date-error {
+    padding: 0;
+}
+
+/* #rror div under the datepicker of the period export option */
+.date-error > .alert-danger {
+    padding: 0 3px 2px 3px;
+    border-radius: .3em;
+    margin-top: .3em;
+    text-align: center;
 }

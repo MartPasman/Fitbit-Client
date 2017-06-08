@@ -29,6 +29,18 @@ function getDDMMYYYY(date, splitBy) {
     ].join(splitBy);
 }
 
+function fromNLtoEN(string, splitByOld, splitByNew) {
+    if (string !== undefined && string !== '') {
+        const dateParts = string.split(splitByOld);
+        return dateParts[2] + splitByNew + dateParts[1] + splitByNew + dateParts[0]
+    }
+    return undefined;
+}
+
+function today() {
+    return new Date(getYYYYMMDD(new Date(), '-'))
+}
+
 /**
  * Get the amount of days between start and end
  * @param start

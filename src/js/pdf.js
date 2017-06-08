@@ -1,10 +1,18 @@
 /**
  * Created by romybeugeling on 24-05-17.
  */
+let selectedExportOption = undefined;
+
 $(document).ready(function () {
     const id = parseInt(localStorage.getItem('userid'));
+    let modalExport = $('#modal-export');
 
     $('#pdf').on('click', function () {
+        modalExport.modal();
+    });
+
+    $('#export').on('click', function () {
+
         $.ajax({
             url: REST + '/users/' + id,
             method: 'GET',
@@ -14,16 +22,104 @@ $(document).ready(function () {
             statusCode: {
                 200: function (data) {
 
-                    // last weeks stats
-                    getPDF(data.success, stepsData, sleepData, goalsData);
+                    // decide which export functionality to use
+                    switch (selectedExportOption) {
+                        case 'export-last-week':
+                            // last weeks stats that are already saved in my-results.js
+                            getPDF(data.success, stepsData, sleepData, goalsData);
+                            break;
+
+                        case 'export-period':
+                            exportPeriod(data.success);
+                            break;
+
+                        case 'export-since-last':
+                            exportSinceLast(data.success);
+                            break;
+                    }
                 },
                 default: function () {
-                    alert('Kan de gegevens niet exporteren. Probeer het later nog eens.');
+                    setErrorMessage('Kan de gegevens niet exporteren. Probeer het later nog eens.');
                 }
             }
         });
     });
+
+    /**
+     * Update the 'radio' export buttons
+     */
+    $('.btn-export').on('click', function () {
+        selectedExportOption = $(this).attr('id');
+        $('.btn-export').removeClass('selected');
+        $('#' + selectedExportOption).addClass('selected');
+    });
 });
+
+/**
+ * Set an error message of the selected export option
+ * @param msg
+ */
+function setErrorMessage(msg) {
+    $('#' + selectedExportOption).find('.date-error').html("<div class='alert-danger'>" + msg + "</div>");
+}
+
+function exportPeriod(user) {
+    if (user === undefined) {
+        return;
+    }
+
+    const startDateStr = $('#export-period-from').val();
+    const endDateStr = $('#export-period-to').val();
+
+    // undefined dates
+    if (startDateStr === '' || endDateStr === '') {
+        setErrorMessage('Vul een begin- en einddatum in.');
+        return;
+    }
+
+    const startDate = new Date(fromNLtoEN(startDateStr, '/', '-'));
+    const endDate = new Date(fromNLtoEN(endDateStr, '/', '-'));
+
+    // start date should be in the past
+    if (startDate > endDate) {
+        setErrorMessage('De begindatum mag niet na de einddatum liggen.');
+        return;
+    }
+
+    // end date should be max now
+    if (endDate > today()) {
+        setErrorMessage('De einddatum mag niet na vandaag liggen.');
+        return;
+    }
+
+    enableExportButton(false);
+
+    $.ajax({
+        url: REST + '/users/' + user.id + '/export/' + getYYYYMMDD(startDate, '-') + '/' + getYYYYMMDD(endDate, '-'),
+        method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
+                enableExportButton(true);
+            },
+            429: function () {
+                setErrorMessage('We kunnen momenteel uw gegevens niet voor u exporteren.');
+                enableExportButton(true);
+            },
+            default: function (err) {
+                console.error(err);
+                enableExportButton(true);
+            }
+        }
+    });
+}
+
+function exportSinceLast(user) {
+    alert('// TODO: unimplemented');
+}
 
 function getPDF(user, stepsData, sleepData, goalsData) {
     if (user === undefined || stepsData === undefined || sleepData === undefined || goalsData === undefined) {
@@ -68,24 +164,15 @@ function getPDF(user, stepsData, sleepData, goalsData) {
                 maxDate = new Date(sleepData[d].dateTime);
             }
         }
-
-        if (goalsData[d] !== undefined) {
-            if (minDate === undefined) {
-                minDate = new Date(goalsData[d].dateTime);
-            } else if (new Date(goalsData[d].dateTime) < minDate) {
-                minDate = new Date(goalsData[d].dateTime);
-            }
-
-            if (maxDate === undefined) {
-                maxDate = new Date(goalsData[d].dateTime);
-            } else if (new Date(goalsData[d].dateTime) > maxDate) {
-                maxDate = new Date(goalsData[d].dateTime);
-            }
-        }
     }
 
     let name = undefined;
-    let heading = 'Gegevens Fitbit van ' + getDDMMYYYY(minDate, '-') + ' tot en met ' + getDDMMYYYY(maxDate, '-');
+    let heading = 'Doelstellingen Fitbit';
+
+    if (minDate !== undefined && maxDate !== undefined) {
+        heading = 'Gegevens Fitbit van ' + getDDMMYYYY(minDate, '-') + ' tot en met ' + getDDMMYYYY(maxDate, '-');
+    }
+
     if (user.firstname !== undefined && user.lastname !== undefined) {
         name = user.firstname + ' ' + user.lastname;
     }
@@ -216,4 +303,14 @@ function getPDF(user, stepsData, sleepData, goalsData) {
     doc.save('Gegevens Fitbit - ' + user.firstname + ' ' + user.lastname + '.pdf');
 }
 
-
+/**
+ * Enable or disable the export button
+ * @param boolean
+ */
+function enableExportButton(boolean) {
+    if (boolean) {
+        $('#export').removeAttr('disabled');
+    } else {
+        $('#export').attr('disabled', 'disabled');
+    }
+}
