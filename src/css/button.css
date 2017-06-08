@@ -61,6 +61,36 @@
 /*font-size: 2em;*/
 /*}*/
 
+.competition-btn  {
+    background-color: #dc4f62;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    text-decoration: none;
+    text-align: center;
+    display: inline;
+    padding:0;
+    margin:0;
+    width: 40%;
+    height:35px;
+    float:right;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.competition-btn:hover{
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
+.competition-btn:active{
+
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
 #pdf {
     background-color: #FFFFFF;
     border: none;

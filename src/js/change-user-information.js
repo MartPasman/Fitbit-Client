@@ -14,14 +14,13 @@ $(document).ready(function () {
         var first_name = $('#first-name-update').val().trim();
         var last_name = $('#last-name-update').val().trim();
         var birthdate = $('#date-update').val().trim();
-        var email = $('#email-update').val().trim();
 
         $("#first-name-div-update").removeClass("has-error");
         $("#last-name-div-update").removeClass("has-error");
         $("#email-div-update").removeClass("has-error");
         $("#date-div-update").removeClass("has-error");
 
-        if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate) || isEmpty(email)  || !validateEmail(email)) {
+        if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate)) {
             if (isEmpty(first_name)) {
                 $("#first-name-div-update").addClass("has-error");
             }
@@ -31,14 +30,11 @@ $(document).ready(function () {
             if (isEmpty(birthdate)) {
                 $("#date-div-update").addClass("has-error");
             }
-            if (isEmpty(email) || !validateEmail(email)) {
-                $("#email-div-update").addClass("has-error");
-            }
         } else {
 
             //Call to add a goal
             $.ajax({
-                url: REST + '/users/'+localStorage.getItem("userid"),
+                url: REST + '/users/' + localStorage.getItem("userid"),
                 method: 'PUT',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
@@ -47,7 +43,6 @@ $(document).ready(function () {
                     firstname: first_name,
                     lastname: last_name,
                     birthday: birthdate,
-                    email: email
                 },
                 statusCode: {
                     200: function (data) {
@@ -62,7 +57,7 @@ $(document).ready(function () {
                         //Unauthorized error message
                         $("#success").hide();
                         $("#error").html("<strong>Foutje!</strong> Je bent niet ingelogd.");
-                        if ($("#error").is(':hidden')){
+                        if ($("#error").is(':hidden')) {
                             $("#error").toggle();
                         }
 
@@ -72,7 +67,7 @@ $(document).ready(function () {
                         //Internal server error message
                         $("#success").hide();
                         $("#error").html("<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
-                        if ($("#error").is(':hidden')){
+                        if ($("#error").is(':hidden')) {
                             $("#error").toggle();
                         }
                     },
@@ -80,7 +75,7 @@ $(document).ready(function () {
                         //Default error message
                         $("#success").hide();
                         $("#error").html("<strong>Foutje!</strong> Probeer het nog eens.");
-                        if ($("#error").is(':hidden')){
+                        if ($("#error").is(':hidden')) {
                             $("#error").toggle();
                         }
                     }
@@ -119,11 +114,6 @@ $(document).ready(function () {
                         ' </div>' +
                         '</div> ' +
                         '</div>');
-
-                    $('#email-field').html('<div class="input-group" id="email-div-update">' +
-                        ' <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> ' +
-                        '<input type="text" class="form-control" id="email-update" value="' + data.success.email + '" placeholder="Email">' +
-                        ' </div>');
 
                     $('#date-field').html('<div class="input-group" id="date-div-update">' +
                         ' <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> ' +
@@ -216,25 +206,24 @@ function loadStandardInformation() {
 
                 $('#name-field').html('<div class="glyphicon glyphicon-user"></div> &nbsp ' + data.success.firstname + ' ' + data.success.lastname);
 
-                $('#email-field').html('<div class="glyphicon glyphicon-envelope"></div> &nbsp ' + data.success.email);
-
                 $('#date-field').html('<div class="glyphicon glyphicon-calendar"></div> &nbsp ' + date1);
 
                 $('#age-field').html('<div class="glyphicon glyphicon-gift"></div> &nbsp ' + age + ' Jaar');
-
-                switch (data.success.handicap) {
-                    case 1:
-                        $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Goed ter been');
-                        break;
-                    case 2:
-                        $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Minder goed ter been');
-                        break;
-                    case 3:
-                        $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Slecht ter been');
-                        break;
-                    default:
-                        $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Goed ter been');
-                        break;
+                if (localStorage.getItem('perm') == 1) {
+                    switch (data.success.handicap) {
+                        case 1:
+                            $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Goed ter been');
+                            break;
+                        case 2:
+                            $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Minder goed ter been');
+                            break;
+                        case 3:
+                            $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Slecht ter been');
+                            break;
+                        default:
+                            $('#health-field').html('<div class="glyphicon glyphicon-heart"></div> &nbsp Goed ter been');
+                            break;
+                    }
                 }
 
                 $('#buttons').html('<button type="button" class="col-xs-12 btn btn-success" id="change-information"> ' +
