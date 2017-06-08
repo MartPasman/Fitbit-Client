@@ -9,7 +9,7 @@
 <!-- REST service address -->
 <script type="text/javascript">
 //    const REST = 'http://178.21.116.109:3000';
-  const REST = 'http://localhost:3000';
+    const REST = 'http://localhost:3000';
 </script>
 
 <!-- Flickering led if the REST is online -->
