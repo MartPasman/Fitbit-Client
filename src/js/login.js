@@ -50,9 +50,12 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     201: function (data) {
-                        console.dir(data.token);
+                        //Set local storage
+
                         localStorage.setItem("token", data.success);
                         localStorage.setItem("userid", data.userid);
+                        localStorage.setItem("perm", data.permission);
+
                         switch (data.permission){
                             case 1:
                                 location.replace("results.php");
@@ -62,21 +65,19 @@ $(document).ready(function () {
                                 break;
                         }
                     },
-                    400: function (err) {
+                    400: function () {
                         messageToggle(errorMsg, "<strong>Foutje!</strong> Ongeldige invoer.");
-
                     },
-                    401: function (err) {
+                    401: function () {
                         messageToggle(errorMsg, "<strong>Foutje!</strong> Je wachtwoord of ID is onjuist.");
-
                     },
-                    403: function (err) {
+                    403: function () {
                         messageToggle(errorMsg, "<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
                     },
-                    500: function (err) {
+                    500: function () {
                         messageToggle(errorMsg, "<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
                     },
-                    default: function (err) {
+                    default: function () {
                         messageToggle(errorMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
                     }
                 }

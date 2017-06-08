@@ -27,27 +27,8 @@
             <a class="navbar-brand" href="#"><img class="icon" src="../img/go.png"/> </a>
         </div>
         <div class="collapse navbar-collapse" id="important-id-for-collapsing">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/competition-dashboard.php">
-                        <span class="glyphicon glyphicon-knight"></span> Competitie
-                    </a>
-                </li>
-                <li>
-                    <a href="/results.php">
-                        <span class="glyphicon glyphicon-dashboard"></span> Resultaten en doelstellingen
-                    </a>
-                </li>
-                <li>
-                    <a href="/user-settings.php">
-                        <span class="glyphicon glyphicon-user"></span> Mijn profiel
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.php" id="log-out">
-                        <span class="glyphicon glyphicon-log-out"></span> Verlaten
-                    </a>
-                </li>
+            <ul class="nav navbar-nav" id="navigation">
+
             </ul>
         </div>
 
@@ -60,3 +41,4 @@
 
 <!-- log out functionality -->
 <script src="../js/logout.js" type="text/javascript"></script>
+<script src="../js/header.js" type="text/javascript"></script>

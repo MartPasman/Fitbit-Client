@@ -46,7 +46,7 @@ $(document).ready(function () {
             //Sets date to javascript date time for in database
             var dateParts = start.split("/");
             var startDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-            console.log(startDate);
+
 
             dateParts = end.split('/');
             var endDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
@@ -60,29 +60,28 @@ $(document).ready(function () {
                     Authorization: localStorage.getItem("token")
                 },
                 data: {
-                    start: startDate,
-                    end: endDate,
+                    start: start,
+                    end: end,
                     goal: steps
                 },
                 statusCode: {
                     201: function (data) {
                         //Success message
                         messageToggle(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
-
                         getGoalsHistory();
                     },
                     401: function (err) {
                         //Unauthorized error message
-                        messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Je bent niet ingelogd.");
+                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Je bent niet ingelogd.");
 
                     },
                     500: function (err) {
                         //Internal server error message
-                        messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
+                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
                     },
                     default: function (err) {
                         //Default error message
-                        messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
+                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het nog eens.");
 
                     }
                 }

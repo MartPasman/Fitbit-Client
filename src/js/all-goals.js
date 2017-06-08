@@ -100,8 +100,8 @@ $(document).ready(function () {
                     Authorization: localStorage.getItem("token")
                 },
                 data: {
-                    start: startdate,
-                    end: enddate,
+                    start: start,
+                    end: end,
                     goal: steps
                 },
                 statusCode: {
