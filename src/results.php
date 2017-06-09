@@ -60,7 +60,8 @@ include './include/header.php';
                     <div class="col-xs-11">
                         <h4>Exporteren sinds laatste keer</h4>
                         De stap- en slaapgegevens, en doelstellingen exporteren sinds de laatste keer dat gegevens
-                        geëxporteerd zijn.
+                        geëxporteerd zijn.<br/>
+                        <strong>Laatste keer: <span id="last-export-date">-</span></strong>
 
                         <!-- Error message -->
                         <div class="col-xs-12 date-error"></div>

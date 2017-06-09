@@ -2,55 +2,77 @@
  * Created by romybeugeling on 24-05-17.
  */
 let selectedExportOption = undefined;
+let user;
 
 $(document).ready(function () {
     const id = parseInt(localStorage.getItem('userid'));
     let modalExport = $('#modal-export');
 
+    // get the user object for his/her name on the pdf
+    $.ajax({
+        url: REST + '/users/' + id,
+        method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                user = data.success;
+
+                // set the last export date in the modal
+                if (user.lastExport !== undefined && !isNaN(Date.parse(user.lastExport))) {
+                    alert(getDDMMYYYY(user.lastExport, '/'));
+                    $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
+                }
+            },
+            401: function () {
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
+            }
+        }
+    });
+
+    // open the export modal
     $('#pdf').on('click', function () {
         modalExport.modal();
     });
 
+    // start the export process
     $('#export').on('click', function () {
 
         enableExportButton(false);
 
-        $.ajax({
-            url: REST + '/users/' + id,
-            method: 'GET',
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            statusCode: {
-                200: function (data) {
+        // decide which export functionality to use
+        switch (selectedExportOption) {
+            case 'export-last-week':
+                // last week's stats that are already saved in my-results.js
+                getPDF(stepsData, sleepData, goalsData);
+                enableExportButton(true);
 
-                    // decide which export functionality to use
-                    switch (selectedExportOption) {
-                        case 'export-last-week':
-                            // last weeks stats that are already saved in my-results.js
-                            getPDF(data.success, stepsData, sleepData, goalsData);
-                            enableExportButton(true);
-                            break;
-
-                        case 'export-period':
-                            exportPeriod(data.success);
-                            break;
-
-                        case 'export-since-last':
-                            exportSinceLast(data.success);
-                            break;
+                // update the last export date
+                $.ajax({
+                    url: REST + '/users/' + id + '/export',
+                    method: 'PUT',
+                    headers: {
+                        Authorization: localStorage.getItem('token')
                     }
-                },
-                401: function () {
-                    // not logged id; redirect to login page
-                    localStorage.clear();
-                    location.replace('/index.php');
-                },
-                default: function () {
-                    setErrorMessage('Kan de gegevens niet exporteren. Probeer het later nog eens.');
-                }
-            }
-        });
+                });
+                break;
+
+            case 'export-period':
+                exportPeriod();
+                break;
+
+            case 'export-since-last':
+                exportSinceLast();
+                break;
+
+            default:
+                // should never happen
+                defaultError();
+                break;
+        }
     });
 
     /**
@@ -93,10 +115,10 @@ function defaultError() {
 
 /**
  * Start the process of exporting data from a certain period
- * @param user
  */
-function exportPeriod(user) {
+function exportPeriod() {
     if (user === undefined) {
+        defaultError();
         return;
     }
 
@@ -123,8 +145,6 @@ function exportPeriod(user) {
         setErrorMessage('De einddatum mag niet na vandaag liggen.');
         return;
     }
-
-    enableExportButton(false);
 
     $.ajax({
         url: REST + '/users/' + user.id + '/export/' + getYYYYMMDD(startDate, '-') + '/' + getYYYYMMDD(endDate, '-'),
@@ -160,23 +180,59 @@ function exportPeriod(user) {
 
 /**
  * Starts the process of exporting data since last export
- * @param user
  */
-function exportSinceLast(user) {
-    alert('// TODO: unimplemented');
-    enableExportButton(true);
+function exportSinceLast() {
+    if (user === undefined) {
+        defaultError();
+        return;
+    }
+
+    $.ajax({
+        url: REST + '/users/' + user.id + '/export/sincelast',
+        method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
+                enableExportButton(true);
+            },
+            400: defaultError,
+            401: function () {
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
+            },
+            403: defaultError,
+            404: defaultError,
+            412: function (err) {
+                // type 2 is returned if not the Fitbit was the problem, but the user has not exported before
+                if (err.responseJSON.type === 2) {
+                    setErrorMessage('U heeft nog niet eerder uw gegevens geëxporteerd.');
+                } else {
+                    setErrorMessage('Dit account is nog niet aan een Fitbit gekoppeld.');
+                }
+                enableExportButton(true);
+            },
+            429: function () {
+                setErrorMessage('We kunnen momenteel uw gegevens niet voor u exporteren. Probeer het later nog eens.');
+                enableExportButton(true);
+            },
+            500: defaultError
+        }
+    });
 }
 
 /**
  * Download a PDF document with a collection of the given data
- * @param user
  * @param stepsData
  * @param sleepData
  * @param goalsData
  */
-function getPDF(user, stepsData, sleepData, goalsData) {
+function getPDF(stepsData, sleepData, goalsData) {
     if (user === undefined || stepsData === undefined || sleepData === undefined || goalsData === undefined) {
-        console.error('One or more parameters undefined!');
+        defaultError();
         return;
     }
 

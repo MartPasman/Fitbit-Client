@@ -10,6 +10,10 @@ function getTodaysDate() {
 }
 
 function getYYYYMMDD(date, splitBy) {
+    if (!(date instanceof Date)) {
+        date = new Date(date);
+    }
+
     const mm = date.getMonth() + 1;
     const dd = date.getDate();
 
@@ -20,6 +24,10 @@ function getYYYYMMDD(date, splitBy) {
 }
 
 function getDDMMYYYY(date, splitBy) {
+    if (!(date instanceof Date)) {
+        date = new Date(date);
+    }
+
     const mm = date.getMonth() + 1;
     const dd = date.getDate();
 
