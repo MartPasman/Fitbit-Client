@@ -13,6 +13,8 @@ $(document).ready(function () {
 
     $('#export').on('click', function () {
 
+        enableExportButton(false);
+
         $.ajax({
             url: REST + '/users/' + id,
             method: 'GET',
@@ -27,6 +29,7 @@ $(document).ready(function () {
                         case 'export-last-week':
                             // last weeks stats that are already saved in my-results.js
                             getPDF(data.success, stepsData, sleepData, goalsData);
+                            enableExportButton(true);
                             break;
 
                         case 'export-period':
@@ -56,6 +59,18 @@ $(document).ready(function () {
 });
 
 /**
+ * Enable or disable the export button
+ * @param boolean
+ */
+function enableExportButton(boolean) {
+    if (boolean) {
+        $('#export').removeAttr('disabled');
+    } else {
+        $('#export').attr('disabled', 'disabled');
+    }
+}
+
+/**
  * Set an error message of the selected export option
  * @param msg
  */
@@ -63,6 +78,18 @@ function setErrorMessage(msg) {
     $('#' + selectedExportOption).find('.date-error').html("<div class='alert-danger'>" + msg + "</div>");
 }
 
+/**
+ * Sets a default error message and enables the export button
+ */
+function defaultError() {
+    setErrorMessage('Er is iets misgegaan. Probeer het later nog eens.');
+    enableExportButton(true);
+}
+
+/**
+ * Start the process of exporting data from a certain period
+ * @param user
+ */
 function exportPeriod(user) {
     if (user === undefined) {
         return;
@@ -105,22 +132,38 @@ function exportPeriod(user) {
                 getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
                 enableExportButton(true);
             },
-            429: function () {
-                setErrorMessage('We kunnen momenteel uw gegevens niet voor u exporteren.');
+            400: defaultError,
+            403: defaultError,
+            404: defaultError,
+            412: function () {
+                setErrorMessage('Dit account is nog niet aan een Fitbit gekoppeld.');
                 enableExportButton(true);
             },
-            default: function (err) {
-                console.error(err);
+            429: function () {
+                setErrorMessage('We kunnen momenteel uw gegevens niet voor u exporteren. Probeer het later nog eens.');
                 enableExportButton(true);
-            }
+            },
+            500: defaultError
         }
     });
 }
 
+/**
+ * Starts the process of exporting data since last export
+ * @param user
+ */
 function exportSinceLast(user) {
     alert('// TODO: unimplemented');
+    enableExportButton(true);
 }
 
+/**
+ * Download a PDF document with a collection of the given data
+ * @param user
+ * @param stepsData
+ * @param sleepData
+ * @param goalsData
+ */
 function getPDF(user, stepsData, sleepData, goalsData) {
     if (user === undefined || stepsData === undefined || sleepData === undefined || goalsData === undefined) {
         console.error('One or more parameters undefined!');
@@ -301,16 +344,4 @@ function getPDF(user, stepsData, sleepData, goalsData) {
 
     // save the file
     doc.save('Gegevens Fitbit - ' + user.firstname + ' ' + user.lastname + '.pdf');
-}
-
-/**
- * Enable or disable the export button
- * @param boolean
- */
-function enableExportButton(boolean) {
-    if (boolean) {
-        $('#export').removeAttr('disabled');
-    } else {
-        $('#export').attr('disabled', 'disabled');
-    }
 }
