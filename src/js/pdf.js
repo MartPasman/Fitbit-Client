@@ -21,7 +21,6 @@ $(document).ready(function () {
 
                 // set the last export date in the modal
                 if (user.lastExport !== undefined && !isNaN(Date.parse(user.lastExport))) {
-                    alert(getDDMMYYYY(user.lastExport, '/'));
                     $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
                 }
             },
