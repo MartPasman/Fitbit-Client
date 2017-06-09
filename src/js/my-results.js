@@ -35,6 +35,11 @@ $(document).ready(function () {
             200: function (data) {
                 $('#total-steps').find('.value').html(data.success.steps);
             },
+            401: function () {
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
+            },
             default: function (error) {
                 console.log(error.error);
             }
@@ -61,7 +66,9 @@ $(document).ready(function () {
                 printChartsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
             },
             401: function () {
-                printChartsError('Geen gebruiker ingelogd.');
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
             },
             403: function () {
                 printChartsError('Geen toegang.');
@@ -103,7 +110,9 @@ const getGoalsHistory = function () {
                 printGoalsError('Er ging iets mis.<br/>Probeer het later opnieuw.');
             },
             401: function () {
-                printGoalsError('Geen gebruiker ingelogd.');
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
             },
             403: function () {
                 printGoalsError('Geen toegang.');

@@ -41,6 +41,11 @@ $(document).ready(function () {
                             break;
                     }
                 },
+                401: function () {
+                    // not logged id; redirect to login page
+                    localStorage.clear();
+                    location.replace('/index.php');
+                },
                 default: function () {
                     setErrorMessage('Kan de gegevens niet exporteren. Probeer het later nog eens.');
                 }
@@ -133,6 +138,11 @@ function exportPeriod(user) {
                 enableExportButton(true);
             },
             400: defaultError,
+            401: function () {
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
+            },
             403: defaultError,
             404: defaultError,
             412: function () {
