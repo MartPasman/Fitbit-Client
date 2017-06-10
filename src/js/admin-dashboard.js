@@ -20,6 +20,7 @@ $(document).ready(function () {
         statusCode:{
            200: function (data) {
                 $('#show-last-goal').text('Momenteel: ' + data.defaultGoal);
+                $('#show-last-days').text('Momenteel duurt de competitie: ' + data.defaultLength + " dagen");
            },
            default: function (err) {
                console.log(err);
@@ -41,7 +42,7 @@ $(document).ready(function () {
 
     $('#comp-submit-button').click(function () {
         var goal = $('#default_goal').val();
-        if(goal == ''){
+        if(goal == '' || goal < 0){
             $('#success-competition').hide();
             $('#error-competition').show();
         } else {
@@ -71,6 +72,39 @@ $(document).ready(function () {
             });
         }
     });
+
+    $('#comp-days-submit-button').click(function () {
+        var days = $('#default-days').val();
+        if(days == '' || days < 0){
+            $('#success-competition').hide();
+            $('#error-competition').show();
+        } else {
+            $.ajax({
+                url: REST + '/competitions/' + 'lastlength',
+                method: 'PUT',
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                },
+                data: {
+                    length: days
+                },
+                statusCode: {
+                    201: function (data) {
+                        $('#error-competition').hide();
+                        $('#success-competition').show();
+                        $('#show-last-days').text('Momenteel: ' + days);
+
+                    },
+                    404: function (err) {
+
+                    },
+                    500: function (err) {
+
+                    }
+                }
+            });
+        }
+    })
 });
 
 function loadUsers() {

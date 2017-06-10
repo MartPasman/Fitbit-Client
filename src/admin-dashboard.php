@@ -43,7 +43,7 @@ include './include/header.php';
     <div class="col-md-5" style="margin-top: 30px;" id="comp-div">
         <div class="panel panel-default">
 
-            <div class="panel-heading"><h3 class="panel-title"><strong>Competitie</strong></h3>
+            <div class="panel-heading"><h3 class="panel-title"><strong>Competitie aanpassen</strong></h3>
             </div>
             <div class="panel-body" id="competitionlist">
                 <div>
@@ -61,6 +61,18 @@ include './include/header.php';
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                             <input type="text" class="form-control" id="default_goal" placeholder="Aantal punten">
                             <button type="button" id="comp-submit-button" class="btn btn-default competition-btn">
+                                Opslaan
+                            </button>
+
+                        </div>
+                    </form><br><br>
+                    <form id="competition-form-days">
+                        <h4>Lengte van de volgende competitie:</h4><br>
+                        <h5 id="show-last-days"></h5><br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
+                            <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
                                 Opslaan
                             </button>
 

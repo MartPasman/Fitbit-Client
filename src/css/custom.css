@@ -319,7 +319,13 @@ h2 {
     float:right;
 }
 
-#default_goal{
+#default_goal {
+    display: inline;
+    width:200px;
+    float: left;
+}
+
+#default-days{
     display: inline;
     width:200px;
     float: left;
