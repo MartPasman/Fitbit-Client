@@ -184,14 +184,14 @@ function actionsDashboard(data) {
             var html = "<div class='user row' >" +
                 "<div class='col-xs-12 col-md-6 one-user' " +
                 "<span class='glyphicon glyphicon-user'></span>" +
-                " " + user.lastname + " (" + user.id + ")" + " </div>" +
+                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
                 "<div class='col-xs-12 col-md-6'>" +
                 "<button value='" + user.id +
                 "' class='btn btn-default edit' data-toggle='modal' " +
                 "data-target='#edit-modal'>Pas aan</button>" +
                 "</div> </div><hr/>";
 
-            inactiveUserList.append(html);
+            inactiveUserList.html(html);
         }
     }
 

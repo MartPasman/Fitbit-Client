@@ -121,6 +121,11 @@
     color: #C9495A !important;
 }
 
+@media (max-width: 1200px) {
+    .competition-btn{
+        width: 30%;
+    }
+}
 @media (max-width: 600px ) {
     .edit {
         background-color: #DC4F62;
@@ -136,9 +141,13 @@
         background-color: #DC4F62;
         color: #FFFFFF;
         border-color: #FFFFFF;
-        text-decoration: none;
+        text-decsoration: none;
         float: none;
         margin-top: 0.3em;
+    }
+
+    .competition-btn{
+        width: 20%;
     }
 }
 
