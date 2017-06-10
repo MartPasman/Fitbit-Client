@@ -153,6 +153,7 @@ function loadUsers() {
 function actionsDashboard(data) {
     userList.removeClass("block-error");
     userList.html('');
+    inactiveUserList.html('');
     var id;
 
     var users = data.success;
