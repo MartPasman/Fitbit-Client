@@ -42,9 +42,8 @@ include './include/header.php';
                                         <strong>Gelukt!</strong> Je informatie is nu geupdated.
                                     </div>
 
-                                    <div id="id-field"></div>
-                                    <br/><br/>
                                     <form>
+                                        <div id="id-field"></div>
                                         <div id="name-field"></div>
                                         <div id="email-field"></div>
                                         <div id="date-field"></div>
