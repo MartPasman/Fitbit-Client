@@ -4,10 +4,10 @@
 $(document).ready(function () {
     //Hide the messages
 
-    var successMessage = $("#success-message");
-    var errorMessage = $("#error-message");
-    var successMessageUpdate = $("#success-message-update");
-    var errorMessageUpdate = $("#error-message-update");
+    let successMessage = $("#success-message");
+    let errorMessage = $("#error-message");
+    let successMessageUpdate = $("#success-message-update");
+    let errorMessageUpdate = $("#error-message-update");
 
     successMessage.hide();
     errorMessage.hide();
@@ -17,9 +17,9 @@ $(document).ready(function () {
     $('#save-button').click(function () {
 
         //Trim values from input group fields
-        var steps = $("#steps").val().trim();
-        var start = $("#start-date").val().trim();
-        var end = $("#end-date").val().trim();
+        let steps = $("#steps").val().trim();
+        let start = $("#start-date").val().trim();
+        let end = $("#end-date").val().trim();
 
         //Deletes all errors
         $("#steps-div").removeClass("has-error");
@@ -44,12 +44,12 @@ $(document).ready(function () {
         } else {
 
             //Sets date to javascript date time for in database
-            var dateParts = start.split("/");
-            var startDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            let dateParts = start.split("/");
+            let startDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
 
             dateParts = end.split('/');
-            var endDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            let endDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
             console.log(endDate);
 
             //Call to add a goal
@@ -77,7 +77,7 @@ $(document).ready(function () {
                     },
                     500: function (err) {
                         //Internal server error message
-                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
+                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het later nog eens.");
                     },
                     default: function (err) {
                         //Default error message
@@ -90,12 +90,12 @@ $(document).ready(function () {
     });
 });
 
-//Check if variable is empty
+//Check if letiable is empty
 function isEmpty(str) {
     return (!str || 0 === str.length);
 }
 
-function messageToggle(object, objecthide, message){
+function messageToggle(object, objecthide, message) {
     objecthide.hide();
     object.html(message);
     if (object.is(':hidden')) {
