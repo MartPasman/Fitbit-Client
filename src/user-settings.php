@@ -46,15 +46,10 @@ include './include/header.php';
                                     <br/><br/>
                                     <form>
                                         <div id="name-field"></div>
-                                        <br/><br/>
                                         <div id="email-field"></div>
-                                        <br/><br/>
                                         <div id="date-field"></div>
-                                        <br/><br/>
                                         <div id="age-field"></div>
-                                        <br/><br/>
                                         <div id="health-field"></div>
-                                        <br/><br/>
                                         <div id="buttons"></div>
                                     </form>
                                 </div>
