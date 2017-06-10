@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                        class="sr-only">Close</span></button>
+                            class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Nieuwe doelstelling.</h3>
             </div>
             <div class="modal-body">
@@ -120,12 +120,14 @@
                     Start datum:
                     <div class="input-group" id="start-div-update">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        <input class="form-control" id="start-date-update" name="date" placeholder="Start datum" type="text"/>
+                        <input class="form-control" id="start-date-update" name="date" placeholder="Start datum"
+                               type="text"/>
                     </div>
                     Eind datum:
                     <div class="input-group" id="end-div-update">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        <input class="form-control" id="end-date-update" name="date" placeholder="Eind datum" type="text"/>
+                        <input class="form-control" id="end-date-update" name="date" placeholder="Eind datum"
+                               type="text"/>
                     </div>
 
                 </form>
@@ -151,4 +153,3 @@
 
 <!-- your scripts -->
 <script src="../js/new-goal-settings.js"></script>
-

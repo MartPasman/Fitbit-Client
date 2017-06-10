@@ -127,6 +127,7 @@ function exportPeriod() {
     // undefined dates
     if (startDateStr === '' || endDateStr === '') {
         setErrorMessage('Vul een begin- en einddatum in.');
+        enableExportButton(true);
         return;
     }
 
@@ -136,12 +137,14 @@ function exportPeriod() {
     // start date should be in the past
     if (startDate > endDate) {
         setErrorMessage('De begindatum mag niet na de einddatum liggen.');
+        enableExportButton(true);
         return;
     }
 
     // end date should be max now
     if (endDate > today()) {
         setErrorMessage('De einddatum mag niet na vandaag liggen.');
+        enableExportButton(true);
         return;
     }
 
