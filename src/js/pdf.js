@@ -108,6 +108,10 @@ function defaultError() {
  *
  */
 function exportLastWeek() {
+    if (user === undefined) {
+        defaultError();
+        return;
+    }
 
     // get last weeks steps and sleep
     $.ajax({
