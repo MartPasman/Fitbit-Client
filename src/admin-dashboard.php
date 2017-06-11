@@ -110,7 +110,7 @@ include './include/header.php';
                 <!-- content goes here -->
                 <form>
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-firstname">Voornaam*</label>
+                        <label class="col-md-3 control-label" for="edit-firstname">Voornaam</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
@@ -122,7 +122,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-lastname">Achternaam*</label>
+                        <label class="col-md-3 control-label" for="edit-lastname">Achternaam</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
@@ -134,7 +134,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum*</label>
+                        <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
@@ -148,7 +148,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group" id="edit-handicap-dropdown">
-                        <label class="col-md-3 control-label" for="edit-handicap-button">Handicap*
+                        <label class="col-md-3 control-label" for="edit-handicap-button">Handicap
                             <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
                                title="De handicap houdt rekening met de vitaliteit van een deelnemer.
                                                Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt

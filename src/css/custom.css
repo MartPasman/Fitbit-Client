@@ -340,10 +340,10 @@ h2 {
 
 #userlist, #userlist-inactive {
     overflow-y: auto;
-    max-height: 600px;
+    max-height: 400px;
 }
 
-#userlist, #userlist-inactive hr {
+#userlist hr , #userlist-inactive hr {
     margin-top: 10px;
     margin-bottom: 10px;
 }

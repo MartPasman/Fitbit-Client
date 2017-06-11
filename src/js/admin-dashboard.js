@@ -34,8 +34,8 @@ $(document).ready(function () {
         },
         statusCode:{
             200: function (data) {
-                $('#show-last-goal').text('Momenteel: ' + data.defaultGoal);
-                $('#show-last-days').text('Momenteel duurt de competitie: ' + data.defaultLength + " dagen");
+                $('#show-last-goal').text('Momenteel: ' + data.defaultGoal + " punten.");
+                $('#show-last-days').text('Momenteel duurt de competitie: ' + data.defaultLength + " dagen.");
             },
             default: function (err) {
                 console.log(err);
@@ -350,7 +350,7 @@ function editAccount(user) {
         // check if some fields are left empty and show error
         if (firstname === '' || lastname === '' ||
             birthday === '' || handicap === undefined) {
-            errorMessageEdit.text("Vul alle velden met een * in.");
+            errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
             errorMessageEdit.show();
         } else {
             let data = {};
@@ -393,8 +393,8 @@ function editAccount(user) {
 
 function updateUser(id, data) {
 
-    if (data === {}){
-        errorMessageEdit.text("Vul alle velden met een * in.");
+    if (jQuery.isEmptyObject(data)){
+        errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
         errorMessageEdit.show();
     }else {
 
