@@ -44,10 +44,6 @@ include './include/header.php';
 
                                 </div>
                                 <p></p>
-                                <div id="email-field">
-
-                                </div>
-                                <p></p>
                                 <div id="date-field">
 
                                 </div>
