@@ -451,3 +451,11 @@ input[type="month"].form-control {
 .nav-tabs {
     border: none;
 }
+
+.info {
+    margin: 1em;
+}
+
+.panel-body h5 {
+    margin: 1em 0 1em 0;
+}

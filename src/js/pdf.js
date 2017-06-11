@@ -8,11 +8,10 @@ $(document).ready(function () {
     let id;
     let modalExport = $('#modal-export');
 
-
-
     // open the export modal
     $('.pdf').on('click', function () {
         id = $(this).val();
+
         // get the user object for his/her name on the pdf
         $.ajax({
             url: REST + '/users/' + id,
@@ -29,6 +28,7 @@ $(document).ready(function () {
                         $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
                     }
 
+                    // open the modal
                     modalExport.modal();
                 },
                 401: function () {
@@ -38,7 +38,6 @@ $(document).ready(function () {
                 }
             }
         });
-
     });
 
     // start the export process
@@ -49,18 +48,7 @@ $(document).ready(function () {
         // decide which export functionality to use
         switch (selectedExportOption) {
             case 'export-last-week':
-                // last week's stats that are already saved in my-results.js
-                getPDF(stepsData, sleepData, goalsData);
-                enableExportButton(true);
-
-                // update the last export date
-                $.ajax({
-                    url: REST + '/users/' + id + '/export',
-                    method: 'PUT',
-                    headers: {
-                        Authorization: localStorage.getItem('token')
-                    }
-                });
+                exportLastWeek();
                 break;
 
             case 'export-period':
@@ -114,6 +102,83 @@ function setErrorMessage(msg) {
 function defaultError() {
     setErrorMessage('Er is iets misgegaan. Probeer het later nog eens.');
     enableExportButton(true);
+}
+
+/**
+ *
+ */
+function exportLastWeek() {
+    if (user === undefined) {
+        defaultError();
+        return;
+    }
+
+    // get last weeks steps and sleep
+    $.ajax({
+        url: REST + '/users/' + user.id + '/stats/weeks/last',
+        method: 'GET',
+        dataType: 'JSON',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+
+                // get goals
+                $.ajax({
+                    url: REST + '/users/' + user.id + '/goals?offset=' + 0 + '&limit=' + 10,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    headers: {
+                        Authorization: localStorage.getItem('token')
+                    },
+                    statusCode: {
+                        200: function (data2) {
+                            $('#goal-history').removeClass('block-error');
+
+                            getPDF(user, data.success.steps, data.success.sleep, data2.goals);
+                            enableExportButton(true);
+
+                            // update the last export date
+                            $.ajax({
+                                url: REST + '/users/' + id + '/export',
+                                method: 'PUT',
+                                headers: {
+                                    Authorization: localStorage.getItem('token')
+                                }
+                            });
+                        },
+                        400: defaultError,
+                        401: function () {
+                            // not logged id; redirect to login page
+                            localStorage.clear();
+                            location.replace('/index.php');
+                        },
+                        403: defaultError,
+                        404: defaultError,
+                        500: defaultError
+                    }
+                });
+            },
+            400: defaultError,
+            401: function () {
+                // not logged id; redirect to login page
+                localStorage.clear();
+                location.replace('/index.php');
+            },
+            403: defaultError,
+            404: defaultError,
+            412: function () {
+                setErrorMessage('Dit account is nog niet aan een Fitbit gekoppeld.');
+                enableExportButton(true);
+            },
+            429: function () {
+                setErrorMessage('We kunnen momenteel uw gegevens niet voor u exporteren. Probeer het later nog eens.');
+                enableExportButton(true);
+            },
+            500: defaultError
+        }
+    });
 }
 
 /**
@@ -232,11 +297,12 @@ function exportSinceLast() {
 
 /**
  * Download a PDF document with a collection of the given data
+ * @param user
  * @param stepsData
  * @param sleepData
  * @param goalsData
  */
-function getPDF(stepsData, sleepData, goalsData) {
+function getPDF(user, stepsData, sleepData, goalsData) {
     if (user === undefined || stepsData === undefined || sleepData === undefined || goalsData === undefined) {
         defaultError();
         return;

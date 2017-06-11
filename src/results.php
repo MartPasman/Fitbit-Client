@@ -55,9 +55,7 @@ include './include/header.php';
 <link rel="stylesheet" href="css/button.css">
 <?php include './include/new-goal.php'; ?>
 
-<?php
-include './include/export.php';
-?>
+<?php include './include/export.php'; ?>
 
 <!-- end of body -->
 <?php include './include/footer.php'; ?>

@@ -28,10 +28,10 @@ $(document).ready(function () {
         headers: {
             Authorization: localStorage.getItem('token')
         },
-        statusCode: {
+        statusCode:{
             200: function (data) {
-                $('#show-last-goal').text('Momenteel: ' + data.defaultGoal + " punten.");
-                $('#show-last-days').text('Momenteel duurt de competitie: ' + data.defaultLength + " dagen.");
+                $('#show-last-goal').text('Volgende competitie: ' + data.defaultGoal + " punten.");
+                $('#show-last-days').text('Volgende competitie: ' + data.defaultLength + " dagen.");
             },
             default: function (err) {
                 console.log(err);
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     $('#comp-submit-button').click(function () {
         let goal = $('#default_goal').val();
-        if (goal == '' || goal < 0) {
+        if (goal === '' || goal < 0) {
             $('#success-competition').hide();
             $('#error-competition').show();
         } else {
@@ -58,7 +58,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-goal').text('Momenteel: ' + goal);
+                        $('#show-last-goal').text('Volgende competitie: ' + goal);
 
                     },
                     404: function (err) {
@@ -91,7 +91,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-days').text('Momenteel: ' + days);
+                        $('#show-last-days').text('Volgende competitie: ' + days);
 
                     },
                     404: function (err) {
@@ -159,8 +159,6 @@ function actionsDashboard(data) {
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
         let connected;
-        console.dir(user);
-        console.dir(user.firstname + " " + user.fitbit);
 
         if (user.fitbit === undefined) {
             connected = "<button value='" + user.id +

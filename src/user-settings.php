@@ -39,16 +39,16 @@ include './include/header.php';
                                         <strong>Oeps!</strong> Er ging iets mis.
                                     </div>
                                     <div class="alert alert-success" role="alert" id="success">
-                                        <strong>Gelukt!</strong> Je informatie is nu geupdated.
+                                        <strong>Gelukt!</strong> Je informatie is nu geüpdated.
                                     </div>
 
                                     <form>
-                                        <div id="id-field"></div>
-                                        <div id="name-field"></div>
-                                        <div id="date-field"></div>
-                                        <div id="age-field"></div>
-                                        <div id="health-field"></div>
-                                        <div id="buttons"></div>
+                                        <div id="id-field" class="info"></div>
+                                        <div id="name-field" class="info"></div>
+                                        <div id="date-field" class="info"></div>
+                                        <div id="age-field" class="info"></div>
+                                        <div id="health-field" class="info"></div>
+                                        <div id="buttons" class="info"></div>
                                     </form>
                                 </div>
                             </div>
@@ -67,18 +67,14 @@ include './include/header.php';
                                     In dit vak staan je instellingen wat betreft je doelstellingen.
                                     Je kan een nieuwe doelstelling aanmaken, of een lopende verwijderen.
                                     <br/><br/>
-
-                                    <h5>Voeg een nieuwe doelstelling toe:</h5>
                                     <button type="button" data-toggle="modal" data-target="#form-modal"
                                             class="col-xs-12 btn btn-success" id="new-goal">
-                                        Nieuwe doelstelling
+                                        Een nieuwe doelstelling aanmaken
                                     </button>
                                     <br/><br/>
-
-                                    <h5>Alle doelstellingen:</h5>
                                     <button type="button" data-toggle="modal" data-target="#item-modal"
                                             class="col-xs-12 btn btn-success" id="all-goals">
-                                        Doelstellingen
+                                        Alle doelstellingen beheren
                                     </button>
                                 </div>
                             </div>
