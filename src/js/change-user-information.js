@@ -17,7 +17,6 @@ $(document).ready(function () {
 
         $("#first-name-div-update").removeClass("has-error");
         $("#last-name-div-update").removeClass("has-error");
-        $("#email-div-update").removeClass("has-error");
         $("#date-div-update").removeClass("has-error");
 
         if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate)) {
@@ -277,7 +276,3 @@ function isEmpty(str) {
     return (!str || 0 === str.length);
 }
 
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}

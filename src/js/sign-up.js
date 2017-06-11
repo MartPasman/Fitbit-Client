@@ -3,18 +3,18 @@
  */
 $(document).ready(function () {
 
-    var accountModal = $('#account-modal');
+    const accountModal = $('#account-modal');
     const errorMsg = $("#error-message-new");
     const successMsg = $("#success-message-new");
     errorMsg.hide();
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    var handicap = undefined;
-    var type = undefined;
+    let handicap = undefined;
+    let type = undefined;
 
     $("#new-type").find("li a").click(function () {
-        var newText = $(this).text() + ' <span class="caret"></span>';
+        let newText = $(this).text() + ' <span class="caret"></span>';
         $("#new-type-button").html(newText);
 
         type = $(this).text();
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     $("#new-handicap").find("li a").click(function () {
         handicap = $(this).text();
-        var newText = handicap + ' <span class="caret"></span>';
+        let newText = handicap + ' <span class="caret"></span>';
         $("#new-handicap-button").html(newText);
 
     });
@@ -41,29 +41,18 @@ $(document).ready(function () {
     errorMsg.hide();
     successMsg.hide();
     $('#new-save-button').click(function () {
-
-
             errorMsg.text("Vul alle velden in.");
 
-            var firstname = $('#new-firstname').val();
-            var lastname = $('#new-lastname').val();
-            var email = $('#new-email').val();
-            var password1 = $('#new-password').val();
-            var password2 = $('#new-password2').val();
-            var birthday = $('#new-birthday').val();
-
+            let firstname = $('#new-firstname').val();
+            let lastname = $('#new-lastname').val();
+            let password1 = $('#new-password').val();
+            let password2 = $('#new-password2').val();
+            let birthday = $('#new-birthday').val();
 
             // check if some fields are left empty and show error
-            if (firstname === undefined || lastname === undefined || birthday === undefined || email === undefined || password2 === undefined || password1 === undefined
+            if (firstname === undefined || lastname === undefined || birthday === undefined || password2 === undefined || password1 === undefined
                 || type === undefined) {
                 errorMsg.text("Vul alle velden in.");
-                errorMsg.show();
-                return;
-            }
-
-            // check the email
-            if (!validateEmail(email)) {
-                errorMsg.text("Vul een geldig e-mailadres in.");
                 errorMsg.show();
                 return;
             }
@@ -107,7 +96,6 @@ $(document).ready(function () {
                 data: {
                     firstname: firstname,
                     lastname: lastname,
-                    email: email,
                     birthday: birthday,
                     password: password1,
                     handicap: handicap,
@@ -122,7 +110,7 @@ $(document).ready(function () {
                     },
                     400: function (err) {
 
-                        errorMsg.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn of probeer het nog eens met een ander e-mailadres. ");
+                        errorMsg.html("<strong>Er is iets fout gegaan.</strong> Controleer of de velden correct ingevuld zijn.");
                         errorMsg.show();
                     },
                     401: function (err) {
@@ -151,8 +139,3 @@ $(document).ready(function () {
         $(this).find('form').trigger('reset');
     })
 });
-
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}

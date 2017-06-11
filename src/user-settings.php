@@ -45,7 +45,6 @@ include './include/header.php';
                                     <form>
                                         <div id="id-field"></div>
                                         <div id="name-field"></div>
-                                        <div id="email-field"></div>
                                         <div id="date-field"></div>
                                         <div id="age-field"></div>
                                         <div id="health-field"></div>

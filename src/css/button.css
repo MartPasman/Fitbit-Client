@@ -31,6 +31,27 @@
     border-color: #ddd;
 }
 
+.revoke {
+    background-color: #DC4F62;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    float: right;
+    text-decoration: none;
+}
+
+.revoke:hover {
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
+.revoke:active {
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
+
 .edit {
     background-color: #DC4F62;
     color: #FFFFFF;
@@ -141,7 +162,7 @@
         background-color: #DC4F62;
         color: #FFFFFF;
         border-color: #FFFFFF;
-        text-decsoration: none;
+        text-decoration: none;
         float: none;
         margin-top: 0.3em;
     }
@@ -149,6 +170,15 @@
     .competition-btn{
         width: 20%;
     }
+    .revoke {
+        background-color: #DC4F62;
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-decoration: none;
+        float: none;
+        margin-top: 0.3em;
+    }
+
 }
 
 
