@@ -338,12 +338,12 @@ h2 {
     }
 }
 
-#userlist #userlist-inactive {
+#userlist, #userlist-inactive {
     overflow-y: auto;
     max-height: 600px;
 }
 
-#userlist #userlist-inactive hr {
+#userlist, #userlist-inactive hr {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -355,7 +355,7 @@ h2 {
 /* mobile */
 @media all and (max-height: 600px) {
 
-    #userlist #userlist-inactive {
+    #userlist, #userlist-inactive {
         max-height: 200px;
     }
 }
