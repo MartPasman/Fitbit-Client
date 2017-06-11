@@ -50,6 +50,27 @@
     border-color: #DC4F62;
 }
 
+.revoke {
+    background-color: #DC4F62;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    float: right;
+    text-decoration: none;
+}
+
+.revoke:hover {
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
+.revoke:active {
+    background-color: #FFFFFF;
+    color: #DC4F62;
+    border-color: #DC4F62;
+}
+
+
 .edit {
     background-color: #DC4F62;
     color: #FFFFFF;
@@ -130,6 +151,14 @@
         margin-top: 0.3em;
     }
 
+    .revoke {
+        background-color: #DC4F62;
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-decoration: none;
+        float: none;
+        margin-top: 0.3em;
+    }
 
 }
 

@@ -47,10 +47,7 @@ include './include/header.php';
                                 <div id="name-field">
 
                                 </div>
-                                <p></p>
-                                <div id="email-field">
 
-                                </div>
                                 <p></p>
                                 <div id="date-field">
 

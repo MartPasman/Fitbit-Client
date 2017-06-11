@@ -14,36 +14,31 @@ include './include/header.php';
             <div class="panel panel-default">
                 <div class="panel-heading"
                 <h3 class="panel-title"><strong>Deelnemers</strong></h3>
-
                 <a class="link-button" id="accountbtn">Nieuw account aanmaken</a>
-
             </div>
 
-                <div class="panel-body" id="userlist">
-                </div>
+            <div class="panel-body" id="userlist">
             </div>
         </div>
+    </div>
 
-        <div class="col-md-5 col-md-offset-1 ">
-            <div class="panel panel-default">
+    <div class="col-md-5 col-md-offset-1 ">
+        <div class="panel panel-default">
 
-                <div class="panel-heading"><h3 class="panel-title"><strong>Competitie</strong></h3>
-                </div>
-                <div class="panel-body" id="competitionlist">
-                    <div>
-                        <div class="alert alert-success" role="alert" id="success">
-                            <strong>Gelukt!</strong> Je informatie is nu geupdated.
-                        </div>
-                        <form id="competition-form">
-                            Doelstelling voor volgende competitie:<br>
-                            <input type="text" id="default_goal" placeholder="Aantal punten"><br>
-                            <button id="comp-submit-button" type="button" class="btn btn-default goal">Submit</button>
-                        </form>
+            <div class="panel-heading"><h3 class="panel-title"><strong>Competitie</strong></h3>
+            </div>
+            <div class="panel-body" id="competitionlist">
+                <div>
+                    <div class="alert alert-success" role="alert" id="success">
+                        <strong>Gelukt!</strong> Je informatie is nu geupdated.
                     </div>
+                    <form id="competition-form">
+                        Doelstelling voor volgende competitie:<br>
+                        <input type="text" id="default_goal" placeholder="Aantal punten"><br>
+                        <button id="comp-submit-button" type="button" class="btn btn-default goal">Submit</button>
+                    </form>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -71,7 +66,7 @@ include './include/header.php';
                 <!-- content goes here -->
                 <form>
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-firstname">Voornaam</label>
+                        <label class="col-md-3 control-label" for="edit-firstname">Voornaam*</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
@@ -83,7 +78,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-lastname">Achternaam</label>
+                        <label class="col-md-3 control-label" for="edit-lastname">Achternaam*</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
@@ -95,20 +90,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-email">E-mailadres</label>
-                        <div class="col-md-9">
-                            <div class="input-group">
-			                <span class="input-group-addon">
-			                <i class="glyphicon glyphicon-envelope"></i>
-			            </span>
-                                <input id="edit-email" name="email" placeholder="e-mailadres"
-                                       class="form-control input-md" type="email">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum</label>
+                        <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum*</label>
                         <div class="col-md-9">
                             <div class="input-group">
 			                <span class="input-group-addon">
@@ -122,7 +104,7 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group" id="edit-handicap-dropdown">
-                        <label class="col-md-3 control-label" for="edit-handicap-button">Handicap
+                        <label class="col-md-3 control-label" for="edit-handicap-button">Handicap*
                             <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
                                title="De handicap houdt rekening met de vitaliteit van een deelnemer.
                                                Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
@@ -153,40 +135,40 @@ include './include/header.php';
                     </div>
 
 
-                    <!-- TODO volgende sprint -->
-                    <!--                    <div class="row form-group">-->
-                    <!--                        <label class="col-md-3 control-label" for="edit-wachtwoord"> Reset wachtwoord-->
-                    <!--                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"-->
-                    <!--                               title="Een wachtwoord moet minstens acht tekens lang zijn."-->
-                    <!--                            ><span class="glyphicon glyphicon-info-sign"-->
-                    <!--                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>-->
-                    <!--                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"-->
-                    <!--                                                                           rel="tooltip" title="Hint"></i>-->
-                    <!--                            </div>-->
-                    <!--                        </label>-->
-                    <!--                        <div class="col-md-9">-->
-                    <!--                            <div class="input-group">-->
-                    <!--			                        <span class="input-group-addon">-->
-                    <!--			                            <i class="glyphicon glyphicon-lock"></i>-->
-                    <!--			                        </span>-->
-                    <!--                                <input id="edit-wachtwoord" name="wachtwoord" placeholder="wachtwoord"-->
-                    <!--                                       class="form-control input-md" type="password">-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!---->
-                    <!--                    <div class="row form-group">-->
-                    <!--                        <label class="col-md-3 control-label" for="edit-wachtwoord2">Herhaal wachtwoord</label>-->
-                    <!--                        <div class="col-md-9">-->
-                    <!--                            <div class="input-group">-->
-                    <!--			                <span class="input-group-addon">-->
-                    <!--			                <i class="glyphicon glyphicon-lock"></i>-->
-                    <!--			            </span>-->
-                    <!--                                <input id="edit-wachtwoord2" name="wachtwoord2" placeholder="wachtwoord"-->
-                    <!--                                       class="form-control input-md" type="password">-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-password"> Reset wachtwoord
+                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
+                               title="Een wachtwoord moet minstens acht tekens lang zijn."
+                            ><span class="glyphicon glyphicon-info-sign"
+                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
+                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"
+                                                                           rel="tooltip" title="Hint"></i>
+                            </div>
+                        </label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                    			                        <span class="input-group-addon">
+                    			                            <i class="glyphicon glyphicon-lock"></i>
+                    			                        </span>
+                                <input id="edit-password" name="password" placeholder="wachtwoord"
+                                       class="form-control input-md" type="password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label" for="edit-password2">Herhaal wachtwoord</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                    			                <span class="input-group-addon">
+                    			                <i class="glyphicon glyphicon-lock"></i>
+                    			            </span>
+                                <input id="edit-password2" name="password2" placeholder="wachtwoord"
+                                       class="form-control input-md" type="password">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row form-group">
                         <label class="col-md-3 control-label" for="change-active">Actief: </label>
                         <div class="col-md-9">
@@ -263,19 +245,6 @@ include './include/header.php';
 			            </span>
                                 <input id="new-lastname" name="lastname" placeholder="achternaam"
                                        class="form-control input-md" type="text">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-email">E-mailadres</label>
-                        <div class="col-md-9">
-                            <div class="input-group">
-			                <span class="input-group-addon">
-			                <i class="glyphicon glyphicon-envelope"></i>
-			            </span>
-                                <input id="new-email" name="email" placeholder="e-mailadres"
-                                       class="form-control input-md" type="email">
                             </div>
                         </div>
                     </div>
