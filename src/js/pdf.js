@@ -48,7 +48,7 @@ $(document).ready(function () {
         // decide which export functionality to use
         switch (selectedExportOption) {
             case 'export-last-week':
-                exportLastWeek(id);
+                exportLastWeek();
                 break;
 
             case 'export-period':
@@ -104,13 +104,14 @@ function defaultError() {
     enableExportButton(true);
 }
 
-function exportLastWeek(id) {
-    let steps = [];
-    let slept = [];
-    let goals = [];
+/**
+ *
+ */
+function exportLastWeek() {
+
     // get last weeks steps and sleep
     $.ajax({
-        url: REST + '/users/' + id + '/stats/weeks/last',
+        url: REST + '/users/' + user.id + '/stats/weeks/last',
         method: 'GET',
         dataType: 'JSON',
         headers: {
@@ -118,10 +119,42 @@ function exportLastWeek(id) {
         },
         statusCode: {
             200: function (data) {
-                steps = data.success.steps;
-                slept = data.success.sleep;
-                getGoalsHistory(id,steps,slept);
 
+                // get goals
+                $.ajax({
+                    url: REST + '/users/' + user.id + '/goals?offset=' + 0 + '&limit=' + 10,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    headers: {
+                        Authorization: localStorage.getItem('token')
+                    },
+                    statusCode: {
+                        200: function (data2) {
+                            $('#goal-history').removeClass('block-error');
+
+                            getPDF(user, data.success.steps, data.success.sleep, data2.goals);
+                            enableExportButton(true);
+
+                            // update the last export date
+                            $.ajax({
+                                url: REST + '/users/' + id + '/export',
+                                method: 'PUT',
+                                headers: {
+                                    Authorization: localStorage.getItem('token')
+                                }
+                            });
+                        },
+                        400: defaultError,
+                        401: function () {
+                            // not logged id; redirect to login page
+                            localStorage.clear();
+                            location.replace('/index.php');
+                        },
+                        403: defaultError,
+                        404: defaultError,
+                        500: defaultError
+                    }
+                });
             },
             400: defaultError,
             401: function () {
@@ -143,47 +176,6 @@ function exportLastWeek(id) {
         }
     });
 }
-
-const getGoalsHistory = function (id, steps, slept) {
-    let goal = [];
-    $.ajax({
-        url: REST + '/users/' + id + '/goals?offset=' + 0 + '&limit=' + 10,
-        method: 'GET',
-        dataType: 'JSON',
-        headers: {
-            Authorization: localStorage.getItem('token')
-        },
-        statusCode: {
-            200: function (data) {
-                $('#goal-history').removeClass('block-error');
-                goal = data.goals;
-
-                // last week's stats that are already saved in my-results.js
-                getPDF(user, steps, slept, goal);
-                enableExportButton(true);
-
-                // update the last export date
-                $.ajax({
-                    url: REST + '/users/' + id + '/export',
-                    method: 'PUT',
-                    headers: {
-                        Authorization: localStorage.getItem('token')
-                    }
-                });
-
-            },
-            400: defaultError,
-            401: function () {
-                // not logged id; redirect to login page
-                localStorage.clear();
-                location.replace('/index.php');
-            },
-            403: defaultError,
-            404: defaultError,
-            500: defaultError
-        }
-    });
-};
 
 /**
  * Start the process of exporting data from a certain period

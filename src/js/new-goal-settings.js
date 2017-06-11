@@ -68,7 +68,7 @@ $(document).ready(function () {
                     201: function (data) {
                         //Success message
                         messageToggle(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
-                        getGoalsHistory();
+                        getGoalsForLastWeekExport();
                     },
                     401: function (err) {
                         //Unauthorized error message
