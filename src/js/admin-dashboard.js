@@ -7,10 +7,8 @@ let errorMessageEdit;
 let successMessageEdit;
 let userList;
 
-const personalValid = false;
-const handicapValid = false;
-
 $(document).ready(function () {
+
 
     $('#success-competition').hide();
     $('#error-competition').hide();
@@ -30,7 +28,7 @@ $(document).ready(function () {
         headers: {
             Authorization: localStorage.getItem('token')
         },
-        statusCode: {
+        statusCode:{
             200: function (data) {
                 $('#show-last-goal').text('Volgende competitie: ' + data.defaultGoal + " punten.");
                 $('#show-last-days').text('Volgende competitie: ' + data.defaultLength + " dagen.");
@@ -166,40 +164,35 @@ function actionsDashboard(data) {
             connected = "<button value='" + user.id +
                 "' class='btn btn-default connect'>Koppel Fitbit</button>" +
                 "<button value='" + user.id +
-                "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>" +
-                "<button value='" + user.id;
+                "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
         } else {
             connected = "<button value='" + user.id +
                 "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
                 "<button value='" + user.id +
-                "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>" +
-                "<button value='" + user.id;
+                "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
         }
 
         let html = "<div class='user row' >" +
-            "<div class='col-xs-12 col-md-6 one-user' " +
+            "<div class='col-xs-12 col-md-5 one-user' " +
             "<span class='glyphicon glyphicon-user'></span>" +
             user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-            "<div class='col-xs-12 col-md-6'>" +
-            connected +
-            "' class='btn btn-default edit' data-toggle='modal' " +
+            "<div class='col-xs-12 col-md-7'>" +
+            "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
             "data-target='#edit-modal'>Pas aan</button>" +
             "<button value='" + user.id +
-            "' class='btn btn-default edit pdf'>Exporteer</button>" +
+            "' class='btn btn-default edit pdf'>Exporteer</button>" + connected +
             "</div> </div> <hr/>";
 
-
         userList.append(html);
-
     }
 
     $("#modal").load('./include/export.php');
 
     for (i = 0; i < users.length; i++) {
-        var user = users[i];
+        let user = users[i];
 
         if (!user.active) {
-            var html = "<div class='user row' >" +
+            let html = "<div class='user row' >" +
                 "<div class='col-xs-12 col-md-6 one-user' " +
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
@@ -210,11 +203,8 @@ function actionsDashboard(data) {
                 "</div> </div><hr/>";
 
             inactiveUserList.html(html);
-
-
         }
     }
-
 
     $(".connect").click(function () {
         id = $(this).attr('value');
