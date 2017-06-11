@@ -37,6 +37,8 @@ include './include/header.php';
         </div>
     </div>
 </div>
+</div>
+
 
 <!-- comps -->
 <div class="col-md-5" style="margin-top: 30px;" id="comp-div">
