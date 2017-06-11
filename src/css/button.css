@@ -7,7 +7,6 @@
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
-    float: right;
     text-decoration: none;
 }
 
@@ -35,8 +34,6 @@
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
-    float: right;
-    margin-right: 0.3em;
     text-decoration: none;
 }
 
@@ -52,30 +49,30 @@
     border-color: #DC4F62;
 }
 
-.competition-btn  {
+.competition-btn {
     background-color: #dc4f62;
     color: #FFFFFF;
     border-color: #FFFFFF;
     text-decoration: none;
     text-align: center;
     display: inline;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     width: 40%;
-    height:35px;
-    float:right;
+    height: 35px;
+    float: right;
     -webkit-border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
     border-radius: 4px 4px 4px 4px;
 }
 
-.competition-btn:hover{
+.competition-btn:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.competition-btn:active{
+.competition-btn:active {
 
     background-color: #FFFFFF;
     color: #DC4F62;
@@ -113,22 +110,13 @@
 }
 
 @media (max-width: 1200px) {
-    .competition-btn{
+    .competition-btn {
         width: 30%;
     }
 }
+
 @media (max-width: 600px ) {
-    .edit {
-        background-color: #DC4F62;
-        color: #FFFFFF;
-        border-color: #FFFFFF;
-        margin-right: 0.3em;
-        text-decoration: none;
-        float: none;
-        margin-top: 0.3em;
-    }
-
-    .connect, .revoke {
+    .edit, .connect, .revoke {
         background-color: #DC4F62;
         color: #FFFFFF;
         border-color: #FFFFFF;
@@ -137,7 +125,7 @@
         margin-top: 0.3em;
     }
 
-    .competition-btn{
+    .competition-btn {
         width: 20%;
     }
 

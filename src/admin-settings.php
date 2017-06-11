@@ -35,7 +35,7 @@ include './include/header.php';
                                 <strong>Oeps!</strong> Er ging iets mis.
                             </div>
                             <div class="alert alert-success" role="alert" id="success">
-                                <strong>Gelukt!</strong> Je informatie is nu geupdated.
+                                <strong>Gelukt!</strong> Je informatie is nu geupdate.
                             </div>
                             <div id="id-field"></div>
                             <p></p>
