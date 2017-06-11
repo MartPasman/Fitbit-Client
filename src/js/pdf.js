@@ -5,36 +5,40 @@ let selectedExportOption = undefined;
 let user;
 
 $(document).ready(function () {
-    const id = parseInt(localStorage.getItem('userid'));
+    let id;
     let modalExport = $('#modal-export');
 
-    // get the user object for his/her name on the pdf
-    $.ajax({
-        url: REST + '/users/' + id,
-        method: 'GET',
-        headers: {
-            Authorization: localStorage.getItem('token')
-        },
-        statusCode: {
-            200: function (data) {
-                user = data.success;
 
-                // set the last export date in the modal
-                if (user.lastExport !== undefined && !isNaN(Date.parse(user.lastExport))) {
-                    $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
-                }
-            },
-            401: function () {
-                // not logged id; redirect to login page
-                localStorage.clear();
-                location.replace('/index.php');
-            }
-        }
-    });
 
     // open the export modal
-    $('#pdf').on('click', function () {
-        modalExport.modal();
+    $('.pdf').on('click', function () {
+        id = $(this).val();
+        // get the user object for his/her name on the pdf
+        $.ajax({
+            url: REST + '/users/' + id,
+            method: 'GET',
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            statusCode: {
+                200: function (data) {
+                    user = data.success;
+
+                    // set the last export date in the modal
+                    if (user.lastExport !== undefined && !isNaN(Date.parse(user.lastExport))) {
+                        $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
+                    }
+
+                    modalExport.modal();
+                },
+                401: function () {
+                    // not logged id; redirect to login page
+                    localStorage.clear();
+                    location.replace('/index.php');
+                }
+            }
+        });
+
     });
 
     // start the export process

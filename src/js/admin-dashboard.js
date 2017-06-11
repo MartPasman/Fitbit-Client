@@ -186,10 +186,16 @@ function actionsDashboard(data) {
             connected +
             "' class='btn btn-default edit' data-toggle='modal' " +
             "data-target='#edit-modal'>Pas aan</button>" +
+            "<button value='" + user.id +
+            "' class='btn btn-default edit pdf'>Exporteer</button>" +
             "</div> </div> <hr/>";
 
+
         userList.append(html);
+
     }
+
+    $("#modal").load('./include/export.php');
 
     for (i = 0; i < users.length; i++){
         var user = users[i];
@@ -206,6 +212,8 @@ function actionsDashboard(data) {
                 "</div> </div><hr/>";
 
             inactiveUserList.html(html);
+
+
         }
     }
 
