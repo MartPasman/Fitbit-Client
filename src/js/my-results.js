@@ -22,6 +22,7 @@ $(document).ready(function () {
 
     // get the current date as a string
     $('#today').append(getTodaysDate());
+    $('#pdf').val(localStorage.getItem('userid'));
 
     // total stats
     $.ajax({

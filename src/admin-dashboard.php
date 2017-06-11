@@ -5,7 +5,7 @@ include './include/header.php';
 
 <link rel="stylesheet" href="css/switches.css">
 
-
+<div id="modal"></div>
 <div class="container">
 
     <!-- block for users and competition -->
