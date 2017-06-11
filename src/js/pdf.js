@@ -2,7 +2,7 @@
  * Created by romybeugeling on 24-05-17.
  */
 let selectedExportOption = undefined;
-let user;
+let user = undefined;
 
 $(document).ready(function () {
     let id;
