@@ -6,8 +6,6 @@ $(document).ready(function () {
     // competition
     let html = '<li><a href="/competition-dashboard.php"><span class="glyphicon glyphicon-knight"></span> Competitie</a></li>';
 
-    alert(parseInt(localStorage.getItem('perm')));
-    alert(parseInt(localStorage.getItem('perm')) === 2);
     switch (parseInt(localStorage.getItem('perm'))) {
         // user
         case 1:
