@@ -2,9 +2,9 @@
  * Created by sveno on 17-5-2017.
  */
 $(document).ready(function () {
-    var errorMsg =  $("#error");
-    var passdiv = $("#passdiv");
-    var iddiv = $("#iddiv");
+    const errorMsg = $("#error");
+    const passdiv = $("#passdiv");
+    const iddiv = $("#iddiv");
 
     errorMsg.hide();
 
@@ -19,9 +19,9 @@ $(document).ready(function () {
     });
 
     function login(){
-        var id = $("#id").val().trim();
-        var password = $('#password').val();
-        var modal = $('#modal-login-error');
+        const id = $("#id").val().trim();
+        const password = $('#password').val();
+        const modal = $('#modal-login-error');
 
         passdiv.removeClass("has-error");
         iddiv.removeClass("has-error");

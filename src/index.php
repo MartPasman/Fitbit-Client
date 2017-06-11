@@ -46,10 +46,11 @@
                                    placeholder="Wachtwoord">
                         </div>
 
-                        <button type="button" onsubmit="return false;" class="btn btn-success" id="login">Inloggen
+                        <button type="button" onsubmit="return false;" class="btn btn-success" id="login">
+                            Inloggen
                         </button>
 
-                        <hr style="margin-top:10px margin-bottom:10px;">
+                        <hr/>
                     </form>
                 </div>
             </div>

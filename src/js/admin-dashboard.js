@@ -12,8 +12,6 @@ const handicapValid = false;
 
 $(document).ready(function () {
 
-
-
     $('#success-competition').hide();
     $('#error-competition').hide();
     modal = $('#modal-account-error');
@@ -32,10 +30,10 @@ $(document).ready(function () {
         headers: {
             Authorization: localStorage.getItem('token')
         },
-        statusCode:{
+        statusCode: {
             200: function (data) {
-                $('#show-last-goal').text('Momenteel: ' + data.defaultGoal + " punten.");
-                $('#show-last-days').text('Momenteel duurt de competitie: ' + data.defaultLength + " dagen.");
+                $('#show-last-goal').text('Volgende competitie: ' + data.defaultGoal + " punten.");
+                $('#show-last-days').text('Volgende competitie: ' + data.defaultLength + " dagen.");
             },
             default: function (err) {
                 console.log(err);
@@ -45,7 +43,7 @@ $(document).ready(function () {
 
     $('#comp-submit-button').click(function () {
         let goal = $('#default_goal').val();
-        if(goal == '' || goal < 0){
+        if (goal === '' || goal < 0) {
             $('#success-competition').hide();
             $('#error-competition').show();
         } else {
@@ -62,7 +60,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-goal').text('Momenteel: ' + goal);
+                        $('#show-last-goal').text('Volgende competitie: ' + goal);
 
                     },
                     404: function (err) {
@@ -78,7 +76,7 @@ $(document).ready(function () {
 
     $('#comp-days-submit-button').click(function () {
         let days = $('#default-days').val();
-        if(days == '' || days < 0){
+        if (days === '' || days < 0) {
             $('#success-competition').hide();
             $('#error-competition').show();
         } else {
@@ -95,7 +93,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-days').text('Momenteel: ' + days);
+                        $('#show-last-days').text('Volgende competitie: ' + days);
 
                     },
                     404: function (err) {
@@ -197,14 +195,14 @@ function actionsDashboard(data) {
 
     $("#modal").load('./include/export.php');
 
-    for (i = 0; i < users.length; i++){
+    for (i = 0; i < users.length; i++) {
         var user = users[i];
 
-        if(!user.active){
+        if (!user.active) {
             var html = "<div class='user row' >" +
                 "<div class='col-xs-12 col-md-6 one-user' " +
                 "<span class='glyphicon glyphicon-user'></span>" +
-                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
+                user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
                 "<div class='col-xs-12 col-md-6'>" +
                 "<button value='" + user.id +
                 "' class='btn btn-default edit' data-toggle='modal' " +
@@ -401,10 +399,10 @@ function editAccount(user) {
 
 function updateUser(id, data) {
 
-    if (jQuery.isEmptyObject(data)){
+    if (jQuery.isEmptyObject(data)) {
         errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
         errorMessageEdit.show();
-    }else {
+    } else {
 
         $.ajax({
             url: REST + '/users/' + id,

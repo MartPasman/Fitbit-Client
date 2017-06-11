@@ -8,11 +8,10 @@ $(document).ready(function () {
     let id;
     let modalExport = $('#modal-export');
 
-
-
     // open the export modal
     $('.pdf').on('click', function () {
         id = $(this).val();
+
         // get the user object for his/her name on the pdf
         $.ajax({
             url: REST + '/users/' + id,
@@ -29,6 +28,7 @@ $(document).ready(function () {
                         $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
                     }
 
+                    // open the modal
                     modalExport.modal();
                 },
                 401: function () {
@@ -38,7 +38,6 @@ $(document).ready(function () {
                 }
             }
         });
-
     });
 
     // start the export process
@@ -160,7 +159,7 @@ function exportPeriod() {
         },
         statusCode: {
             200: function (data) {
-                getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
+                getPDF(data.success.steps, data.success.sleep, data.success.goals);
                 enableExportButton(true);
             },
             400: defaultError,
@@ -201,7 +200,7 @@ function exportSinceLast() {
         },
         statusCode: {
             200: function (data) {
-                getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
+                getPDF(data.success.steps, data.success.sleep, data.success.goals);
                 enableExportButton(true);
             },
             400: defaultError,
