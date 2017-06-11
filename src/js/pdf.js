@@ -2,11 +2,11 @@
  * Created by romybeugeling on 24-05-17.
  */
 let selectedExportOption = undefined;
-let user = undefined;
 
 $(document).ready(function () {
     let id;
     let modalExport = $('#modal-export');
+    let user = undefined;
 
     // open the export modal
     $('.pdf').on('click', function () {
@@ -48,15 +48,15 @@ $(document).ready(function () {
         // decide which export functionality to use
         switch (selectedExportOption) {
             case 'export-last-week':
-                exportLastWeek();
+                exportLastWeek(user);
                 break;
 
             case 'export-period':
-                exportPeriod();
+                exportPeriod(user);
                 break;
 
             case 'export-since-last':
-                exportSinceLast();
+                exportSinceLast(user);
                 break;
 
             default:
@@ -107,7 +107,7 @@ function defaultError() {
 /**
  *
  */
-function exportLastWeek() {
+function exportLastWeek(user) {
     if (user === undefined) {
         defaultError();
         return;
@@ -184,7 +184,7 @@ function exportLastWeek() {
 /**
  * Start the process of exporting data from a certain period
  */
-function exportPeriod() {
+function exportPeriod(user) {
     if (user === undefined) {
         defaultError();
         return;
@@ -252,7 +252,7 @@ function exportPeriod() {
 /**
  * Starts the process of exporting data since last export
  */
-function exportSinceLast() {
+function exportSinceLast(user) {
     if (user === undefined) {
         defaultError();
         return;

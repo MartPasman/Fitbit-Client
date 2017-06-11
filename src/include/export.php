@@ -1,12 +1,3 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: sveno
- * Date: 10-6-2017
- * Time: 16:28
- */
-?>
-
 <!-- export modal -->
 <div class="modal fade" id="modal-export" tabindex="-1" role="dialog" aria-labelledby="modal-label-export">
     <div class="modal-dialog" role="document">
@@ -81,4 +72,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
-<script src="js/pdf.js" type="text/javascript"></script>
+<script src="/js/pdf.js" type="text/javascript"></script>
