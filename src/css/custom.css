@@ -318,17 +318,15 @@ h2 {
     float: right;
 }
 
-#default_goal {
+#default_goal, #default-days {
     display: inline;
     width: 200px;
     float: left;
+    -webkit-border-radius: 0 4px 4px 0 ;
+    -moz-border-radius: 0 4px 4px 0 ;
+    border-radius: 0 4px 4px 0 ;
 }
 
-#default-days {
-    display: inline;
-    width: 200px;
-    float: left;
-}
 
 /* mobile */
 @media all and (max-width: 768px) {

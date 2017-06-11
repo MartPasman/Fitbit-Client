@@ -196,9 +196,9 @@ function actionsDashboard(data) {
                 "<div class='col-xs-12 col-md-6 one-user' " +
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-                "<div class='col-xs-12 col-md-6'>" +
+                "<div class='col-xs-12 col-md-6 '>" +
                 "<button value='" + user.id +
-                "' class='btn btn-default edit' data-toggle='modal' " +
+                "' class='btn btn-default edit-inactive' data-toggle='modal' " +
                 "data-target='#edit-modal'>Pas aan</button>" +
                 "</div> </div><hr/>";
 

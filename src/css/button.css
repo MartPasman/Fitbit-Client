@@ -30,23 +30,27 @@
     border-color: #ddd;
 }
 
-.edit {
+.edit, .edit-inactive {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
     text-decoration: none;
 }
 
-.edit:hover {
+.edit:hover, .edit-inactive:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.edit:active {
+.edit:active, .edit-inactive:active {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
+}
+
+.edit-inactive {
+    float: right;
 }
 
 .competition-btn {
@@ -116,13 +120,17 @@
 }
 
 @media (max-width: 600px ) {
-    .edit, .connect, .revoke {
+    .edit, .edit-inactive .connect, .revoke {
         background-color: #DC4F62;
         color: #FFFFFF;
         border-color: #FFFFFF;
         text-decoration: none;
         float: none;
         margin-top: 0.3em;
+    }
+
+    .edit-inactive {
+        float: right;
     }
 
     .competition-btn {
