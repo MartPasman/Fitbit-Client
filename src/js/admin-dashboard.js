@@ -407,7 +407,7 @@ function updateUser(id, data) {
             },
             statusCode: {
                 200: function (data) {
-                    successMessageEdit.html("<strong>Succes</strong> De persoonlijke informatie is aangepast.");
+                    successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
                     successMessageEdit.show();
                     loadUsers();
                 },
