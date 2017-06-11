@@ -49,7 +49,7 @@ $(document).ready(function () {
         switch (selectedExportOption) {
             case 'export-last-week':
                 // last week's stats that are already saved in my-results.js
-                getPDF(stepsData, sleepData, goalsData);
+                getPDF(user, stepsData, sleepData, goalsData);
                 enableExportButton(true);
 
                 // update the last export date
@@ -159,7 +159,7 @@ function exportPeriod() {
         },
         statusCode: {
             200: function (data) {
-                getPDF(data.success.steps, data.success.sleep, data.success.goals);
+                getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
                 enableExportButton(true);
             },
             400: defaultError,
@@ -200,7 +200,7 @@ function exportSinceLast() {
         },
         statusCode: {
             200: function (data) {
-                getPDF(data.success.steps, data.success.sleep, data.success.goals);
+                getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
                 enableExportButton(true);
             },
             400: defaultError,
@@ -231,11 +231,12 @@ function exportSinceLast() {
 
 /**
  * Download a PDF document with a collection of the given data
+ * @param user
  * @param stepsData
  * @param sleepData
  * @param goalsData
  */
-function getPDF(stepsData, sleepData, goalsData) {
+function getPDF(user, stepsData, sleepData, goalsData) {
     if (user === undefined || stepsData === undefined || sleepData === undefined || goalsData === undefined) {
         defaultError();
         return;
