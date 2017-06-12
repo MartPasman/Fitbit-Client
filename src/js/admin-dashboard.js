@@ -381,7 +381,9 @@ function editAccount(user) {
             }
             if (
                 birthday !== existingBirthday) {
-                data.birthday = birthday;
+                let dateparts = birthday.split('/');
+                data.birthday = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
+
             }
             if (handicap !== user.handicap) {
                 data.handicap = handicap;
