@@ -31,6 +31,9 @@ $(document).ready(function () {
             }
         } else {
 
+            let dateparts = birthdate.split('/');
+            birthdate = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
+
             //Call to add a goal
             $.ajax({
                 url: REST + '/users/' + localStorage.getItem("userid"),
