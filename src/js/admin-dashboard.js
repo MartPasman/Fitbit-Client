@@ -167,6 +167,7 @@ function actionsDashboard(data) {
                 "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
         } else {
             connected = "<button value='" + user.id +
+                "' class='btn btn-default edit pdf'>Exporteer</button>"+"<button value='" + user.id +
                 "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
                 "<button value='" + user.id +
                 "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
@@ -178,9 +179,7 @@ function actionsDashboard(data) {
             user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
             "<div class='col-xs-12 col-md-7'>" +
             "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            "data-target='#edit-modal'>Pas aan</button>" +
-            "<button value='" + user.id +
-            "' class='btn btn-default edit pdf'>Exporteer</button>" + connected +
+            "data-target='#edit-modal'>Pas aan</button>" + connected +
             "</div> </div> <hr/>";
 
         userList.append(html);
