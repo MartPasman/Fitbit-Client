@@ -3,13 +3,6 @@
  */
 $(document).ready(function () {
 
-    // log out listener
-    $('#log-out').click(function () {
-        console.log('Logging out...');
-        localStorage.clear();
-        location.replace('/');
-    });
-
     // competition
     let html = '<li><a href="/competition-dashboard.php"><span class="glyphicon glyphicon-knight"></span> Competitie</a></li>';
 
@@ -34,4 +27,11 @@ $(document).ready(function () {
 
     // set menu bar
     $('#navigation').html(html);
+
+    // log out listener
+    $('#log-out').click(function () {
+        console.log('Logging out...');
+        window.localStorage.clear();
+        window.location.replace('/');
+    });
 });
