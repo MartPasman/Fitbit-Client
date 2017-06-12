@@ -3,6 +3,13 @@
  */
 $(document).ready(function () {
 
+    // log out listener
+    $('#log-out').click(function () {
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
+        localStorage.removeItem('perm');
+    });
+
     // competition
     let html = '<li><a href="/competition-dashboard.php"><span class="glyphicon glyphicon-knight"></span> Competitie</a></li>';
 
