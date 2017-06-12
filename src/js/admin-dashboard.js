@@ -465,22 +465,35 @@ function updateUser(id, data) {
 function checkQueryParams() {
     const json = getQueryParams();
 
-    // TODO: color depending on statusCode
+    let show = true;
+    let title = 'Fitbit niet verbonden';
+    let body = '';
+
+    // TODO: styling
     switch (parseInt(json.statusCode)) {
-        case 200:
-            alert(json.message);
-            break;
-        case 400:
-            alert(json.message);
-            break;
-        case 404:
-            alert(json.message);
+        case 201:
+            title = 'Fitbit verbonden';
+            body = '<span class="success glyphicon glyphicon-ok"></span> De Fitbit is succesvol aan de gebruiker verbonden.';
             break;
         case 403:
-            alert(json.message);
+            body = 'De Fitbit is niet aan de gebruiker verbonden.<br/>Een Fitbit mag slechts aan één gebruiker verbonden zijn.';
+            break;
+        case 404:
+            body = 'De Fitbit is niet aan de gebruiker verbonden.<br/>Probeer het later nog eens.';
+            break;
+        case 500:
+            body = 'De Fitbit kan nu niet aan de gebruiker verbonden worden.<br/>Probeer het later nog eens.';
             break;
         default:
             // do nothing
+            show = false;
             break;
+    }
+
+    // show the modal
+    if (show) {
+        $('#modal-connect-title').html(title);
+        $('#modal-connect-body').html(body);
+        $('#modal-connect').modal();
     }
 }
