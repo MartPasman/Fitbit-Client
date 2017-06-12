@@ -3,6 +3,8 @@
  */
 $(document).ready(function () {
     $('#log-out').click(function () {
-        localStorage.clear();
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
+        localStorage.removeItem('perm');
     });
 });
