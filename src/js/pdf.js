@@ -476,7 +476,7 @@ function getPDF(user, stepsData, sleepData, goalsData) {
             doc.text(goal.percentage === 100 ? 'Ja' : 'Nee', 51.5 + (offset * 20), 157);
 
             // pending
-            doc.text(endDate >= today ? 'Ja' : 'nee', 51.5 + (offset * 20), 167);
+            doc.text(endDate >= today ? 'Ja' : 'Nee', 51.5 + (offset * 20), 167);
         }
     }
 

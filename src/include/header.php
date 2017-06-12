@@ -40,6 +40,5 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- log out functionality -->
-<script src="../js/logout.js" type="text/javascript"></script>
+<!-- log out functionality and dynamic menu bar -->
 <script src="../js/header.js" type="text/javascript"></script>

@@ -23,8 +23,15 @@ $(document).ready(function () {
     }
 
     // logout
-    html += '<li><a href="/index.php" id="log-out"><span class="glyphicon glyphicon-log-out"></span> Verlaten</a></li>';
+    html += '<li><a href="#" id="log-out"><span class="glyphicon glyphicon-log-out"></span> Verlaten</a></li>';
 
     // set menu bar
     $('#navigation').html(html);
+
+    // log out listener
+    $('#log-out').click(function () {
+        console.log('Logging out...');
+        window.localStorage.clear();
+        window.location.replace('/');
+    });
 });

@@ -199,9 +199,8 @@ function actionsDashboard(data) {
             user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
             "<div class='col-xs-12 col-md-7'>" +
             "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            "data-target='#edit-modal'>Pas aan</button>" +
-            "<button value='" + user.id +
-            "' class='btn btn-default edit pdf'>Exporteer</button>" + connected +
+            "data-target='#edit-modal'>Pas aan</button>"
+            + connected +
             "</div> </div> <hr/>";
 
             userList.append(html);
