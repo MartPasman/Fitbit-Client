@@ -9,7 +9,7 @@
 <!-- REST service address -->
 <script type="text/javascript">
     const REST = 'http://178.21.116.109:3000';
-//    const REST = 'http://localhost:3000';
+    //    const REST = 'http://localhost:3000';
 </script>
 
 <!-- Flickering led if the REST is online -->
@@ -27,6 +27,23 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <script>
+    /**
+     * Return an object with key, value pairs of all query parameters
+     * @returns {{}}
+     */
+    function getQueryParams() {
+        let vars = {}, hash;
+        let q = document.URL.split('?')[1];
+        if (q !== undefined) {
+            q = q.split('&');
+            for (let i = 0; i < q.length; i++) {
+                hash = q[i].split('=');
+                vars[hash[0]] = decodeURI(hash[1]);
+            }
+        }
+        return vars;
+    }
+
     const iso = $('.bootstrap-iso form');
     $(document).ready(function () {
         const date_input = $('input[name="date"]'); //our date input has the name "date"

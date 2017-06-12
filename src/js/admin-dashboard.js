@@ -9,6 +9,7 @@ let userList;
 
 $(document).ready(function () {
 
+    checkQueryParams();
 
     $.ajax({
         url: REST + '/competitions/',
@@ -454,5 +455,33 @@ function updateUser(id, data) {
                 }
             }
         });
+    }
+}
+
+/**
+ *
+ */
+function checkQueryParams() {
+    const json = getQueryParams();
+    // if there are query params present
+    if (!jQuery.isEmptyObject(json)) {
+        // TODO: color depending on statusCode
+        switch (json.statusCode) {
+            case 200:
+                alert(json.message);
+                break;
+            case 400:
+                alert(json.message);
+                break;
+            case 404:
+                alert(json.message);
+                break;
+            case 403:
+                alert(json.message);
+                break;
+            default:
+                // do nothing
+                break;
+        }
     }
 }

@@ -34,19 +34,7 @@ include './include/header.php';
 <?php include './include/scripts.php'; ?>
 
     <!-- your scripts -->
-<script>
-    $.ajax({
-        url: 'http://xml.rtvoost.nl/rss/tag.aspx?tag=Enschede',
-        method: 'GET',
-        dataType: 'XML',
-        headers: {
-        }
-    }).success(function (a, b, c, d) {
-        console.log(a, b, c, d);
-    }).fail(function (a, b, c, d) {
-        console.log(a, b, c, d);
-    });
-</script>
+<script></script>
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>
