@@ -5,6 +5,8 @@ $(document).ready(function () {
 
     // log out listener
     $('#log-out').click(function () {
+        console.log('Logging out...');
+        localStorage.clear();
         localStorage.removeItem('token');
         localStorage.removeItem('id');
         localStorage.removeItem('perm');
