@@ -105,7 +105,8 @@ $(document).ready(function () {
                 },
                 data: {
                     length: days
-                },
+
+        },
                 statusCode: {
                     201: function (data) {
                         $('#error-competition').hide();

@@ -68,7 +68,7 @@ include './include/header.php';
                     <form id="competition-form-days">
                         <h4>Lengte van de volgende competitie:</h4><br>
                         <h5 id="show-current-days"></h5><br>
-                    <h5id="show-last-days"></h5><br>
+                    <h5 id="show-last-days"></h5><br>
                         <div class="input-group">
                             <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>
                             <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
