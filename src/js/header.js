@@ -7,9 +7,7 @@ $(document).ready(function () {
     $('#log-out').click(function () {
         console.log('Logging out...');
         localStorage.clear();
-        localStorage.removeItem('token');
-        localStorage.removeItem('id');
-        localStorage.removeItem('perm');
+        location.replace('/');
     });
 
     // competition
@@ -32,7 +30,7 @@ $(document).ready(function () {
     }
 
     // logout
-    html += '<li><a href="/index.php" id="log-out"><span class="glyphicon glyphicon-log-out"></span> Verlaten</a></li>';
+    html += '<li><a href="#" id="log-out"><span class="glyphicon glyphicon-log-out"></span> Verlaten</a></li>';
 
     // set menu bar
     $('#navigation').html(html);
