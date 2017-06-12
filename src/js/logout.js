@@ -3,6 +3,6 @@
  */
 $(document).ready(function () {
     $('#log-out').click(function () {
-        window.localStorage.clear();
+        localStorage.clear();
     });
 });
