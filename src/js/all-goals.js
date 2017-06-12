@@ -86,12 +86,13 @@ $(document).ready(function () {
         } else {
 
             //Sets date to javascript date time for in database
-            var dateParts = start.split("/");
-            var startdate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            let dateparts = start.split('/');
+            start = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
 
-            dateParts = end.split("/");
-            var enddate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
+            //Sets date to javascript date time for in database
+            let dateparts2 = start.split('/');
+            end = dateparts2[2] + '/' + dateparts2[1] + '/' + dateparts2[0];
             //Call to add a goal
             $.ajax({
                 url: REST + '/users/' + localStorage.getItem("userid") + '/goals/' + $("#update-button").val(),

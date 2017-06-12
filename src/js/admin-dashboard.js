@@ -60,7 +60,7 @@ $(document).ready(function () {
 
     $('#comp-submit-button').click(function () {
         let goal = $('#default_goal').val();
-        if (goal === '' || goal < 0) {
+        if (goal === '' || goal < 0 || goal > 999999999) {
             $('#success-competition').hide();
             $('#error-competition').show();
         } else {
@@ -93,7 +93,7 @@ $(document).ready(function () {
 
     $('#comp-days-submit-button').click(function () {
         let days = $('#default-days').val();
-        if (days === '' || days < 0) {
+        if (days === '' || days < 0 || days > 365) {
             $('#success-competition').hide();
             $('#error-competition').show();
         } else {
