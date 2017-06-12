@@ -80,7 +80,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <script>
-    const iso = $('.bootstrap-iso form');
     $(document).ready(function () {
         const date_input = $('input[name="date"]'); //our date input has the name "date"
         const container = iso.length > 0 ? iso.parent() : "body";
