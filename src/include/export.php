@@ -73,3 +73,23 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 <script src="../js/pdf.js" type="text/javascript"></script>
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+    const iso = $('.bootstrap-iso form');
+    $(document).ready(function () {
+        const date_input = $('input[name="date"]'); //our date input has the name "date"
+        const container = iso.length > 0 ? iso.parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            language: "nl"
+        });
+    });
+</script>
