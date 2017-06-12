@@ -202,7 +202,7 @@ function loadStandardInformation() {
                 date1 = date1.getDate() + '/' + month + '/' + date1.getFullYear();
 
 
-                var age = diff_years(new Date(birthday), new Date());
+                var age = getAge(birthday);
 
                 $('#id-field').html('<div class="glyphicon glyphicon-barcode"></div> &nbsp ' + data.success.id);
 
@@ -272,6 +272,19 @@ function diff_years(dt2, dt1) {
     diff /= (60 * 60 * 24);
     return Math.abs(Math.round(diff / 365.25));
 
+}
+
+function getAge(dateString)
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+    {
+        age--;
+    }
+    return age;
 }
 
 //Check if variable is empty
