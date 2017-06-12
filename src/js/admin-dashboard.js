@@ -107,7 +107,7 @@ $(document).ready(function () {
                 data: {
                     length: days
 
-        },
+                },
                 statusCode: {
                     201: function (data) {
                         $('#error-competition').hide();
@@ -189,20 +189,21 @@ function actionsDashboard(data) {
                     "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
             } else {
                 connected = "<button value='" + user.id +
-                    "' class='btn btn-default edit pdf'>Exporteer</button>"+"<button value='" + user.id +
+                    "' class='btn btn-default edit pdf'>Exporteer</button>" + "<button value='" + user.id +
                     "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
                     "<button value='" + user.id +
-                    "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";   }
+                    "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
+            }
 
-        let html = "<div class='user row' >" +
-            "<div class='col-xs-12 col-md-5 one-user' " +
-            "<span class='glyphicon glyphicon-user'></span>" +
-            user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-            "<div class='col-xs-12 col-md-7'>" +
-            "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            "data-target='#edit-modal'>Pas aan</button>"
-            + connected +
-            "</div> </div> <hr/>";
+            let html = "<div class='user row' >" +
+                "<div class='col-xs-12 col-md-5 one-user' " +
+                "<span class='glyphicon glyphicon-user'></span>" +
+                user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
+                "<div class='col-xs-12 col-md-7'>" +
+                "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
+                "data-target='#edit-modal'>Pas aan</button>"
+                + connected +
+                "</div> </div> <hr/>";
 
             userList.append(html);
         }
@@ -463,25 +464,23 @@ function updateUser(id, data) {
  */
 function checkQueryParams() {
     const json = getQueryParams();
-    // if there are query params present
-    if (!jQuery.isEmptyObject(json)) {
-        // TODO: color depending on statusCode
-        switch (json.statusCode) {
-            case 200:
-                alert(json.message);
-                break;
-            case 400:
-                alert(json.message);
-                break;
-            case 404:
-                alert(json.message);
-                break;
-            case 403:
-                alert(json.message);
-                break;
-            default:
-                // do nothing
-                break;
-        }
+
+    // TODO: color depending on statusCode
+    switch (parseInt(json.statusCode)) {
+        case 200:
+            alert(json.message);
+            break;
+        case 400:
+            alert(json.message);
+            break;
+        case 404:
+            alert(json.message);
+            break;
+        case 403:
+            alert(json.message);
+            break;
+        default:
+            // do nothing
+            break;
     }
 }
