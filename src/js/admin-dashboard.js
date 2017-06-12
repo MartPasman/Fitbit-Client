@@ -10,6 +10,25 @@ let userList;
 $(document).ready(function () {
 
 
+    $.ajax({
+        url: REST + '/competitions/',
+        method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                $('#show-current-goal').text('Huidige doel: ' + data.goal);
+                $('#show-current-days').text('Huidige lengte van de competitie: ' + data.length + " dagen");
+                $('#show-last-goal').text('Doel voor volgende competitie: ' + data.defaultGoal);
+                $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen");
+            },
+            default: function (err) {
+                console.log(err);
+            }
+        }
+    });
+
     $('#success-competition').hide();
     $('#error-competition').hide();
     modal = $('#modal-account-error');
@@ -28,7 +47,7 @@ $(document).ready(function () {
         headers: {
             Authorization: localStorage.getItem('token')
         },
-        statusCode:{
+        statusCode: {
             200: function (data) {
                 $('#show-last-goal').text('Volgende competitie: ' + data.defaultGoal + " punten.");
                 $('#show-last-days').text('Volgende competitie: ' + data.defaultLength + " dagen.");
@@ -58,7 +77,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-goal').text('Volgende competitie: ' + goal);
+                        $('#show-last-goal').text('Doel voor volgende competitie: ' + goal);
 
                     },
                     404: function (err) {
@@ -91,7 +110,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-days').text('Volgende competitie: ' + days);
+                        $('#show-last-days').text('Lengte van de volgende competitie: ' + days + ' dagen');
 
                     },
                     404: function (err) {
@@ -160,18 +179,18 @@ function actionsDashboard(data) {
         let user = users[i];
         let connected;
 
-        if (user.fitbit === undefined) {
-            connected = "<button value='" + user.id +
-                "' class='btn btn-default connect'>Koppel Fitbit</button>" +
-                "<button value='" + user.id +
-                "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
-        } else {
-            connected = "<button value='" + user.id +
-                "' class='btn btn-default edit pdf'>Exporteer</button>"+"<button value='" + user.id +
-                "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
-                "<button value='" + user.id +
-                "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
-        }
+        if (user.active) {
+            if (user.fitbit === undefined) {
+                connected = "<button value='" + user.id +
+                    "' class='btn btn-default connect'>Koppel Fitbit</button>" +
+                    "<button value='" + user.id +
+                    "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
+            } else {
+                connected = "<button value='" + user.id +
+                    "' class='btn btn-default edit pdf'>Exporteer</button>"+"<button value='" + user.id +
+                    "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
+                    "<button value='" + user.id +
+                    "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";   }
 
         let html = "<div class='user row' >" +
             "<div class='col-xs-12 col-md-5 one-user' " +
@@ -179,10 +198,13 @@ function actionsDashboard(data) {
             user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
             "<div class='col-xs-12 col-md-7'>" +
             "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            "data-target='#edit-modal'>Pas aan</button>" + connected +
+            "data-target='#edit-modal'>Pas aan</button>" +
+            "<button value='" + user.id +
+            "' class='btn btn-default edit pdf'>Exporteer</button>" + connected +
             "</div> </div> <hr/>";
 
-        userList.append(html);
+            userList.append(html);
+        }
     }
 
     $("#modal").load('./include/export.php');
@@ -201,7 +223,7 @@ function actionsDashboard(data) {
                 "data-target='#edit-modal'>Pas aan</button>" +
                 "</div> </div><hr/>";
 
-            inactiveUserList.html(html);
+            inactiveUserList.append(html);
         }
     }
 

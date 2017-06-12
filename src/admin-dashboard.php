@@ -39,10 +39,9 @@ include './include/header.php';
 </div>
 </div>
 
-
-<!-- comps -->
-<div class="col-md-5" style="margin-top: 30px;" id="comp-div">
-    <div class="panel panel-default">
+    <!-- comps -->
+    <div class="col-md-5" style="margin-top: 30px;" id="comp-div">
+        <div class="panel panel-default">
 
         <div class="panel-heading"><h3 class="panel-title"><strong>Competitie aanpassen</strong></h3>
         </div>
@@ -55,28 +54,27 @@ include './include/header.php';
                     <strong>Voer een getal in!</strong>
                 </div>
 
-                <form id="competition-form">
-                    <h4>Doelstelling voor volgende competitie:</h4><br>
-                    <h5 id="show-last-goal"></h5><br>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                        <input type="text" class="form-control" id="default_goal" placeholder="Aantal punten">
-                        <button type="button" id="comp-submit-button" class="btn btn-default competition-btn">
-                            Opslaan
-                        </button>
+                    <h4>Doelstelling voor volgende competitie:</h4><br><h5 id="show-current-goal"></h5><br>
+                        <h5 id="show-last-goal"></h5><br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input type="text" class="form-control" id="default_goal" placeholder="Aantal punten">
+                            <button type="button" id="comp-submit-button" class="btn btn-default competition-btn">
+                                Opslaan
+                            </button>
 
-                    </div>
-                </form>
-                <br><br>
-                <form id="competition-form-days">
-                    <h4>Lengte van de volgende competitie:</h4><br>
-                    <h5 id="show-last-days"></h5><br>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                        <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
-                        <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
-                            Opslaan
-                        </button>
+                        </div>
+                    </form><br><br>
+                    <form id="competition-form-days">
+                        <h4>Lengte van de volgende competitie:</h4><br>
+                        <h5 id="show-current-days"></h5><br>
+                    <h5id="show-last-days"></h5><br>
+                        <div class="input-group">
+                            <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
+                            <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
+                                Opslaan
+                            </button>
 
                     </div>
 
@@ -133,10 +131,10 @@ include './include/header.php';
                         </div>
                     </div>
 
-                    <div class="row form-group">
-                        <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum</label>
-                        <div class="col-md-9">
-                            <div class="input-group">
+                        <div class="row form-group">
+                            <label class="col-md-3 control-label" for="edit-birthday">Geboortedatum</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-calendar"></i>
 			            </span>
@@ -179,48 +177,47 @@ include './include/header.php';
                     </div>
 
 
-                    <div class="row form-group">
+                        <div class="row form-group">
                         <label class="col-md-3 control-label" for="edit-password"> Reset wachtwoord
-                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                               title="Een wachtwoord moet minstens acht tekens lang zijn."
-                            ><span class="glyphicon glyphicon-info-sign"
-                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"
-                                                                           rel="tooltip" title="Hint"></i>
-                            </div>
+                        <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
+                                                       title="Een wachtwoord moet minstens acht tekens lang zijn."
+                                                    ><span class="glyphicon glyphicon-info-sign"
+                                                           style="color: #DC4F62; font-size: 1.2em;"></span></a>
+                        <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"
+                                                                                                   rel="tooltip" title="Hint"></i>
+                        </div>
                         </label>
                         <div class="col-md-9">
-                            <div class="input-group">
-                    			                        <span class="input-group-addon">
-                    			                            <i class="glyphicon glyphicon-lock"></i>
-                    			                        </span>
-                                <input id="edit-password" name="password" placeholder="wachtwoord"
-                                       class="form-control input-md" type="password">
-                            </div>
+                        <div class="input-group">
+                        <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input id="edit-password" name="password" placeholder="wachtwoord"
+                                                               class="form-control input-md" type="password">
                         </div>
-                    </div>
+                        </div>
+                        </div>
 
-                    <div class="row form-group">
+                        <div class="row form-group">
                         <label class="col-md-3 control-label" for="edit-password2">Herhaal wachtwoord</label>
                         <div class="col-md-9">
-                            <div class="input-group">
-                    			                <span class="input-group-addon">
-                    			                <i class="glyphicon glyphicon-lock"></i>
-                    			            </span>
-                                <input id="edit-password2" name="password2" placeholder="wachtwoord"
-                                       class="form-control input-md" type="password">
-                            </div>
+                        <div class="input-group">
+                        <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input id="edit-password2" name="password2" placeholder="wachtwoord"
+                                                               class="form-control input-md" type="password">
                         </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <label class="col-md-3 control-label" for="change-active">Actief: </label>
-                        <div class="col-md-9">
-                            <div class="switch" id="change-active">
-                                <input id="active-toggle" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                                <label for="active-toggle"></label>
-                            </div>
                         </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-md-3 control-label" for="change-active">Actief: </label>
+                            <div class="col-md-9">
+                                <div class="switch" id="change-active">
+                                    <input id="active-toggle" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                                    <label for="active-toggle"></label>
+                                </div>
+                            </div>
 
                     </div>
 
@@ -293,10 +290,10 @@ include './include/header.php';
                         </div>
                     </div>
 
-                    <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-birthday">Geboortedatum</label>
-                        <div class="col-md-9">
-                            <div class="input-group">
+                        <div class="row form-group">
+                            <label class="col-md-3 control-label" for="new-birthday">Geboortedatum</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
 			                <span class="input-group-addon">
 			                <i class="glyphicon glyphicon-calendar"></i>
 			            </span>
@@ -399,21 +396,22 @@ include './include/header.php';
                 </form>
             </div>
 
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Sluiten
-                        </button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="new-save-button" class="btn btn-default btn-hover-green"
-                                data-action="save" role="button">Account opslaan
-                        </button>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Sluiten
+                            </button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" id="new-save-button" class="btn btn-default btn-hover-green"
+                                    data-action="save" role="button">Account opslaan
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
 
 <!-- JQuery and Bootstrap scripts -->
