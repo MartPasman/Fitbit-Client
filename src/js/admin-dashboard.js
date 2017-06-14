@@ -127,6 +127,9 @@ $(document).ready(function () {
     })
 });
 
+/**
+ *
+ */
 function loadUsers() {
     $.ajax({
         url: REST + '/accounts/',
@@ -170,6 +173,10 @@ function loadUsers() {
     });
 }
 
+/**
+ *
+ * @param data
+ */
 function actionsDashboard(data) {
     userList.removeClass("block-error");
     userList.html('');
@@ -318,6 +325,10 @@ function actionsDashboard(data) {
     });
 }
 
+/**
+ *
+ * @param user
+ */
 function editAccount(user) {
     const existingFirstname = user.firstname;
     const existingLastname = user.lastname;
@@ -408,7 +419,9 @@ function editAccount(user) {
             }
             if (
                 birthday !== existingBirthday) {
-                data.birthday = birthday;
+                let dateparts = birthday.split('/');
+                data.birthday = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
+
             }
             if (handicap !== user.handicap) {
                 data.handicap = handicap;
@@ -435,6 +448,11 @@ function editAccount(user) {
     });
 }
 
+/**
+ *
+ * @param id
+ * @param data
+ */
 function updateUser(id, data) {
 
     if (jQuery.isEmptyObject(data)) {
@@ -485,7 +503,7 @@ function updateUser(id, data) {
 }
 
 /**
- *
+ * Check the query params if a success/error message was passed on from connecting a Fitbit
  */
 function checkQueryParams() {
     const json = getQueryParams();

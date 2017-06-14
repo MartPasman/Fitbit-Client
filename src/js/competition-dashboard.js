@@ -99,7 +99,7 @@ function createHTML(users, data) {
     let divs = Math.ceil(data.results.length / 5);
 
     for (let i = 0; i < divs; i++) {
-        html += '<div id="competition-data' + i + '"  style="min-height:550px; width:100%;" class="block col-lg-11"> <center><h4 id="startend' + i + '">20-04 t/m 27-04</h4><h4>Te behalen punten:</h4><br><h3 id="goal-to-reach' + i + '"></h3></center><div id="chart-competition' + i + '">FusionCharts will render here</div></div>';
+        html += '<div id="competition-data' + i + '"  style="min-height:550px; width:100%;" class="block col-lg-11"> <center><h4 id="startend' + i + '">20-04 t/m 27-04</h4><h4>Te behalen punten:</h4><br><h3 id="goal-to-reach' + i + '"></h3><div id="chart-competition' + i + '">FusionCharts will render here</div></center></div>';
     }
 
     html += "<div class='block col-lg-11' style='min-height: 550px;'><center><img src='../img/rain.ico'/><p></p><h1>22 graden</h1><br><h2>55% kans op regen</h2></center></div>";
