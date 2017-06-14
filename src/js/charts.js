@@ -10,12 +10,13 @@
  * @param valuePrefix   a prefix displayed in front of a value (e.g. $)
  * @param width         the width of the chart
  * @param height        the height of the chart
+ * @param extras
  */
-function drawLineChart(selector, data, xName, yName, valuePrefix, width, height) {
+function drawLineChart(selector, data, xName, yName, valuePrefix, width, height, extras) {
     if (selector === undefined || data === undefined || data.length === 0) return console.error("selector parameter or data parameter undefined or empty!");
     if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
 
-    return $(selector).insertFusionCharts({
+    let options = {
         type: 'line',
         width: width,
         height: height,
@@ -30,7 +31,14 @@ function drawLineChart(selector, data, xName, yName, valuePrefix, width, height)
             },
             data: data
         }
-    });
+    };
+
+    // add the extras to the options
+    if (extras !== undefined) {
+        jQuery.extend(options, extras);
+    }
+
+    return $(selector).insertFusionCharts(options);
 }
 
 /**
