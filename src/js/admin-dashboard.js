@@ -50,8 +50,12 @@ $(document).ready(function () {
         },
         statusCode: {
             200: function (data) {
-                $('#show-last-goal').text('Volgende competitie: ' + data.defaultGoal + " punten.");
-                $('#show-last-days').text('Volgende competitie: ' + data.defaultLength + " dagen.");
+                $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + " punten.");
+                if(data.defaultLength === 1){
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
+                } else {
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
+                }
             },
             default: function (err) {
                 console.log(err);
@@ -78,7 +82,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-goal').text('Doel voor volgende competitie: ' + goal);
+                        $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
 
                     },
                     404: function (err) {
@@ -112,8 +116,11 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-days').text('Lengte van de volgende competitie: ' + days + ' dagen');
-
+                        if(days === 1){
+                            $('#show-last-days').text('Aantal punten voor de volgende competitie: ' + days + " dag.");
+                        } else {
+                            $('#show-last-days').text('Lengte van de volgende competitie: ' + days + " dagen.");
+                        }
                     },
                     404: function (err) {
 
