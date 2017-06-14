@@ -6,8 +6,9 @@
 }
 
 .birthday-today {
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
+
 }
 
 .birthday-user {
@@ -19,6 +20,19 @@
 /*float: right;*/
 /*}*/
 
-/*#birthdays img {*/
-    /*float: right;*/
-/*}*/
+#birthdays img {
+    float: right;
+}
+
+
+.birthday-cake {
+    height: 80px;
+    width: 80px;
+
+}
+
+
+.birthday-piece {
+    height: 60px;
+    width: 60px;
+}

@@ -37,53 +37,70 @@ $(document).ready(function () {
 });
 
 
- function loadBirthdays(users) {
+function loadBirthdays(users) {
     let listBirthdays = $("#birthdays");
     let noBday = $("#no-birthdays");
     noBday.hide();
 
-    // if (users.length === 0) {
-    //     noBday.show();
- //    } else {
- //
- //        for (let i = 0; i < users.length; i++) {
- //            let user = users[i];
- //            let birthdayHTML;
- //            //TODO blah blah is morgen jarig, hoe deed jeroen dat ook alweer
- //            //TODO lange naam fixen layout
- //
- //
- //            // let dd = user.birthday.split("-");
- //            // console.log( dd[0] + " ," + dd[1] + " ," + dd[2]);
- //            // let dddd = dd[2].split(0, 1);
- //            // console.log(dddd[0]);
- //
- //
- //            if (user.birthday === new Date()) {
- //
- //                birthdayHTML = "<div class='col-xs-12 col-md-12 birthday-today'> " +
- //                    user.firstname + " " + user.lastname +
- //                    "</div><img src='img/birthday-cake.png' alt='Gefeliciteerd' height='80' width='80'></div>"
- //
- //
- //            } else {
- //                // let bday = getCompareDate(user.birthday);
- //                // let days = getDaysBetween(today, bday);
- //                // console.dir(user.birthday);
- //
- //                birthdayHTML = "<div class='col-xs-12 col-md-12 birthday-one-user'>" + user.firstname
- //                    + " " + user.lastname + " " + user.birthday +
- //                    "<img src='img/almost.png' id='birthday-cake' alt='Gefeliciteerd' height='60' width='60'></div> ";
- //            }
- //
- //            let html = "<div class='birthday-users row' >" +
- //                "<div class='col-xs-12 col-md-12 birthday-user' " +
- //                birthdayHTML + "</div> </div> <hr/>";
- //
- //            listBirthdays.append(html);
- //        }
- //    }
-//
+    if (users.length === 0) {
+        noBday.show();
+    } else {
+
+        for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+            let birthdayHTML;
+            //TODO blah blah is morgen jarig, hoe deed jeroen dat ook alweer
+            //TODO lange naam fixen layout
+
+
+            // let dd = user.birthday.split("-");
+            // console.log( dd[0] + " ," + dd[1] + " ," + dd[2]);
+            // let dddd = dd[2].split(0, 1);
+            // console.log(dddd[0]);
+
+
+            let a = getCompareDate(new Date(user.birthday));
+            let d = getCompareDate(new Date());
+
+
+            if (a === d) {
+                birthdayHTML = "<div class='col-xs-8 col-md-11 birthday-today'> " +
+                    user.firstname + " " + user.lastname + " is vandaag jarig!" +
+                    "</div><div class='col-xs-4 col-md-1'> <img src='img/birthday-cake.png'" +
+                    " class='birthday-cake' alt='Gefeliciteerd'></div>"
+            } else {
+                let bday = new Date(user.birthday);
+                let days = getDaysBetween(bday, new Date());
+                console.dir(days);
+                let daysUntil;
+
+                if (days === 1) {
+                    daysUntil = " is morgen jarig."
+                } else if (days > 1) {
+                    daysUntil = " is over " + days + " dagen jarig.";
+                } else if(days === -1){
+                    daysUntil = " was gisteren jarig.";
+
+                }
+                else {
+                    daysUntil = " was " + Math.abs(days) + " dagen geleden jarig.";
+                }
+
+                birthdayHTML = "<div class='col-xs-8 col-md-11 birthday-one-user'>" + user.firstname
+                    + " " + user.lastname + daysUntil +
+                    "</div><div class='col-xs-4 col-md-1'> <img src='img/almost.png' class='birthday-piece' alt='bijnaJarig'></div> ";
+            }
+
+            let html = "<div class='birthday-users row' >" +
+                // "<div class='col-xs-12 col-md-12 birthday-user' " +
+                birthdayHTML +
+                // "</div>" +
+                " </div> <hr/>";
+
+            listBirthdays.append(html);
+        }
+    }
+
 }
 
 

@@ -57,5 +57,5 @@ function today() {
  */
 function getDaysBetween(start, end) {
     const oneDay = 24 * 60 * 60 * 1000;
-    return Math.round(Math.abs((start.getTime() - end.getTime()) / (oneDay)));
+    return Math.round((start.getTime() - end.getTime()) / (oneDay));
 }
