@@ -87,6 +87,9 @@ $(document).ready(function () {
                 return;
             }
 
+            let dateparts = birthday.split('/');
+            birthday = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
+
             $.ajax({
                 url: REST + '/accounts',
                 method: 'POST',

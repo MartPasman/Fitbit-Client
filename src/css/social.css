@@ -1,0 +1,38 @@
+
+.block {
+    height: 100%;
+    max-height: 85vh;
+    /*padding: 5px;*/
+}
+
+.birthday-today {
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.birthday-user {
+    font-size: large;
+}
+
+
+/*#birthday-cake{*/
+/*float: right;*/
+/*}*/
+
+#birthdays img {
+    float: right;
+}
+
+
+.birthday-cake {
+    height: 80px;
+    width: 80px;
+
+}
+
+
+.birthday-piece {
+    height: 60px;
+    width: 60px;
+}
