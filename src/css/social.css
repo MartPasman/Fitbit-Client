@@ -1,41 +1,26 @@
-
 .block {
     height: 100%;
     max-height: 85vh;
-    /*padding: 5px;*/
+}
+
+#birthdays {
+    overflow-wrap: break-word;
 }
 
 .birthday-today {
     font-size: large;
     font-weight: bold;
-
 }
 
 .birthday-user {
     font-size: large;
 }
 
-/*#birthday-cake{*/
-/*float: right;*/
-/*}*/
-
-#birthdays img {
-    float: right;
-}
-
 .birthday-one-user h3 {
-    font-weight: normal !important;
+    font-weight: normal;
 }
 
-.birthday-cake {
-    /*height: 80px;*/
-    /*width: 80px;*/
-    width: 100%;
-}
-
-.birthday-piece {
-    /*height: 60px;*/
-    /*width: 60px;*/
+.birthday-cake, .birthday-piece {
     width: 100%;
 }
 
