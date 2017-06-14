@@ -15,7 +15,6 @@
     font-size: large;
 }
 
-
 /*#birthday-cake{*/
 /*float: right;*/
 /*}*/
@@ -24,23 +23,19 @@
     float: right;
 }
 
-.birthday-one-user h4{
+.birthday-one-user h2 {
     font-weight: normal !important;
 }
 
-.birthday-today h4 {
-
-}
-
 .birthday-cake {
-    height: 80px;
-    width: 80px;
-
+    /*height: 80px;*/
+    /*width: 80px;*/
+    width: 100%;
 }
-
 
 .birthday-piece {
-    height: 60px;
-    width: 60px;
+    /*height: 60px;*/
+    /*width: 60px;*/
+    width: 100%;
 }
 
