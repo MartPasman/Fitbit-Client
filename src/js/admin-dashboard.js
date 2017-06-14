@@ -9,6 +9,7 @@ let userList;
 
 $(document).ready(function () {
 
+    checkQueryParams();
 
     $.ajax({
         url: REST + '/competitions/',
@@ -106,7 +107,7 @@ $(document).ready(function () {
                 data: {
                     length: days
 
-        },
+                },
                 statusCode: {
                     201: function (data) {
                         $('#error-competition').hide();
@@ -188,20 +189,21 @@ function actionsDashboard(data) {
                     "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
             } else {
                 connected = "<button value='" + user.id +
-                    "' class='btn btn-default edit pdf'>Exporteer</button>"+"<button value='" + user.id +
+                    "' class='btn btn-default edit pdf'>Exporteer</button>" + "<button value='" + user.id +
                     "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
                     "<button value='" + user.id +
-                    "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";   }
+                    "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
+            }
 
-        let html = "<div class='user row' >" +
-            "<div class='col-xs-12 col-md-5 one-user' " +
-            "<span class='glyphicon glyphicon-user'></span>" +
-            user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-            "<div class='col-xs-12 col-md-7'>" +
-            "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            "data-target='#edit-modal'>Pas aan</button>"
-            + connected +
-            "</div> </div> <hr/>";
+            let html = "<div class='user row' >" +
+                "<div class='col-xs-12 col-md-5 one-user' " +
+                "<span class='glyphicon glyphicon-user'></span>" +
+                user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
+                "<div class='col-xs-12 col-md-7'>" +
+                "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
+                "data-target='#edit-modal'>Pas aan</button>"
+                + connected +
+                "</div> </div> <hr/>";
 
             userList.append(html);
         }
@@ -454,5 +456,44 @@ function updateUser(id, data) {
                 }
             }
         });
+    }
+}
+
+/**
+ *
+ */
+function checkQueryParams() {
+    const json = getQueryParams();
+
+    let show = true;
+    let title = 'Fitbit niet verbonden';
+    let body = '';
+
+    // TODO: styling
+    switch (parseInt(json.statusCode)) {
+        case 201:
+            title = 'Fitbit verbonden';
+            body = '<span class="success glyphicon glyphicon-ok"></span> De Fitbit is succesvol aan de gebruiker verbonden.';
+            break;
+        case 403:
+            body = 'De Fitbit is niet aan de gebruiker verbonden.<br/>Een Fitbit mag slechts aan één gebruiker verbonden zijn.';
+            break;
+        case 404:
+            body = 'De Fitbit is niet aan de gebruiker verbonden.<br/>Probeer het later nog eens.';
+            break;
+        case 500:
+            body = 'De Fitbit kan nu niet aan de gebruiker verbonden worden.<br/>Probeer het later nog eens.';
+            break;
+        default:
+            // do nothing
+            show = false;
+            break;
+    }
+
+    // show the modal
+    if (show) {
+        $('#modal-connect-title').html(title);
+        $('#modal-connect-body').html(body);
+        $('#modal-connect').modal();
     }
 }

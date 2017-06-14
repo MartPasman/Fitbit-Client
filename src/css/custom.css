@@ -457,3 +457,17 @@ input[type="month"].form-control {
 .panel-body h5 {
     margin: 1em 0 1em 0;
 }
+
+#modal-connect {
+    text-align: center;
+}
+
+#modal-connect-body {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.success {
+    font-size: 2em;
+    color: #49dc90;
+}
