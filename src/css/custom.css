@@ -42,6 +42,14 @@ h2 {
     margin-bottom: 20px;
 }
 
+
+.block-resize {
+    padding: 1em;
+    border-radius: 1em;
+    border: 1px solid #efefef;
+    margin-bottom: 20px;
+}
+
 .block-settings {
     min-height: 500px;
     padding: 1em;
@@ -55,6 +63,7 @@ h2 {
     -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.2);
     box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.2);
 }
+
 
 /* flickering led */
 .led-bad, .led-good {

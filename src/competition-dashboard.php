@@ -1,16 +1,25 @@
 <?php
 $title = "Dashboard";
 include './include/header.php';
+
+
 ?>
-    <link href="../css/scroll.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        html, body {
+            overflow: hidden;
+        }
+    </style>
     <!-- today -->
     <div id="today"></div>
 
-    <div class="container">
+    <div id="test"></div>
+
+    <div class="container-fluid">
         <div id="slides">
 
         </div>
     </div>
+
 
     <!-- JQuery and Bootstrap scripts -->
 <?php include './include/scripts.php'; ?>
