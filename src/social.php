@@ -68,7 +68,7 @@ include './include/header.php';
 
         <!-- Birthdays-->
         <div id="activity-data " class="col-sm-4">
-            <div class="block" id="birthdays">
+            <div class="block-resize" id="birthdays">
                 <h2>Verjaardagen</h2>
                 <hr/>
 
