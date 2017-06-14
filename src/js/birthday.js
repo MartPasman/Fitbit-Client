@@ -65,7 +65,7 @@ function loadBirthdays(users) {
 
             if (a === d) {
                 birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-today'> " +
-                  "<h2>"+  user.firstname + " " + user.lastname + " is vandaag jarig!</h2>" +
+                  "<h3>"+  user.firstname + " " + user.lastname + " is vandaag jarig!</h3>" +
                     "</div><div class='col-xs-4 col-md-3'> <img src='img/birthday-cake.png'" +
                     " class='birthday-cake' alt='Gefeliciteerd'></div>"
             } else {
@@ -87,7 +87,7 @@ function loadBirthdays(users) {
                 }
 
                 birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-one-user'>" +
-                  "<h2>" + user.firstname  + " " + user.lastname + daysUntil + "</h2>" +
+                  "<h3>" + user.firstname  + " " + user.lastname + daysUntil + "</h3>" +
                     "</div><div class='col-xs-4 col-md-3'> <img src='img/almost.png' class='birthday-piece' alt='bijnaJarig'></div> ";
             }
 
