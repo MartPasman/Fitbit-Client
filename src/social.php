@@ -13,6 +13,7 @@ include './include/header.php';
                  aria-valuemin="0" aria-valuemax="100" style="width:45%">
                 <h6 id="sharedgoalh">Gezamenlijk doel</h6>
                 <h4 id="percentage"></h4>
+
             </div>
         </div>
         <!-- Activity data -->

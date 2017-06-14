@@ -220,14 +220,33 @@ function actionsDashboard(data) {
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
                 "<div class='col-xs-12 col-md-6 '>" +
-                "<button value='" + user.id +
-                "' class='btn btn-default edit-inactive' data-toggle='modal' " +
-                "data-target='#edit-modal'>Pas aan</button>" +
+                "<button class='btn btn-default activate' value='"+user.id + "'>Activeer</button>" +
                 "</div> </div><hr/>";
 
             inactiveUserList.append(html);
         }
     }
+
+    $(".activate").click(function () {
+        id = $(this).attr('value');
+        $.ajax({
+            url: REST + '/users/' + id + '/active',
+            method: 'PUT',
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            data: {
+                active:true
+            },
+            statusCode: {
+                200: function (data) {
+                    loadUsers();
+                }
+            }
+        });
+
+    });
+
 
     $(".connect").click(function () {
         id = $(this).attr('value');
@@ -241,6 +260,9 @@ function actionsDashboard(data) {
             statusCode: {
                 201: function (data) {
                     location.replace(data.success);
+                },
+                default: function (err) {
+                    console.log(err.message);
                 }
             }
         });
@@ -254,6 +276,9 @@ function actionsDashboard(data) {
             method: 'POST',
             headers: {
                 Authorization: localStorage.getItem('token')
+            },
+            data: {
+                active:false
             },
             statusCode: {
                 204: function (data) {

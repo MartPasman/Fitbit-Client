@@ -30,26 +30,26 @@
     border-color: #ddd;
 }
 
-.edit, .edit-inactive {
+.edit, .activate {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
     text-decoration: none;
 }
 
-.edit:hover, .edit-inactive:hover {
+.edit:hover, .activate:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.edit:active, .edit-inactive:active {
+.edit:active, .activate:active {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.edit-inactive {
+.activate {
     float: right;
 }
 
