@@ -11,6 +11,7 @@ include './include/header.php';
         <div id="bar-div" class="progress" style="margin-right: 2%; margin-left:2%; height: 40px;">
             <div id="progressBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar"
                  aria-valuemin="0" aria-valuemax="100" style="width:45%">
+                <h6 id="sharedgoalh">Gezamenlijk doel</h6>
                 <h4 id="percentage"></h4>
             </div>
         </div>
