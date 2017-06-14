@@ -64,9 +64,9 @@ function loadBirthdays(users) {
 
 
             if (a === d) {
-                birthdayHTML = "<div class='col-xs-8 col-md-11 birthday-today'> " +
+                birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-today'> " +
                   "<h4>"+  user.firstname + " " + user.lastname + " is vandaag jarig!</h4>" +
-                    "</div><div class='col-xs-4 col-md-1'> <img src='img/birthday-cake.png'" +
+                    "</div><div class='col-xs-4 col-md-3'> <img src='img/birthday-cake.png'" +
                     " class='birthday-cake' alt='Gefeliciteerd'></div>"
             } else {
                 let bday = new Date(user.birthday);
@@ -86,9 +86,9 @@ function loadBirthdays(users) {
                     daysUntil = " was " + Math.abs(days) + " dagen geleden jarig.";
                 }
 
-                birthdayHTML = "<div class='col-xs-8 col-md-11 birthday-one-user'>" +
+                birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-one-user'>" +
                   "<h4>" + user.firstname  + " " + user.lastname + daysUntil + "</h4>" +
-                    "</div><div class='col-xs-4 col-md-1'> <img src='img/almost.png' class='birthday-piece' alt='bijnaJarig'></div> ";
+                    "</div><div class='col-xs-4 col-md-3'> <img src='img/almost.png' class='birthday-piece' alt='bijnaJarig'></div> ";
             }
 
             let html = "<div class='birthday-users row' >" +

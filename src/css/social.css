@@ -24,6 +24,13 @@
     float: right;
 }
 
+.birthday-one-user h4{
+    font-weight: normal !important;
+}
+
+.birthday-today h4 {
+
+}
 
 .birthday-cake {
     height: 80px;
@@ -36,3 +43,4 @@
     height: 60px;
     width: 60px;
 }
+
