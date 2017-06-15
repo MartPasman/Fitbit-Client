@@ -42,7 +42,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-
 .block-resize {
     padding: 1em;
     border-radius: 1em;
@@ -63,7 +62,6 @@ h2 {
     -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.2);
     box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.2);
 }
-
 
 /* flickering led */
 .led-bad, .led-good {
@@ -335,11 +333,10 @@ h2 {
     display: inline;
     width: 200px;
     float: left;
-    -webkit-border-radius: 0 4px 4px 0 ;
-    -moz-border-radius: 0 4px 4px 0 ;
-    border-radius: 0 4px 4px 0 ;
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
 }
-
 
 /* mobile */
 @media all and (max-width: 768px) {
@@ -354,7 +351,7 @@ h2 {
     max-height: 400px;
 }
 
-#userlist hr , #userlist-inactive hr {
+#userlist hr, #userlist-inactive hr {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -491,4 +488,24 @@ input[type="month"].form-control {
 
 #userlist, #lineModalLabel {
     overflow-wrap: break-word;
+}
+
+#perc-span {
+    margin-left: 50%;
+    position: absolute;
+    display: inline;
+}
+
+#progressBar {
+    position: relative;
+    color: #000;
+}
+
+#progress-div {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FFF;
 }
