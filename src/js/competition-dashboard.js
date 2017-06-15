@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     let queries = getQueryParams();
 
-    if(queries.fullscreen == 1){
+    if(+queries.fullscreen == 1){
         navbar.hide();
         resize.removeClass('glyphicon-resize-full');
         resize.addClass('glyphicon-resize-small');
@@ -35,6 +35,15 @@ $(document).ready(function () {
     });
 
 });
+
+function refresh() {
+    var navbar = $('#navbardiv');
+    if (navbar.is(':hidden')) {
+        window.location.replace("/competition-dashboard.php?fullscreen=1");
+    }else{
+        window.location.replace("/competition-dashboard.php?fullscreen=0");
+    }
+}
 
 var loadWithOffset = function (users) {
     $.ajax({

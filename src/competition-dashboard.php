@@ -10,7 +10,7 @@ include './include/header.php';
         }
     </style>
 
-    <meta http-equiv="refresh" content="300; URL=/competition-dashboard.php?fullscreen=1">
+
 
     <link rel="stylesheet" href="./css/weather.css"/>
     <link rel="stylesheet" href="./css/weather-icons.css"/>
@@ -130,6 +130,9 @@ include './include/header.php';
     <script src="js/birthday.js"></script>
     <script src="js/social.js" type="text/javascript"></script>
     <script src="js/nieuws.js"></script>
+    <script>
+        setTimeout(refresh, 10000);
+    </script>
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>
