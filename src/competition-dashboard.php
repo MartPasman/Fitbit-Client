@@ -131,7 +131,7 @@ include './include/header.php';
     <script src="js/social.js" type="text/javascript"></script>
     <script src="js/nieuws.js"></script>
     <script>
-        setTimeout(refresh, 10000);
+        setTimeout(refresh, 5*60000);
     </script>
 
     <!-- end of body -->
