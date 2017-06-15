@@ -362,7 +362,6 @@ h2 {
 
 /* mobile */
 @media all and (max-height: 600px) {
-
     #userlist, #userlist-inactive {
         max-height: 200px;
     }
@@ -518,4 +517,21 @@ input[type="month"].form-control {
 #live-player {
     width: calc(100vw);
     height: calc(100vh - 53px);
+}
+
+#shared-goal-chart {
+    margin-top: 2em;
+}
+
+#shared-goal-chart .block-error {
+    font-size: 2em;
+    padding: 6em 8em;
+}
+
+/* mobile */
+@media all and (max-width: 768px) {
+    #shared-goal-chart .block-error {
+        font-size: 1.8em;
+        padding: 2em 1em;
+    }
 }

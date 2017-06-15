@@ -10,13 +10,12 @@
  * @param valuePrefix   a prefix displayed in front of a value (e.g. $)
  * @param width         the width of the chart
  * @param height        the height of the chart
- * @param extras
  */
-function drawLineChart(selector, data, xName, yName, valuePrefix, width, height, extras) {
+function drawLineChart(selector, data, xName, yName, valuePrefix, width, height) {
     if (selector === undefined || data === undefined || data.length === 0) return console.error("selector parameter or data parameter undefined or empty!");
     if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
 
-    let options = {
+    return $(selector).insertFusionCharts({
         type: 'line',
         width: width,
         height: height,
@@ -31,14 +30,7 @@ function drawLineChart(selector, data, xName, yName, valuePrefix, width, height,
             },
             data: data
         }
-    };
-
-    // add the extras to the options
-    if (extras !== undefined) {
-        jQuery.extend(options, extras);
-    }
-
-    return $(selector).insertFusionCharts(options);
+    });
 }
 
 /**
@@ -75,7 +67,7 @@ function drawColumnChart(selector, data, xName, yName, yes3d, valuePrefix, width
     });
 }
 
-function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
+function drawBarChart(selector, data, xName, yName, valuePrefix, width, height) {
     if (selector === undefined || data === undefined || data.length === 0) return console.error("selector parameter or data parameter undefined or empty!");
     if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
 
@@ -85,17 +77,55 @@ function drawBarChart(selector, data, xName, yName, valuePrefix, width, height){
         height: height,
         dataFormat: 'json',
         dataSource: {
-            chart:{
-                placeValuesInside:1,
+            chart: {
+                placeValuesInside: 1,
                 xAxisName: xName,
                 yAxisName: yName,
                 exportEnabled: 0,
                 numberSuffix: valuePrefix,
-                theme:'goals',
+                theme: 'goals',
                 valueFontColor: "#ffffff",
                 yAxisMaxValue: 100
             },
             data: data
+        }
+    });
+}
+
+/**
+ * Draw a multi series line chart inside the element given with the given data
+ * @param selector      an element to draw it in
+ * @param categories
+ * @param dataset
+ * @param xName         the name displayed at the x-axis
+ * @param yName         the name displayed at the y-axis
+ * @param valuePrefix   a prefix displayed in front of a value (e.g. $)
+ * @param width         the width of the chart
+ * @param height        the height of the chart
+ */
+function drawMultiSeriesLineChart(selector, categories, dataset, xName, yName, valuePrefix, width, height) {
+    if (selector === undefined || categories === undefined || dataset === undefined) return console.error("selector parameter or data parameter undefined or empty!");
+    if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
+
+    console.dir(categories);
+    console.dir(dataset);
+
+    return $(selector).insertFusionCharts({
+        type: 'msline',
+        width: width,
+        height: height,
+        dataFormat: 'json',
+        dataSource: {
+            chart: {
+                xAxisName: xName,
+                yAxisName: yName,
+                exportEnabled: 0,
+                numberPrefix: valuePrefix,
+                theme: 'goals',
+                numVDivLines: categories[0].category.length - 2
+            },
+            categories: categories,
+            dataset: dataset
         }
     });
 }

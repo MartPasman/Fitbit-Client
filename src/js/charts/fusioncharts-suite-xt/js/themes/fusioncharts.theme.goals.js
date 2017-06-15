@@ -55,7 +55,10 @@ FusionCharts.register("theme", {
                 valuePadding: 10,
 
                 anchorRadius: 4,
-                drawAnchors: 1
+                drawAnchors: 1,
+
+                legendShadow: 0,
+                legendBorderThickness: 0
             },
             dataset: [{}],
             trendlines: [{}]
@@ -81,6 +84,18 @@ FusionCharts.register("theme", {
                 valueBorderRadius: 4,
                 valueBgColor: "#fff",
                 lineThickness: 14
+            }
+        },
+        msline: {
+            chart: {
+                valueBorderColor: "#999",
+                valueBorderRadius: 4,
+                valueBgColor: "#fff",
+                lineThickness: 14,
+                baseFontSize: 24,
+                legendIconScale: 2,
+                setAdaptiveYMin: 1,
+                paletteColors: "#aaaaaa, #74DB8A"
             }
         },
         column2d: {
