@@ -19,11 +19,14 @@ $(document).ready(function () {
         },
         statusCode: {
             200: function (data) {
-                $('#show-current-goal').text('Huidige doel: ' + data.goal);
+                $('#show-current-goal').text('Huidige doel: ' + data.goal + " punten.");
                 $('#show-current-days').text('Huidige lengte van de competitie: ' + data.length + " dagen");
                 $('#show-last-goal').text('Doel voor volgende competitie: ' + data.defaultGoal);
-                $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen");
-            },
+                if(data.defaultLength === 1){
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
+                } else {
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
+                }            },
             default: function (err) {
                 console.log(err);
             }
@@ -50,8 +53,12 @@ $(document).ready(function () {
         },
         statusCode: {
             200: function (data) {
-                $('#show-last-goal').text('Volgende competitie: ' + data.defaultGoal + " punten.");
-                $('#show-last-days').text('Volgende competitie: ' + data.defaultLength + " dagen.");
+                $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + " punten.");
+                if(data.defaultLength === 1){
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
+                } else {
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
+                }
             },
             default: function (err) {
                 console.log(err);
@@ -78,7 +85,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-goal').text('Doel voor volgende competitie: ' + goal);
+                        $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
 
                     },
                     404: function (err) {
@@ -112,8 +119,11 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        $('#show-last-days').text('Lengte van de volgende competitie: ' + days + ' dagen');
-
+                        if(days === 1){
+                            $('#show-last-days').text('Aantal punten voor de volgende competitie: ' + days + " dag.");
+                        } else {
+                            $('#show-last-days').text('Lengte van de volgende competitie: ' + days + " dagen.");
+                        }
                     },
                     404: function (err) {
 
@@ -127,6 +137,9 @@ $(document).ready(function () {
     })
 });
 
+/**
+ *
+ */
 function loadUsers() {
     $.ajax({
         url: REST + '/accounts/',
@@ -170,6 +183,10 @@ function loadUsers() {
     });
 }
 
+/**
+ *
+ * @param data
+ */
 function actionsDashboard(data) {
     userList.removeClass("block-error");
     userList.html('');
@@ -220,14 +237,33 @@ function actionsDashboard(data) {
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
                 "<div class='col-xs-12 col-md-6 '>" +
-                "<button value='" + user.id +
-                "' class='btn btn-default edit-inactive' data-toggle='modal' " +
-                "data-target='#edit-modal'>Pas aan</button>" +
+                "<button class='btn btn-default activate' value='"+user.id + "'>Activeer</button>" +
                 "</div> </div><hr/>";
 
             inactiveUserList.append(html);
         }
     }
+
+    $(".activate").click(function () {
+        id = $(this).attr('value');
+        $.ajax({
+            url: REST + '/users/' + id + '/active',
+            method: 'PUT',
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            data: {
+                active:true
+            },
+            statusCode: {
+                200: function (data) {
+                    loadUsers();
+                }
+            }
+        });
+
+    });
+
 
     $(".connect").click(function () {
         id = $(this).attr('value');
@@ -241,6 +277,9 @@ function actionsDashboard(data) {
             statusCode: {
                 201: function (data) {
                     location.replace(data.success);
+                },
+                default: function (err) {
+                    console.log(err.message);
                 }
             }
         });
@@ -254,6 +293,9 @@ function actionsDashboard(data) {
             method: 'POST',
             headers: {
                 Authorization: localStorage.getItem('token')
+            },
+            data: {
+                active:false
             },
             statusCode: {
                 204: function (data) {
@@ -293,6 +335,10 @@ function actionsDashboard(data) {
     });
 }
 
+/**
+ *
+ * @param user
+ */
 function editAccount(user) {
     const existingFirstname = user.firstname;
     const existingLastname = user.lastname;
@@ -412,6 +458,11 @@ function editAccount(user) {
     });
 }
 
+/**
+ *
+ * @param id
+ * @param data
+ */
 function updateUser(id, data) {
 
     if (jQuery.isEmptyObject(data)) {
@@ -462,7 +513,7 @@ function updateUser(id, data) {
 }
 
 /**
- *
+ * Check the query params if a success/error message was passed on from connecting a Fitbit
  */
 function checkQueryParams() {
     const json = getQueryParams();

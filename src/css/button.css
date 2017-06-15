@@ -3,20 +3,35 @@
 
 }
 
-.connect, .btn-primary, .revoke {
+.connect,
+.btn-primary,
+.revoke,
+.edit,
+.edit-inactive,
+.competition-btn {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
     text-decoration: none;
 }
 
-.connect:hover, .btn-primary:hover, .revoke:hover {
+.connect:hover,
+.btn-primary:hover,
+.revoke:hover,
+.edit:hover,
+.edit-inactive:hover,
+.competition-btn:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.connect:active, .btn-primary:active, .revoke:active {
+.connect:active,
+.btn-primary:active,
+.revoke:active,
+.edit:active,
+.edit-inactive:active,
+.competition-btn:active {
     background-color: #FFFFFF !important;
     color: #DC4F62 !important;
     border-color: #DC4F62 !important;
@@ -30,34 +45,30 @@
     border-color: #ddd;
 }
 
-.edit, .edit-inactive {
+.edit, .activate {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
     text-decoration: none;
 }
 
-.edit:hover, .edit-inactive:hover {
+.edit:hover, .activate:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.edit:active, .edit-inactive:active {
+.edit:active, .activate:active {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.edit-inactive {
+.activate {
     float: right;
 }
 
 .competition-btn {
-    background-color: #dc4f62;
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    text-decoration: none;
     text-align: center;
     display: inline;
     padding: 0;
@@ -65,22 +76,6 @@
     width: 40%;
     height: 35px;
     float: right;
-    -webkit-border-radius: 4px 4px 4px 4px;
-    -moz-border-radius: 4px 4px 4px 4px;
-    border-radius: 4px 4px 4px 4px;
-}
-
-.competition-btn:hover {
-    background-color: #FFFFFF;
-    color: #DC4F62;
-    border-color: #DC4F62;
-}
-
-.competition-btn:active {
-
-    background-color: #FFFFFF;
-    color: #DC4F62;
-    border-color: #DC4F62;
 }
 
 #pdf {
@@ -136,13 +131,4 @@
     .competition-btn {
         width: 20%;
     }
-
 }
-
-
-
-
-
-
-
-

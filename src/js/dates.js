@@ -57,5 +57,14 @@ function today() {
  */
 function getDaysBetween(start, end) {
     const oneDay = 24 * 60 * 60 * 1000;
-    return Math.round((start.getTime() - end.getTime()) / (oneDay));
+    return Math.ceil((start.getTime() - end.getTime()) / (oneDay));
+}
+
+/**
+ * Get the date in UTC format with current year
+ * @param birthdate
+ * @return {number}
+ */
+function getCompareDate(birthdate) {
+    return Date.UTC(new Date().getFullYear(), birthdate.getMonth(), birthdate.getDate(), 0, 0, 0, 0);
 }
