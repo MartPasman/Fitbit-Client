@@ -3,6 +3,20 @@ $title = "Dashboard";
 include './include/header.php';
 
 
+// Amsterdam Dam
+$amsterdam = 'https://www.youtube.com/embed/vpm16w3ik0g';
+
+// Elephants
+$elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
+
+// Bears
+$bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
+
+// More
+// https://www.youtube.com/user/exploreTeam
+$input = array($amsterdam,$elephants,$bears);
+$rand_keys = array_rand($input);
+$url = $input[$rand_keys];
 ?>
     <style type="text/css">
         html, body {
@@ -113,6 +127,14 @@ include './include/header.php';
                     </div>
                 </div>
             </div>
+            <div id="live-player-container" style="overflow: hidden;">
+
+                <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
+                        src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
+
+                </iframe>
+
+            </div>
         </div>
     </div>
 
@@ -131,7 +153,7 @@ include './include/header.php';
     <script src="js/social.js" type="text/javascript"></script>
     <script src="js/nieuws.js"></script>
     <script>
-        setTimeout(refresh, 5*60000);
+        setTimeout(refresh, 300000);
     </script>
 
     <!-- end of body -->
