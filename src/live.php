@@ -8,7 +8,10 @@ $amsterdam = 'https://www.youtube.com/embed/vpm16w3ik0g';
 // Elephants
 $elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
 
-$url = $amsterdam;
+// Bears
+$bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
+
+$url = $bears;
 ?>
     <!-- today -->
     <div id="today-cover"></div>
