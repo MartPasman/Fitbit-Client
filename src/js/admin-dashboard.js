@@ -34,8 +34,8 @@ $(document).ready(function () {
         }
     });
 
-    $('#success-competition').hide();
-    $('#error-competition').hide();
+    $('#success-competition').addClass('hidden');
+    $('#error-competition').addClass('hidden');
     modal = $('#modal-account-error');
     editModal = $('#edit-modal');
     accountModal = $('#account-modal');
@@ -70,24 +70,24 @@ $(document).ready(function () {
     $('#comp-submit-button').click(function () {
         let goal = $('#default_goal').val();
         if (goal === '') {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een getal in.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else if (goal < 0) {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een getal in groter dan 0.');
-            $('#error-competition').show();
+            $('#error-competition').removeclass('hidden');
         } else if (goal > 999999999) {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Te hoog getal.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else if (isNaN(goal)) {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een geldig getal in.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else {
             $.ajax({
-                url: REST + '/competitions/' + 'lastgoal',
+                url: REST + '/competitions/' + 'changegoal',
                 method: 'PUT',
                 headers: {
                     Authorization: localStorage.getItem('token')
@@ -97,8 +97,8 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     201: function (data) {
-                        $('#error-competition').hide();
-                        $('#success-competition').show();
+                        $('#error-competition').addClass('hidden');
+                        $('#success-competition').removeClass('hidden');
                         $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
 
                     },
@@ -116,24 +116,24 @@ $(document).ready(function () {
     $('#comp-days-submit-button').click(function () {
         let days = $('#default-days').val();
         if (days === '') {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een getal in.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else if (days < 0) {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een getal in groter dan 0.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else if (days > 999999999) {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Te hoog getal.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else if (isNaN(days)) {
-            $('#success-competition').hide();
+            $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een geldig getal in.');
-            $('#error-competition').show();
+            $('#error-competition').removeClass('hidden');
         } else {
             $.ajax({
-                url: REST + '/competitions/' + 'lastlength',
+                url: REST + '/competitions/' + 'changelength',
                 method: 'PUT',
                 headers: {
                     Authorization: localStorage.getItem('token')
@@ -144,8 +144,8 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     201: function (data) {
-                        $('#error-competition').hide();
-                        $('#success-competition').show();
+                        $('#error-competition').addClass('hidden');
+                        $('#success-competition').removeClass('hidden');
                         if (days === 1) {
                             $('#show-last-days').text('Aantal punten voor de volgende competitie: ' + days + " dag.");
                         } else {
@@ -374,18 +374,18 @@ function editAccount(user) {
     let month = existingBirthday.getMonth() + 1;
     existingBirthday = existingBirthday.getDate() + '/' + month + '/' + existingBirthday.getFullYear();
 
-    errorMessageEdit.hide();
-    successMessageEdit.hide();
+    errorMessageEdit.addClass('hidden');
+    successMessageEdit.addClass('hidden');
 
     if (user === undefined) {
         errorMessageEdit.html("Deelnemer is niet gevonden.");
-        errorMessageEdit.show();
+        errorMessageEdit.removeClass('hidden');
 
-        $("#edit-handicap-dropdown").hide();
+        $("#edit-handicap-dropdown").addClass('hidden');
 
-        $("#edit-firstname").hide();
-        $("#edit-lastname").hide();
-        $("#edit-birthday").hide();
+        $("#edit-firstname").addClass('hidden');
+        $("#edit-lastname").addClass('hidden');
+        $("#edit-birthday").addClass('hidden');
 
     } else {
         $("#lineModalLabel").html("Pas account aan van " + user.firstname + " " + user.lastname);
@@ -443,7 +443,7 @@ function editAccount(user) {
         if (firstname === '' || lastname === '' ||
             birthday === '' || handicap === undefined) {
             errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
-            errorMessageEdit.show();
+            errorMessageEdit.removeClass('hidden');
         } else {
             let data = {};
 
@@ -471,7 +471,7 @@ function editAccount(user) {
             if (password1 && password2) {
                 if (password1 !== password2 || password1.length < 8) {
                     errorMessageEdit.text("Wachtwoorden komen niet overeen of zijn niet lang genoeg (minimaal 8 tekens lang).");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                     return;
                 } else {
                     data.password = password1;
@@ -479,7 +479,7 @@ function editAccount(user) {
             }
 
             updateUser(user.id, data);
-            successMessageEdit.hide();
+            successMessageEdit.addClass('hidden');
         }
 
     });
@@ -494,7 +494,7 @@ function updateUser(id, data) {
 
     if (jQuery.isEmptyObject(data)) {
         errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
-        errorMessageEdit.show();
+        errorMessageEdit.removeClass('hidden');
     } else {
 
         $.ajax({
@@ -507,32 +507,32 @@ function updateUser(id, data) {
             statusCode: {
                 200: function (data) {
                     successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
-                    successMessageEdit.show();
+                    successMessageEdit.removeClass('hidden');
                     loadUsers();
                 },
                 400: function (err) {
                     errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                 },
                 401: function (err) {
                     errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                 },
                 403: function (err) {
                     errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                 },
                 404: function (err) {
                     errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                 },
                 500: function (err) {
                     errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                 },
                 default: function (err) {
                     errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
-                    errorMessageEdit.show();
+                    errorMessageEdit.removeClass('hidden');
                 }
             }
         });
