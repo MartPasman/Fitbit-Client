@@ -19,11 +19,14 @@ $(document).ready(function () {
         },
         statusCode: {
             200: function (data) {
-                $('#show-current-goal').text('Huidige doel: ' + data.goal);
+                $('#show-current-goal').text('Huidige doel: ' + data.goal + " punten.");
                 $('#show-current-days').text('Huidige lengte van de competitie: ' + data.length + " dagen");
                 $('#show-last-goal').text('Doel voor volgende competitie: ' + data.defaultGoal);
-                $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen");
-            },
+                if(data.defaultLength === 1){
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
+                } else {
+                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
+                }            },
             default: function (err) {
                 console.log(err);
             }

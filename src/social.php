@@ -11,16 +11,20 @@ include './include/header.php';
 
 
     <div class="container-fluid">
-        <div id="bar-div" class="progress" style="margin-right: 2%; margin-left:2%; height: 40px;">
+        <div id="bar-div" class="progress" style="height: 50px;">
+            <span id="perc-span"><h4 id="percentage"></h4></span>
             <div id="progressBar" class="progress-bar progress-bar-danger  progress-bar-striped active"
                  role="progressbar"
-                 aria-valuemin="0" aria-valuemax="100" style="width:45%">
-                <h3 id="sharedgoalh">Gezamenlijk doel</h3>
-                <h4 id="percentage"></h4>
+                 aria-valuemin="0" aria-valuemax="100">
+                <div id="progress-div">
+                    <h3 id="sharedgoalh">Doelstelling</h3>
+                </div>
+                <h3 id="sharedgoalh">Doelstelling</h3>
 
             </div>
+
         </div>
-        <!-- Activity data -->
+
         <div id="activity-data" class="col-sm-4">
             <div class="block-resize" id="news">
 

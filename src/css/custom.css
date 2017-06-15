@@ -490,6 +490,26 @@ input[type="month"].form-control {
     overflow-wrap: break-word;
 }
 
+#perc-span {
+    margin-left: 50%;
+    position: absolute;
+    display: inline;
+}
+
+#progress-bar {
+    position: relative;
+    color: #000;
+}
+
+#progress-div {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FFF;
+}
+
 #live-player-container {
     height: calc(100vh - 53px);
     overflow: hidden;
