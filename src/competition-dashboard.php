@@ -28,7 +28,7 @@ include './include/header.php';
     <script src="js/competition-dashboard.js"></script>
 
     <!-- SlidesJS Required: Link to jquery.slides.js -->
-    <script src="../js/jquery.slides.js"></script>
+    <script src="/js/jquery.slides.js"></script>
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>

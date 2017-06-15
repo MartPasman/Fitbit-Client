@@ -73,24 +73,8 @@ include './include/header.php';
                 <h2>Verjaardagen</h2>
                 <hr/>
 
-                <h3 id="no-birthdays">Niemand is jarig deze week</h3>
+                <h3 id="no-birthdays">Niemand is deze week jarig</h3>
 
-                <!--                <div class='birthday-user row'>-->
-                <!--                    <div class='col-xs-11 col-md-11  birthday-today'> Romy Beugeling is vandaag jarig-->
-                <!--                    </div>-->
-                <!--                    <div class="col-xs-1 col-md-1 ">-->
-                <!--                        <img src="img/birthday-cake.png" class="birthday-cake" alt="Gefeliciteerd" height="80" width="80">-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <hr/>-->
-                <!---->
-                <!--                <div class='birthday-user row'>-->
-                <!--                    <div class='col-xs-12 col-md-12  birthday-user'> Romy Beugeling is morgen jarig-->
-                <!--                        <img src="img/almost.png" id="birthday-piece" alt="Gefeliciteerd" height="60" width="60">-->
-                <!--                    </div>-->
-                <!---->
-                <!--                </div>-->
-                <!--                <hr/>-->
 
                 <!-- TODO max 7 mensen per week -->
 

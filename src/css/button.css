@@ -7,11 +7,11 @@
 .btn-primary,
 .revoke,
 .edit,
-.edit-inactive,
+.activate,
 .competition-btn {
     background-color: #DC4F62;
     color: #FFFFFF;
-    border-color: #FFFFFF;
+    border-color: #f5f5f5;
     text-decoration: none;
 }
 
@@ -19,7 +19,7 @@
 .btn-primary:hover,
 .revoke:hover,
 .edit:hover,
-.edit-inactive:hover,
+.activate:hover,
 .competition-btn:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
@@ -30,7 +30,7 @@
 .btn-primary:active,
 .revoke:active,
 .edit:active,
-.edit-inactive:active,
+.activate:active,
 .competition-btn:active {
     background-color: #FFFFFF !important;
     color: #DC4F62 !important;
@@ -43,25 +43,6 @@
     background-color: #fff;
     color: #333;
     border-color: #ddd;
-}
-
-.edit, .activate {
-    background-color: #DC4F62;
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    text-decoration: none;
-}
-
-.edit:hover, .activate:hover {
-    background-color: #FFFFFF;
-    color: #DC4F62;
-    border-color: #DC4F62;
-}
-
-.edit:active, .activate:active {
-    background-color: #FFFFFF;
-    color: #DC4F62;
-    border-color: #DC4F62;
 }
 
 .activate {
@@ -107,6 +88,33 @@
 .link-button:active {
     color: #C9495A !important;
 }
+
+/* Hide the Check icon on a selected radio div */
+.btn-export > .radio-div,
+.radio-select
+{
+    opacity: 0;
+}
+
+.user:hover > .radio-select {
+    color: #ccc;
+    opacity: 1;
+}
+
+/* Show the Check icon on a selected radio div */
+.selected > .radio-div,
+.selected > .radio-select {
+    opacity: 1;
+    color: black !important;
+}
+
+/* Div inside a btn-export that has the icon that reflects the radio behaviour */
+.radio-div {
+    margin-top: .2em;
+    font-size: 2em;
+    padding-left: 5px;
+}
+
 
 @media (max-width: 1200px) {
     .competition-btn {

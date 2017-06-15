@@ -7,8 +7,12 @@ let errorMessageEdit;
 let successMessageEdit;
 let userList;
 
-$(document).ready(function () {
+let editButton;
+let pdfButton;
+let connectButton;
+let revokeButton;
 
+$(document).ready(function () {
     checkQueryParams();
 
     $.ajax({
@@ -39,6 +43,11 @@ $(document).ready(function () {
     successMessageEdit = $('#success-message-edit');
     userList = $("#userlist");
     inactiveUserList = $('#userlist-inactive');
+
+    editButton = $('.edit');
+    pdfButton = $('.pdf');
+    connectButton = $('.connect');
+    revokeButton = $('.revoke');
 
     loadUsers();
 
@@ -181,7 +190,6 @@ function actionsDashboard(data) {
     userList.removeClass("block-error");
     userList.html('');
     inactiveUserList.html('');
-    let id;
 
     const users = data.success;
     for (let i = 0; i < users.length; i++) {
@@ -189,50 +197,155 @@ function actionsDashboard(data) {
         let connected;
 
         if (user.active) {
-            if (user.fitbit === undefined) {
-                connected = "<button value='" + user.id +
-                    "' class='btn btn-default connect'>Koppel Fitbit</button>" +
-                    "<button value='" + user.id +
-                    "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
-            } else {
-                connected = "<button value='" + user.id +
-                    "' class='btn btn-default edit pdf'>Exporteer</button>" + "<button value='" + user.id +
-                    "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
-                    "<button value='" + user.id +
-                    "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
-            }
 
-            let html = "<div class='user row' >" +
-                "<div class='col-xs-12 col-md-5 one-user' " +
+            let html = "<div class='user row'>" +
+                "<div class='col-xs-11 col-md-11 one-user' " +
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-                "<div class='col-xs-12 col-md-7'>" +
-                "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-                "data-target='#edit-modal'>Pas aan</button>"
-                + connected +
-                "</div> </div> <hr/>";
+                "<div class='col-xs-1 col-md-1 glyphicon glyphicon-ok radio-select'></div>" +
+                "<input type='hidden' value='" + user.id + "'/></div><hr/>";
+
+
+            //
+            // if (user.fitbit === undefined) {
+            //     connected = "<button value='" + user.id +
+            //         "' class='btn btn-default connect'>Koppel Fitbit</button>" +
+            //         "<button value='" + user.id +
+            //         "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
+            // } else {
+            //     connected = "<button value='" + user.id +
+            //         "' class='btn btn-default edit pdf'>Exporteer</button>" + "<button value='" + user.id +
+            //         "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
+            //         "<button value='" + user.id +
+            //         "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
+            // }
+
+            // let html = "<div class='user row' >" +
+            //     "<div class='col-xs-12 col-md-5 one-user' " +
+            //     "<span class='glyphicon glyphicon-user'></span>" +
+            //     user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
+            //     "<div class='col-xs-12 col-md-7'>" +
+            //     "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
+            //     "data-target='#edit-modal'>Pas aan</button>"
+            //     + connected +
+            //     "</div> </div> <hr/>";
 
             userList.append(html);
-        }
-    }
-
-    $("#modal").load('./include/export.php');
-
-    for (i = 0; i < users.length; i++) {
-        let user = users[i];
-
-        if (!user.active) {
-            let html = "<div class='user row' >" +
+        } else {
+            let inactiveHtml = "<div class='user row' >" +
                 "<div class='col-xs-12 col-md-6 one-user' " +
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
                 "<div class='col-xs-12 col-md-6 '>" +
-                "<button class='btn btn-default activate' value='"+user.id + "'>Activeer</button>" +
+                "<button class='btn btn-default activate' value='" + user.id + "'>Activeer</button>" +
                 "</div> </div><hr/>";
 
-            inactiveUserList.append(html);
+            inactiveUserList.append(inactiveHtml);
         }
+
     }
+
+    /**
+     * Update the 'radio' select button
+     */
+    $('.user').on('click', function () {
+        console.dir("opnieuw");
+        $('.user').removeClass('selected');
+        $(this).addClass('selected');
+
+        let user = undefined;
+
+        let id = $(this).find('input[type=hidden]').val();
+
+
+        console.dir(id);
+
+        for (let i = 0; i < users.length; i++) {
+            if (parseInt(users[i].id) === parseInt(id)) {
+                user = users[i];
+            }
+        }
+        console.dir("hier ");
+        console.dir( user);
+
+        editButton.removeAttr('disabled');
+
+        if (user.fitbit !== undefined && user.fitbit !== null) {
+            revokeButton.removeClass('hidden');
+            pdfButton.removeClass('hidden');
+            connectButton.addClass('hidden');
+            pdfButton.attr('value', user.id);
+        } else {
+            connectButton.removeClass('hidden');
+            pdfButton.addClass('hidden');
+            revokeButton.addClass('hidden');
+        }
+
+
+        $("#modal").load('./include/export.php');
+
+        $(".connect").click(function () {
+
+            $.ajax({
+                url: REST + '/accounts/' + user.id + '/connect',
+                method: 'GET',
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                },
+                statusCode: {
+                    201: function (data) {
+                        location.replace(data.success);
+                    },
+                    default: function (err) {
+                        console.log(err.message);
+                    }
+                }
+            });
+        });
+
+        $(".revoke").click(function () {
+
+            $.ajax({
+                url: REST + '/accounts/' + user.id + '/revoke',
+                method: 'POST',
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                },
+                data: {
+                    active: false
+                },
+                statusCode: {
+                    204: function (data) {
+                        loadUsers();
+                    },
+                    401: function () {
+                        location.replace("index.php");
+                    },
+                    default: function (err) {
+                        console.error(err.error);
+                    }
+                }
+            });
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#new-account").click(function () {
+            accountModal.modal();
+        });
+
+        console.dir("hier niks" + user.id);
+
+        $(".edit").click(function () {
+            console.dir("hier twee id's" + user.id);
+            editAccount(user);
+        });
+
+        editModal.on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+        });
+    });
+
 
     $(".activate").click(function () {
         id = $(this).attr('value');
@@ -243,7 +356,7 @@ function actionsDashboard(data) {
                 Authorization: localStorage.getItem('token')
             },
             data: {
-                active:true
+                active: true
             },
             statusCode: {
                 200: function (data) {
@@ -254,75 +367,6 @@ function actionsDashboard(data) {
 
     });
 
-
-    $(".connect").click(function () {
-        id = $(this).attr('value');
-
-        $.ajax({
-            url: REST + '/accounts/' + id + '/connect',
-            method: 'GET',
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            statusCode: {
-                201: function (data) {
-                    location.replace(data.success);
-                },
-                default: function (err) {
-                    console.log(err.message);
-                }
-            }
-        });
-    });
-
-    $(".revoke").click(function () {
-        id = $(this).attr('value');
-
-        $.ajax({
-            url: REST + '/accounts/' + id + '/revoke',
-            method: 'POST',
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            data: {
-                active:false
-            },
-            statusCode: {
-                204: function (data) {
-                    loadUsers();
-                },
-                401: function () {
-                    location.replace("index.php");
-                },
-                default: function (err) {
-                    console.error(err.error);
-                    loadUsers();
-                }
-            }
-        });
-    });
-
-    $('[data-toggle="tooltip"]').tooltip();
-
-    $("#accountbtn").click(function () {
-        accountModal.modal();
-    });
-
-    $(".edit").click(function () {
-        id = $(this).attr('value');
-        let user = undefined;
-
-        for (let i = 0; i < users.length; i++) {
-            if (parseInt(users[i].id) === parseInt(id)) {
-                user = users[i];
-            }
-        }
-        editAccount(user);
-    });
-
-    editModal.on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-    });
 }
 
 /**
@@ -395,7 +439,15 @@ function editAccount(user) {
         }
     });
 
+
+    editModal.on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        //todo user.id weghalen?
+    });
+
+
     $("#edit-save-button").click(function () {
+
         const firstname = $('#edit-firstname').val();
         const lastname = $('#edit-lastname').val();
         const password1 = $('#edit-password').val();
@@ -441,6 +493,7 @@ function editAccount(user) {
                 }
             }
 
+
             updateUser(user.id, data);
             successMessageEdit.hide();
         }
@@ -454,52 +507,53 @@ function editAccount(user) {
  * @param data
  */
 function updateUser(id, data) {
+    // console.dir(id);
 
-    if (jQuery.isEmptyObject(data)) {
-        errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
-        errorMessageEdit.show();
-    } else {
-
-        $.ajax({
-            url: REST + '/users/' + id,
-            method: 'PUT',
-            data: data,
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            statusCode: {
-                200: function (data) {
-                    successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
-                    successMessageEdit.show();
-                    loadUsers();
-                },
-                400: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
-                    errorMessageEdit.show();
-                },
-                401: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
-                    errorMessageEdit.show();
-                },
-                403: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
-                    errorMessageEdit.show();
-                },
-                404: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
-                    errorMessageEdit.show();
-                },
-                500: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
-                    errorMessageEdit.show();
-                },
-                default: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
-                    errorMessageEdit.show();
-                }
-            }
-        });
-    }
+    // if (jQuery.isEmptyObject(data)) {
+    //     errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
+    //     errorMessageEdit.show();
+    // } else {
+    //
+    //     $.ajax({
+    //         url: REST + '/users/' + id,
+    //         method: 'PUT',
+    //         data: data,
+    //         headers: {
+    //             Authorization: localStorage.getItem('token')
+    //         },
+    //         statusCode: {
+    //             200: function (data) {
+    //                 successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
+    //                 successMessageEdit.show();
+    //                 loadUsers();
+    //             },
+    //             400: function (err) {
+    //                 errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
+    //                 errorMessageEdit.show();
+    //             },
+    //             401: function (err) {
+    //                 errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
+    //                 errorMessageEdit.show();
+    //             },
+    //             403: function (err) {
+    //                 errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+    //                 errorMessageEdit.show();
+    //             },
+    //             404: function (err) {
+    //                 errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
+    //                 errorMessageEdit.show();
+    //             },
+    //             500: function (err) {
+    //                 errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
+    //                 errorMessageEdit.show();
+    //             },
+    //             default: function (err) {
+    //                 errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
+    //                 errorMessageEdit.show();
+    //             }
+    //         }
+    //     });
+    // }
 }
 
 /**
@@ -540,3 +594,5 @@ function checkQueryParams() {
         $('#modal-connect').modal();
     }
 }
+
+

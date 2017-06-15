@@ -32,11 +32,21 @@ include './include/header.php';
                     <div class="panel-heading"
                     <h3 class="panel-title"><strong>Deelnemers</strong></h3>
 
-                    <a class="link-button" id="accountbtn">Nieuw account aanmaken</a>
+                    <a class="link-button" id="new-account">Nieuw account aanmaken</a>
                 </div>
 
                 <div class="panel-body" id="userlist">
                 </div>
+                <footer class="panel-footer">
+                    <!-- TODO: exporteer class veranderen -->
+                    <button value="" class='btn btn-default edit' data-toggle='modal' disabled data-target='#edit-modal'>Pas aan</button>
+                    <!--TODO: edit weghalen exporteerknop-->
+                    <button value="" class='btn btn-default hidden edit pdf' >Exporteer</button>
+                    <button value="" class="btn btn-default hidden connect" >Koppel Fitbit</button>
+                    <button value="" class="btn btn-default hidden revoke"  >Ontkoppel Fitbit</button>
+
+
+                </footer>
             </div>
         </div>
 
@@ -49,6 +59,7 @@ include './include/header.php';
 
                 <div class="panel-body" id="userlist-inactive">
                 </div>
+
             </div>
         </div>
     </div>

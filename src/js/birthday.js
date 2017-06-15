@@ -40,6 +40,8 @@ function loadBirthdays(users) {
             let userBirthday = getCompareDate(new Date(user.birthday));
             let dateToday = getCompareDate(new Date());
 
+
+
             console.dir(new Date(user.birthday) + " " + new Date());
             if (userBirthday === dateToday) {
                 birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-today'> " +
