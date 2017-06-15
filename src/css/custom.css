@@ -509,3 +509,13 @@ input[type="month"].form-control {
     white-space: nowrap;
     color: #FFF;
 }
+
+#live-player-container {
+    height: calc(100vh - 53px);
+    overflow: hidden;
+}
+
+#live-player {
+    width: calc(100vw);
+    height: calc(100vh - 53px);
+}
