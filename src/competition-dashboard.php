@@ -10,6 +10,8 @@ include './include/header.php';
         }
     </style>
 
+    <meta http-equiv="refresh" content="300; URL=/competition-dashboard.php?fullscreen=1">
+
     <link rel="stylesheet" href="./css/weather.css"/>
     <link rel="stylesheet" href="./css/weather-icons.css"/>
     <link rel="stylesheet" href="css/social.css">
