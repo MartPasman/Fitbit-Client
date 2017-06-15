@@ -71,43 +71,43 @@ $(document).ready(function () {
                     case 15:
                     case 14:
                     case 13:
-                        conditionText.html("Sneeuw");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#1E8BC3');
                         break;
                     case 26:
                     case 30:
                     case 34:
                     case 44:
-                        conditionText.html("Half bewolkt");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#59ABE3');
                         break;
                     case 32:
-                        conditionText.html("Zonnig");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#6BB9F0');
                         break;
                     case 29:
-                        conditionText.html("Half bewolkt");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#22313F');
                         break;
                     case 31:
-                        conditionText.html("Heldere nacht");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#1F3A93');
                         break;
                     case 27:
-                        conditionText.html("Bewolkt");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#22313F');
                         break;
                     case 28:
-                        conditionText.html("Bewolkt");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#3498DB');
                         break;
                     case 10:
                     case 35:
-                        conditionText.html("Regen");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#3498DB');
                         break;
                     default:
-                        conditionText.html("Storm");
+                        conditionText.html(getText(condition));
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#67809F');
                         break;
                 }
@@ -256,4 +256,133 @@ function getIconClass(code) {
             break;
     }
     return cssClass;
+}
+
+function getText(code) {
+    let text;
+    switch (+code) {
+        case 0:
+            text = "Tornado";
+            break;
+        case 1:
+            text = "Storm";
+            break;
+        case 2:
+            text = "Orkaan";
+            break;
+        case 3:
+            text = "Hevige onweer";
+            break;
+        case 4:
+            text = "Onweer";
+            break;
+        case 5:
+            text = "Natte sneeuw";
+            break;
+        case 6:
+        case 7:
+        case 8:
+            text = "IJzel";
+            break;
+        case 9:
+            text = "Motregen";
+            break;
+        case 10:
+            text = "Regen";
+            break;
+        case 11:
+        case 12:
+            text = "Regenbuien";
+            break;
+        case 13:
+        case 16:
+            text = "Sneeuw";
+            break;
+        case 14:
+            text = "Lichte sneeuwval";
+            break;
+        case 15:
+            text = "Opwaaiende sneeuw";
+            break;
+        case 17:
+            text = "Hagel";
+            break;
+        case 18:
+            text = "IJzel";
+            break;
+        case 19:
+            text = "Stof";
+            break;
+        case 20:
+        case 21:
+            text = "Mist";
+            break;
+        case 22:
+            text = "Rook";
+            break;
+        case 23:
+            text = "Heet";
+            break;
+        case 24:
+            text = "Harde wind";
+            break;
+        case 25:
+            text = "Koud";
+            break;
+        case 26:
+            text = "Bewolkt";
+            break;
+        case 27:
+        case 28:
+            text = "Erg bewolkt";
+            break;
+        case 29:
+        case 30:
+            text = "Half bewolkt";
+            break;
+        case 31:
+            text = "Helder";
+            break;
+        case 32:
+            text = "Zonnig";
+            break;
+        case 33:
+        case 34:
+            text = "Wolken";
+            break;
+        case 35:
+            text = "Hagel en regen";
+            break;
+        case 36:
+            text = "Warm";
+            break;
+        case 37:
+        case 38:
+        case 39:
+            text = "Onweer";
+            break;
+        case 40:
+            text = "Regenbuien";
+            break;
+        case 41:
+        case 42:
+        case 43:
+            text = "Hevige sneeuw";
+            break;
+        case 44:
+            text = "Half bewolkt";
+            break;
+        case 45:
+        case 47:
+            text = "Onweersbuien";
+            break;
+        case 46:
+            text = "Sneeuwstorm";
+            break;
+        case 3200:
+        default:
+            text = "Weer";
+            break;
+    }
+    return text;
 }
