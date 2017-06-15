@@ -22,11 +22,12 @@ $(document).ready(function () {
                 $('#show-current-goal').text('Huidige doel: ' + data.goal + " punten.");
                 $('#show-current-days').text('Huidige lengte van de competitie: ' + data.length + " dagen");
                 $('#show-last-goal').text('Doel voor volgende competitie: ' + data.defaultGoal);
-                if(data.defaultLength === 1){
+                if (data.defaultLength === 1) {
                     $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
                 } else {
                     $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
-                }            },
+                }
+            },
             default: function (err) {
                 console.log(err);
             }
@@ -54,7 +55,7 @@ $(document).ready(function () {
         statusCode: {
             200: function (data) {
                 $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + " punten.");
-                if(data.defaultLength === 1){
+                if (data.defaultLength === 1) {
                     $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
                 } else {
                     $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
@@ -68,8 +69,21 @@ $(document).ready(function () {
 
     $('#comp-submit-button').click(function () {
         let goal = $('#default_goal').val();
-        if (goal === '' || goal < 0 || goal > 999999999) {
+        if (goal === '') {
             $('#success-competition').hide();
+            $('#error-competition').text('Voer een getal in.');
+            $('#error-competition').show();
+        } else if (goal < 0) {
+            $('#success-competition').hide();
+            $('#error-competition').text('Voer een getal in groter dan 0.');
+            $('#error-competition').show();
+        } else if (goal > 999999999) {
+            $('#success-competition').hide();
+            $('#error-competition').text('Te hoog getal.');
+            $('#error-competition').show();
+        } else if (isNaN(goal)) {
+            $('#success-competition').hide();
+            $('#error-competition').text('Voer een geldig getal in.');
             $('#error-competition').show();
         } else {
             $.ajax({
@@ -101,8 +115,21 @@ $(document).ready(function () {
 
     $('#comp-days-submit-button').click(function () {
         let days = $('#default-days').val();
-        if (days === '' || days < 0 || days > 365) {
+        if (days === '') {
             $('#success-competition').hide();
+            $('#error-competition').text('Voer een getal in.');
+            $('#error-competition').show();
+        } else if (days < 0) {
+            $('#success-competition').hide();
+            $('#error-competition').text('Voer een getal in groter dan 0.');
+            $('#error-competition').show();
+        } else if (days > 999999999) {
+            $('#success-competition').hide();
+            $('#error-competition').text('Te hoog getal.');
+            $('#error-competition').show();
+        } else if (isNaN(days)) {
+            $('#success-competition').hide();
+            $('#error-competition').text('Voer een geldig getal in.');
             $('#error-competition').show();
         } else {
             $.ajax({
@@ -119,7 +146,7 @@ $(document).ready(function () {
                     201: function (data) {
                         $('#error-competition').hide();
                         $('#success-competition').show();
-                        if(days === 1){
+                        if (days === 1) {
                             $('#show-last-days').text('Aantal punten voor de volgende competitie: ' + days + " dag.");
                         } else {
                             $('#show-last-days').text('Lengte van de volgende competitie: ' + days + " dagen.");
@@ -237,7 +264,7 @@ function actionsDashboard(data) {
                 "<span class='glyphicon glyphicon-user'></span>" +
                 user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
                 "<div class='col-xs-12 col-md-6 '>" +
-                "<button class='btn btn-default activate' value='"+user.id + "'>Activeer</button>" +
+                "<button class='btn btn-default activate' value='" + user.id + "'>Activeer</button>" +
                 "</div> </div><hr/>";
 
             inactiveUserList.append(html);
@@ -253,7 +280,7 @@ function actionsDashboard(data) {
                 Authorization: localStorage.getItem('token')
             },
             data: {
-                active:true
+                active: true
             },
             statusCode: {
                 200: function (data) {
@@ -295,7 +322,7 @@ function actionsDashboard(data) {
                 Authorization: localStorage.getItem('token')
             },
             data: {
-                active:false
+                active: false
             },
             statusCode: {
                 204: function (data) {

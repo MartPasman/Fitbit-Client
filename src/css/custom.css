@@ -496,7 +496,7 @@ input[type="month"].form-control {
     display: inline;
 }
 
-#progressBar {
+#progress-bar {
     position: relative;
     color: #000;
 }
