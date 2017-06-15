@@ -1,40 +1,6 @@
 $(document).ready(function () {
-    $('#today').html(getTodaysDate());
 
-    // TODO: get from AJAX call
-    const data = [
-        {
-            goal: 100000,
-            score: 111000,
-            period: '30/05 - 05/06',
-        },
-        {
-            goal: 120000,
-            score: 124000,
-            period: '06/06 - 12/06',
-        },
-        {
-            goal: 130000,
-            score: 132000,
-            period: '13/05 - 19/06',
-        },
-        {
-            goal: 135000,
-            score: 133000,
-            period: '20/05 - 26/06',
-        },
-        {
-            goal: 140000,
-            score: 136000,
-            period: '27/05 - 03/07',
-        },
-        {
-            goal: 135000,
-            score: 94000,
-            period: '04/07 - 10/07',
-        }
-    ];
-
+    // get the shared goals
     $.ajax({
         url: REST + '/competitions/shared',
         method: 'GET',
