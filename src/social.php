@@ -13,7 +13,7 @@ include './include/header.php';
     <div class="container-fluid">
         <div id="bar-div" class="progress" style="height: 50px;">
             <span id="perc-span"><h4 id="percentage"></h4></span>
-            <div id="progressBar" class="progress-bar progress-bar-danger  progress-bar-striped active"
+            <div id="progress-bar" class="progress-bar progress-bar-danger  progress-bar-striped active"
                  role="progressbar"
                  aria-valuemin="0" aria-valuemax="100">
                 <div id="progress-div">

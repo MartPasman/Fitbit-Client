@@ -5,7 +5,7 @@
 
 $(document).ready(function () {
 
-    let progressBar = $('#progressBar');
+    let progressBar = $('#progress-bar');
 
     //get percentage
     $.ajax({
