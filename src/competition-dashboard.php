@@ -14,7 +14,7 @@ $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
 // More
 // https://www.youtube.com/user/exploreTeam
-$input = array($amsterdam,$elephants,$bears);
+$input = array($amsterdam, $elephants, $bears);
 $rand_keys = array_rand($input);
 $url = $input[$rand_keys];
 ?>
@@ -23,7 +23,6 @@ $url = $input[$rand_keys];
             overflow: hidden;
         }
     </style>
-
 
 
     <link rel="stylesheet" href="./css/weather.css"/>
@@ -37,6 +36,7 @@ $url = $input[$rand_keys];
 
     <div class="container-fluid">
         <div id="slides">
+            <!-- Social page -->
             <div class="container-fluid">
                 <div id="bar-div" class="progress" style="height: 50px;">
                     <span id="perc-span"><h4 id="percentage"></h4></span>
@@ -127,14 +127,30 @@ $url = $input[$rand_keys];
                     </div>
                 </div>
             </div>
+
+            <!-- Live page -->
             <div id="live-player-container" style="overflow: hidden;">
 
                 <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
                         src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
-
                 </iframe>
-
             </div>
+
+            <!-- Shared goals -->
+            <div class="container-fluid">
+                <div class="container">
+                    <h1>Gezamenlijke doelstellingen</h1>
+                </div>
+
+                <div id="shared-goal-chart" class="block-error">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
+                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
+                        geladen worden.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other pages will be appended -->
         </div>
     </div>
 
@@ -152,6 +168,9 @@ $url = $input[$rand_keys];
     <script src="js/birthday.js"></script>
     <script src="js/social.js" type="text/javascript"></script>
     <script src="js/nieuws.js"></script>
+    <script type="text/javascript" src="js/shared-goal.js"></script>
+
+    <!-- Auto refresh the page -->
     <script>
         setTimeout(refresh, 300000);
     </script>

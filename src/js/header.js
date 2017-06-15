@@ -29,9 +29,11 @@ $(document).ready(function () {
     $('#navigation').html(html);
 
     // log out listener
-    $('#log-out').click(function () {
-        console.log('Logging out...');
-        window.localStorage.clear();
-        window.location.replace('/');
-    });
+    $('#log-out').click(logout);
 });
+
+function logout() {
+    console.log('Logging out...');
+    window.localStorage.clear();
+    window.location.replace('/');
+}

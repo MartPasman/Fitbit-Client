@@ -149,11 +149,7 @@ function exportLastWeek(user) {
                             });
                         },
                         400: defaultError,
-                        401: function () {
-                            // not logged id; redirect to login page
-                            localStorage.clear();
-                            location.replace('/index.php');
-                        },
+                        401: logout,
                         403: defaultError,
                         404: defaultError,
                         500: defaultError
@@ -161,11 +157,7 @@ function exportLastWeek(user) {
                 });
             },
             400: defaultError,
-            401: function () {
-                // not logged id; redirect to login page
-                localStorage.clear();
-                location.replace('/index.php');
-            },
+            401: logout,
             403: defaultError,
             404: defaultError,
             412: function () {
@@ -229,11 +221,7 @@ function exportPeriod(user) {
                 enableExportButton(true);
             },
             400: defaultError,
-            401: function () {
-                // not logged id; redirect to login page
-                localStorage.clear();
-                location.replace('/index.php');
-            },
+            401: logout,
             403: defaultError,
             404: defaultError,
             412: function () {
@@ -270,11 +258,7 @@ function exportSinceLast(user) {
                 enableExportButton(true);
             },
             400: defaultError,
-            401: function () {
-                // not logged id; redirect to login page
-                localStorage.clear();
-                location.replace('/index.php');
-            },
+            401: logout,
             403: defaultError,
             404: defaultError,
             412: function (err) {
