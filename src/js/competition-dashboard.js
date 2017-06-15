@@ -14,12 +14,6 @@ $(document).ready(function () {
 
     let queries = getQueryParams();
 
-    if(+queries.fullscreen == 1){
-        navbar.hide();
-        resize.removeClass('glyphicon-resize-full');
-        resize.addClass('glyphicon-resize-small');
-    }
-
     // get the current date as a string
     $('#today').html(getTodaysDate()+ '<div id="resize-button" style="float:right; margin-top:17px; margin-right: 20px;" class="button glyphicon glyphicon-resize-full"></div>');
     getUsers();
@@ -35,6 +29,12 @@ $(document).ready(function () {
             resize.addClass('glyphicon-resize-small');
         }
     });
+
+    if(+queries.fullscreen == 1){
+        navbar.hide();
+        resize.removeClass('glyphicon-resize-full');
+        resize.addClass('glyphicon-resize-small');
+    }
 
 });
 
