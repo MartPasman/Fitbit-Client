@@ -2,8 +2,8 @@
 $title = "Mijn resultaten";
 include './include/header.php';
 ?>
-
-    <link rel="stylesheet" href="css/weather.css"/>
+    <link rel="stylesheet" href="./css/weather.css"/>
+    <link rel="stylesheet" href="./css/weather-icons.css"/>
     <link rel="stylesheet" href="css/social.css">
 
     <!-- today -->
@@ -13,7 +13,7 @@ include './include/header.php';
     <div class="container-fluid">
         <div id="bar-div" class="progress" style="height: 50px;">
             <span id="perc-span"><h4 id="percentage"></h4></span>
-            <div id="progressBar" class="progress-bar progress-bar-danger  progress-bar-striped active"
+            <div id="progress-bar" class="progress-bar progress-bar-danger  progress-bar-striped active"
                  role="progressbar"
                  aria-valuemin="0" aria-valuemax="100">
                 <div id="progress-div">
@@ -35,16 +35,16 @@ include './include/header.php';
         <div id="activity-data" class="col-sm-4">
             <div class="weather-card">
                 <div class="top">
-                    <div class="wrapper">
-                        <h1 class="heading">Zonnig</h1>
-                        <h3 class="location">Enschede, Nederland</h3>
+                       <div class="wrapper">
+                           <i id="today-icon" style="font-size: 7em; float:left; position:absolute; left:5%; color:white;"></i>
+                           <h1 class="heading" id="condition"></h1>
+                        <h3 class="location" id="location"></h3>
                         <p class="temp">
-                            <span class="temp-value">17</span>
+                            <span class="temp-value" id="curtemp"></span>
                             <span class="deg">0</span>
                             <a href="javascript:;"><span class="temp-type">C</span></a>
                         </p>
-                        <span class="temp-small">24/11<span class="deg">0</span><span
-                                    class="temp-type">C</span></span>
+                        <span class="temp-small" id="today-max-min"></span>
                     </div>
                 </div>
                 <div class="bottom">
@@ -54,15 +54,13 @@ include './include/header.php';
                             <li class="active">
                                 <span class="date">Morgen</span>
                                 <span class="lnr lnr-sun condition">
-									<span class="temp">18/13<span class="deg">0</span><span
-                                                class="temp-type">C</span></span>
+									<span class="temp" id="tom-max-min"></span>
 								</span>
                             </li>
                             <li>
                                 <span class="date">Overmorgen</span>
                                 <span class="lnr lnr-cloud condition">
-									<span class="temp">18/11<span class="deg">0</span><span
-                                                class="temp-type">C</span></span>
+									<span class="temp" id="tom2-max-min"></span>
 								</span>
                             </li>
                         </ul>
