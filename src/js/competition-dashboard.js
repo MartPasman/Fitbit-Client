@@ -7,6 +7,9 @@ var old_offset = 0;
 var index = 0;
 
 var html = "";
+
+let navbar = $('#navbardiv');
+
 $(document).ready(function () {
 
     let queries = getQueryParams();
@@ -17,7 +20,6 @@ $(document).ready(function () {
         resize.addClass('glyphicon-resize-small');
     }
 
-    var navbar = $('#navbardiv');
     // get the current date as a string
     $('#today').html(getTodaysDate()+ '<div id="resize-button" style="float:right; margin-top:17px; margin-right: 20px;" class="button glyphicon glyphicon-resize-full"></div>');
     getUsers();
@@ -37,7 +39,6 @@ $(document).ready(function () {
 });
 
 function refresh() {
-    var navbar = $('#navbardiv');
     if (navbar.is(':hidden')) {
         window.location.replace("/competition-dashboard.php?fullscreen=1");
     }else{
