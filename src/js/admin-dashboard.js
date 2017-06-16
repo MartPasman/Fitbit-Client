@@ -68,7 +68,7 @@ $(document).ready(function () {
     });
 
     $('#comp-submit-button').click(function () {
-        let goal = $('#default_goal').val();
+        let goal = $('#default-goal').val();
         if (goal === '') {
             $('#success-competition').addClass('hidden');
             $('#error-competition').text('Voer een getal in.');
@@ -388,7 +388,7 @@ function editAccount(user) {
         $("#edit-birthday").addClass('hidden');
 
     } else {
-        $("#lineModalLabel").html("Pas account aan van " + user.firstname + " " + user.lastname);
+        $("#line-modal-label").html("Pas account aan van " + user.firstname + " " + user.lastname);
 
         let existingHandicap;
         if (user.handicap === 1) {

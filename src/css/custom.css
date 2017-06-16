@@ -3,14 +3,14 @@ body {
     color: #333;
 }
 
-/*  */
+/* Set standard margins */
 h1, h2, h3, h4, h5, h6 {
     margin: 0.2em;
 }
 
-h2 {
-    margin-top: .1em;
-}
+/*
+ * HEADER
+ */
 
 .navbar-default {
     border-radius: 0;
@@ -24,6 +24,10 @@ h2 {
     font-size: 1.2em;
 }
 
+/*
+ * LOGIN PAGE
+ */
+
 .login-top-image {
     position: relative;
     width: 70%;
@@ -35,6 +39,10 @@ h2 {
     margin-top: -15px;
     height: 50px;
 }
+
+/*
+ * SHAPES
+ */
 
 .block {
     height: 300px;
@@ -65,7 +73,10 @@ h2 {
     box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.2);
 }
 
-/* flickering led */
+/*
+ * REST LED
+ */
+
 .led-bad, .led-good {
     position: absolute;
     width: 16px;
@@ -144,6 +155,11 @@ h2 {
     }
 }
 
+/*
+ * TODO: unknown
+ * TODO: group declarations
+ */
+
 .tab-offset {
     margin-top: 30px;
 }
@@ -151,6 +167,10 @@ h2 {
 .pink a {
     color: #dc4f62;
 }
+
+/*
+ * TODAY BAR
+ */
 
 #today, #today-cover {
     background-color: #dc4f62;
@@ -170,6 +190,10 @@ h2 {
 #today-cover {
     position: absolute;
 }
+
+/*
+ * MY RESULTS PAGE
+ */
 
 .total {
     position: absolute;
@@ -213,13 +237,6 @@ h2 {
 .chart .glyphicon, .block-error .glyphicon {
     margin-top: .6em;
     font-size: 1.6em;
-}
-
-.comp-chart {
-    margin-top: 70px;
-    text-align: center;
-    font-size: 1.4em;
-
 }
 
 #goal-history {
@@ -315,6 +332,16 @@ h2 {
     font-family: "Courier New", serif;
 }
 
+/*
+ * COMPETITIONS
+ */
+
+.comp-chart {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 1.4em;
+}
+
 #competition-data {
     text-align: center;
     position: static;
@@ -331,7 +358,7 @@ h2 {
     float: right;
 }
 
-#default_goal, #default-days {
+#default-goal, #default-days {
     display: inline;
     width: 200px;
     float: left;
@@ -347,6 +374,10 @@ h2 {
         font-size: 1.6em;
     }
 }
+
+/*
+ * ADMIN DASHBOARD
+ */
 
 #userlist, #userlist-inactive {
     overflow-y: auto;
@@ -377,10 +408,10 @@ input[type="month"].form-control {
 }
 
 /*
-
- THE EXPORT MODAL
-
+ *
+ * EXPORT MODAL
  */
+
 #modal-export .modal-body {
     padding-bottom: 50px;
 }
@@ -453,6 +484,10 @@ input[type="month"].form-control {
     text-align: center;
 }
 
+/*
+ * TODO: unnamed group
+ */
+
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     background-color: #f5f5f5;
 }
@@ -469,6 +504,10 @@ input[type="month"].form-control {
     margin: 1em 0 1em 0;
 }
 
+/*
+ * CONNECT MODAL
+ */
+
 #modal-connect {
     text-align: center;
 }
@@ -483,11 +522,15 @@ input[type="month"].form-control {
     color: #49dc90;
 }
 
+/*
+ * SOCIAL PAGE
+ */
+
 #sharedgoalh {
     text-align: left;
 }
 
-#userlist, #lineModalLabel {
+#userlist, #line-modal-label {
     overflow-wrap: break-word;
 }
 
@@ -500,6 +543,10 @@ input[type="month"].form-control {
 #progress-bar {
     position: relative;
     color: #000;
+}
+
+#bar-div {
+    height: 50px;
 }
 
 #progress-div {
@@ -516,6 +563,7 @@ input[type="month"].form-control {
     overflow: hidden;
 }
 
+/* Make the live player fit the rest of the screen */
 #live-player {
     width: calc(100vw);
     height: calc(100vh - 53px);
@@ -525,12 +573,13 @@ input[type="month"].form-control {
     margin-top: 2em;
 }
 
+/* Error in the middle of the screen */
 #shared-goal-chart .block-error {
     font-size: 2em;
     padding: 6em 8em;
 }
 
-/* mobile */
+/* Keep the error in the middle of the screen on mobile  */
 @media all and (max-width: 768px) {
     #shared-goal-chart .block-error {
         font-size: 1.8em;

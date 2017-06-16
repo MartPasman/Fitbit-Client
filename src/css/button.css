@@ -3,6 +3,10 @@
 
 }
 
+/*
+ * STANDARD BUTTON COLOURS
+ */
+
 .connect,
 .btn-primary,
 .revoke,
@@ -45,20 +49,23 @@
     border-color: #ddd;
 }
 
-.edit, .activate {
+.edit,
+.activate {
     background-color: #DC4F62;
     color: #FFFFFF;
     border-color: #FFFFFF;
     text-decoration: none;
 }
 
-.edit:hover, .activate:hover {
+.edit:hover,
+.activate:hover {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
 }
 
-.edit:active, .activate:active {
+.edit:active,
+.activate:active {
     background-color: #FFFFFF;
     color: #DC4F62;
     border-color: #DC4F62;
@@ -78,6 +85,7 @@
     float: right;
 }
 
+/* Big export button */
 #pdf {
     background-color: #FFFFFF;
     border: none;
@@ -91,6 +99,10 @@
     line-height: 1em;
     border-radius: 4px;
 }
+
+/*
+ * Link button is a button in the form of just text
+ */
 
 .link-button {
     color: #DC4F62 !important;

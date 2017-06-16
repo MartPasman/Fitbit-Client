@@ -99,10 +99,7 @@ $url = $input[$rand_keys];
                 <div class="col-sm-4 block-resize" id="birthdays">
                     <h2>Verjaardagen</h2>
                     <hr/>
-
                     <h3 id="no-birthdays">Niemand is jarig deze week</h3>
-
-                    <!-- TODO max 7 mensen per week -->
                 </div>
             </div>
 
@@ -137,20 +134,20 @@ $url = $input[$rand_keys];
 <?php include './include/scripts.php'; ?>
 
     <!-- your scripts -->
-    <script src="js/competition/competition-dashboard.js"></script>
+    <script src="js/competition/competition-dashboard.js" type="text/javascript"></script>
 
     <!-- SlidesJS Required: Link to jquery.slides.js -->
-    <!--    <script src="../js/jquery.slides.js"></script>-->
+    <script src="js/competition/jquery.slides.js" type="text/javascript"></script>
 
     <!-- your scripts -->
-    <script src="js/competition/birthday.js"></script>
+    <script src="js/competition/birthday.js" type="text/javascript"></script>
     <script src="js/competition/social.js" type="text/javascript"></script>
-    <script src="js/competition/news-weather.js"></script>
-    <script type="text/javascript" src="js/competition/shared-goal.js"></script>
+    <script src="js/competition/news-weather.js" type="text/javascript"></script>
+    <script src="js/competition/shared-goal.js" type="text/javascript"></script>
 
     <!-- Auto refresh the page -->
     <script>
-//        setTimeout(refresh, 300000);
+        setTimeout(refresh, 300000);
     </script>
 
     <!-- end of body -->
