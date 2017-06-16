@@ -7,9 +7,13 @@ var old_offset = 0;
 var index = 0;
 
 var html = "";
+
+let navbar = $('#navbardiv');
+
 $(document).ready(function () {
 
-    var navbar = $('#navbardiv');
+    let queries = getQueryParams();
+
     // get the current date as a string
     $('#today').html(getTodaysDate()+ '<div id="resize-button" style="float:right; margin-top:17px; margin-right: 20px;" class="button glyphicon glyphicon-resize-full"></div>');
     getUsers();
@@ -26,7 +30,21 @@ $(document).ready(function () {
         }
     });
 
+    if(+queries.fullscreen == 1){
+        navbar.hide();
+        resize.removeClass('glyphicon-resize-full');
+        resize.addClass('glyphicon-resize-small');
+    }
+
 });
+
+function refresh() {
+    if (navbar.is(':hidden')) {
+        window.location.replace("/competition-dashboard.php?fullscreen=1");
+    }else{
+        window.location.replace("/competition-dashboard.php?fullscreen=0");
+    }
+}
 
 var loadWithOffset = function (users) {
     $.ajax({
@@ -102,9 +120,7 @@ function createHTML(users, data) {
         html += '<div id="competition-data' + i + '"  style="min-height:550px; width:100%;" class="block col-lg-11"> <center><h4 id="startend' + i + '">20-04 t/m 27-04</h4><h4>Te behalen punten:</h4><br><h3 id="goal-to-reach' + i + '"></h3><div id="chart-competition' + i + '">FusionCharts will render here</div></center></div>';
     }
 
-    html += "<div class='block col-lg-11' style='min-height: 550px;'><center><img src='../img/rain.ico'/><p></p><h1>22 graden</h1><br><h2>55% kans op regen</h2></center></div>";
-
-    $('#slides').html(html);
+    $('#slides').append(html);
     //showusers(data.success);
     makeBarChart(users, data);
     generateslider();

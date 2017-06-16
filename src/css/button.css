@@ -3,14 +3,20 @@
 
 }
 
+/*
+ * STANDARD BUTTON COLOURS
+ */
+
 .connect,
 .btn-primary,
 .revoke,
 .edit,
+.edit-inactive,
 .activate,
 .competition-btn {
     background-color: #DC4F62;
     color: #FFFFFF;
+    /*border-color: #FFFFFF;*/
     border-color: #f5f5f5;
     text-decoration: none;
 }
@@ -19,6 +25,7 @@
 .btn-primary:hover,
 .revoke:hover,
 .edit:hover,
+.edit-inactive:hover,
 .activate:hover,
 .competition-btn:hover {
     background-color: #FFFFFF;
@@ -30,6 +37,7 @@
 .btn-primary:active,
 .revoke:active,
 .edit:active,
+.edit-inactive:active,
 .activate:active,
 .competition-btn:active {
     background-color: #FFFFFF !important;
@@ -45,6 +53,28 @@
     border-color: #ddd;
 }
 
+/*.edit,*/
+/*.activate {*/
+    /*background-color: #DC4F62;*/
+    /*color: #FFFFFF;*/
+    /*border-color: #FFFFFF;*/
+    /*text-decoration: none;*/
+/*}*/
+
+/*.edit:hover,*/
+/*.activate:hover {*/
+    /*background-color: #FFFFFF;*/
+    /*color: #DC4F62;*/
+    /*border-color: #DC4F62;*/
+/*}*/
+
+/*.edit:active,*/
+/*.activate:active {*/
+    /*background-color: #FFFFFF;*/
+    /*color: #DC4F62;*/
+    /*border-color: #DC4F62;*/
+/*}*/
+
 .activate {
     float: right;
 }
@@ -59,6 +89,7 @@
     float: right;
 }
 
+/* Big export button */
 #pdf {
     background-color: #FFFFFF;
     border: none;
@@ -72,6 +103,10 @@
     line-height: 1em;
     border-radius: 4px;
 }
+
+/*
+ * Link button is a button in the form of just text
+ */
 
 .link-button {
     color: #DC4F62 !important;

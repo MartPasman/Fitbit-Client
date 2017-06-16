@@ -4,19 +4,19 @@
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/themes/fusioncharts.theme.goals.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap/bootstrap.min.js"></script>
 
 <!-- REST service address -->
 <script type="text/javascript">
     const REST = 'http://178.21.116.109:3000';
-   // const REST = 'http://localhost:3000';
+//    const REST = 'http://localhost:3000';
 </script>
 
 <!-- Flickering led if the REST is online -->
 <script src="../js/rest-led.js"></script>
 
 <!-- Line and pie charts -->
-<script src="../js/charts.js"></script>
+<script src="../js/charts/charts.js"></script>
 
 <!-- Date utilities -->
 <script src="../js/dates.js"></script>

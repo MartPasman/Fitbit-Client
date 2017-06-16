@@ -74,10 +74,10 @@ include './include/header.php';
         </div>
         <div class="panel-body" id="competitionlist">
             <div>
-                <div class="alert alert-success" role="alert" id="success-competition">
+                <div class="alert alert-success hidden" role="alert" id="success-competition">
                     <strong>Gelukt!</strong> Je informatie is nu geupdated.
                 </div>
-                <div class="alert alert-danger" role="alert" id="error-competition">
+                <div class="alert alert-danger hidden" role="alert" id="error-competition">
                     <strong>Voer een getal in!</strong>
                 </div>
 
@@ -125,11 +125,11 @@ include './include/header.php';
 
             <div class="modal-body">
 
-                <div class="alert alert-success" role="alert" id="success-message-edit">
+                <div class="alert alert-success hidden" role="alert" id="success-message-edit">
                     <strong>Succes</strong> Het account is aangepast.
                 </div>
 
-                <div class="alert alert-danger" role="alert" id="error-message-edit">
+                <div class="alert alert-danger hidden" role="alert" id="error-message-edit">
                     <strong>Er is iets fout gegaan</strong>
                 </div>
                 <!-- content goes here -->
@@ -283,11 +283,11 @@ include './include/header.php';
             </div>
             <div class="modal-body">
                 <form role="form">
-                    <div class="alert alert-danger" role="alert" id="error-message-new">
+                    <div class="alert alert-danger hidden" role="alert" id="error-message-new">
                         <strong>Er is iets fout gegaan</strong>
                     </div>
 
-                    <div class="alert alert-success" role="alert" id="success-message-new">
+                    <div class="alert alert-success hidden" role="alert" id="success-message-new">
                         <strong>Het account is aangemaakt</strong>
                     </div>
 

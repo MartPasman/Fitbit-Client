@@ -6,7 +6,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                             class="sr-only">Close</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Nieuwe doelstelling.</h3>
+                <h3 class="modal-title" id="line-modal-label">Nieuwe doelstelling.</h3>
             </div>
             <div class="modal-body">
 
@@ -63,7 +63,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                             class="sr-only">Sluiten</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Alle doelstellingen</h3>
+                <h3 class="modal-title" id="line-modal-label">Alle doelstellingen</h3>
                 <!-- content goes here -->
                 <div class="alert alert-danger" role="alert" id="error-message-all">
                     <strong>Foutje!</strong>
@@ -100,7 +100,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                             class="sr-only">Close</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Doelstelling wijzigen</h3>
+                <h3 class="modal-title" id="line-modal-label">Doelstelling wijzigen</h3>
             </div>
             <div class="modal-body">
 
