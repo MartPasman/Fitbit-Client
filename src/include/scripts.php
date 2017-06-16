@@ -4,7 +4,7 @@
 <script type="text/javascript" src="../js/charts/fusioncharts-suite-xt/js/themes/fusioncharts.theme.goals.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap/bootstrap.min.js"></script>
 
 <!-- REST service address -->
 <script type="text/javascript">
@@ -16,7 +16,7 @@
 <script src="../js/rest-led.js"></script>
 
 <!-- Line and pie charts -->
-<script src="../js/charts.js"></script>
+<script src="../js/charts/charts.js"></script>
 
 <!-- Date utilities -->
 <script src="../js/dates.js"></script>

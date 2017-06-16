@@ -2,9 +2,9 @@
 $title = "Mijn resultaten";
 include './include/header.php';
 ?>
-    <link rel="stylesheet" href="./css/weather.css"/>
-    <link rel="stylesheet" href="./css/weather-icons.css"/>
-    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/competition/weather.css"/>
+    <link rel="stylesheet" href="css/competition/weather-icons.css"/>
+    <link rel="stylesheet" href="css/competition/social.css">
 
     <!-- today -->
     <div id="today"></div>
@@ -105,9 +105,9 @@ include './include/header.php';
 <?php include './include/scripts.php'; ?>
 
     <!-- your scripts -->
-    <script src="js/birthday.js"></script>
-    <script src="js/social.js" type="text/javascript"></script>
-    <script src="js/news-weather.js"></script>
+    <script src="js/competition/birthday.js"></script>
+    <script src="js/competition/social.js" type="text/javascript"></script>
+    <script src="js/competition/news-weather.js"></script>
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>

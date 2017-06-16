@@ -25,9 +25,9 @@ $url = $input[$rand_keys];
     </style>
 
 
-    <link rel="stylesheet" href="./css/weather.css"/>
-    <link rel="stylesheet" href="./css/weather-icons.css"/>
-    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/competition/weather.css"/>
+    <link rel="stylesheet" href="css/competition/weather-icons.css"/>
+    <link rel="stylesheet" href="css/competition/social.css">
 
     <!-- today -->
     <div id="today"></div>
@@ -137,16 +137,16 @@ $url = $input[$rand_keys];
 <?php include './include/scripts.php'; ?>
 
     <!-- your scripts -->
-    <script src="js/competition-dashboard.js"></script>
+    <script src="js/competition/competition-dashboard.js"></script>
 
     <!-- SlidesJS Required: Link to jquery.slides.js -->
     <!--    <script src="../js/jquery.slides.js"></script>-->
 
     <!-- your scripts -->
-    <script src="js/birthday.js"></script>
-    <script src="js/social.js" type="text/javascript"></script>
-    <script src="js/news-weather.js"></script>
-    <script type="text/javascript" src="js/shared-goal.js"></script>
+    <script src="js/competition/birthday.js"></script>
+    <script src="js/competition/social.js" type="text/javascript"></script>
+    <script src="js/competition/news-weather.js"></script>
+    <script type="text/javascript" src="js/competition/shared-goal.js"></script>
 
     <!-- Auto refresh the page -->
     <script>
