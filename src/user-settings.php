@@ -8,28 +8,32 @@ include './include/header.php';
 
     <div class="container">
 
-        <ul class="nav nav-tabs pink">
-            <li class="active"><a data-toggle="tab" href="#personal">
-                    <div class="glyphicon glyphicon-user"></div>
-                    &nbsp Persoonlijke informatie</a></li>
-            <li><a data-toggle="tab" href="#goals">
-                    <div class="glyphicon glyphicon-dashboard"></div>
-                    &nbsp Doelstellingen</a></li>
-            <li><a data-toggle="tab" href="#settings">
-                    <div class="glyphicon glyphicon-lock"></div>
-                    &nbsp Wachtwoord wijzigen</a></li>
+        <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-8">
+                <ul class="nav nav-tabs pink">
+                    <li class="active"><a data-toggle="tab" href="#personal">
+                            <div class="glyphicon glyphicon-user"></div>
+                            &nbsp Persoonlijke informatie</a></li>
+                    <li><a data-toggle="tab" href="#goals">
+                            <div class="glyphicon glyphicon-dashboard"></div>
+                            &nbsp Doelstellingen</a></li>
+                    <li><a data-toggle="tab" href="#settings">
+                            <div class="glyphicon glyphicon-lock"></div>
+                            &nbsp Wachtwoord wijzigen</a></li>
 
-            <div class="large-tooltip">
-                <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
+                    <div class="large-tooltip">
+                        <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
+                    </div>
+                </ul>
             </div>
-        </ul>
+        </div>
 
         <div class="row">
             <div class="tab-content">
 
                 <!-- My personal data -->
                 <div id="personal" class="tab-pane fade in active">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-offset-2 col-md-8">
                         <div class="panel panel-default">
 
                             <div class="panel-heading"><h2>Mijn gegevens</h2></div>
@@ -58,7 +62,7 @@ include './include/header.php';
 
                 <!-- My goals data -->
                 <div id="goals" class="tab-pane fade">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-offset-2 col-md-8">
                         <!-- Goal data -->
                         <div class="panel panel-default">
                             <div class="panel-heading"><h2>Doelstellingen</h2></div>
@@ -84,7 +88,7 @@ include './include/header.php';
 
                 <!-- Settings data -->
                 <div id="settings" class="tab-pane fade">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-offset-2 col-md-8">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h2>Wachtwoord</h2></div>
                             <div class="panel-body row">
