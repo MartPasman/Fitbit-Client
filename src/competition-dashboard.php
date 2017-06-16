@@ -49,16 +49,14 @@ $url = $input[$rand_keys];
                         <h3 id="sharedgoalh">Doelstelling</h3>
 
                     </div>
+                </div>
+
+                <!-- News -->
+                <div class="col-sm-4 block-resize" id="news">
 
                 </div>
 
-                <div id="activity-data" class="col-sm-4">
-                    <div class="block-resize" id="news">
-
-                    </div>
-                </div>
-
-                <!-- Activity data -->
+                <!-- Weather -->
                 <div id="activity-data" class="col-sm-4">
                     <div class="weather-card">
                         <div class="top">
@@ -70,7 +68,7 @@ $url = $input[$rand_keys];
                                 <p class="temp">
                                     <span class="temp-value" id="curtemp"></span>
                                     <span class="deg">0</span>
-                                    <a href="javascript:;"><span class="temp-type">C</span></a>
+                                    <a href="javascript:"><span class="temp-type">C</span></a>
                                 </p>
                                 <span class="temp-small" id="today-max-min"></span>
                             </div>
@@ -78,7 +76,7 @@ $url = $input[$rand_keys];
                         <div class="bottom">
                             <div class="wrapper">
                                 <ul class="forecast">
-                                    <a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
+                                    <a href="javascript:"><span class="lnr lnr-chevron-up go-up"></span></a>
                                     <li class="active">
                                         <span class="date">Morgen</span>
                                         <span class="lnr lnr-sun condition">
@@ -98,33 +96,13 @@ $url = $input[$rand_keys];
                 </div>
 
                 <!-- Birthdays-->
-                <div id="activity-data " class="col-sm-4">
-                    <div class="block-resize" id="birthdays">
-                        <h2>Verjaardagen</h2>
-                        <hr/>
+                <div class="col-sm-4 block-resize" id="birthdays">
+                    <h2>Verjaardagen</h2>
+                    <hr/>
 
-                        <h3 id="no-birthdays">Niemand is jarig deze week</h3>
+                    <h3 id="no-birthdays">Niemand is jarig deze week</h3>
 
-                        <!--                <div class='birthday-user row'>-->
-                        <!--                    <div class='col-xs-11 col-md-11  birthday-today'> Romy Beugeling is vandaag jarig-->
-                        <!--                    </div>-->
-                        <!--                    <div class="col-xs-1 col-md-1 ">-->
-                        <!--                        <img src="img/birthday-cake.png" class="birthday-cake" alt="Gefeliciteerd" height="80" width="80">-->
-                        <!--                    </div>-->
-                        <!--                </div>-->
-                        <!--                <hr/>-->
-                        <!---->
-                        <!--                <div class='birthday-user row'>-->
-                        <!--                    <div class='col-xs-12 col-md-12  birthday-user'> Romy Beugeling is morgen jarig-->
-                        <!--                        <img src="img/almost.png" id="birthday-piece" alt="Gefeliciteerd" height="60" width="60">-->
-                        <!--                    </div>-->
-                        <!---->
-                        <!--                </div>-->
-                        <!--                <hr/>-->
-
-                        <!-- TODO max 7 mensen per week -->
-
-                    </div>
+                    <!-- TODO max 7 mensen per week -->
                 </div>
             </div>
 
@@ -162,17 +140,17 @@ $url = $input[$rand_keys];
     <script src="js/competition-dashboard.js"></script>
 
     <!-- SlidesJS Required: Link to jquery.slides.js -->
-    <script src="../js/jquery.slides.js"></script>
+    <!--    <script src="../js/jquery.slides.js"></script>-->
 
     <!-- your scripts -->
     <script src="js/birthday.js"></script>
     <script src="js/social.js" type="text/javascript"></script>
-    <script src="js/nieuws.js"></script>
+    <script src="js/news-weather.js"></script>
     <script type="text/javascript" src="js/shared-goal.js"></script>
 
     <!-- Auto refresh the page -->
     <script>
-        setTimeout(refresh, 300000);
+//        setTimeout(refresh, 300000);
     </script>
 
     <!-- end of body -->

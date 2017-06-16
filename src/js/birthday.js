@@ -31,45 +31,59 @@ function loadBirthdays(users) {
 
     if (users.length === 0) {
         noBday.show();
-    } else {
+        return;
+    }
 
-        for (let i = 0; i < users.length; i++) {
-            let user = users[i];
-            let birthdayHTML;
+    const MAX_BIRTHDAYS = Math.floor((listBirthdays.height() - 80) / 138);
 
-            let userBirthday = getCompareDate(new Date(user.birthday));
-            let dateToday = getCompareDate(new Date());
+    let startIndex = 0;
+    // maximum of four birthdays
+    for (let i = 0; (i < users.length && i < startIndex + MAX_BIRTHDAYS); i++) {
 
-            console.dir(new Date(user.birthday) + " " + new Date());
-            if (userBirthday === dateToday) {
-                birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-today'> " +
-                    "<h3>" + user.firstname + " " + user.lastname + " is vandaag jarig!</h3>" +
-                    "</div><div class='col-xs-4 col-md-3'> <img src='img/birthday-cake.png'" +
-                    " class='birthday-cake' alt='Gefeliciteerd'></div>"
-            } else {
-                let bday = new Date(user.birthday);
-                let days = getDaysBetween(bday, new Date());
-                console.dir(days);
-                let daysUntil;
+        const user = users[i];
+        let birthdayHTML;
 
-                if (days === 1) {
-                    daysUntil = " is morgen jarig."
-                } else if (days > 1) {
-                    daysUntil = " is over " + days + " dagen jarig.";
-                } else if (days === -1) {
-                    daysUntil = " was gisteren jarig.";
-                } else {
-                    daysUntil = " was " + Math.abs(days) + " dagen geleden jarig.";
-                }
+        const userBirthday = getCompareDate(new Date(user.birthday));
+        const dateToday = getCompareDate(new Date());
 
-                birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-one-user'>" +
-                    "<h3>" + user.firstname + " " + user.lastname + daysUntil + "</h3>" +
-                    "</div><div class='col-xs-4 col-md-3'> <img src='img/almost.png' class='birthday-piece' alt='bijnaJarig'></div> ";
-            }
-            let html = "<div class='birthday-users row' >" +
-                birthdayHTML + " </div> <hr/>";
+        const bday = new Date(user.birthday);
+        const days = getDaysBetween(bday, new Date());
 
-            listBirthdays.append(html);
+        // if we still have more than the max birthdays to come
+        // and this user's birthday was in the past
+        if (users.length - i > MAX_BIRTHDAYS && days < 0) {
+            startIndex = i;
+            continue;
         }
+
+        // birthday today = HUGE CAKE
+        if (userBirthday === dateToday) {
+            birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-today'> " +
+                "<h3>" + user.firstname + " " + user.lastname + " is vandaag jarig!</h3>" +
+                "</div><div class='col-xs-4 col-md-3'> <img src='img/birthday-cake.png'" +
+                " class='birthday-cake' alt='Gefeliciteerd'></div>"
+        } else {
+            // birthday in the future = slice of cake
+            let daysUntil = '';
+
+            if (days === 1) {
+                daysUntil = " is morgen jarig."
+            } else if (days > 1) {
+                daysUntil = " is over " + days + " dagen jarig.";
+            } else if (days === -1) {
+                daysUntil = " was gisteren jarig.";
+            } else {
+                daysUntil = " was " + Math.abs(days) + " dagen geleden jarig.";
+            }
+
+            birthdayHTML = "<div class='col-xs-8 col-md-9 birthday-one-user'>" +
+                "<h3>" + user.firstname + " " + user.lastname + daysUntil + "</h3>" +
+                "</div><div class='col-xs-4 col-md-3'> <img src='img/almost.png' class='birthday-piece' alt='bijnaJarig'></div> ";
+        }
+
+        let html = "<div class='birthday-users row' >" +
+            birthdayHTML + " </div> <hr/>";
+
+        listBirthdays.append(html);
     }
 }

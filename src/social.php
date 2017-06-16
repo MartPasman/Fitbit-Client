@@ -107,7 +107,7 @@ include './include/header.php';
     <!-- your scripts -->
     <script src="js/birthday.js"></script>
     <script src="js/social.js" type="text/javascript"></script>
-    <script src="js/nieuws.js"></script>
+    <script src="js/news-weather.js"></script>
 
     <!-- end of body -->
 <?php include './include/footer.php'; ?>

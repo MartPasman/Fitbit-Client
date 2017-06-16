@@ -12,7 +12,7 @@ include './include/header.php';
     <!-- JQuery and Bootstrap scripts -->
 <?php include './include/scripts.php'; ?>
 
-    <script src="js/nieuws.js"></script>
+    <script src="js/news-weather.js"></script>
 
 
     <!-- end of body -->

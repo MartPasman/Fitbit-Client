@@ -131,7 +131,7 @@ function toCelsius(f) {
 }
 
 function setBackgroundImage(div, divImage, imageClass, color) {
-    $(divImage).addClass("wi "+imageClass);
+    $(divImage).addClass("wi " + imageClass);
     $(div).css('background-color', color);
 }
 
@@ -311,11 +311,11 @@ function getText(code) {
             text = "IJzel";
             break;
         case 19:
-            text = "Stof";
+            text = "Stoffig";
             break;
         case 20:
         case 21:
-            text = "Mist";
+            text = "Mistig";
             break;
         case 22:
             text = "Rook";
