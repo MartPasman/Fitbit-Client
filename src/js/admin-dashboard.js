@@ -1,83 +1,67 @@
 /**
  * Created by romybeugeling on 22-05-17.
  */
-let editModal;
-let accountModal;
+let modalAccountError;
+let modalEdit;
+let modalNewAccount;
 let errorMessageEdit;
 let successMessageEdit;
 let userList;
+let inactiveUserList;
 let successCompetition;
 let errorCompetition;
 
 let editButton;
-let pdfButton;
+let exportButton;
 let connectButton;
 let revokeButton;
 let userButton;
 
-let user;
+let user = undefined;
+// handicap selected in the edit user modal
+let currentlySelectedHandicap = undefined;
 
 $(document).ready(function () {
-    checkQueryParams();
+    $('#today').html(getTodaysDate());
 
-    $.ajax({
-        url: REST + '/competitions/',
-        method: 'GET',
-        headers: {
-            Authorization: localStorage.getItem('token')
-        },
-        statusCode: {
-            200: function (data) {
-                $('#show-current-goal').text('Huidige doel: ' + data.goal + " punten.");
-                $('#show-current-days').text('Huidige lengte van de competitie: ' + data.length + " dagen");
-                $('#show-last-goal').text('Doel voor volgende competitie: ' + data.defaultGoal);
-                if (data.defaultLength === 1) {
-                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
-                } else {
-                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
-                }
-            },
-            default: function (err) {
-                console.log(err);
-            }
-        }
-    });
+    // check if a Fitbit connect result message is in the query parameters
+    checkFitbitConnectMessage();
 
     successCompetition = $('#success-competition');
     errorCompetition = $('#error-competition');
     successCompetition.addClass('hidden');
     errorCompetition.addClass('hidden');
 
-    modal = $('#modal-account-error');
-    editModal = $('#edit-modal');
-    accountModal = $('#account-modal');
+    modalAccountError = $('#modal-account-error');
+    modalEdit = $('#edit-modal');
+    modalNewAccount = $('#account-modal');
     errorMessageEdit = $('#error-message-edit');
     successMessageEdit = $('#success-message-edit');
     userList = $("#userlist");
     inactiveUserList = $('#userlist-inactive');
 
-    editButton = $('.edit');
-    pdfButton = $('.pdf');
-    connectButton = $('.connect');
-    revokeButton = $('.revoke');
+    editButton = $('#edit');
+    exportButton = $('#pdf-export');
+    connectButton = $('#connect');
+    revokeButton = $('#revoke');
     userButton = $('.user');
 
-    loadUsers();
+    // get all users and load them in the UI
+    getUsers();
 
+    // get some details about the current competition
     $.ajax({
-        url: REST + '/competitions/',
+        url: REST + '/competitions',
         method: 'GET',
         headers: {
             Authorization: localStorage.getItem('token')
         },
         statusCode: {
             200: function (data) {
-                $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + " punten.");
-                if (data.defaultLength === 1) {
-                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dag.");
-                } else {
-                    $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + " dagen.");
-                }
+                $('#show-current-goal').text('Punten voor de huidige competitie: ' + data.goal + (data.goal === 1 ? " punt." : " punten."));
+                $('#show-current-days').text('Lengte van de huidige competitie: ' + data.length + (data.length === 1 ? " dag." : " dagen."));
+                $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + (data.defaultGoal === 1 ? " punt." : " punten."));
+                $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + (data.defaultLength === 1 ? " dag." : " dagen."));
             },
             default: function (err) {
                 console.log(err);
@@ -85,27 +69,32 @@ $(document).ready(function () {
         }
     });
 
+    // on clicking, save details about the next competition
     $('#comp-submit-button').click(function () {
-        let goal = $('#default-goal').val();
+        let goal = $('#default-goal').val().trim();
+
+        // check for errors
         if (goal === '') {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een getal in.');
-            errorCompetition.removeClass('hidden');
-        } else if (goal < 0) {
-            successCompetition.addClass('hidden');
-            errorCompetition.text('Voer een getal in groter dan 0.');
-            errorCompetition.removeclass('hidden');
-        } else if (goal > 999999999) {
-            successCompetition.addClass('hidden');
-            errorCompetition.text('Te hoog getal.');
             errorCompetition.removeClass('hidden');
         } else if (isNaN(goal)) {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een geldig getal in.');
             errorCompetition.removeClass('hidden');
+        } else if (goal > 999999999) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Te hoog getal.');
+            errorCompetition.removeClass('hidden');
+        } else if (goal < 0) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een getal in groter dan 0.');
+            errorCompetition.removeclass('hidden');
         } else {
+
+            // save changes
             $.ajax({
-                url: REST + '/competitions/' + 'changegoal',
+                url: REST + '/competitions/changegoal',
                 method: 'PUT',
                 headers: {
                     Authorization: localStorage.getItem('token')
@@ -115,11 +104,14 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     201: function (data) {
-                       errorCompetition.addClass('hidden');
-                       successCompetition.removeClass('hidden');
+                        errorCompetition.addClass('hidden');
+                        successCompetition.removeClass('hidden');
+
+                        // update UI
                         $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
 
                     },
+                    401: logout,
                     404: function (err) {
 
                     },
@@ -131,25 +123,30 @@ $(document).ready(function () {
         }
     });
 
+    // on clicking, save details about the next competition
     $('#comp-days-submit-button').click(function () {
-        let days = $('#default-days').val();
+        let days = $('#default-days').val().trim();
+
+        // check for errors
         if (days === '') {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een getal in.');
-            errorCompetition.removeClass('hidden');
-        } else if (days < 0) {
-            successCompetition.addClass('hidden');
-            errorCompetition.text('Voer een getal in groter dan 0.');
-            errorCompetition.removeClass('hidden');
-        } else if (days > 999999999) {
-            successCompetition.addClass('hidden');
-            errorCompetition.text('Te hoog getal.');
             errorCompetition.removeClass('hidden');
         } else if (isNaN(days)) {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een geldig getal in.');
             errorCompetition.removeClass('hidden');
+        } else if (days > 999999999) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Te hoog getal.');
+            errorCompetition.removeClass('hidden');
+        } else if (days < 0) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een getal in groter dan 0.');
+            errorCompetition.removeClass('hidden');
         } else {
+
+            // save changes
             $.ajax({
                 url: REST + '/competitions/' + 'changelength',
                 method: 'PUT',
@@ -170,6 +167,7 @@ $(document).ready(function () {
                             $('#show-last-days').text('Lengte van de volgende competitie: ' + days + " dagen.");
                         }
                     },
+                    401: logout,
                     404: function (err) {
 
                     },
@@ -179,13 +177,111 @@ $(document).ready(function () {
                 }
             });
         }
-    })
+    });
+
+    // on clicking the save button in the edit user modal, save the data
+    $("#edit-save-button").click(function () {
+        if (user === undefined) {
+            console.error('let user was not set before save button was clicked.');
+            return;
+        }
+
+        console.log('Going to save user data...');
+
+        const firstname = $('#edit-firstname').val().trim();
+        const lastname = $('#edit-lastname').val().trim();
+        const password1 = $('#edit-password').val().trim();
+        const password2 = $('#edit-password2').val().trim();
+        const birthday = $('#edit-birthday').val().trim();
+        const newActiveState = !!$('#active-toggle').is(':checked');
+
+        // check if some fields are left empty and show error
+        if (firstname === '' || lastname === '' || birthday === '' || currentlySelectedHandicap === undefined) {
+            errorMessageEdit.text('Vul een voornaam, achternaam, verjaardag en/of handicap in.');
+            errorMessageEdit.removeClass('hidden');
+            return;
+        }
+
+        // hand pick the data we are going to update
+        let data = {};
+
+        // if the first name was changed
+        if (firstname !== user.firstname) {
+            data.firstname = firstname;
+        }
+
+        // if the last name was changed
+        if (lastname !== user.lastname) {
+            data.lastname = lastname;
+        }
+
+        // if the birthday was changed
+        if (birthday !== getDDMMYYYY(user.birthday, '/')) {
+            let dateparts = birthday.split('/');
+            // set to universal notation YYYY-MM-DD
+            data.birthday = dateparts[2] + '-' + dateparts[1] + '-' + dateparts[0];
+        }
+
+        // if the handicap was changed
+        if (currentlySelectedHandicap !== user.handicap) {
+            data.handicap = currentlySelectedHandicap;
+        }
+
+        // if the active state was changed
+        if (newActiveState !== user.active) {
+            data.active = newActiveState;
+        }
+
+        // // if the password field are filled in, we change them too
+        if (password1 !== '' && password2 !== '') {
+            // check the password requirements
+            if (password1 !== password2 || password1.length < 8) {
+                errorMessageEdit.text('Wachtwoorden komen niet overeen of zijn niet lang genoeg (minimaal 8 tekens lang).');
+                errorMessageEdit.removeClass('hidden');
+                return;
+            } else {
+                data.password = password1;
+            }
+        }
+
+        // update the user
+        updateUser(data);
+        successMessageEdit.addClass('hidden');
+    });
+
+    // on clicking, change the currently selected handicap
+    $("#edit-handicap").find("li a").click(function () {
+
+        // get the text of the selected option
+        let currentlySelectedHandicapText = $(this).text();
+        // change the text of the button to that selected option
+        $("#edit-handicap-button").html(currentlySelectedHandicapText + ' <span class="caret"></span>');
+
+        // change to lower case and compare the strings
+        currentlySelectedHandicapText = currentlySelectedHandicapText.toLowerCase();
+        switch (currentlySelectedHandicapText) {
+            case "goed ter been":
+                currentlySelectedHandicap = 1;
+                break;
+            case "minder goed ter been":
+                currentlySelectedHandicap = 2;
+                break;
+            case "slecht ter been":
+                currentlySelectedHandicap = 3;
+                break;
+            default:
+                currentlySelectedHandicap = 1;
+                break;
+        }
+    });
+
+    //
 });
 
 /**
- *
+ * AJAX call to get all users, when ready will call actionsDashboard()
  */
-function loadUsers() {
+function getUsers() {
     $.ajax({
         url: REST + '/accounts/',
         method: 'GET',
@@ -194,7 +290,7 @@ function loadUsers() {
         },
         statusCode: {
             200: function (data) {
-                actionsDashboard(data);
+                loadUsers(data.success);
             },
             400: function () {
                 userList.addClass("block-error");
@@ -229,177 +325,162 @@ function loadUsers() {
 }
 
 /**
- *
- * @param data
+ * Load users into the UI
+ * @param users list of users from the REST service
  */
-function actionsDashboard(data) {
+function loadUsers(users) {
+    // remove error css
     userList.removeClass("block-error");
+
+    // clear the lists
     userList.html('');
     inactiveUserList.html('');
 
-    const users = data.success;
+    // disable the buttons
+    editButton.attr('disabled', 'disabled');
+    exportButton.attr('disabled', 'disabled');
+    connectButton.addClass('hidden');
+    revokeButton.addClass('hidden');
+
+    // append all users in the UI
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
-        let connected;
 
+        let html = "<div class='user row'>";
         if (user.active) {
-
-            let html = "<div class='user row'>" +
-                "<div class='col-xs-11 col-md-11 one-user' " +
-                "<span class='glyphicon glyphicon-user'></span>" +
-                user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-                "<div class='col-xs-1 col-md-1 glyphicon glyphicon-ok radio-select'></div>" +
-                "<input type='hidden' value='" + user.id + "'/></div><hr/>";
-
-
-            //
-            // if (user.fitbit === undefined) {
-            //     connected = "<button value='" + user.id +
-            //         "' class='btn btn-default connect'>Koppel Fitbit</button>" +
-            //         "<button value='" + user.id +
-            //         "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
-            // } else {
-            //     connected = "<button value='" + user.id +
-            //         "' class='btn btn-default edit pdf'>Exporteer</button>" + "<button value='" + user.id +
-            //         "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
-            //         "<button value='" + user.id +
-            //         "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
-            // }
-
-            // let html = "<div class='user row' >" +
-            //     "<div class='col-xs-12 col-md-5 one-user' " +
-            //     "<span class='glyphicon glyphicon-user'></span>" +
-            //     user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-            //     "<div class='col-xs-12 col-md-7'>" +
-            //     "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            //     "data-target='#edit-modal'>Pas aan</button>"
-            //     + connected +
-            //     "</div> </div> <hr/>";
-
-            userList.append(html);
+            html += "<div class='col-xs-11 col-md-11 one-user'>";
         } else {
-            let inactiveHtml = "<div class='user row' >" +
-                "<div class='col-xs-12 col-md-6 one-user' " +
-                "<span class='glyphicon glyphicon-user'></span>" +
-                user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-                "<div class='col-xs-12 col-md-6 '>" +
-                "<button class='btn btn-default activate' value='" + user.id + "'>Activeer</button>" +
-                "</div> </div><hr/>";
-
-            inactiveUserList.append(inactiveHtml);
+            html += "<div class='col-xs-10 col-md-8 one-user'>";
         }
 
+        // same for both active and inactive users
+        html += user.firstname + " " + user.lastname + " (" + user.id + ")" + "</div>";
+
+        if (user.active) {
+            // active users can be selected for further actions
+            html += "<div class='col-xs-1 col-md-1 glyphicon glyphicon-ok radio-select'></div>" +
+                "<input type='hidden' value='" + user.id + "'/>";
+        } else {
+            // inactive users only have an activate button
+            html += "<div class='col-xs-2 col-md-4 '>" +
+                "<button class='btn btn-default activate' value='" + user.id + "'>Activeer</button>" +
+                "</div>";
+        }
+
+        // close user row div and append a line
+        html += "</div><hr/>";
+
+        if (user.active) {
+            userList.append(html);
+        } else {
+            inactiveUserList.append(html);
+        }
     }
 
-    /**
-     * Update the 'radio' select button
-     */
+    // load the export modal that depends on the users
+    $("#modal").load('./include/export.php');
+
+    // clicking on a user selects it for further actions
     $('.user').on('click', function () {
-        editModal.on('hidden.bs.modal', function () {
+        // TODO: what does this do?
+        modalEdit.on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         });
-        console.dir("opnieuw");
+
+        // deselect all users
         $('.user').removeClass('selected');
-        console.dir(this);
+        // select this user
         $(this).addClass('selected');
 
+        // the id of the user
+        let id = $(this).find('input[type=hidden]').val().trim();
+
+        // find the user object by this user id
         user = undefined;
-
-        let id = $(this).find('input[type=hidden]').val();
-
-
-        console.dir(id);
-
         for (let i = 0; i < users.length; i++) {
             if (parseInt(users[i].id) === parseInt(id)) {
                 user = users[i];
+                break;
             }
         }
-        console.dir("hier ");
-        console.dir(user);
 
+        // enable the edit button
         editButton.removeAttr('disabled');
 
+        // if the user is connected to a fitbit
         if (user.fitbit !== undefined && user.fitbit !== null) {
-            revokeButton.removeClass('hidden');
-            pdfButton.removeClass('hidden');
+            // disable connect and enable revoke and export
             connectButton.addClass('hidden');
-            pdfButton.attr('value', user.id);
+            revokeButton.removeClass('hidden');
+            exportButton.removeAttr('disabled');
+            exportButton.attr('value', user.id);
         } else {
+            // enable connect and disable revoke and export
             connectButton.removeClass('hidden');
-            pdfButton.addClass('hidden');
             revokeButton.addClass('hidden');
+            exportButton.attr('disabled', 'disabled');
         }
-
-
-        $("#modal").load('./include/export.php');
-
-        $(".connect").click(function () {
-
-            $.ajax({
-                url: REST + '/accounts/' + user.id + '/connect',
-                method: 'GET',
-                headers: {
-                    Authorization: localStorage.getItem('token')
-                },
-                statusCode: {
-                    201: function (data) {
-                        location.replace(data.success);
-                    },
-                    default: function (err) {
-                        console.log(err.message);
-                    }
-                }
-            });
-        });
-
-        $(".revoke").click(function () {
-
-            $.ajax({
-                url: REST + '/accounts/' + user.id + '/revoke',
-                method: 'POST',
-                headers: {
-                    Authorization: localStorage.getItem('token')
-                },
-                data: {
-                    active: false
-                },
-                statusCode: {
-                    204: function (data) {
-                        loadUsers();
-                    },
-                    401: function () {
-                        location.replace("index.php");
-                    },
-                    default: function (err) {
-                        console.error(err.error);
-                    }
-                }
-            });
-        });
-
-        $('[data-toggle="tooltip"]').tooltip();
-
-        $("#new-account").click(function () {
-            accountModal.modal();
-        });
-
-        console.dir("hier niks" + user.id);
-
-        $(".edit").click(function () {
-
-            console.dir("hier meer id's " + user.id);
-            editAccount(user);
-        });
-
-
     });
 
-
-    $(".activate").click(function () {
-        id = $(this).attr('value');
+    // on clicking connect, start OAuth
+    connectButton.click(function () {
         $.ajax({
-            url: REST + '/users/' + id + '/active',
+            url: REST + '/accounts/' + user.id + '/connect',
+            method: 'GET',
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            statusCode: {
+                201: function (data) {
+                    location.replace(data.success);
+                },
+                401: logout,
+                default: function (err) {
+                    console.log(err.message);
+                }
+            }
+        });
+    });
+
+    // on clicking revoke, remove Fitbit connection
+    revokeButton.click(function () {
+        $.ajax({
+            url: REST + '/accounts/' + user.id + '/revoke',
+            method: 'POST',
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            data: {
+                active: false
+            },
+            statusCode: {
+                204: function (data) {
+                    // reload the users
+                    getUsers();
+                },
+                401: logout,
+                default: function (err) {
+                    console.error(err.error);
+                }
+            }
+        });
+    });
+
+    // enable tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // on clicking the new account link button
+    $("#new-account").click(function () {
+        modalNewAccount.modal();
+    });
+
+    // on clicking the edit button, edit account
+    editButton.click(editAccount);
+
+    // on clicking activate, re-active an inactive user
+    $(".activate").click(function () {
+        $.ajax({
+            url: REST + '/users/' + $(this).attr('value') + '/active',
             method: 'PUT',
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -408,28 +489,19 @@ function actionsDashboard(data) {
                 active: true
             },
             statusCode: {
-                200: function (data) {
-                    loadUsers();
-                }
+                200: getUsers,
+                401: logout
             }
         });
-
     });
-
 }
 
 /**
- *
- * @param user
+ * Edit the currently selected user
  */
-function editAccount(user) {
-    const existingFirstname = user.firstname;
-    const existingLastname = user.lastname;
-    const existingActive = user.active;
-    let existingBirthday = new Date(user.birthday);
-    let month = existingBirthday.getMonth() + 1;
-    existingBirthday = existingBirthday.getDate() + '/' + month + '/' + existingBirthday.getFullYear();
+function editAccount() {
 
+    // show the messages
     errorMessageEdit.addClass('hidden');
     successMessageEdit.addClass('hidden');
 
@@ -446,175 +518,94 @@ function editAccount(user) {
     } else {
         $("#line-modal-label").html("Pas account aan van " + user.firstname + " " + user.lastname);
 
-        let existingHandicap;
-        if (user.handicap === 1) {
-            existingHandicap = "Goed ter been ";
-        } else if (user.handicap === 2) {
-            existingHandicap = "Minder goed ter been ";
-        } else if (user.handicap === 3) {
-            existingHandicap = "Slecht ter been ";
+        currentlySelectedHandicap = user.handicap;
+        // decide the handicap text
+        let handicapText = "Goed ter been";
+        if (currentlySelectedHandicap === 2) {
+            handicapText = "Minder goed ter been";
+        } else if (currentlySelectedHandicap === 3) {
+            handicapText = "Slecht ter been";
         }
 
-
-        $("#edit-handicap-button").html(existingHandicap + '<span class="caret"></span>');
-        $("#edit-firstname").attr('value', existingFirstname);
-        $("#edit-lastname").attr('value', existingLastname);
-        if (existingActive) {
-            $('#active-toggle').attr('checked', true);
-        } else {
-            $('#active-toggle').attr('checked', false);
-        }
-
-
-        $("#edit-birthday").attr('value', existingBirthday);
+        // set tet input fiels
+        $("#edit-handicap-button").html(handicapText + ' <span class="caret"></span>');
+        $("#edit-firstname").attr('value', user.firstname);
+        $("#edit-lastname").attr('value', user.lastname);
+        $('#active-toggle').attr('checked', user.active);
+        $("#edit-birthday").attr('value', getDDMMYYYY(new Date(user.birthday), '/'));
     }
 
-    let handicap = user.handicap;
-    $("#edit-handicap").find("li a").click(function () {
-
-        handicap = $(this).text();
-        let newText = handicap + ' <span class="caret"></span>';
-        $("#edit-handicap-button").html(newText);
-
-        handicap = handicap.toLowerCase();
-        if (handicap === "goed ter been") {
-            handicap = 1;
-        } else if (handicap === "minder goed ter been") {
-            handicap = 2;
-        } else if (handicap === "slecht ter been") {
-            handicap = 3;
-        } else {
-            handicap = 1;
-        }
-    });
-
-
-    editModal.on('hidden.bs.modal', function () {
+    // TODO: what does this do?
+    modalEdit.on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
         //todo user.id weghalen?
-    });
-
-
-    $("#edit-save-button").click(function () {
-
-        const firstname = $('#edit-firstname').val();
-        const lastname = $('#edit-lastname').val();
-        const password1 = $('#edit-password').val();
-        const password2 = $('#edit-password2').val();
-        const birthday = $('#edit-birthday').val();
-
-        // check if some fields are left empty and show error
-        if (firstname === '' || lastname === '' ||
-            birthday === '' || handicap === undefined) {
-            errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
-            errorMessageEdit.removeClass('hidden');
-        } else {
-            let data = {};
-
-
-            if (firstname !== existingFirstname) {
-                data.firstname = firstname;
-            }
-            if (lastname !== existingLastname) {
-                data.lastname = lastname;
-            }
-            if (
-                birthday !== existingBirthday) {
-                let dateparts = birthday.split('/');
-                data.birthday = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
-
-            }
-            if (handicap !== user.handicap) {
-                data.handicap = handicap;
-            }
-            if (existingActive !== !!$('#active-toggle').is(':checked')) {
-                data.active = !!$('#active-toggle').is(':checked');
-            }
-
-            //check if passwords are the same
-            if (password1 && password2) {
-                if (password1 !== password2 || password1.length < 8) {
-                    errorMessageEdit.text("Wachtwoorden komen niet overeen of zijn niet lang genoeg (minimaal 8 tekens lang).");
-                    errorMessageEdit.removeClass('hidden');
-                    return;
-                } else {
-                    data.password = password1;
-                }
-            }
-
-            updateUser(user.id, data);
-            successMessageEdit.addClass('hidden');
-        }
-
     });
 }
 
 /**
- *
- * @param id
+ * AJAX call to update a user
  * @param data
  */
-function updateUser(id, data) {
-    // console.dir(id);
+function updateUser(data) {
+    console.log('Updating user: ' + user.id);
 
     if (jQuery.isEmptyObject(data)) {
-        errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
+        errorMessageEdit.text("Breng een wijziging aan om een account op te kunnen slaan.");
         errorMessageEdit.removeClass('hidden');
-    } else {
-
-        $.ajax({
-            url: REST + '/users/' + id,
-            method: 'PUT',
-            data: data,
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            statusCode: {
-                200: function (data) {
-                    successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
-                    successMessageEdit.removeClass('hidden');
-                    loadUsers();
-                },
-                400: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
-                    errorMessageEdit.removeClass('hidden');
-                },
-                401: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
-                    errorMessageEdit.removeClass('hidden');
-                },
-                403: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
-                    errorMessageEdit.removeClass('hidden');
-                },
-                404: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
-                    errorMessageEdit.removeClass('hidden');
-                },
-                500: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
-                    errorMessageEdit.removeClass('hidden');
-                },
-                default: function (err) {
-                    errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
-                    errorMessageEdit.removeClass('hidden');
-                }
-            }
-        });
+        return;
     }
+
+    $.ajax({
+        url: REST + '/users/' + user.id,
+        method: 'PUT',
+        data: data,
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
+                successMessageEdit.removeClass('hidden');
+                getUsers();
+            },
+            400: function (err) {
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
+                errorMessageEdit.removeClass('hidden');
+            },
+            401: function (err) {
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
+                errorMessageEdit.removeClass('hidden');
+            },
+            403: function (err) {
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
+                errorMessageEdit.removeClass('hidden');
+            },
+            404: function (err) {
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
+                errorMessageEdit.removeClass('hidden');
+            },
+            500: function (err) {
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
+                errorMessageEdit.removeClass('hidden');
+            },
+            default: function (err) {
+                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
+                errorMessageEdit.removeClass('hidden');
+            }
+        }
+    });
 }
 
 /**
  * Check the query params if a success/error message was passed on from connecting a Fitbit
  */
-function checkQueryParams() {
+function checkFitbitConnectMessage() {
     const json = getQueryParams();
 
     let show = true;
     let title = 'Fitbit niet verbonden';
     let body = '';
 
-    // TODO: styling
     switch (parseInt(json.statusCode)) {
         case 201:
             title = 'Fitbit verbonden';

@@ -1,44 +1,20 @@
 /**
  * Created by romybeugeling on 24-05-17.
  */
-let selectedExportOption = undefined;
+let modalExport;
 
-$(document).ready(function () {
-    let id;
-    let modalExport = $('#modal-export');
-    let user = undefined;
+let selectedExportOption = undefined;
+let id;
+let user = undefined;
+
+$(document).ready(setupPDF);
+
+function setupPDF() {
+    modalExport = $('#modal-export');
 
     // open the export modal
-    $('.pdf').on('click', function () {
-        id = $(this).val();
-
-        // get the user object for his/her name on the pdf
-        $.ajax({
-            url: REST + '/users/' + id,
-            method: 'GET',
-            headers: {
-                Authorization: localStorage.getItem('token')
-            },
-            statusCode: {
-                200: function (data) {
-                    user = data.success;
-
-                    // set the last export date in the modal
-                    if (user.lastExport !== undefined && !isNaN(Date.parse(user.lastExport))) {
-                        $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
-                    }
-
-                    // open the modal
-                    modalExport.modal();
-                },
-                401: function () {
-                    // not logged id; redirect to login page
-                    localStorage.clear();
-                    location.replace('/index.php');
-                }
-            }
-        });
-    });
+    $('#pdf').on('click', openExportModal);
+    $('#pdf-export').on('click', openExportModal);
 
     // start the export process
     $('#export').on('click', function () {
@@ -74,7 +50,37 @@ $(document).ready(function () {
         $('.btn-export').removeClass('selected');
         $('#' + selectedExportOption).addClass('selected');
     });
-});
+}
+
+/**
+ * Load the user account and open the export modal
+ */
+function openExportModal() {
+    id = $(this).val();
+
+    // get the user object for his/her name on the pdf
+    $.ajax({
+        url: REST + '/users/' + id,
+        method: 'GET',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            200: function (data) {
+                user = data.success;
+
+                // set the last export date in the modal
+                if (user.lastExport !== undefined && !isNaN(Date.parse(user.lastExport))) {
+                    $('#last-export-date').html(getDDMMYYYY(user.lastExport, '/'));
+                }
+
+                // open the modal
+                modalExport.modal();
+            },
+            401: logout
+        }
+    });
+}
 
 /**
  * Enable or disable the export button
@@ -254,6 +260,9 @@ function exportSinceLast(user) {
         },
         statusCode: {
             200: function (data) {
+                // update last export date
+                $('#last-export-date').html(getDDMMYYYY(new Date(), '/'));
+
                 getPDF(user, data.success.steps, data.success.sleep, data.success.goals);
                 enableExportButton(true);
             },
