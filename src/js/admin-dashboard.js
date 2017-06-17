@@ -84,7 +84,7 @@ $(document).ready(function () {
             errorCompetition.removeClass('hidden');
         } else if (goal > 999999999) {
             successCompetition.addClass('hidden');
-            errorCompetition.text('Te hoog getal.');
+            errorCompetition.text('Doel mag niet hoger zijn dan 999999999.');
             errorCompetition.removeClass('hidden');
         } else if (goal < 0) {
             successCompetition.addClass('hidden');
@@ -136,9 +136,9 @@ $(document).ready(function () {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een geldig getal in.');
             errorCompetition.removeClass('hidden');
-        } else if (days > 999999999) {
+        } else if (days > 999) {
             successCompetition.addClass('hidden');
-            errorCompetition.text('Te hoog getal.');
+            errorCompetition.text('Lengte mag niet lamger zijn dan 999.');
             errorCompetition.removeClass('hidden');
         } else if (days < 0) {
             successCompetition.addClass('hidden');
@@ -382,10 +382,6 @@ function loadUsers(users) {
 
     // clicking on a user selects it for further actions
     $('.user').on('click', function () {
-        // TODO: what does this do?
-        modalEdit.on('hidden.bs.modal', function () {
-            $(this).find('form').trigger('reset');
-        });
 
         // deselect all users
         $('.user').removeClass('selected');
