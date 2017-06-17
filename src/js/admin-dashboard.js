@@ -60,7 +60,6 @@ $(document).ready(function () {
     pdfButton = $('.pdf');
     connectButton = $('.connect');
     revokeButton = $('.revoke');
-    userButton = $('.user');
 
     loadUsers();
 
@@ -97,7 +96,7 @@ $(document).ready(function () {
             errorCompetition.removeclass('hidden');
         } else if (goal > 999999999) {
             successCompetition.addClass('hidden');
-            errorCompetition.text('Te hoog getal.');
+            errorCompetition.text('Getal mag niet hoger dan 999999999.');
             errorCompetition.removeClass('hidden');
         } else if (isNaN(goal)) {
             successCompetition.addClass('hidden');
@@ -115,8 +114,8 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     201: function (data) {
-                       errorCompetition.addClass('hidden');
-                       successCompetition.removeClass('hidden');
+                        errorCompetition.addClass('hidden');
+                        successCompetition.removeClass('hidden');
                         $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
 
                     },
@@ -141,9 +140,9 @@ $(document).ready(function () {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een getal in groter dan 0.');
             errorCompetition.removeClass('hidden');
-        } else if (days > 999999999) {
+        } else if (days > 999) {
             successCompetition.addClass('hidden');
-            errorCompetition.text('Te hoog getal.');
+            errorCompetition.text('Getal mag niet hoger dan 999 zijn.');
             errorCompetition.removeClass('hidden');
         } else if (isNaN(days)) {
             successCompetition.addClass('hidden');
@@ -251,31 +250,6 @@ function actionsDashboard(data) {
                 "<div class='col-xs-1 col-md-1 glyphicon glyphicon-ok radio-select'></div>" +
                 "<input type='hidden' value='" + user.id + "'/></div><hr/>";
 
-
-            //
-            // if (user.fitbit === undefined) {
-            //     connected = "<button value='" + user.id +
-            //         "' class='btn btn-default connect'>Koppel Fitbit</button>" +
-            //         "<button value='" + user.id +
-            //         "' class='btn btn-default hidden revoke'>Ontkoppel Fitbit</button>";
-            // } else {
-            //     connected = "<button value='" + user.id +
-            //         "' class='btn btn-default edit pdf'>Exporteer</button>" + "<button value='" + user.id +
-            //         "' class='btn btn-default hidden connect'>Koppel Fitbit</button>" +
-            //         "<button value='" + user.id +
-            //         "' class='btn btn-default revoke'>Ontkoppel Fitbit</button>";
-            // }
-
-            // let html = "<div class='user row' >" +
-            //     "<div class='col-xs-12 col-md-5 one-user' " +
-            //     "<span class='glyphicon glyphicon-user'></span>" +
-            //     user.firstname + " " + user.lastname + " (" + user.id + ")" + " </div>" +
-            //     "<div class='col-xs-12 col-md-7'>" +
-            //     "<button value='" + user.id + "' class='btn btn-default edit' data-toggle='modal' " +
-            //     "data-target='#edit-modal'>Pas aan</button>"
-            //     + connected +
-            //     "</div> </div> <hr/>";
-
             userList.append(html);
         } else {
             let inactiveHtml = "<div class='user row' >" +
@@ -288,35 +262,25 @@ function actionsDashboard(data) {
 
             inactiveUserList.append(inactiveHtml);
         }
-
     }
 
     /**
      * Update the 'radio' select button
      */
     $('.user').on('click', function () {
-        editModal.on('hidden.bs.modal', function () {
-            $(this).find('form').trigger('reset');
-        });
-        console.dir("opnieuw");
-        $('.user').removeClass('selected');
-        console.dir(this);
+
+        $(".user").removeClass('selected');
         $(this).addClass('selected');
 
         user = undefined;
 
         let id = $(this).find('input[type=hidden]').val();
 
-
-        console.dir(id);
-
         for (let i = 0; i < users.length; i++) {
             if (parseInt(users[i].id) === parseInt(id)) {
                 user = users[i];
             }
         }
-        console.dir("hier ");
-        console.dir(user);
 
         editButton.removeAttr('disabled');
 
@@ -384,11 +348,7 @@ function actionsDashboard(data) {
             accountModal.modal();
         });
 
-        console.dir("hier niks" + user.id);
-
         $(".edit").click(function () {
-
-            console.dir("hier meer id's " + user.id);
             editAccount(user);
         });
 
@@ -413,9 +373,7 @@ function actionsDashboard(data) {
                 }
             }
         });
-
     });
-
 }
 
 /**
@@ -496,12 +454,17 @@ function editAccount(user) {
 
 
     $("#edit-save-button").click(function () {
+        let firstname = undefined;
+        let lastname = undefined;
+        let password1 = undefined;
+        let password2 = undefined;
+        let birthday = undefined;
 
-        const firstname = $('#edit-firstname').val();
-        const lastname = $('#edit-lastname').val();
-        const password1 = $('#edit-password').val();
-        const password2 = $('#edit-password2').val();
-        const birthday = $('#edit-birthday').val();
+        firstname = $('#edit-firstname').val();
+        lastname = $('#edit-lastname').val();
+        password1 = $('#edit-password').val();
+        password2 = $('#edit-password2').val();
+        birthday = $('#edit-birthday').val();
 
         // check if some fields are left empty and show error
         if (firstname === '' || lastname === '' ||
@@ -541,7 +504,6 @@ function editAccount(user) {
                     data.password = password1;
                 }
             }
-
             updateUser(user.id, data);
             successMessageEdit.addClass('hidden');
         }
@@ -555,7 +517,6 @@ function editAccount(user) {
  * @param data
  */
 function updateUser(id, data) {
-    // console.dir(id);
 
     if (jQuery.isEmptyObject(data)) {
         errorMessageEdit.text("Vul een voornaam, achternaam, verjaardag en/of handicap in.");
