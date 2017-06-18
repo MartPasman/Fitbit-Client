@@ -369,16 +369,23 @@ include './include/header.php';
             <div class="panel-body" id="userlist"></div>
 
             <div class="panel-footer">
-                <!-- TODO: exporteer class veranderen -->
-                <button id="edit" value="" class='btn btn-primary' data-toggle='modal' disabled
-                        data-target='#edit-modal'>Pas aan
+                <!-- edit account -->
+                <button id="edit" value="" class='btn btn-primary' disabled
+                        data-toggle='modal' data-target='#edit-modal'>Pas aan
                 </button>
-                <button id="pdf-export" value="" class="btn btn-primary" disabled>
+
+                <!-- export data -->
+                <button id="pdf-export" value="" class="btn btn-primary" disabled
+                        title="De gebruiker moet gekoppeld zijn aan een Fitbit om te exporteren.">
                     Exporteer
                 </button>
+
+                <!-- connect Fitbit -->
                 <button id="connect" value="" class="btn btn-primary hidden">
                     Koppel Fitbit
                 </button>
+
+                <!-- disconnect Fitbit -->
                 <button id="revoke" value="" class="btn btn-primary hidden">
                     Ontkoppel Fitbit
                 </button>
