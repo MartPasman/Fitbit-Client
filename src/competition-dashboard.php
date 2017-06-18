@@ -28,6 +28,7 @@ $url = $input[$rand_keys];
     <link rel="stylesheet" href="css/competition/weather.css"/>
     <link rel="stylesheet" href="css/competition/weather-icons.css"/>
     <link rel="stylesheet" href="css/competition/social.css">
+    <link rel="stylesheet" href="css/button.css">
 
     <!-- today -->
     <div id="today"></div>
