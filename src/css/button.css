@@ -157,3 +157,9 @@
 div[data-toggle="tooltip"] {
     display: inline-block;
 }
+
+#resize-button {
+    float: right;
+    margin-top: 17px;
+    margin-right: 20px;
+}

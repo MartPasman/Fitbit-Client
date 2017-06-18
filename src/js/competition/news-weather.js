@@ -2,6 +2,7 @@
  * Created by sveno on 12-6-2017.
  */
 $(document).ready(function () {
+    // get the news
     $.ajax({
         url: "../include/get-contents.php?url=" + encodeURI('http://xml.rtvoost.nl/rss/tag.aspx?tag=Enschede'),
         method: 'POST',
@@ -29,6 +30,7 @@ $(document).ready(function () {
         }
     });
 
+    // get the weather forecast
     $.ajax({
         url: "../include/get-contents.php?url=" + encodeURI('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22Enschede%2C%20NL%22)&format=xml&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'),
         method: 'POST',
@@ -112,7 +114,6 @@ $(document).ready(function () {
                         break;
                 }
 
-
                 //sun #6BB9F0
                 //partlycloudy '#59ABE3'
                 //cloudy '#3498DB'
@@ -126,15 +127,32 @@ $(document).ready(function () {
     });
 });
 
+/**
+ * Fahrenheit to Celcius
+ * @param f degree fahrenheit
+ * @returns {number}
+ */
 function toCelsius(f) {
     return Math.round((5 / 9) * (f - 32));
 }
 
+/**
+ * Set the image and background
+ * @param div
+ * @param divImage
+ * @param imageClass
+ * @param color
+ */
 function setBackgroundImage(div, divImage, imageClass, color) {
     $(divImage).addClass("wi " + imageClass);
     $(div).css('background-color', color);
 }
 
+/**
+ * Get the image of a weather code
+ * @param code
+ * @returns {*}
+ */
 function getIconClass(code) {
     let cssClass;
     switch (+code) {
@@ -258,6 +276,11 @@ function getIconClass(code) {
     return cssClass;
 }
 
+/**
+ * Get the Dutch text of a weather code
+ * @param code
+ * @returns {*}
+ */
 function getText(code) {
     let text;
     switch (+code) {

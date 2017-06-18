@@ -1,12 +1,12 @@
-var users = [];
-var barchart;
+let users = [];
+let barchart;
 
-var offset = 0;
-var old_offset = 0;
+let offset = 0;
+let old_offset = 0;
 
-var index = 0;
+let index = 0;
 
-var html = "";
+let html = "";
 
 let navbar = $('#navbardiv');
 
@@ -15,22 +15,23 @@ $(document).ready(function () {
     let queries = getQueryParams();
 
     // get the current date as a string
-    $('#today').html(getTodaysDate()+ '<div id="resize-button" style="float:right; margin-top:17px; margin-right: 20px;" class="button glyphicon glyphicon-resize-full"></div>');
+    $('#today').html(getTodaysDate() + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
     getUsers();
-    var resize = $('#resize-button');
+    let resize = $('#resize-button');
     resize.click(function () {
         if (navbar.is(':hidden')) {
             navbar.toggle();
             resize.removeClass('glyphicon-resize-small');
             resize.addClass('glyphicon-resize-full');
-        }else{
+        } else {
             navbar.hide();
             resize.removeClass('glyphicon-resize-full');
             resize.addClass('glyphicon-resize-small');
         }
     });
 
-    if(+queries.fullscreen == 1){
+    // set to fullscreen if we were in fullscreen before a reload
+    if (+queries.fullscreen === 1) {
         navbar.hide();
         resize.removeClass('glyphicon-resize-full');
         resize.addClass('glyphicon-resize-small');
@@ -38,15 +39,18 @@ $(document).ready(function () {
 
 });
 
+/**
+ * Refresh the page and keep track of the fullscreen state
+ */
 function refresh() {
     if (navbar.is(':hidden')) {
         window.location.replace("/competition-dashboard.php?fullscreen=1");
-    }else{
+    } else {
         window.location.replace("/competition-dashboard.php?fullscreen=0");
     }
 }
 
-var loadWithOffset = function (users) {
+let loadWithOffset = function (users) {
     $.ajax({
         url: REST + '/competitions/',
         method: 'GET',
@@ -130,12 +134,12 @@ function createHTML(users, data) {
 
 function makeBarChart(users, data) {
 
-    var lastComp = data;
-    var max = data.total;
-    var current = data.current;
-    var scoreFromEach = [];
-    var goal = lastComp.goal;
-    var name;
+    let lastComp = data;
+    let max = data.total;
+    let current = data.current;
+    let scoreFromEach = [];
+    let goal = lastComp.goal;
+    let name;
     let graphs = Math.ceil(lastComp.results.length / 5);
     let totals = 5;
 
@@ -148,21 +152,21 @@ function makeBarChart(users, data) {
         scoreFromEach = [];
         if (g === graphs - 1) {
             totals = lastComp.results.length % 5;
-            if(totals == 0){
+            if (totals === 0) {
                 totals = 5;
             }
         }
-        var i = g * 5;
-        for (var s = 0; s < totals; s++) {
+        let i = g * 5;
+        for (let s = 0; s < totals; s++) {
 
-            var value = (lastComp.results[i].score / goal * 100);
+            let value = (lastComp.results[i].score / goal * 100);
             if (value > 100) {
                 value = 100;
             }
 
             for (let j = 0; j < users.success.length; j++) {
 
-                if (users.success[j].id == lastComp.results[i].userid) {
+                if (parseInt(users.success[j].id) === parseInt(lastComp.results[i].userid)) {
                     name = users.success[j].firstname + ' ' + users.success[j].lastname;
                 }
             }
@@ -180,28 +184,19 @@ function makeBarChart(users, data) {
         if (scoreFromEach.length > 0) {
             console.log(scoreFromEach);
             barchart = drawBarChart('#chart-competition' + g + '', scoreFromEach, 'Naam', 'Percentage behaald', '%', 1000, 400);
-            var start_date = new Date(lastComp.start);
-            var end_date = new Date(lastComp.end);
+            let start_date = new Date(lastComp.start);
+            let end_date = new Date(lastComp.end);
             $("#startend" + g + "").html(start_date.getDate() + "-" + (+start_date.getMonth() + 1) + "-" + start_date.getFullYear() + " t/m " + end_date.getDate() + "-" + (+end_date.getMonth() + 1) + "-" + end_date.getFullYear());
             $("#goal-to-reach" + g + "").html(lastComp.goal + " stap punten");
         } else {
             printBarChartError('Er zijn nog geen competitiegegevens bekend.');
         }
     }
-
 }
 
-const printBarChartError = function (message) {
+function printBarChartError(message) {
     $('#chart-competition').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
-};
-
-
-
-function getNameById(users, results) {
-
-    return null;
 }
-
 
 function generateslider() {
     $('#slides').slidesjs({
@@ -211,7 +206,7 @@ function generateslider() {
             // You cannot use your own buttons. Sorry.
             effect: "slide",
             // [string] Can be either "slide" or "fade".
-            interval: 10000,
+            interval: 10 * 1000,
             // [number] Time spent on each slide in milliseconds.
             auto: true,
             // [boolean] Start playing the slideshow on load.
