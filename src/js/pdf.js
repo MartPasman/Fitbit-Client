@@ -352,7 +352,11 @@ function getPDF(user, stepsData, sleepData, goalsData) {
     }
 
     // for every pages
+
+    // we need a different sleep index
+    let s = 0;
     for (let d = 0; d < days; d++) {
+
         // check if we should start a new page
         if (d % DAYS_IN_WEEK === 0) {
             // add next page
@@ -431,16 +435,25 @@ function getPDF(user, stepsData, sleepData, goalsData) {
 
         const offset = d % DAYS_IN_WEEK;
 
+        let currentDayMonth = 'dd/mm';
+
         // steps
         if (stepsData[d] !== undefined) {
-            const date = stepsData[d].dateTime;
-            doc.text(date.substring(8, 10) + '/' + date.substring(5, 7), 52 + (offset * 20), 67);
+            // set the currently to draw date
+            currentDayMonth = getDDMM(stepsData[d].dateTime, '/');
+            doc.text(currentDayMonth, 52 + (offset * 20), 67);
+
+            // draw the steps
             doc.text(stepsData[d].value.toString(), 51.5 + (offset * 20), 77);
         }
 
         // sleep
-        if (sleepData[d] !== undefined) {
-            doc.text((Math.round(sleepData[d].duration * 10) / 10).toString(), 51.5 + (offset * 20), 87);
+        if (sleepData[s] !== undefined) {
+            const sleepDate = getDDMM(sleepData[s].dateTime);
+            if (currentDayMonth === sleepDate) {
+                s++;
+                doc.text((Math.round(sleepData[s].duration * 10) / 10).toString(), 51.5 + (offset * 20), 87);
+            }
         }
 
         // goals

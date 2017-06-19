@@ -50,11 +50,6 @@ $(document).ready(function () {
             let dateparts2 = end.split('/');
             end = dateparts2[2] + '-' + dateparts2[1] + '-' + dateparts2[0];
 
-            console.log(start);
-            console.log(end);
-            console.log(new Date(start));
-            console.log(new Date(end));
-
             // check dates
             if (new Date(start) < new Date() || new Date(end) < new Date(start)) {
                 messageToggle(errorMessage, successMessage, 'De begindatum moet in de toekomst liggen en de einddatum moet na de startdatum liggen.');
