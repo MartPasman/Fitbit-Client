@@ -418,19 +418,24 @@ include './include/header.php';
                         <strong>Voer een getal in!</strong>
                     </div>
 
-                    <h4>Doelstelling voor volgende competitie:</h4><br><h5 id="show-current-goal"></h5><br>
-                    <h5 id="show-last-goal"></h5><br>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                        <input type="text" class="form-control" id="default_goal" placeholder="Aantal punten">
-                        <button type="button" id="comp-submit-button" class="btn btn-default competition-btn">
-                            Opslaan
-                        </button>
+                    <form id="competition-form-goal">
+                        <h4>Lengte van de volgende competitie:</h4>
+                        <h5 id="show-current-goal"></h5><br>
+                        <h5 id="show-last-goal"></h5><br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input type="text" class="form-control" id="default-days" placeholder="Aantal punten">
+                            <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
+                                Opslaan
+                            </button>
 
-                    </div>
+                        </div>
+                    </form>
+
                     <br><br>
+
                     <form id="competition-form-days">
-                        <h4>Lengte van de volgende competitie:</h4><br>
+                        <h4>Lengte van de volgende competitie:</h4>
                         <h5 id="show-current-days"></h5><br>
                         <h5 id="show-last-days"></h5><br>
                         <div class="input-group">
