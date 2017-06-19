@@ -16,6 +16,7 @@ html, body {
 
 .block {
     margin: 20px;
+    padding: 0;
 }
 
 #bar-div {
@@ -53,6 +54,55 @@ html, body {
 }
 
 #percentage {
-    font-size: 1.2em;
+    font-size: 1.6em;
+}
+
+#perc-span {
     margin-top: .35em;
+    margin-left: 50%;
+    position: absolute;
+    display: inline;
+}
+
+#progress-bar {
+    position: relative;
+    color: #000;
+}
+
+#progress-div {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FFF;
+}
+
+#live-player-container {
+    height: calc(100vh - 53px);
+    overflow: hidden;
+}
+
+/* Make the live player fit the rest of the screen */
+#live-player {
+    width: calc(100vw);
+    height: calc(100vh - 53px);
+}
+
+#shared-goal-chart {
+    margin-top: 2em;
+}
+
+/* Error in the middle of the screen */
+#shared-goal-chart .block-error {
+    font-size: 2em;
+    padding: 6em 8em;
+}
+
+/* Keep the error in the middle of the screen on mobile  */
+@media all and (max-width: 768px) {
+    #shared-goal-chart .block-error {
+        font-size: 1.8em;
+        padding: 2em 1em;
+    }
 }

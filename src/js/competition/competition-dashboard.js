@@ -161,8 +161,6 @@ function createHTML(users, data) {
 function makeBarChart(users, data) {
 
     let lastComp = data;
-    let max = data.total;
-    let current = data.current;
     let scoreFromEach = [];
     let goal = lastComp.goal;
     let name;
@@ -181,6 +179,7 @@ function makeBarChart(users, data) {
                 totals = 5;
             }
         }
+
         let i = g * 5;
         for (let s = 0; s < totals; s++) {
 
@@ -207,11 +206,17 @@ function makeBarChart(users, data) {
 
         if (scoreFromEach.length > 0) {
             console.log(scoreFromEach);
-            barchart = drawBarChart('#chart-competition' + g + '', scoreFromEach, 'Naam', 'Percentage behaald', '%', 1000, 400);
+
+            const elementId = '#chart-competition' + g;
+            const container = $(elementId).parent();
+            const w = container.width() - ($(window).width() * .1), h = 600;
+            container.css('padding-left', ($(window).width() * .1 * .5) + 'px');
+
+            barchart = drawBarChart(elementId, scoreFromEach, 'Naam', 'Percentage behaald', '%', w, h);
             let start_date = new Date(lastComp.start);
             let end_date = new Date(lastComp.end);
-            $("#startend" + g + "").html(start_date.getDate() + "-" + (+start_date.getMonth() + 1) + "-" + start_date.getFullYear() + " t/m " + end_date.getDate() + "-" + (+end_date.getMonth() + 1) + "-" + end_date.getFullYear());
-            $("#goal-to-reach" + g + "").html(lastComp.goal + " stap punten");
+            $("#startend" + g + "").html(getDDMMYYYY(start_date, '/') + ' tot en met ' + getDDMMYYYY(end_date, '/'));
+            $("#goal-to-reach" + g + "").html(lastComp.goal + ' punten');
         } else {
             printBarChartError('Er zijn nog geen competitiegegevens bekend.');
         }
