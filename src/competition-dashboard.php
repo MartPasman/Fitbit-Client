@@ -33,7 +33,15 @@ $url = $input[$rand_keys];
     <!-- today -->
     <div id="today"></div>
 
-    <div id="test"></div>
+    <div id="message">
+        <div class='container'>
+            <div class='page-error'>
+                <span class='glyphicon glyphicon-exclamation-sign'></span><br/>
+                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichten. Bezoek dit dashboard op een groter
+                scherm. Of herlaad de pagina nadat u dit scherm hebt vergroot.
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid">
         <div id="slides">

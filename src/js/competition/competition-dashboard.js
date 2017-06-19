@@ -8,15 +8,28 @@ let index = 0;
 
 let html = "";
 
+let usersloaded = false;
+
 let navbar = $('#navbardiv');
 
 $(document).ready(function () {
+
+    if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
+        $("#message").show();
+        $('#slides').hide();
+    } else {
+        $("#message").hide();
+        $('#slides').show();
+        if (usersloaded == false) {
+            getUsers();
+            usersloaded = true;
+        }
+    }
 
     let queries = getQueryParams();
 
     // get the current date as a string
     $('#today').html(getTodaysDate() + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
-    getUsers();
     let resize = $('#resize-button');
     resize.click(function () {
         if (navbar.is(':hidden')) {
@@ -36,8 +49,22 @@ $(document).ready(function () {
         resize.removeClass('glyphicon-resize-full');
         resize.addClass('glyphicon-resize-small');
     }
-
 });
+
+$(window).on('resize', function () {
+    if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
+        $("#message").show();
+        $('#slides').hide();
+    } else {
+        $("#message").hide();
+        $('#slides').show();
+        if (usersloaded == false) {
+            getUsers();
+            usersloaded = true;
+        }
+    }
+});
+
 
 /**
  * Refresh the page and keep track of the fullscreen state
