@@ -32,8 +32,4 @@ $(document).ready(function () {
             }
         }
     );
-
-    window.onresize = function () {
-        location.reload();
-    }
 });
