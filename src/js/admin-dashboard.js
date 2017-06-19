@@ -196,7 +196,7 @@ $(document).ready(function () {
         const newActiveState = !!$('#active-toggle').is(':checked');
 
         // check if some fields are left empty and show error
-        if (firstname === '' || lastname === '' || firstname.length > 49 || lastname.length > 49|| birthday === '' || currentlySelectedHandicap === undefined) {
+        if (firstname === '' || lastname === '' || firstname.length > 49 || lastname.length > 49 || birthday === '' || currentlySelectedHandicap === undefined) {
             errorMessageEdit.text('Vul een voornaam, achternaam, verjaardag en/of handicap in.');
             errorMessageEdit.removeClass('hidden');
             return;
@@ -537,10 +537,9 @@ function editAccount() {
         $("#edit-birthday").attr('value', getDDMMYYYY(new Date(user.birthday), '/'));
     }
 
-    // TODO: what does this do?
+    // reset input fields
     modalEdit.on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
-        //todo user.id weghalen?
     });
 }
 
@@ -552,8 +551,7 @@ function updateUser(data) {
     console.log('Updating user: ' + user.id);
 
     if (jQuery.isEmptyObject(data)) {
-        errorMessageEdit.text("Breng een wijziging aan om een account op te kunnen slaan.");
-        errorMessageEdit.removeClass('hidden');
+        setEditErrorSuccessMessage('Breng een wijziging aan om een account op te slaan.', '', true);
         return;
     }
 
@@ -565,37 +563,52 @@ function updateUser(data) {
             Authorization: localStorage.getItem('token')
         },
         statusCode: {
-            200: function (data) {
-                successMessageEdit.html("<strong>Gelukt.</strong> De persoonlijke informatie is aangepast.");
-                successMessageEdit.removeClass('hidden');
+            200: function () {
+                setEditErrorSuccessMessage('Gelukt.', 'De persoonlijke informatie is aangepast.', false);
                 getUsers();
             },
-            400: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of de velden correct ingevuld zijn.");
-                errorMessageEdit.removeClass('hidden');
+            400: function () {
+                setEditErrorSuccessMessage('Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.',
+                    'Controleer of de velden correct ingevuld zijn.', true);
             },
-            401: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Controleer of je ingelogd bent.");
-                errorMessageEdit.removeClass('hidden');
+            401: logout,
+            403: function () {
+                setEditErrorSuccessMessage('Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.',
+                    'Je bent niet geautoriseerd om een account aan te maken.', true);
             },
-            403: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Je bent niet geautoriseerd om een account aan te maken.");
-                errorMessageEdit.removeClass('hidden');
+            404: function () {
+                setEditErrorSuccessMessage('Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.',
+                    'Deelnemer bestaat niet.', true);
             },
-            404: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Deelnemer is niet gevonden of bestaat niet.");
-                errorMessageEdit.removeClass('hidden');
+            500: function () {
+                setEditErrorSuccessMessage('Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.',
+                    'Probeer het later nog eens.', true);
             },
-            500: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Het is niet jouw fout, probeer het later nog eens.");
-                errorMessageEdit.removeClass('hidden');
-            },
-            default: function (err) {
-                errorMessageEdit.html("<strong>Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.</strong> Probeer het later nog eens.");
-                errorMessageEdit.removeClass('hidden');
+            default: function () {
+                setEditErrorSuccessMessage('Er is iets fout gegaan tijdens het opslaan van de persoonlijke informatie.',
+                    'Probeer het later nog eens.', true);
             }
         }
     });
+}
+
+/**
+ * Set the error or success message when editing a user
+ * @param heading
+ * @param body
+ * @param error boolean if it is an error or success message
+ */
+function setEditErrorSuccessMessage(heading, body, error) {
+    const html = '<b>' + heading + '</b><br/>' + body;
+    if (error) {
+        successMessageEdit.addClass('hidden');
+        errorMessageEdit.html(html);
+        errorMessageEdit.removeClass('hidden');
+    } else {
+        errorMessageEdit.addClass('hidden');
+        successMessageEdit.html(html);
+        successMessageEdit.removeClass('hidden');
+    }
 }
 
 /**

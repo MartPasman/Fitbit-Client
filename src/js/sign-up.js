@@ -7,7 +7,6 @@ $(document).ready(function () {
     const errorMsg = $("#error-message-new");
     const successMsg = $("#success-message-new");
 
-
     $('[data-toggle="tooltip"]').tooltip();
 
     let handicap = undefined;
@@ -39,36 +38,42 @@ $(document).ready(function () {
 
     $('#new-save-button').click(function () {
         errorMsg.text("Vul alle velden in.");
-        $('#new-firstname').removeClass('has-error');
-        $('#new-lastname').removeClass('has-error');
-        $('#new-password').removeClass('has-error');
-        $('#new-password2').removeClass('has-error');
-        $('#new-birthday').removeClass('has-error');
 
-        let firstname = $('#new-firstname').val().trim();
-        let lastname = $('#new-lastname').val().trim();
-        let password1 = $('#new-password').val().trim();
-        let password2 = $('#new-password2').val().trim();
-        let birthday = $('#new-birthday').val().trim();
+        const nf = $('#new-firstname');
+        const nl = $('#new-lastname');
+        const np = $('#new-password');
+        const np2 = $('#new-password2');
+        const nb = $('#new-birthday');
+        nf.removeClass('has-error');
+        nl.removeClass('has-error');
+        np.removeClass('has-error');
+        np2.removeClass('has-error');
+        nb.removeClass('has-error');
+
+        let firstname = nf.val().trim();
+        let lastname = nl.val().trim();
+        let password1 = np.val().trim();
+        let password2 = np2.val().trim();
+        let birthday = nb.val().trim();
 
         // check if some fields are left empty and show error
         if (firstname === '' || lastname === '' || birthday === '' || password2 === '' || password1 === '' || type === undefined || firstname > 49 || lastname > 49) {
             errorMsg.text("Vul alle velden in.");
             errorMsg.removeClass('hidden');
-            if(firstname === '' || firstname > 49){
-                $('#new-firstname').addClass('has-error');
+            if (firstname === '' || firstname > 49) {
+                nf.addClass('has-error');
             }
-            if(lastname === '' || lastname > 49){
-                $('#new-lastname').addClass('has-error');
+            if (lastname === '' || lastname > 49) {
+                nl.addClass('has-error');
             }
-            if(password1 === ''){
-                $('#new-password').addClass('has-error');
+            if (password1 === '') {
+                np.addClass('has-error');
             }
-            if(password1 === ''){
-                $('#new-password2').addClass('has-error');
+            if (password1 === '') {
+                np2.addClass('has-error');
             }
-            if(birthday === undefined){
-                $('#new-birthday').addClass('has-error');
+            if (birthday === undefined) {
+                nb.addClass('has-error');
             }
 
             return;
@@ -188,9 +193,17 @@ $(document).ready(function () {
     });
 });
 
-function changeIcon(object, remove1, remove2, add, color){
+/**
+ * Change the icon of an input field
+ * @param object
+ * @param remove1
+ * @param remove2
+ * @param add
+ * @param color
+ */
+function changeIcon(object, remove1, remove2, add, color) {
     object.removeClass(remove1);
     object.removeClass(remove2);
     object.addClass(add);
-    object.css("color", color);
+    object.css('color', color);
 }
