@@ -19,6 +19,8 @@ $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 $input = array($elephants, $bears);
 $rand_keys = array_rand($input);
 $url = $input[$rand_keys];
+
+$url = $amsterdam;
 ?>
     <link rel="stylesheet" href="css/competition/weather.css"/>
     <link rel="stylesheet" href="css/competition/weather-icons.css"/>
@@ -33,7 +35,7 @@ $url = $input[$rand_keys];
             <div class='page-error'>
                 <span class='glyphicon glyphicon-exclamation-sign'></span><br/>
                 Te klein.<br/>Dit scherm is te klein om deze pagina te bezichten. Bezoek dit dashboard op een groter
-                scherm. Of herlaad de pagina nadat u dit scherm hebt vergroot.
+                scherm of herlaad de pagina nadat u dit scherm hebt vergroot.
             </div>
         </div>
     </div>
