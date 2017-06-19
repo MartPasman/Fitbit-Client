@@ -389,6 +389,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
 }
 
+.is-connected {
+    margin-top: .25em;
+    font-size: 1.2em;
+}
+
 #competition-form {
     display: block;
 }
@@ -429,29 +434,6 @@ input[type="month"].form-control {
 
 #export[disabled]:after {
     content: ' Exporteren...';
-}
-
-/* Acts like a radio button */
-.btn-export {
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: .6em;
-    cursor: pointer;
-}
-
-.btn-export:hover {
-    -webkit-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
-    -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
-    box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
-    background-color: #fcfcfc;
-}
-
-.btn-export:active {
-    -webkit-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
-    -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
-    box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
-    background-color: #f9f9f9;
 }
 
 /* Surrounding error div under the datepicker of the period export option */
@@ -511,6 +493,8 @@ input[type="month"].form-control {
 
 #sharedgoalh {
     text-align: left;
+    margin-top: .35em;
+    margin-left: .35em;
 }
 
 #userlist, #line-modal-label {
@@ -525,56 +509,4 @@ input[type="month"].form-control {
 .radio-select {
     font-size: 1.5em;
     padding-left: 0;
-}
-#perc-span {
-    margin-left: 50%;
-    position: absolute;
-    display: inline;
-}
-
-#progress-bar {
-    position: relative;
-    color: #000;
-}
-
-#bar-div {
-    height: 50px;
-}
-
-#progress-div {
-    width: 100%;
-    position: absolute;
-    z-index: 10;
-    overflow: hidden;
-    white-space: nowrap;
-    color: #FFF;
-}
-
-#live-player-container {
-    height: calc(100vh - 53px);
-    overflow: hidden;
-}
-
-/* Make the live player fit the rest of the screen */
-#live-player {
-    width: calc(100vw);
-    height: calc(100vh - 53px);
-}
-
-#shared-goal-chart {
-    margin-top: 2em;
-}
-
-/* Error in the middle of the screen */
-#shared-goal-chart .block-error {
-    font-size: 2em;
-    padding: 6em 8em;
-}
-
-/* Keep the error in the middle of the screen on mobile  */
-@media all and (max-width: 768px) {
-    #shared-goal-chart .block-error {
-        font-size: 1.8em;
-        padding: 2em 1em;
-    }
 }

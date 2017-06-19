@@ -14,7 +14,7 @@ let navbar = $('#navbardiv');
 
 $(document).ready(function () {
 
-    if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
+    if (window.innerWidth < 1250 || window.innerHeight < 650 || window.innerHeight > window.innerWidth) {
         $("#message").show();
         $('#slides').hide();
     } else {
@@ -58,7 +58,7 @@ $(window).on('resize', function () {
     } else {
         $("#message").hide();
         $('#slides').show();
-        if (usersloaded == false) {
+        if (usersloaded === false) {
             getUsers();
             usersloaded = true;
         }
@@ -155,15 +155,12 @@ function createHTML(users, data) {
     //showusers(data.success);
     makeBarChart(users, data);
     generateslider();
-
 }
 
 
 function makeBarChart(users, data) {
 
     let lastComp = data;
-    let max = data.total;
-    let current = data.current;
     let scoreFromEach = [];
     let goal = lastComp.goal;
     let name;
@@ -174,7 +171,6 @@ function makeBarChart(users, data) {
         return m2.score - m1.score;
     });
 
-
     for (let g = 0; g < graphs; g++) {
         scoreFromEach = [];
         if (g === graphs - 1) {
@@ -183,6 +179,7 @@ function makeBarChart(users, data) {
                 totals = 5;
             }
         }
+
         let i = g * 5;
         for (let s = 0; s < totals; s++) {
 
@@ -207,14 +204,19 @@ function makeBarChart(users, data) {
             };
         }
 
-
         if (scoreFromEach.length > 0) {
             console.log(scoreFromEach);
-            barchart = drawBarChart('#chart-competition' + g + '', scoreFromEach, 'Naam', 'Percentage behaald', '%', 1000, 400);
+
+            const elementId = '#chart-competition' + g;
+            const container = $(elementId).parent();
+            const w = container.width() - ($(window).width() * .1), h = 600;
+            container.css('padding-left', ($(window).width() * .1 * .5) + 'px');
+
+            barchart = drawBarChart(elementId, scoreFromEach, 'Naam', 'Percentage behaald', '%', w, h);
             let start_date = new Date(lastComp.start);
             let end_date = new Date(lastComp.end);
-            $("#startend" + g + "").html(start_date.getDate() + "-" + (+start_date.getMonth() + 1) + "-" + start_date.getFullYear() + " t/m " + end_date.getDate() + "-" + (+end_date.getMonth() + 1) + "-" + end_date.getFullYear());
-            $("#goal-to-reach" + g + "").html(lastComp.goal + " stap punten");
+            $("#startend" + g + "").html(getDDMMYYYY(start_date, '/') + ' tot en met ' + getDDMMYYYY(end_date, '/'));
+            $("#goal-to-reach" + g + "").html(lastComp.goal + ' punten');
         } else {
             printBarChartError('Er zijn nog geen competitiegegevens bekend.');
         }
@@ -233,7 +235,7 @@ function generateslider() {
             // You cannot use your own buttons. Sorry.
             effect: "slide",
             // [string] Can be either "slide" or "fade".
-            interval: 10 * 1000,
+            interval: 20 * 1000,
             // [number] Time spent on each slide in milliseconds.
             auto: true,
             // [boolean] Start playing the slideshow on load.
@@ -245,5 +247,4 @@ function generateslider() {
             // [number] restart delay on inactive slideshow
         }
     });
-
 }

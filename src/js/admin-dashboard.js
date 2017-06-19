@@ -348,21 +348,26 @@ function loadUsers(users) {
 
         let html = "<div class='user row'>";
         if (user.active) {
-            html += "<div class='col-xs-11 col-md-11 one-user'>";
+            html += "<div class='col-xs-10 one-user'>";
         } else {
-            html += "<div class='col-xs-10 col-md-8 one-user'>";
+            html += "<div class='col-xs-9 col-md-10 one-user'>";
         }
 
         // same for both active and inactive users
-        html += user.firstname + " " + user.lastname + " (" + user.id + ")" + "</div>";
+        html += "<div class='col-xs-11'>" + user.firstname + " " + user.lastname + " (" + user.id + ")</div>";
+
+        // if the user is connected
+        if (user.active && user.fitbit !== undefined && user.fitbit !== null) {
+            html += "<span class='col-xs-1 glyphicon glyphicon-link is-connected'></span>";
+        }
 
         if (user.active) {
             // active users can be selected for further actions
-            html += "<div class='col-xs-1 col-md-1 glyphicon glyphicon-ok radio-select'></div>" +
+            html += "</div><div class='col-xs-2 glyphicon glyphicon-ok radio-select'></div>" +
                 "<input type='hidden' value='" + user.id + "'/>";
         } else {
             // inactive users only have an activate button
-            html += "<div class='col-xs-2 col-md-4 '>" +
+            html += "</div><div class='col-xs-3 col-md-2 '>" +
                 "<button class='btn btn-default activate' value='" + user.id + "'>Activeer</button>" +
                 "</div>";
         }
@@ -370,6 +375,7 @@ function loadUsers(users) {
         // close user row div and append a line
         html += "</div><hr/>";
 
+        // append to the right list
         if (user.active) {
             userList.append(html);
         } else {

@@ -15,15 +15,16 @@ $(document).ready(function () {
             dataType: 'JSON',
             statusCode: {
                 200: function (data) {
-                    console.dir(data);
-                    let totWidth = $('#bar-div').width();
-                    let width = totWidth * data.success.percentage / 100;
-                    progressBar.width(width);
-                    if (data.success.percentage > 20) {
-                        $('#percentage').text(data.success.percentage + '%');
-                        if (data.success.achieved) {
-                            progressBar.css('background-color', 'green');
-                        }
+                    const totWidth = $('#bar-div').width();
+                    const width = totWidth * data.success.percentage / 100;
+                    progressBar.width(Math.min(width, totWidth));
+
+                    // set the percentage
+                    $('#percentage').text(data.success.percentage + '%');
+
+                    // if the goal was achieved
+                    if (data.success.achieved) {
+                        progressBar.css('background-color', 'green');
                     }
                 },
                 default: function (err) {

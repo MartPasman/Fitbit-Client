@@ -1,6 +1,27 @@
-.block-resize {
-    height: calc(100vh - 240px);
+html, body {
     overflow: hidden;
+}
+
+#container-social {
+    position: relative;
+    top: -20px;
+    margin: 0;
+    padding: 0;
+}
+
+.block-resize, .block {
+    height: calc(100vh - 220px);
+    overflow: hidden;
+}
+
+.block {
+    margin: 20px;
+    padding: 0;
+}
+
+#bar-div {
+    height: 50px;
+    margin-top: 20px;
 }
 
 #birthdays {
@@ -24,3 +45,64 @@
     width: 100%;
 }
 
+#today-icon {
+    font-size: 7em;
+    float: left;
+    position: absolute;
+    left: 5%;
+    color: white;
+}
+
+#percentage {
+    font-size: 1.6em;
+}
+
+#perc-span {
+    margin-top: .35em;
+    margin-left: 50%;
+    position: absolute;
+    display: inline;
+}
+
+#progress-bar {
+    position: relative;
+    color: #000;
+}
+
+#progress-div {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FFF;
+}
+
+#live-player-container {
+    height: calc(100vh - 53px);
+    overflow: hidden;
+}
+
+/* Make the live player fit the rest of the screen */
+#live-player {
+    width: calc(100vw);
+    height: calc(100vh - 53px);
+}
+
+#shared-goal-chart {
+    margin-top: 2em;
+}
+
+/* Error in the middle of the screen */
+#shared-goal-chart .block-error {
+    font-size: 2em;
+    padding: 6em 8em;
+}
+
+/* Keep the error in the middle of the screen on mobile  */
+@media all and (max-width: 768px) {
+    #shared-goal-chart .block-error {
+        font-size: 1.8em;
+        padding: 2em 1em;
+    }
+}

@@ -14,17 +14,14 @@ $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
 // More
 // https://www.youtube.com/user/exploreTeam
-$input = array($amsterdam, $elephants, $bears);
+
+// Select a random stream
+$input = array($elephants, $bears);
 $rand_keys = array_rand($input);
 $url = $input[$rand_keys];
+
+$url = $amsterdam;
 ?>
-    <style type="text/css">
-        html, body {
-            overflow: hidden;
-        }
-    </style>
-
-
     <link rel="stylesheet" href="css/competition/weather.css"/>
     <link rel="stylesheet" href="css/competition/weather-icons.css"/>
     <link rel="stylesheet" href="css/competition/social.css">
@@ -38,25 +35,39 @@ $url = $input[$rand_keys];
             <div class='page-error'>
                 <span class='glyphicon glyphicon-exclamation-sign'></span><br/>
                 Te klein.<br/>Dit scherm is te klein om deze pagina te bezichten. Bezoek dit dashboard op een groter
-                scherm. Of herlaad de pagina nadat u dit scherm hebt vergroot.
+                scherm of herlaad de pagina nadat u dit scherm hebt vergroot.
             </div>
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div id="container-social" class="container-fluid">
         <div id="slides">
+
+            <!-- Shared goals -->
+            <div class="container-fluid block">
+                <div class="container">
+                    <h1>Gezamenlijke doelstellingen</h1>
+                </div>
+
+                <div id="shared-goal-chart" class="block-error">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
+                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
+                        geladen worden.
+                    </div>
+                </div>
+            </div>
+
             <!-- Social page -->
             <div class="container-fluid">
-                <div id="bar-div" class="progress" style="height: 50px;">
-                    <span id="perc-span"><h4 id="percentage"></h4></span>
-                    <div id="progressBar" class="progress-bar progress-bar-danger  progress-bar-striped active"
+                <div id="bar-div" class="progress">
+                    <span id="perc-span"><strong id="percentage"></strong></span>
+                    <div id="progress-bar" class="progress-bar progress-bar-danger  progress-bar-striped active"
                          role="progressbar"
                          aria-valuemin="0" aria-valuemax="100">
                         <div id="progress-div">
                             <h3 id="sharedgoalh">Doelstelling</h3>
                         </div>
                         <h3 id="sharedgoalh">Doelstelling</h3>
-
                     </div>
                 </div>
 
@@ -70,8 +81,7 @@ $url = $input[$rand_keys];
                     <div class="weather-card">
                         <div class="top">
                             <div class="wrapper">
-                                <i id="today-icon"
-                                   style="font-size: 7em; float:left; position:absolute; left:5%; color:white;"></i>
+                                <i id="today-icon"></i>
                                 <h1 class="heading" id="condition"></h1>
                                 <h3 class="location" id="location"></h3>
                                 <p class="temp">
@@ -113,25 +123,11 @@ $url = $input[$rand_keys];
             </div>
 
             <!-- Live page -->
-            <div id="live-player-container" style="overflow: hidden;">
+            <div id="live-player-container">
 
                 <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
                         src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
                 </iframe>
-            </div>
-
-            <!-- Shared goals -->
-            <div class="container-fluid">
-                <div class="container">
-                    <h1>Gezamenlijke doelstellingen</h1>
-                </div>
-
-                <div id="shared-goal-chart" class="block-error">
-                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
-                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
-                        geladen worden.
-                    </div>
-                </div>
             </div>
 
             <!-- Other pages will be appended -->
@@ -156,7 +152,8 @@ $url = $input[$rand_keys];
 
     <!-- Auto refresh the page -->
     <script>
-        setTimeout(refresh, 300000);
+        // five minutes
+        setTimeout(refresh, 5 * 60 * 1000);
     </script>
 
     <!-- end of body -->

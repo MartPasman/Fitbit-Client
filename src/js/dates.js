@@ -45,6 +45,17 @@ function fromNLtoEN(string, splitByOld, splitByNew) {
     return undefined;
 }
 
+function getDDMM(date, splitBy) {
+    if (!(date instanceof Date)) {
+        date = new Date(date);
+    }
+
+    const mm = date.getMonth() + 1;
+    const dd = date.getDate();
+
+    return dd + splitBy + mm;
+}
+
 function today() {
     return new Date(getYYYYMMDD(new Date(), '-'))
 }
