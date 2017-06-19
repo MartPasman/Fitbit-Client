@@ -41,6 +41,20 @@ $url = $input[$rand_keys];
     <div id="container-social" class="container-fluid">
         <div id="slides">
 
+            <!-- Shared goals -->
+            <div class="container-fluid block">
+                <div class="container">
+                    <h1>Gezamenlijke doelstellingen</h1>
+                </div>
+
+                <div id="shared-goal-chart" class="block-error">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
+                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
+                        geladen worden.
+                    </div>
+                </div>
+            </div>
+
             <!-- Social page -->
             <div class="container-fluid">
                 <div id="bar-div" class="progress">
@@ -49,9 +63,9 @@ $url = $input[$rand_keys];
                          role="progressbar"
                          aria-valuemin="0" aria-valuemax="100">
                         <div id="progress-div">
-                            <h3 id="sharedgoalh">Gezamenlijke doelstelling</h3>
+                            <h3 id="sharedgoalh">Doelstelling</h3>
                         </div>
-                        <h3 id="sharedgoalh">Gezamenlijke doelstelling</h3>
+                        <h3 id="sharedgoalh">Doelstelling</h3>
                     </div>
                 </div>
 
@@ -103,20 +117,6 @@ $url = $input[$rand_keys];
                     <h2>Verjaardagen</h2>
                     <hr/>
                     <h3 id="no-birthdays">Niemand is jarig deze week</h3>
-                </div>
-            </div>
-
-            <!-- Shared goals -->
-            <div class="container-fluid block">
-                <div class="container">
-                    <h1>Gezamenlijke doelstellingen</h1>
-                </div>
-
-                <div id="shared-goal-chart" class="block-error">
-                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
-                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
-                        geladen worden.
-                    </div>
                 </div>
             </div>
 
