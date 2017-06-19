@@ -20,7 +20,7 @@ $(document).ready(function () {
     } else {
         $("#message").hide();
         $('#slides').show();
-        if (usersloaded == false) {
+        if (usersloaded === false) {
             getUsers();
             usersloaded = true;
         }
