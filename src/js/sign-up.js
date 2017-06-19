@@ -7,6 +7,7 @@ $(document).ready(function () {
     const errorMsg = $("#error-message-new");
     const successMsg = $("#success-message-new");
 
+
     $('[data-toggle="tooltip"]').tooltip();
 
     let handicap = undefined;
@@ -38,6 +39,11 @@ $(document).ready(function () {
 
     $('#new-save-button').click(function () {
         errorMsg.text("Vul alle velden in.");
+        $('#new-firstname').removeClass('has-error');
+        $('#new-lastname').removeClass('has-error');
+        $('#new-password').removeClass('has-error');
+        $('#new-password2').removeClass('has-error');
+        $('#new-birthday').removeClass('has-error');
 
         let firstname = $('#new-firstname').val().trim();
         let lastname = $('#new-lastname').val().trim();
@@ -46,9 +52,25 @@ $(document).ready(function () {
         let birthday = $('#new-birthday').val().trim();
 
         // check if some fields are left empty and show error
-        if (firstname === '' || lastname === '' || birthday === '' || password2 === '' || password1 === '' || type === undefined) {
+        if (firstname === '' || lastname === '' || birthday === '' || password2 === '' || password1 === '' || type === undefined || firstname > 49 || lastname > 49) {
             errorMsg.text("Vul alle velden in.");
             errorMsg.removeClass('hidden');
+            if(firstname === '' || firstname > 49){
+                $('#new-firstname').addClass('has-error');
+            }
+            if(lastname === '' || lastname > 49){
+                $('#new-lastname').addClass('has-error');
+            }
+            if(password1 === ''){
+                $('#new-password').addClass('has-error');
+            }
+            if(password1 === ''){
+                $('#new-password2').addClass('has-error');
+            }
+            if(birthday === undefined){
+                $('#new-birthday').addClass('has-error');
+            }
+
             return;
         }
 
@@ -79,6 +101,8 @@ $(document).ready(function () {
         if (password1 !== password2 || password1.length < 8) {
             errorMsg.text("Wachtwoorden komen niet overeen of zijn niet lang genoeg (minimaal 8 tekens lang).");
             errorMsg.removeClass('hidden');
+            $('#new-password1').addClass('has-error');
+            $('#new-password2').addClass('has-error');
             return;
         }
 
@@ -139,4 +163,34 @@ $(document).ready(function () {
         errorMsg.addClass('hidden');
         successMsg.addClass('hidden');
     });
+
+    $("input[type=password]").keyup(function () {
+        let newPass1 = $('#new-password1');
+        let newPass2 = $('#new-password2');
+        let newIcon1 = $('#icon1');
+        let newIcon2 = $('#icon2');
+
+        if (newPass1.val().length >= 8) {
+            changeIcon(newIcon1, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
+        } else if (newPass1.val().length >= 1) {
+            changeIcon(newIcon1, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
+        } else {
+            changeIcon(newIcon1, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
+        }
+
+        if (newPass2.val().length >= 8 && newPass2.val() === newPass1.val()) {
+            changeIcon(newIcon2, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
+        } else if (newPass2.val().length >= 1) {
+            changeIcon(newIcon2, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
+        } else {
+            changeIcon(newIcon2, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
+        }
+    });
 });
+
+function changeIcon(object, remove1, remove2, add, color){
+    object.removeClass(remove1);
+    object.removeClass(remove2);
+    object.addClass(add);
+    object.css("color", color);
+}

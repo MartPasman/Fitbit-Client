@@ -19,11 +19,11 @@ $(document).ready(function () {
         $("#last-name-div-update").removeClass("has-error");
         $("#date-div-update").removeClass("has-error");
 
-        if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate)) {
-            if (isEmpty(first_name)) {
+        if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate) || first_name.length > 49 || last_name.length > 49) {
+            if (isEmpty(first_name) || first_name.length > 49) {
                 $("#first-name-div-update").addClass("has-error");
             }
-            if (isEmpty(last_name)) {
+            if (isEmpty(last_name) || last_name.length > 49) {
                 $("#last-name-div-update").addClass("has-error");
             }
             if (isEmpty(birthdate)) {
@@ -171,6 +171,8 @@ $(document).ready(function () {
         $('#success').hide();
         loadStandardInformation();
     });
+
+
 });
 
 function datePicker() {
@@ -265,6 +267,33 @@ function loadStandardInformation() {
         }
     });
 }
+
+$("input[type=text]").keyup(function () {
+    let first =  $('#first-name-update');
+    let last = $('#last-name-update');
+    let first_name = first.val().trim();
+    let last_name = last.val().trim();
+
+    if(first_name.length > 49){
+        first.removeClass('glyphicon-user');
+        first.addClass('glyphicon-remove');
+        first.css("color", "#ff0000");
+    }else{
+        first.removeClass('glyphicon-remove');
+        first.addClass('glyphicon-user');
+        first.css("color", "#000000");
+    }
+
+    if(last_name.length > 49){
+        last.removeClass('glyphicon-user');
+        last.addClass('glyphicon-remove');
+        last.css("color", "#ff0000");
+    }else{
+        first.removeClass('glyphicon-remove');
+        first.addClass('glyphicon-user');
+        first.css("color", "#000000");
+    }
+});
 
 function diff_years(dt2, dt1) {
 

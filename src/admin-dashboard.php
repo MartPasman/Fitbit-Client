@@ -299,7 +299,7 @@ include './include/header.php';
                         <div class="col-md-9">
                             <div class="input-group">
                         <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-lock"></i>
+                        <i class="glyphicon glyphicon-lock" id="icon1"></i>
                         </span>
                                 <input id="edit-password" name="password" placeholder="wachtwoord"
                                        class="form-control input-md" type="password">
@@ -312,7 +312,7 @@ include './include/header.php';
                         <div class="col-md-9">
                             <div class="input-group">
                         <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-lock"></i>
+                        <i class="glyphicon glyphicon-lock" id="icon2"></i>
                         </span>
                                 <input id="edit-password2" name="password2" placeholder="wachtwoord"
                                        class="form-control input-md" type="password">

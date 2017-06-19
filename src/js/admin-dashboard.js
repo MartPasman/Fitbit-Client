@@ -196,7 +196,7 @@ $(document).ready(function () {
         const newActiveState = !!$('#active-toggle').is(':checked');
 
         // check if some fields are left empty and show error
-        if (firstname === '' || lastname === '' || birthday === '' || currentlySelectedHandicap === undefined) {
+        if (firstname === '' || lastname === '' || firstname.length > 49 || lastname.length > 49|| birthday === '' || currentlySelectedHandicap === undefined) {
             errorMessageEdit.text('Vul een voornaam, achternaam, verjaardag en/of handicap in.');
             errorMessageEdit.removeClass('hidden');
             return;
