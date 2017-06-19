@@ -14,7 +14,7 @@ let navbar = $('#navbardiv');
 
 $(document).ready(function () {
 
-    if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
+    if (window.innerWidth < 1250 || window.innerHeight < 650 || window.innerHeight > window.innerWidth) {
         $("#message").show();
         $('#slides').hide();
     } else {
