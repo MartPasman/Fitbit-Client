@@ -78,13 +78,9 @@ $(document).ready(function () {
                     201: function () {
                         //Success message
                         messageToggle(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
-                        getGoalsForLastWeekExport();
+                        getGoalsHistory();
                     },
-                    401: function () {
-                        //Unauthorized error message
-                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Je bent niet ingelogd.");
-
-                    },
+                    401: logout,
                     500: function () {
                         //Internal server error message
                         messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het later nog eens.");
