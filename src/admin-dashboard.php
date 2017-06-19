@@ -102,16 +102,15 @@ include './include/header.php';
                     </div>
 
                     <div class="row form-group" id="new-handicap-dropdown">
-                        <label class="col-md-3 control-label" for="new-handicap-button">Handicap
-                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                               title="De handicap houdt rekening met de vitaliteit van een deelnemer.
-                                               Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
-                                               bij een aantal stappen."
-                            ><span class="glyphicon glyphicon-info-sign"
-                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                            <div class="large-tooltip handicap-tooltip"><i class="icon ion-help-circled"
-                                                                           rel="tooltip"
-                                                                           title="Hint"></i>
+                        <label class="col-md-3 control-label" for="new-handicap-button">
+                            Handicap
+                            <a data-toggle="tooltip" data-placement="left" title="De handicap representeert vitaliteit.
+                                               Hoe minder goed ter been een persoon is, hoe meer punten een stap waard is.">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+
+                            <div class="large-tooltip handicap-tooltip">
+                                <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
                             </div>
                         </label>
                         <div class="col-md-9">
@@ -132,18 +131,16 @@ include './include/header.php';
                         </div>
                     </div>
 
-
                     <div class="row form-group">
-                        <label class="col-md-3 control-label" for="new-password">Wachtwoord
-                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                               title="Een wachtwoord moet minstens acht tekens lang zijn."
-                            ><span class="glyphicon glyphicon-info-sign"
-                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"
-                                                                           rel="tooltip"
-                                                                           title="Hint"></i>
+                        <label class="col-md-3 control-label" for="new-password">
+                            Wachtwoord
+                            <a data-toggle="tooltip" data-placement="auto"
+                               title="Een wachtwoord moet minstens acht tekens lang zijn.">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                            <div class="large-tooltip password-tooltip">
+                                <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
                             </div>
-
                         </label>
 
                         <div class="col-md-9">
@@ -154,7 +151,6 @@ include './include/header.php';
                                 <input id="new-password" name="password" placeholder="wachtwoord"
                                        class="form-control input-md" type="password">
                             </div>
-
                         </div>
                     </div>
 
@@ -170,9 +166,6 @@ include './include/header.php';
                             </div>
                         </div>
                     </div>
-
-                    <hr style="margin-top:10px;margin-bottom:10px;">
-
                 </form>
             </div>
 
@@ -251,20 +244,19 @@ include './include/header.php';
                                        class="form-control input-md">
                             </div>
                         </div>
-
                     </div>
 
                     <div class="row form-group" id="edit-handicap-dropdown">
-                        <label class="col-md-3 control-label" for="edit-handicap-button">Handicap
-                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                               title="De handicap houdt rekening met de vitaliteit van een deelnemer.
-                                               Hoe minder goed ter been een persoon is, hoe meer aantal punten hij krijgt
-                                               bij een aantal stappen."
-                            ><span class="glyphicon glyphicon-info-sign"
-                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                            <div class="large-tooltip handicap-tooltip"><i class="icon ion-help-circled"
-                                                                           rel="tooltip"
-                                                                           title="Hint"></i>
+                        <label class="col-md-3 control-label" for="edit-handicap-button">
+                            Handicap
+
+                            <a data-toggle="tooltip" data-placement="left" title="De handicap representeert vitaliteit.
+                                               Hoe minder goed ter been een persoon is, hoe meer punten een stap waard is.">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+
+                            <div class="large-tooltip handicap-tooltip">
+                                <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
                             </div>
                         </label>
                         <div class="col-md-9">
@@ -288,12 +280,12 @@ include './include/header.php';
 
                     <div class="row form-group">
                         <label class="col-md-3 control-label" for="edit-password"> Reset wachtwoord
-                            <a data-toggle="tooltip" data-placement="auto" style="width: 400px"
-                               title="Een wachtwoord moet minstens acht tekens lang zijn."
-                            ><span class="glyphicon glyphicon-info-sign"
-                                   style="color: #DC4F62; font-size: 1.2em;"></span></a>
-                            <div class="large-tooltip password-tooltip"><i class="icon ion-help-circled"
-                                                                           rel="tooltip" title="Hint"></i>
+                            <a data-toggle="tooltip" data-placement="auto"
+                               title="Een wachtwoord moet minstens acht tekens lang zijn.">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                            <div class="large-tooltip password-tooltip">
+                                <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
                             </div>
                         </label>
                         <div class="col-md-9">

@@ -510,3 +510,24 @@ input[type="month"].form-control {
     font-size: 1.5em;
     padding-left: 0;
 }
+
+/*
+ * TOOLTIP STYLING
+ */
+
+.tooltip {
+    opacity: 1 !important;
+}
+
+.tooltip-inner {
+    width: 600px !important;
+    background-color: #333;
+    font-size: 1.2em;
+    padding: 1em 2em;
+}
+
+/* info sign next to a tooltip */
+.glyphicon-info-sign {
+    color: #DC4F62;
+    font-size: 1.2em;
+}
