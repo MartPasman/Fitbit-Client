@@ -152,7 +152,8 @@ $url = $amsterdam;
 
     <!-- Auto refresh the page -->
     <script>
-        setTimeout(refresh, 300000);
+        // five minutes
+        setTimeout(refresh, 5 * 60 * 1000);
     </script>
 
     <!-- end of body -->
