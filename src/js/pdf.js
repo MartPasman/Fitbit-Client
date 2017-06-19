@@ -433,7 +433,7 @@ function getPDF(user, stepsData, sleepData, goalsData) {
             doc.text(170, 280, 'Pagina ' + (Math.ceil(d / DAYS_IN_WEEK) + 1) + '/' + pages);
         }
 
-        const offset = d % DAYS_IN_WEEK;
+        const offset = d % DAYS_IN_WEEK * 20;
 
         let currentDayMonth = 'dd/mm';
 
@@ -441,18 +441,18 @@ function getPDF(user, stepsData, sleepData, goalsData) {
         if (stepsData[d] !== undefined) {
             // set the currently to draw date
             currentDayMonth = getDDMM(stepsData[d].dateTime, '/');
-            doc.text(currentDayMonth, 52 + (offset * 20), 67);
+            doc.text(currentDayMonth, 52 + offset, 67);
 
             // draw the steps
-            doc.text(stepsData[d].value.toString(), 51.5 + (offset * 20), 77);
+            doc.text(stepsData[d].value.toString(), 51.5 + offset, 77);
         }
 
         // sleep
         if (sleepData[s] !== undefined) {
-            const sleepDate = getDDMM(sleepData[s].dateTime);
+            const sleepDate = getDDMM(sleepData[s].date, '/');
             if (currentDayMonth === sleepDate) {
+                doc.text((Math.round(sleepData[s].duration * 10) / 10).toString(), 51.5 + offset, 87);
                 s++;
-                doc.text((Math.round(sleepData[s].duration * 10) / 10).toString(), 51.5 + (offset * 20), 87);
             }
         }
 
@@ -463,26 +463,24 @@ function getPDF(user, stepsData, sleepData, goalsData) {
             const goal = goalsData[d];
 
             // steps
-            doc.text(goal.progress.toString(), 51.5 + (offset * 20), 137);
+            doc.text(goal.progress.toString(), 51.5 + offset, 137);
 
             // goal
-            doc.text(goal.goal.toString(), 51.5 + (offset * 20), 147);
+            doc.text(goal.goal.toString(), 51.5 + offset, 147);
 
             // start date
             const startDate = new Date(goal.start);
-            const startDateStr = startDate.getDate() + '/' + (startDate.getMonth() + 1);
-            doc.text(startDateStr, 51.5 + (offset * 20), 177);
+            doc.text(getDDMM(startDate, '/'), 51.5 + offset, 177);
 
             // end date
             const endDate = new Date(goal.end);
-            const endDateStr = endDate.getDate() + '/' + (endDate.getMonth() + 1);
-            doc.text(endDateStr, 51.5 + (offset * 20), 187);
+            doc.text(getDDMM(endDate, '/'), 51.5 + offset, 187);
 
             // achieved
-            doc.text(goal.percentage === 100 ? 'Ja' : 'Nee', 51.5 + (offset * 20), 157);
+            doc.text(goal.percentage === 100 ? 'Ja' : 'Nee', 51.5 + offset, 157);
 
             // pending
-            doc.text(endDate >= today ? 'Ja' : 'Nee', 51.5 + (offset * 20), 167);
+            doc.text(endDate >= today ? 'Ja' : 'Nee', 51.5 + offset, 167);
         }
     }
 

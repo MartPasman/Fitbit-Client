@@ -431,29 +431,6 @@ input[type="month"].form-control {
     content: ' Exporteren...';
 }
 
-/* Acts like a radio button */
-.btn-export {
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: .6em;
-    cursor: pointer;
-}
-
-.btn-export:hover {
-    -webkit-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
-    -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
-    box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.4);
-    background-color: #fcfcfc;
-}
-
-.btn-export:active {
-    -webkit-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
-    -moz-box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
-    box-shadow: 0 0 10px 0 rgba(170, 170, 170, 0.6);
-    background-color: #f9f9f9;
-}
-
 /* Surrounding error div under the datepicker of the period export option */
 .date-error {
     padding: 0;
