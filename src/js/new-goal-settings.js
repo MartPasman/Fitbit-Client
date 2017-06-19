@@ -29,7 +29,7 @@ $(document).ready(function () {
         if (isEmpty(steps) || isEmpty(start) || isEmpty(end)) {
             //Sets a error
 
-            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Vul wel alle informatie in.");
+            messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Vul wel alle informatie in.");
             //Make not correctly filled in input group red
             if (isEmpty(steps)) {
                 $("#steps-div").addClass("has-error");
@@ -42,23 +42,37 @@ $(document).ready(function () {
             }
 
         } else {
-
             //Sets date to javascript date time for in database
             let dateparts = start.split('/');
-            start = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
-
+            start = dateparts[2] + '-' + dateparts[1] + '-' + dateparts[0];
 
             //Sets date to javascript date time for in database
-            let dateparts2 = start.split('/');
-            end = dateparts2[2] + '/' + dateparts2[1] + '/' + dateparts2[0];
-            console.log(endDate);
+            let dateparts2 = end.split('/');
+            end = dateparts2[2] + '-' + dateparts2[1] + '-' + dateparts2[0];
+
+            console.log(start);
+            console.log(end);
+            console.log(new Date(start));
+            console.log(new Date(end));
+
+            // check dates
+            if (new Date(start) < new Date() || new Date(end) < new Date(start)) {
+                messageToggle(errorMessage, successMessage, 'De begindatum moet in de toekomst liggen en de einddatum moet na de startdatum liggen.');
+                return;
+            }
+
+            // check amount of steps
+            if (steps > 999999) {
+                messageToggle(errorMessage, successMessage, 'Het aantal stappen moet kleiner zijn dan één miljoen.');
+                return;
+            }
 
             //Call to add a goal
             $.ajax({
-                url: REST + '/users/' + localStorage.getItem("userid") + '/goals',
+                url: REST + '/users/' + localStorage.getItem('userid') + '/goals',
                 method: 'POST',
                 headers: {
-                    Authorization: localStorage.getItem("token")
+                    Authorization: localStorage.getItem('token')
                 },
                 data: {
                     start: start,
@@ -66,24 +80,19 @@ $(document).ready(function () {
                     goal: steps
                 },
                 statusCode: {
-                    201: function (data) {
+                    201: function () {
                         //Success message
                         messageToggle(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
-                        getGoalsForLastWeekExport();
+                        getGoalsHistory();
                     },
-                    401: function (err) {
-                        //Unauthorized error message
-                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Je bent niet ingelogd.");
-
-                    },
-                    500: function (err) {
+                    401: logout,
+                    500: function () {
                         //Internal server error message
                         messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het later nog eens.");
                     },
-                    default: function (err) {
+                    default: function () {
                         //Default error message
                         messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het nog eens.");
-
                     }
                 }
             });
@@ -91,7 +100,7 @@ $(document).ready(function () {
     });
 });
 
-//Check if letiable is empty
+// check if variable is empty
 function isEmpty(str) {
     return (!str || 0 === str.length);
 }
