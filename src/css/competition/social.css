@@ -1,6 +1,26 @@
-.block-resize {
-    height: calc(100vh - 240px);
+html, body {
     overflow: hidden;
+}
+
+#container-social {
+    position: relative;
+    top: -20px;
+    margin: 0;
+    padding: 0;
+}
+
+.block-resize, .block {
+    height: calc(100vh - 220px);
+    overflow: hidden;
+}
+
+.block {
+    margin: 20px;
+}
+
+#bar-div {
+    height: 50px;
+    margin-top: 20px;
 }
 
 #birthdays {
@@ -24,3 +44,10 @@
     width: 100%;
 }
 
+#today-icon {
+    font-size: 7em;
+    float: left;
+    position: absolute;
+    left: 5%;
+    color: white;
+}

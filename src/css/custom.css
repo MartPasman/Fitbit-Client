@@ -488,6 +488,8 @@ input[type="month"].form-control {
 
 #sharedgoalh {
     text-align: left;
+    margin-top: .35em;
+    margin-left: .35em;
 }
 
 #userlist, #line-modal-label {
@@ -512,10 +514,6 @@ input[type="month"].form-control {
 #progress-bar {
     position: relative;
     color: #000;
-}
-
-#bar-div {
-    height: 50px;
 }
 
 #progress-div {

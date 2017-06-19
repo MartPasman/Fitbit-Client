@@ -20,7 +20,7 @@ $(document).ready(function () {
     } else {
         $("#message").hide();
         $('#slides').show();
-        if (usersloaded == false) {
+        if (usersloaded === false) {
             getUsers();
             usersloaded = true;
         }
@@ -58,7 +58,7 @@ $(window).on('resize', function () {
     } else {
         $("#message").hide();
         $('#slides').show();
-        if (usersloaded == false) {
+        if (usersloaded === false) {
             getUsers();
             usersloaded = true;
         }
@@ -155,7 +155,6 @@ function createHTML(users, data) {
     //showusers(data.success);
     makeBarChart(users, data);
     generateslider();
-
 }
 
 
@@ -173,7 +172,6 @@ function makeBarChart(users, data) {
     lastComp.results.sort(function (m1, m2) {
         return m2.score - m1.score;
     });
-
 
     for (let g = 0; g < graphs; g++) {
         scoreFromEach = [];
@@ -206,7 +204,6 @@ function makeBarChart(users, data) {
                 value: value
             };
         }
-
 
         if (scoreFromEach.length > 0) {
             console.log(scoreFromEach);
@@ -245,5 +242,4 @@ function generateslider() {
             // [number] restart delay on inactive slideshow
         }
     });
-
 }
