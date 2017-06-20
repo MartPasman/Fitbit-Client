@@ -412,8 +412,8 @@ include './include/header.php';
 
                     <form id="competition-form-goal">
                         <h4>Lengte van de volgende competitie</h4>
-                        <h6 id="show-current-goal"></h6>
-                        <h6 id="show-last-goal"></h6>
+                        <h5 id="show-current-goal"></h5>
+                        <h5 id="show-last-goal"></h5>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                             <input type="text" class="form-control" id="default-days" placeholder="Aantal punten">
@@ -422,12 +422,12 @@ include './include/header.php';
                             </button>
                         </div>
                     </form>
-                    <br/><br/>
+                    <br/>
 
                     <form id="competition-form-days">
                         <h4>Lengte van de volgende competitie</h4>
-                        <h6 id="show-current-days"></h6>
-                        <h6 id="show-last-days"></h6>
+                        <h5 id="show-current-days"></h5>
+                        <h5 id="show-last-days"></h5>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                             <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
