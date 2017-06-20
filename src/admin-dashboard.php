@@ -415,8 +415,9 @@ include './include/header.php';
                         <br/>
                         <span id="show-current-goal"></span><br/>
                         <span id="show-last-goal"></span><br/>
+                        <br/>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
                             <input type="number" class="form-control" id="comp-goal" placeholder="Aantal punten">
                             <button type="button" id="comp-length-submit-button" class="btn btn-primary">
                                 Opslaan
@@ -430,6 +431,7 @@ include './include/header.php';
                         <br/>
                         <span id="show-current-days"></span><br/>
                         <span id="show-last-days"></span><br/>
+                        <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-resize-horizontal"></i></span>
                             <input type="number" class="form-control" id="comp-days" placeholder="Aantal dagen">
