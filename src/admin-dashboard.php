@@ -420,23 +420,19 @@ include './include/header.php';
                             <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
                                 Opslaan
                             </button>
-
                         </div>
                     </form>
-
-                    <br><br>
-
+                    <br/><br/>
                     <form id="competition-form-days">
                         <h4>Lengte van de volgende competitie:</h4>
-                        <h5 id="show-current-days"></h5><br>
-                        <h5 id="show-last-days"></h5><br>
+                        <h5 id="show-current-days"></h5><br/>
+                        <h5 id="show-last-days"></h5><br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                             <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
                             <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
                                 Opslaan
                             </button>
-
                         </div>
                     </form>
                 </div>
