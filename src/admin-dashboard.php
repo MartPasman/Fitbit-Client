@@ -417,7 +417,7 @@ include './include/header.php';
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                             <input type="text" class="form-control" id="default-days" placeholder="Aantal punten">
-                            <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
+                            <button type="button" id="comp-length-submit-button" class="btn btn-default competition-btn">
                                 Opslaan
                             </button>
                         </div>

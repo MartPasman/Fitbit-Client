@@ -11,6 +11,8 @@
     <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/custom.css" rel="stylesheet" type="text/css">
     <link href="../css/custom.css" rel="stylesheet" type="text/css">
+    <link href="/css/button.css" rel="stylesheet" type="text/css">
+    <link href="../css/button.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="navbardiv">

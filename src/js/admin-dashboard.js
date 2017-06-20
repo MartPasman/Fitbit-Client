@@ -70,7 +70,7 @@ $(document).ready(function () {
     });
 
     // on clicking, save details about the next competition
-    $('#comp-submit-button').click(function () {
+    $('#comp-length-submit-button').click(function () {
         let goal = $('#default-goal').val().trim();
 
         // check for errors
@@ -138,7 +138,7 @@ $(document).ready(function () {
             errorCompetition.removeClass('hidden');
         } else if (days > 999) {
             successCompetition.addClass('hidden');
-            errorCompetition.text('Lengte mag niet lamger zijn dan 999.');
+            errorCompetition.text('Lengte mag niet langer zijn dan 999.');
             errorCompetition.removeClass('hidden');
         } else if (days < 0) {
             successCompetition.addClass('hidden');
