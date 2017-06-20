@@ -45,7 +45,7 @@
                                    placeholder="Wachtwoord">
                         </div>
 
-                        <button type="button" onsubmit="return false;" class="btn btn-default" id="login">
+                        <button type="button" onsubmit="return false;" class="btn btn-primary" id="login">
                             Inloggen
                         </button>
 
