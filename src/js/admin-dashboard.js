@@ -71,7 +71,7 @@ $(document).ready(function () {
 
     // on clicking, save details about the next competition
     $('#comp-length-submit-button').click(function () {
-        let goal = $('#default-goal').val().trim();
+        let goal = $('#comp-length').val().trim();
 
         // check for errors
         if (goal === '') {
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     // on clicking, save details about the next competition
     $('#comp-days-submit-button').click(function () {
-        let days = $('#default-days').val().trim();
+        let days = $('#comp-days').val().trim();
 
         // check for errors
         if (days === '') {
@@ -148,14 +148,14 @@ $(document).ready(function () {
 
             // save changes
             $.ajax({
-                url: REST + '/competitions/' + 'changelength',
+                // TODO: rename 'changelength' is bad. Change is already implied by using PUT
+                url: REST + '/competitions/changelength',
                 method: 'PUT',
                 headers: {
                     Authorization: localStorage.getItem('token')
                 },
                 data: {
                     length: days
-
                 },
                 statusCode: {
                     201: function (data) {

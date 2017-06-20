@@ -412,11 +412,11 @@ include './include/header.php';
 
                     <form id="competition-form-goal">
                         <h4>Lengte van de volgende competitie</h4>
-                        <h5 id="show-current-goal"></h5>
-                        <h5 id="show-last-goal"></h5>
+                        <span id="show-current-goal"></span>
+                        <span id="show-last-goal"></span>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                            <input type="text" class="form-control" id="default-days" placeholder="Aantal punten">
+                            <input type="text" class="form-control" id="comp-length" placeholder="Aantal punten">
                             <button type="button" id="comp-length-submit-button" class="btn btn-default competition-btn">
                                 Opslaan
                             </button>
@@ -426,11 +426,11 @@ include './include/header.php';
 
                     <form id="competition-form-days">
                         <h4>Lengte van de volgende competitie</h4>
-                        <h5 id="show-current-days"></h5>
-                        <h5 id="show-last-days"></h5>
+                        <span id="show-current-days"></span>
+                        <span id="show-last-days"></span>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                            <input type="text" class="form-control" id="default-days" placeholder="Aantal dagen">
+                            <input type="text" class="form-control" id="comp-days" placeholder="Aantal dagen">
                             <button type="button" id="comp-days-submit-button" class="btn btn-default competition-btn">
                                 Opslaan
                             </button>
