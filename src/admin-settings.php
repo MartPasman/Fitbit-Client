@@ -29,14 +29,14 @@ include './include/header.php';
 
                 <!-- My personal data -->
                 <div id="personal" class=" tab-pane fade in active">
-                    <div class="col-xs-12 col-md-offset-2 col-md-8">
+                    <div class="col-xs-12 col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h2>Mijn gegevens</h2>
                             </div>
 
                             <div class="panel-body">
-                                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                                     <div class="alert alert-danger" role="alert" id="error">
                                         <strong>Oeps!</strong> Er ging iets mis.
                                     </div>
@@ -44,24 +44,24 @@ include './include/header.php';
                                         <strong>Gelukt!</strong> Je informatie is nu geupdate.
                                     </div>
                                     <div id="id-field"></div>
-                                    <p></p>
+                                    <br/>
                                     <form>
                                         <div id="name-field">
 
                                         </div>
-                                        <p></p>
+                                        <br/>
                                         <div id="date-field">
 
                                         </div>
-                                        <p></p>
+                                        <br/>
                                         <div id="age-field">
 
                                         </div>
-                                        <p></p>
+                                        <br/>
                                         <div id="health-field">
 
                                         </div>
-                                        <p></p>
+                                        <br/>
                                         <div id="buttons">
 
                                         </div>
@@ -74,14 +74,14 @@ include './include/header.php';
 
                 <!-- Settings data -->
                 <div id="settings" class="tab-pane fade">
-                    <div class="col-xs-12 col-md-offset-2 col-md-8">
+                    <div class="col-xs-12 col-md-8 col-md-offset-2">
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h2>Wachtwoord</h2>
                             </div>
                             <div class="panel-body">
-                                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                                     <?php
                                     include './include/change-password.php';
                                     ?>

@@ -531,4 +531,7 @@ input[type="month"].form-control {
 .glyphicon-info-sign {
     color: #DC4F62;
     font-size: 1.2em;
+    vertical-align: middle;
+    /* to make it fit next to the text on most places */
+    width: 18px;
 }

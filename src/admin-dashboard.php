@@ -37,11 +37,11 @@ include './include/header.php';
             <div class="modal-body">
                 <form role="form">
                     <div class="alert alert-danger hidden" role="alert" id="error-message-new">
-                        <strong>Er is iets fout gegaan</strong>
+                        <b>Er is iets fout gegaan</b>
                     </div>
 
                     <div class="alert alert-success hidden" role="alert" id="success-message-new">
-                        <strong>Het account is aangemaakt</strong>
+                        <b>Het account is aangemaakt</b>
                     </div>
 
                     <div class="row form-group">
@@ -201,11 +201,11 @@ include './include/header.php';
             <div class="modal-body">
 
                 <div class="alert alert-success hidden" role="alert" id="success-message-edit">
-                    <strong>Succes</strong> Het account is aangepast.
+                    <b>Succes</b> Het account is aangepast.
                 </div>
 
                 <div class="alert alert-danger hidden" role="alert" id="error-message-edit">
-                    <strong>Er is iets fout gegaan</strong>
+                    <b>Er is iets fout gegaan</b>
                 </div>
                 <!-- content goes here -->
                 <form>
@@ -354,7 +354,7 @@ include './include/header.php';
         <!-- active users list -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><strong>Deelnemers</strong></h3>
+                <h3 class="panel-title"><b>Deelnemers</b></h3>
                 <a class="link-button" id="new-account">Nieuw account aanmaken</a>
             </div>
 
@@ -387,7 +387,7 @@ include './include/header.php';
         <!-- inactive users list -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><strong>Inactieve deelnemers</strong></h3>
+                <h3 class="panel-title"><b>Inactieve deelnemers</b></h3>
             </div>
 
             <div class="panel-body" id="userlist-inactive"></div>
@@ -399,15 +399,15 @@ include './include/header.php';
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><strong>Competitie aanpassen</strong></h3>
+                <h3 class="panel-title"><b>Competitie aanpassen</b></h3>
             </div>
             <div class="panel-body" id="competitionlist">
                 <div>
                     <div class="alert alert-success hidden" role="alert" id="success-competition">
-                        <strong>Gelukt!</strong> Je informatie is nu geupdated.
+                        <b>Gelukt!</b> Je informatie is nu geupdated.
                     </div>
                     <div class="alert alert-danger hidden" role="alert" id="error-competition">
-                        <strong>Voer een getal in!</strong>
+                        <b>Voer een getal in!</b>
                     </div>
 
                     <form id="competition-form-goal">
@@ -423,6 +423,7 @@ include './include/header.php';
                         </div>
                     </form>
                     <br/><br/>
+
                     <form id="competition-form-days">
                         <h4>Lengte van de volgende competitie</h4>
                         <h6 id="show-current-days"></h6>
