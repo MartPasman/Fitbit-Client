@@ -71,7 +71,7 @@ $(document).ready(function () {
 
     // on clicking, save details about the next competition
     $('#comp-length-submit-button').click(function () {
-        let goal = $('#comp-length').val().trim();
+        let goal = $('#comp-goal').val().trim();
 
         // check for errors
         if (goal === '') {
