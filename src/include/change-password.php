@@ -15,27 +15,22 @@
     <div class="alert alert-danger" role="alert" id="error-msg">
         <strong>Foutje!</strong>
     </div>
-    <p></p>
+
     <h5>Oud wachtwoord:</h5>
-    <p></p>
-    <div class="input-group" id="steps-div">
+    <div class="input-group info" id="steps-div">
         <span class="input-group-addon"><span id="old-icon" class="glyphicon glyphicon-lock"></span></span>
         <input class="form-control" id="old-pass" placeholder="Oud wachtwoord" type="password">
     </div>
-    <p></p>
     <h5>Nieuw wachtwoord:</h5>
-    <p></p>
-    <div class="input-group" id="start-div">
+    <div class="input-group info" id="start-div">
         <span class="input-group-addon"><span id="new-icon1" class="glyphicon glyphicon-lock"></span></span>
         <input class="form-control" id="new-pass1" placeholder="Nieuw wachtwoord" type="password"/>
     </div>
-    <p></p>
-    <div class="input-group" id="end-div">
+    <div class="input-group info" id="end-div">
         <span class="input-group-addon"><span id="new-icon2" class="glyphicon glyphicon-lock"></span></span>
         <input class="form-control" id="new-pass2" placeholder="Nieuw wachtwoord" type="password"/>
     </div>
-    <p></p>
-    <input type="button" id="change-password" class="col-xs-12 btn btn-success" value="Verander Wachtwoord"/>
+    <input type="button" id="change-password" class="col-xs-12 btn btn-default" value="Verander wachtwoord"/>
 </form>
 
 <!-- your scripts -->

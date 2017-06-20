@@ -11,15 +11,21 @@ include './include/header.php';
         <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-8">
                 <ul class="nav nav-tabs pink">
-                    <li class="active"><a data-toggle="tab" href="#personal">
-                            <div class="glyphicon glyphicon-user"></div>
-                            &nbsp Persoonlijke informatie</a></li>
-                    <li><a data-toggle="tab" href="#goals">
-                            <div class="glyphicon glyphicon-dashboard"></div>
-                            &nbsp Doelstellingen</a></li>
-                    <li><a data-toggle="tab" href="#settings">
-                            <div class="glyphicon glyphicon-lock"></div>
-                            &nbsp Wachtwoord wijzigen</a></li>
+                    <li class="active">
+                        <a data-toggle="tab" href="#personal">
+                            <span class="glyphicon glyphicon-user"></span>&nbsp Persoonlijke informatie
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#goals">
+                            <span class="glyphicon glyphicon-dashboard"></span>&nbsp Doelstellingen
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#settings">
+                            <span class="glyphicon glyphicon-lock"></span>&nbsp Wachtwoord wijzigen
+                        </a>
+                    </li>
 
                     <div class="large-tooltip">
                         <i class="icon ion-help-circled" rel="tooltip" title="Hint"></i>
@@ -38,7 +44,7 @@ include './include/header.php';
 
                             <div class="panel-heading"><h2>Mijn gegevens</h2></div>
                             <div class="panel-body row">
-                                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <div class="col-xs-12 col-md-8 col-md-offset-2">
                                     <div class="alert alert-danger" role="alert" id="error">
                                         <strong>Oeps!</strong> Er ging iets mis.
                                     </div>
@@ -67,7 +73,7 @@ include './include/header.php';
                         <div class="panel panel-default">
                             <div class="panel-heading"><h2>Doelstellingen</h2></div>
                             <div class="panel-body row">
-                                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <div class="col-xs-12 col-md-8 col-md-offset-2">
                                     In dit vak staan je instellingen wat betreft je doelstellingen.
                                     Je kan een nieuwe doelstelling aanmaken, of een lopende verwijderen.
                                     <br/><br/>
@@ -92,7 +98,7 @@ include './include/header.php';
                         <div class="panel panel-default">
                             <div class="panel-heading"><h2>Wachtwoord</h2></div>
                             <div class="panel-body row">
-                                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <div class="col-xs-12 col-md-8 col-md-offset-2">
                                     <?php
                                     include './include/change-password.php';
                                     ?>

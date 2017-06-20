@@ -46,25 +46,11 @@ include './include/header.php';
                                     <div id="id-field"></div>
                                     <br/>
                                     <form>
-                                        <div id="name-field">
-
-                                        </div>
-                                        <br/>
-                                        <div id="date-field">
-
-                                        </div>
-                                        <br/>
-                                        <div id="age-field">
-
-                                        </div>
-                                        <br/>
-                                        <div id="health-field">
-
-                                        </div>
-                                        <br/>
-                                        <div id="buttons">
-
-                                        </div>
+                                        <div id="name-field" class="info"></div>
+                                        <div id="date-field" class="info"></div>
+                                        <div id="age-field" class="info"></div>
+                                        <div id="health-field" class="info"></div>
+                                        <div id="buttons" class="info"></div>
                                     </form>
                                 </div>
                             </div>
