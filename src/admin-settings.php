@@ -43,7 +43,7 @@ include './include/header.php';
                                     <div class="alert alert-success" role="alert" id="success">
                                         <strong>Gelukt!</strong> Je informatie is nu geupdate.
                                     </div>
-                                    <div id="id-field"></div>
+                                    <div id="id-field" class="info"></div>
                                     <br/>
                                     <form>
                                         <div id="name-field" class="info"></div>
