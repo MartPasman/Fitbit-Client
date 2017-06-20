@@ -78,12 +78,12 @@ include './include/header.php';
                                     Je kan een nieuwe doelstelling aanmaken, of een lopende verwijderen.
                                     <br/><br/>
                                     <button type="button" data-toggle="modal" data-target="#form-modal"
-                                            class="col-xs-12 btn btn-success" id="new-goal">
+                                            class="col-xs-12 btn btn-primary" id="new-goal">
                                         Een nieuwe doelstelling aanmaken
                                     </button>
                                     <br/><br/>
                                     <button type="button" data-toggle="modal" data-target="#item-modal"
-                                            class="col-xs-12 btn btn-success" id="all-goals">
+                                            class="col-xs-12 btn btn-primary" id="all-goals">
                                         Alle doelstellingen beheren
                                     </button>
                                 </div>

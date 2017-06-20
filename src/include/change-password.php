@@ -30,7 +30,7 @@
         <span class="input-group-addon"><span id="new-icon2" class="glyphicon glyphicon-lock"></span></span>
         <input class="form-control" id="new-pass2" placeholder="Nieuw wachtwoord" type="password"/>
     </div>
-    <input type="button" id="change-password" class="col-xs-12 btn btn-default" value="Verander wachtwoord"/>
+    <input type="button" id="change-password" class="col-xs-offset-1 col-xs-10 btn btn-primary" value="Verander wachtwoord"/>
 </form>
 
 <!-- your scripts -->
