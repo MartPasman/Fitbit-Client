@@ -538,5 +538,5 @@ input[type="month"].form-control {
 
 /* To have the same size panels (most of the times) */
 .tab-pane .panel-body {
-    min-height: 400px;
+    min-height: 350px;
 }
