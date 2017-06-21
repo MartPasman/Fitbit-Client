@@ -63,7 +63,7 @@ $(document).ready(function () {
                 $('#show-current-shared-goal').text('Punten voor het huidige gezamelijk doel: ' + data.sharedGoal + (data.sharedGoal === 1 ? " punt." : " punten."));
                 $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + (data.defaultGoal === 1 ? " punt." : " punten."));
                 $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + (data.defaultLength === 1 ? " dag." : " dagen."));
-                $('#show-last-shared-goal').text('Punten voor het volgende gezamelijke doel: ' + data.defaultSharedGoal +(data.defaultSharedGoal === 1 ? " punt." : " punten."))
+                $('#show-last-shared-goal').text('Punten voor het volgende gezamelijke doel: ' + data.defaultSharedGoal + (data.defaultSharedGoal === 1 ? " punt." : " punten."))
 
             },
             default: function (err) {
@@ -92,7 +92,7 @@ $(document).ready(function () {
         } else if (goal < 0) {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een getal in groter dan 0.');
-            errorCompetition.removeclass('hidden');
+            errorCompetition.removeClass('hidden');
         } else {
 
             // save changes
@@ -112,6 +112,59 @@ $(document).ready(function () {
 
                         // update UI
                         $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
+                    },
+                    401: logout,
+                    404: function (err) {
+
+                    },
+                    500: function (err) {
+
+                    }
+                }
+            });
+        }
+    });
+
+    // on clicking, save details about the next competition
+    $('#comp-shared-goal-submit-button ').click(function () {
+        let goal = $('#comp-shared-goal').val().trim();
+
+        // check for errors
+        if (goal === '') {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een getal in.');
+            errorCompetition.removeClass('hidden');
+        } else if (isNaN(goal)) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een geldig getal in.');
+            errorCompetition.removeClass('hidden');
+        } else if (goal > 999999999) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Doel mag niet hoger zijn dan 999999999.');
+            errorCompetition.removeClass('hidden');
+        } else if (goal < 0) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een getal in groter dan 0.');
+            errorCompetition.removeClass('hidden');
+        } else {
+
+            // save changes
+            $.ajax({
+                url: REST + '/competitions/changesharedgoal',
+                method: 'PUT',
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                },
+                data: {
+                    goal: goal
+                },
+                statusCode: {
+                    201: function (data) {
+                        errorCompetition.addClass('hidden');
+                        successCompetition.removeClass('hidden');
+
+                        // update UI
+                        $('#show-last-shared-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
 
                     },
                     401: logout,
@@ -348,6 +401,7 @@ function loadUsers(users) {
     // append all users in the UI
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
+        console.dir(user);
 
         let html = "<div class='user row'>";
         if (user.active) {

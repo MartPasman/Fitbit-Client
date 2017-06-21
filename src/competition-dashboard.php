@@ -12,15 +12,19 @@ $elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
 // Bears
 $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
+// Family Guy
+$family = 'https://www.youtube.com/embed/nY17vVKZaG8';
+
 // More
 // https://www.youtube.com/user/exploreTeam
 
 // Select a random stream
-$input = array($elephants, $bears);
-$rand_keys = array_rand($input);
-$url = $input[$rand_keys];
+$input = array(
+    $elephants,
+    $bears,
+    $family);
 
-$url = $amsterdam;
+$url = $input[array_rand($input)];
 ?>
     <link rel="stylesheet" href="css/competition/weather.css"/>
     <link rel="stylesheet" href="css/competition/weather-icons.css"/>
@@ -44,18 +48,12 @@ $url = $amsterdam;
     <div id="container-social" class="container-fluid">
         <div id="slides">
 
-            <!-- Shared goals -->
-            <div class="container-fluid block">
-                <div class="container">
-                    <h1>Gezamenlijke doelstellingen</h1>
-                </div>
+            <!-- Live page -->
+            <div id="live-player-container">
 
-                <div id="shared-goal-chart" class="block-error">
-                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
-                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
-                        geladen worden.
-                    </div>
-                </div>
+                <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
+                        src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
+                </iframe>
             </div>
 
             <!-- Social page -->
@@ -123,12 +121,18 @@ $url = $amsterdam;
                 </div>
             </div>
 
-            <!-- Live page -->
-            <div id="live-player-container">
+            <!-- Shared goals -->
+            <div class="container-fluid block chart-container">
+                <div class="container">
+                    <h1>Gezamenlijke doelstellingen</h1>
+                </div>
 
-                <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
-                        src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
-                </iframe>
+                <div id="shared-goal-chart" class="block-error">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
+                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
+                        geladen worden.
+                    </div>
+                </div>
             </div>
 
             <!-- Other pages will be appended -->

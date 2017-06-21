@@ -86,11 +86,13 @@ function setResizeButton() {
 function checkScreenSize() {
     if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
         $("#message").show();
+        $('#today').removeClass('load');
         $('#slides').hide();
     } else {
         $("#message").hide();
         $('#slides').show();
         if (usersloaded === false) {
+            $('#today').addClass('load');
             getUsers();
             usersloaded = true;
         }
@@ -175,7 +177,7 @@ function createHTML(users, data) {
     let divs = Math.ceil(data.results.length / 5);
 
     for (let i = 0; i < divs; i++) {
-        html += '<div id="competition-data' + i + '"  style="min-height:550px; width:100%;" class="block col-lg-11"> <center><h4 id="startend' + i + '">20-04 t/m 27-04</h4><h4>Te behalen punten:</h4><br><h3 id="goal-to-reach' + i + '"></h3><div id="chart-competition' + i + '">FusionCharts will render here</div></center></div>';
+        html += '<div id="competition-data' + i + '" class="block col-lg-11 block chart-container"> <center><h4 id="startend' + i + '">20-04 t/m 27-04</h4><h4>Te behalen punten:</h4><br><h3 id="goal-to-reach' + i + '"></h3><div id="chart-competition' + i + '">FusionCharts will render here</div></center></div>';
     }
 
     $('#slides').append(html);
@@ -215,7 +217,6 @@ function makeBarCharts(users, data) {
             }
 
             for (let j = 0; j < users.success.length; j++) {
-
                 if (parseInt(users.success[j].id) === parseInt(lastComp.results[i].userid)) {
                     name = users.success[j].firstname + ' ' + users.success[j].lastname;
                 }
@@ -261,12 +262,8 @@ function startTimeResize() {
     let h = today.getHours();
     let m = today.getMinutes();
     let s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
     $('#time').html(h + ":" + m + ":" + s);
     let t = setTimeout(startTimeResize, 1000);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
 }

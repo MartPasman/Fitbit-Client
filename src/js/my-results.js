@@ -249,4 +249,3 @@ const loadGoalsHistory = function (data) {
         goalHistory.append(html);
     }
 };
-

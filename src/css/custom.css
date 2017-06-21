@@ -178,7 +178,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 
     height: 64px;
-    transition: height .5s ease-in-out, line-height .5s ease-in-out;
+    transition: height 1s ease-in-out, line-height 1s ease-in-out;
 
     margin-bottom: 20px;
     position: relative;
@@ -336,6 +336,10 @@ h1, h2, h3, h4, h5, h6 {
  * COMPETITIONS
  */
 
+.chart-container {
+    width: calc(100% - 2.5em) !important;
+}
+
 .comp-chart {
     margin-top: 70px;
     text-align: center;
@@ -351,7 +355,6 @@ h1, h2, h3, h4, h5, h6 {
 #startend {
     position: relative;
     display: inline;
-
 }
 
 #comp-div {
@@ -413,7 +416,6 @@ input[type="month"].form-control {
 }
 
 /*
- *
  * EXPORT MODAL
  */
 
@@ -542,13 +544,17 @@ input[type="month"].form-control {
     min-height: 350px;
 }
 
-
 #comp-days {
-    display:inline;
-    width:70%;
+    display: inline;
+    width: 70%;
 }
 
-#comp-goal{
+#comp-goal {
+    display: inline;
+    width: 70%;
+}
+
+#comp-shared-goal{
     display: inline;
     width:70%;
 }
