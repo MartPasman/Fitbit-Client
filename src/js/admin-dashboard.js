@@ -92,7 +92,7 @@ $(document).ready(function () {
         } else if (goal < 0) {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een getal in groter dan 0.');
-            errorCompetition.removeclass('hidden');
+            errorCompetition.removeClass('hidden');
         } else {
 
             // save changes
@@ -145,7 +145,7 @@ $(document).ready(function () {
         } else if (goal < 0) {
             successCompetition.addClass('hidden');
             errorCompetition.text('Voer een getal in groter dan 0.');
-            errorCompetition.removeclass('hidden');
+            errorCompetition.removeClass('hidden');
         } else {
 
             // save changes
