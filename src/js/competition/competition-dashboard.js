@@ -30,7 +30,8 @@ function notifyLoader(id) {
     if (loaded === DONE) {
         const today = $('#today');
         today.removeClass('load');
-        today.html(getTodaysDate() + "<span id='time'></span>" + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
+        // set date and time span
+        today.html(getTodaysDate() + " <span id='time'></span>" + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
         // get the current date as a string
         startTimeResize();
         setResizeButton();
