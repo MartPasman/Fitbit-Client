@@ -12,16 +12,8 @@ $(document).ready(function () {
             Authorization: localStorage.getItem('token')
         },
         statusCode: {
-            200: function (data) {
-                actionsDashboard(data);
-            },
             401: logout,
-            403: previousPage,
-            default: function () {
-                userList.addClass("block-error");
-                userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
-                    "Er is iets fout gegaan, probeer het later nog eens.")
-            }
+            403: previousPage
         }
     });
     // competition
