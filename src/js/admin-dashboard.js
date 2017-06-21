@@ -60,8 +60,11 @@ $(document).ready(function () {
             200: function (data) {
                 $('#show-current-goal').text('Punten voor de huidige competitie: ' + data.goal + (data.goal === 1 ? " punt." : " punten."));
                 $('#show-current-days').text('Lengte van de huidige competitie: ' + data.length + (data.length === 1 ? " dag." : " dagen."));
+                $('#show-current-shared-goal').text('Punten voor het huidige gezamelijk doel: ' + data.sharedGoal + (data.sharedGoal === 1 ? " punt." : " punten."));
                 $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + (data.defaultGoal === 1 ? " punt." : " punten."));
                 $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + (data.defaultLength === 1 ? " dag." : " dagen."));
+                $('#show-last-shared-goal').text('Punten voor het volgende gezamelijke doel: ' + data.defaultSharedGoal +(data.defaultSharedGoal === 1 ? " punt." : " punten."))
+
             },
             default: function (err) {
                 console.log(err);

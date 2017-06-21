@@ -411,7 +411,7 @@ include './include/header.php';
                     </div>
 
                     <form id="competition-form-goal">
-                        <h4>Lengte van de volgende competitie</h4>
+                        <h4>Aantal punten voor de volgende competitie</h4>
                         <br/>
                         <span id="show-current-goal"></span><br/>
                         <span id="show-last-goal"></span><br/>
@@ -419,7 +419,7 @@ include './include/header.php';
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
                             <input type="number" class="form-control" id="comp-goal" placeholder="Aantal punten">
-                            <button type="button" id="comp-length-submit-button" class="btn btn-primary">
+                            <button type="button"style="display: inline; float: right;" id="comp-length-submit-button" class="btn btn-primary">
                                 Opslaan
                             </button>
                         </div>
@@ -435,7 +435,23 @@ include './include/header.php';
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-resize-horizontal"></i></span>
                             <input type="number" class="form-control" id="comp-days" placeholder="Aantal dagen">
-                            <button type="button" id="comp-days-submit-button" class="btn btn-primary">
+                            <button type="button" style="display: inline; float: right;" id="comp-days-submit-button" class="btn btn-primary">
+                                Opslaan
+                            </button>
+                        </div>
+                    </form>
+
+                    <form id="competition-form-shared-goal">
+                        <br>
+                        <h4>Aantal punten voor de volgende gezamelijke doelstelling</h4>
+                        <br/>
+                        <span id="show-current-shared-goal"></span><br/>
+                        <span id="show-last-shared-goal"></span><br/>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
+                            <input type="number" class="form-control" id="comp-days" placeholder="Aantal punten">
+                            <button type="button" style="display: inline; float: right;" id="comp-days-submit-button" class="btn btn-primary">
                                 Opslaan
                             </button>
                         </div>

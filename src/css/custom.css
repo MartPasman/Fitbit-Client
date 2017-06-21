@@ -542,3 +542,14 @@ input[type="month"].form-control {
 .tab-pane .panel-body {
     min-height: 350px;
 }
+
+
+#comp-days {
+    display:inline;
+    width:70%;
+}
+
+#comp-goal{
+    display: inline;
+    width:70%;
+}
