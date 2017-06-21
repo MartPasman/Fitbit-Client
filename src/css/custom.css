@@ -337,7 +337,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 
 .chart-container {
-    width: calc(100% - 3em) !important;
+    width: calc(100% - 2.5em) !important;
 }
 
 .comp-chart {
