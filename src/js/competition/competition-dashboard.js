@@ -262,7 +262,7 @@ function startTimeResize() {
     let h = today.getHours();
     let m = today.getMinutes();
     let s = today.getSeconds();
-    s = m < 10 ? "0" + m : m;
+    m = m < 10 ? "0" + m : m;
     s = s < 10 ? "0" + s : s;
     $('#time').html(h + ":" + m + ":" + s);
     let t = setTimeout(startTimeResize, 1000);
