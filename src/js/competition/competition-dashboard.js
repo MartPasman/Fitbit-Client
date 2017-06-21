@@ -13,23 +13,55 @@ let usersloaded = false;
 let navbar = $('#navbardiv');
 
 $(document).ready(function () {
+    checkScreenSize();
 
-    if (window.innerWidth < 1250 || window.innerHeight < 650 || window.innerHeight > window.innerWidth) {
-        $("#message").show();
-        $('#slides').hide();
-    } else {
-        $("#message").hide();
-        $('#slides').show();
-        if (usersloaded === false) {
-            getUsers();
-            usersloaded = true;
-        }
+    $(window).on('resize', checkScreenSize);
+});
+
+let loaded = 0;
+const DONE = 6;
+/**
+ * AJAX request notify the loaded so it initiates the slider after everything is loaded
+ */
+function notifyLoader(id) {
+    loaded++;
+    console.log('Loader notified "' + id + '": ' + loaded);
+
+    if (loaded === DONE) {
+        const today = $('#today');
+        today.removeClass('load');
+        // set date and time span
+        today.html(getTodaysDate() + " <span id='time'></span>" + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
+        // get the current date as a string
+        startTimeResize();
+        setResizeButton();
+
+        $('#slides').slidesjs({
+            play: {
+                active: false,
+                // [boolean] Generate the play and stop buttons.
+                // You cannot use your own buttons. Sorry.
+                effect: 'fade',
+                // [string] Can be either "slide" or "fade".
+                interval: 20 * 1000,
+                // [number] Time spent on each slide in milliseconds.
+                auto: true,
+                // [boolean] Start playing the slideshow on load.
+                swap: true,
+                // [boolean] show/hide stop and play buttons
+                pauseOnHover: false,
+                // [boolean] pause a playing slideshow on hover
+                restartDelay: 2500
+                // [number] restart delay on inactive slideshow
+            }
+        });
+
+        // can't happen again
+        loaded = DONE + 1;
     }
+}
 
-    let queries = getQueryParams();
-
-    // get the current date as a string
-    $('#today').html(getTodaysDate() + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
+function setResizeButton() {
     let resize = $('#resize-button');
     resize.click(function () {
         if (navbar.is(':hidden')) {
@@ -44,14 +76,14 @@ $(document).ready(function () {
     });
 
     // set to fullscreen if we were in fullscreen before a reload
-    if (+queries.fullscreen === 1) {
+    if (+getQueryParams().fullscreen === 1) {
         navbar.hide();
         resize.removeClass('glyphicon-resize-full');
         resize.addClass('glyphicon-resize-small');
     }
-});
+}
 
-$(window).on('resize', function () {
+function checkScreenSize() {
     if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
         $("#message").show();
         $('#slides').hide();
@@ -63,8 +95,7 @@ $(window).on('resize', function () {
             usersloaded = true;
         }
     }
-});
-
+}
 
 /**
  * Refresh the page and keep track of the fullscreen state
@@ -77,7 +108,7 @@ function refresh() {
     }
 }
 
-let loadWithOffset = function (users) {
+function loadWithOffset(users) {
     $.ajax({
         url: REST + '/competitions/',
         method: 'GET',
@@ -93,10 +124,7 @@ let loadWithOffset = function (users) {
                 offset = old_offset;
                 console.log(error.error);
             },
-            401: function (error) {
-                offset = old_offset;
-                console.log(error.error);
-            },
+            401: logout,
             403: function (error) {
                 offset = old_offset;
                 console.log(error.error);
@@ -115,9 +143,9 @@ let loadWithOffset = function (users) {
             }
         }
     });
-};
+}
 
-const getUsers = function () {
+function getUsers() {
     //get all users
     $.ajax({
         url: REST + '/accounts/',
@@ -141,8 +169,7 @@ const getUsers = function () {
             }
         }
     });
-
-};
+}
 
 function createHTML(users, data) {
     let divs = Math.ceil(data.results.length / 5);
@@ -153,12 +180,11 @@ function createHTML(users, data) {
 
     $('#slides').append(html);
     //showusers(data.success);
-    makeBarChart(users, data);
-    generateslider();
+    makeBarCharts(users, data);
+    notifyLoader('ranking');
 }
 
-
-function makeBarChart(users, data) {
+function makeBarCharts(users, data) {
 
     let lastComp = data;
     let scoreFromEach = [];
@@ -227,24 +253,16 @@ function printBarChartError(message) {
     $('#chart-competition').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
 }
 
-function generateslider() {
-    $('#slides').slidesjs({
-        play: {
-            active: true,
-            // [boolean] Generate the play and stop buttons.
-            // You cannot use your own buttons. Sorry.
-            effect: "slide",
-            // [string] Can be either "slide" or "fade".
-            interval: 20 * 1000,
-            // [number] Time spent on each slide in milliseconds.
-            auto: true,
-            // [boolean] Start playing the slideshow on load.
-            swap: true,
-            // [boolean] show/hide stop and play buttons
-            pauseOnHover: false,
-            // [boolean] pause a playing slideshow on hover
-            restartDelay: 2500
-            // [number] restart delay on inactive slideshow
-        }
-    });
+/**
+ * Recursive
+ */
+function startTimeResize() {
+    let today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    $('#time').html(h + ":" + m + ":" + s);
+    let t = setTimeout(startTimeResize, 1000);
 }

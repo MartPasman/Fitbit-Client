@@ -19,7 +19,6 @@ $(document).ready(function () {
             },
             500: function () {
                 $('#shared-goal-chart-error').html('Er is iets mis gegaan.<br/> Probeer het later nog eens.');
-
             }
         }
     });
@@ -59,4 +58,6 @@ function drawSharedGoalChart(data) {
     }
 
     drawMultiSeriesLineChart('#shared-goal-chart', categories, datasets, 'Periode', 'Score', '', w, h);
+
+    notifyLoader('shared');
 }

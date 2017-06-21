@@ -12,7 +12,7 @@
     <link href="/css/custom.css" rel="stylesheet" type="text/css">
     <link href="../css/custom.css" rel="stylesheet" type="text/css">
     <link href="/css/button.css" rel="stylesheet" type="text/css">
-    <link href="../css/custom.css" rel="stylesheet" type="text/css">r
+    <link href="../css/button.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="navbardiv">
@@ -44,3 +44,4 @@
 
 <!-- log out functionality and dynamic menu bar -->
 <script src="../js/header.js" type="text/javascript"></script>
+<script src="../js/clock.js" type="text/javascript"></script>

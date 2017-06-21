@@ -25,10 +25,11 @@ $url = $amsterdam;
     <link rel="stylesheet" href="css/competition/weather.css"/>
     <link rel="stylesheet" href="css/competition/weather-icons.css"/>
     <link rel="stylesheet" href="css/competition/social.css">
+    <link rel="stylesheet" href="css/competition/animation.css">
     <link rel="stylesheet" href="css/button.css">
 
     <!-- today -->
-    <div id="today"></div>
+    <div id="today" class="load">Aan het laden...</div>
 
     <div id="message">
         <div class='container'>
@@ -133,7 +134,6 @@ $url = $amsterdam;
             <!-- Other pages will be appended -->
         </div>
     </div>
-
 
     <!-- JQuery and Bootstrap scripts -->
 <?php include './include/scripts.php'; ?>

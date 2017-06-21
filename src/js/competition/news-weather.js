@@ -20,12 +20,13 @@ $(document).ready(function () {
                     tot = x.length;
                 }
                 for (i = 0; i < tot; i++) {
-                    html += "<h3>";
+                    html += "<h2>";
                     html += x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-                    html += "</h3><hr>";
+                    html += "</h2><hr>";
                     html += "<p></p>";
                 }
                 $("#news").append(html);
+                notifyLoader('news');
             }
         }
     });
@@ -113,6 +114,8 @@ $(document).ready(function () {
                         setBackgroundImage('.weather-card .top', '#today-icon', getIconClass(condition), '#67809F');
                         break;
                 }
+
+                notifyLoader('weather');
 
                 //sun #6BB9F0
                 //partlycloudy '#59ABE3'

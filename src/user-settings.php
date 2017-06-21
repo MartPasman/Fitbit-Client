@@ -122,8 +122,7 @@ include './include/header.php';
     <script src="js/all-goals.js"></script>
 
     <script>
-        // get the current date as a string
-        $('#today').append(getTodaysDate());
+        startTime();
     </script>
 
     <!-- end of body -->
