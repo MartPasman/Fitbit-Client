@@ -10,6 +10,7 @@ $(document).ready(function () {
         statusCode: {
             200: function (data) {
                 loadBirthdays(data.success);
+                notifyLoader('birthday');
             },
             400: function (err) {
             },

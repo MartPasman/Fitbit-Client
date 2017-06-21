@@ -1,0 +1,4 @@
+.load {
+    height: calc(100vh - 50px) !important;
+    line-height: calc(100vh - 50px) !important;
+}
