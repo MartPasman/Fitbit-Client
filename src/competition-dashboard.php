@@ -12,15 +12,19 @@ $elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
 // Bears
 $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
+// Family Guy
+$family = 'https://www.youtube.com/embed/nY17vVKZaG8';
+
 // More
 // https://www.youtube.com/user/exploreTeam
 
 // Select a random stream
-$input = array($elephants, $bears);
-$rand_keys = array_rand($input);
-$url = $input[$rand_keys];
+$input = array(
+    $elephants,
+    $bears,
+    $family);
 
-$url = $amsterdam;
+$url = $input[array_rand($input)];
 ?>
     <link rel="stylesheet" href="css/competition/weather.css"/>
     <link rel="stylesheet" href="css/competition/weather-icons.css"/>
