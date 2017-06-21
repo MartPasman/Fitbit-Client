@@ -16,6 +16,7 @@ $(document).ready(function () {
             403: previousPage
         }
     });
+
     // competition
     let html = '<li><a href="/competition-dashboard.php"><span class="glyphicon glyphicon-knight"></span> Competitie</a></li>';
 
@@ -45,10 +46,10 @@ $(document).ready(function () {
     $('#log-out').click(logout);
 });
 
-function previousPage(){
-    if(history.length <= 1){
+function previousPage() {
+    if (history.length <= 1) {
         logout();
-    }else {
+    } else {
         history.go(-1);
     }
 }
