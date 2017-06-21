@@ -415,7 +415,7 @@ function loadUsers(users) {
 
         // if the user is connected
         if (user.active && user.fitbit !== undefined && user.fitbit !== null) {
-            html += "<span data-toggle='tooltip' data-placement='top' title='Deze gebruiker is gekoppeld aan Fitbit " + user.fitbit.userid + "' class='col-xs-1 glyphicon glyphicon-link is-connected'></span>";
+            html += "<span data-toggle='tooltip' data-placement='auto' title='Deze gebruiker is gekoppeld aan Fitbit " + user.fitbit.userid + "' class='col-xs-1 glyphicon glyphicon-link is-connected'></span>";
         }
 
         if (user.active) {
