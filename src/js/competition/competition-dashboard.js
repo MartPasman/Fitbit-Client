@@ -30,7 +30,8 @@ function notifyLoader(id) {
     if (loaded === DONE) {
         const today = $('#today');
         today.removeClass('load');
-        today.html(getTodaysDate() + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
+        // get the current date as a string
+        startTimeResize();
         setResizeButton();
 
         $('#slides').slidesjs({
@@ -58,10 +59,6 @@ function notifyLoader(id) {
     }
 }
 
-    let queries = getQueryParams();
-
-    // get the current date as a string
-    startTimeResize();
 function setResizeButton() {
     let resize = $('#resize-button');
     resize.click(function () {
@@ -252,28 +249,6 @@ function makeBarCharts(users, data) {
 
 function printBarChartError(message) {
     $('#chart-competition').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
-}
-
-function generateslider() {
-    $('#slides').slidesjs({
-        play: {
-            active: true,
-            // [boolean] Generate the play and stop buttons.
-            // You cannot use your own buttons. Sorry.
-            effect: "slide",
-            // [string] Can be either "slide" or "fade".
-            interval: 20 * 1000,
-            // [number] Time spent on each slide in milliseconds.
-            auto: true,
-            // [boolean] Start playing the slideshow on load.
-            swap: true,
-            // [boolean] show/hide stop and play buttons
-            pauseOnHover: false,
-            // [boolean] pause a playing slideshow on hover
-            restartDelay: 2500
-            // [number] restart delay on inactive slideshow
-        }
-    });
 }
 
 function startTimeResize() {
