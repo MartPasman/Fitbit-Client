@@ -30,6 +30,7 @@ function notifyLoader(id) {
     if (loaded === DONE) {
         const today = $('#today');
         today.removeClass('load');
+        today.html(getTodaysDate() + "<span id='time'></span>" + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
         // get the current date as a string
         startTimeResize();
         setResizeButton();
@@ -251,6 +252,9 @@ function printBarChartError(message) {
     $('#chart-competition').html("<span class='glyphicon glyphicon-exclamation-sign'></span><br/>" + message);
 }
 
+/**
+ * Recursive
+ */
 function startTimeResize() {
     let today = new Date();
     let h = today.getHours();
@@ -258,6 +262,6 @@ function startTimeResize() {
     let s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    $('#today').html(getTodaysDate() + " " + h + ":" + m + ":" + s + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
-    let t = setTimeout(startTimeResize, 500);
+    $('#time').html(h + ":" + m + ":" + s);
+    let t = setTimeout(startTimeResize, 1000);
 }
