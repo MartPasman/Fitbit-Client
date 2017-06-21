@@ -29,7 +29,7 @@ $(document).ready(function () {
         if (isEmpty(steps) || isEmpty(start) || isEmpty(end)) {
             //Sets a error
 
-            messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Vul wel alle informatie in.");
+            messageToggleFull(errorMessage, successMessage, "<strong>Foutje!</strong> Vul wel alle informatie in.");
             //Make not correctly filled in input group red
             if (isEmpty(steps)) {
                 $("#steps-div").addClass("has-error");
@@ -52,13 +52,13 @@ $(document).ready(function () {
 
             // check dates
             if (new Date(start) < new Date() || new Date(end) < new Date(start)) {
-                messageToggle(errorMessage, successMessage, 'De begindatum moet in de toekomst liggen en de einddatum moet na de startdatum liggen.');
+                messageToggleFull(errorMessage, successMessage, 'De begindatum moet in de toekomst liggen en de einddatum moet na de startdatum liggen.');
                 return;
             }
 
             // check amount of steps
             if (steps > 999999) {
-                messageToggle(errorMessage, successMessage, 'Het aantal stappen moet kleiner zijn dan één miljoen.');
+                messageToggleFull(errorMessage, successMessage, 'Het aantal stappen moet kleiner zijn dan één miljoen.');
                 return;
             }
 
@@ -77,17 +77,17 @@ $(document).ready(function () {
                 statusCode: {
                     201: function () {
                         //Success message
-                        messageToggle(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
+                        messageToggleFull(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
                         getGoalsHistory();
                     },
                     401: logout,
                     500: function () {
                         //Internal server error message
-                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het later nog eens.");
+                        messageToggleFull(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het later nog eens.");
                     },
                     default: function () {
                         //Default error message
-                        messageToggle(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het nog eens.");
+                        messageToggleFull(errorMessage, successMessage, "<strong>Foutje!</strong> Probeer het nog eens.");
                     }
                 }
             });
@@ -98,12 +98,4 @@ $(document).ready(function () {
 // check if variable is empty
 function isEmpty(str) {
     return (!str || 0 === str.length);
-}
-
-function messageToggle(object, objecthide, message) {
-    objecthide.hide();
-    object.html(message);
-    if (object.is(':hidden')) {
-        object.toggle();
-    }
 }

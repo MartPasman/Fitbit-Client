@@ -37,3 +37,34 @@ function logout() {
     window.localStorage.clear();
     window.location.replace('/');
 }
+
+
+function messageToggleFull(object, objecthide, message){
+    objecthide.hide();
+    object.html(message);
+    if (object.is(':hidden')) {
+        object.toggle();
+    }
+}
+
+function messageToggle(object, message){
+    object.html(message);
+    if (object.is(':hidden')) {
+        object.toggle();
+    }
+}
+
+/**
+ * Change the icon of an input field
+ * @param object
+ * @param remove1
+ * @param remove2
+ * @param add
+ * @param color
+ */
+function changeIcon(object, remove1, remove2, add, color) {
+    object.removeClass(remove1);
+    object.removeClass(remove2);
+    object.addClass(add);
+    object.css('color', color);
+}

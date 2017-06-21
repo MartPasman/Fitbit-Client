@@ -193,17 +193,3 @@ $(document).ready(function () {
     });
 });
 
-/**
- * Change the icon of an input field
- * @param object
- * @param remove1
- * @param remove2
- * @param add
- * @param color
- */
-function changeIcon(object, remove1, remove2, add, color) {
-    object.removeClass(remove1);
-    object.removeClass(remove2);
-    object.addClass(add);
-    object.css('color', color);
-}
