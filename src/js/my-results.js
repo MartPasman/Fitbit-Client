@@ -21,7 +21,7 @@ $(window).on('resize', function () {
 $(document).ready(function () {
 
     // get the current date as a string
-    startTimeResults();
+    $('#today').append(getTodaysDate());
     $('#pdf').val(localStorage.getItem('userid'));
 
     // total stats
@@ -249,3 +249,4 @@ const loadGoalsHistory = function (data) {
         goalHistory.append(html);
     }
 };
+
