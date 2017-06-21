@@ -3,6 +3,20 @@
  */
 $(document).ready(function () {
 
+    $.ajax({
+        url: REST + '/accounts/authenticate',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {url: window.location.pathname},
+        headers: {
+            Authorization: localStorage.getItem('token')
+        },
+        statusCode: {
+            401: logout,
+            403: previousPage
+        }
+    });
+
     // competition
     let html = '<li><a href="/competition-dashboard.php"><span class="glyphicon glyphicon-knight"></span> Competitie</a></li>';
 
@@ -31,6 +45,14 @@ $(document).ready(function () {
     // log out listener
     $('#log-out').click(logout);
 });
+
+function previousPage() {
+    if (history.length <= 1) {
+        logout();
+    } else {
+        history.go(-1);
+    }
+}
 
 function logout() {
     console.log('Logging out...');

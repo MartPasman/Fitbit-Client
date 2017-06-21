@@ -22,7 +22,7 @@ let user = undefined;
 let currentlySelectedHandicap = undefined;
 
 $(document).ready(function () {
-    startTime();
+    $('#today').html(getTodaysDate());
 
     // check if a Fitbit connect result message is in the query parameters
     checkFitbitConnectMessage();
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 $('#show-current-shared-goal').text('Punten voor het huidige gezamelijk doel: ' + data.sharedGoal + (data.sharedGoal === 1 ? " punt." : " punten."));
                 $('#show-last-goal').text('Punten voor de volgende competitie: ' + data.defaultGoal + (data.defaultGoal === 1 ? " punt." : " punten."));
                 $('#show-last-days').text('Lengte van de volgende competitie: ' + data.defaultLength + (data.defaultLength === 1 ? " dag." : " dagen."));
-                $('#show-last-shared-goal').text('Punten voor het volgende gezamelijke doel: ' + data.defaultSharedGoal +(data.defaultSharedGoal === 1 ? " punt." : " punten."))
+                $('#show-last-shared-goal').text('Punten voor het volgende gezamelijke doel: ' + data.defaultSharedGoal + (data.defaultSharedGoal === 1 ? " punt." : " punten."))
 
             },
             default: function (err) {
@@ -112,7 +112,6 @@ $(document).ready(function () {
 
                         // update UI
                         $('#show-last-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
-
                     },
                     401: logout,
                     404: function (err) {
@@ -402,6 +401,7 @@ function loadUsers(users) {
     // append all users in the UI
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
+        console.dir(user);
 
         let html = "<div class='user row'>";
         if (user.active) {
