@@ -29,7 +29,7 @@ $(document).ready(function () {
     let queries = getQueryParams();
 
     // get the current date as a string
-    $('#today').html(getTodaysDate() + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
+    startTimeResize();
     let resize = $('#resize-button');
     resize.click(function () {
         if (navbar.is(':hidden')) {
@@ -247,4 +247,15 @@ function generateslider() {
             // [number] restart delay on inactive slideshow
         }
     });
+}
+
+function startTimeResize() {
+    let today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    $('#today').html(getTodaysDate() + " " + h + ":" + m + ":" + s + '<div id="resize-button" class="button glyphicon glyphicon-resize-full"></div>');
+    let t = setTimeout(startTimeResize, 500);
 }

@@ -22,7 +22,7 @@ let user = undefined;
 let currentlySelectedHandicap = undefined;
 
 $(document).ready(function () {
-    $('#today').html(getTodaysDate());
+    startTime();
 
     // check if a Fitbit connect result message is in the query parameters
     checkFitbitConnectMessage();
