@@ -20,9 +20,9 @@ $(document).ready(function () {
                     tot = x.length;
                 }
                 for (i = 0; i < tot; i++) {
-                    html += "<h2>";
+                    html += "<h3>";
                     html += x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-                    html += "</h2><hr>";
+                    html += "</h3><hr>";
                     html += "<p></p>";
                 }
                 $("#news").append(html);

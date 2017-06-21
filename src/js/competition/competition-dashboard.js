@@ -86,11 +86,13 @@ function setResizeButton() {
 function checkScreenSize() {
     if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
         $("#message").show();
+        $('#today').removeClass('load');
         $('#slides').hide();
     } else {
         $("#message").hide();
         $('#slides').show();
         if (usersloaded === false) {
+            $('#today').addClass('load');
             getUsers();
             usersloaded = true;
         }
