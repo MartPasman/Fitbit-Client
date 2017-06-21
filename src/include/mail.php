@@ -18,5 +18,5 @@ $headers[] = "X-Mailer: PHP/".phpversion();
 mail($to, $subject, $email, implode("\r\n", $headers) );
 
 
-header("Refresh:0");
+header("Refresh:3");
 ?>
