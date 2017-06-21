@@ -2,7 +2,7 @@
 
 $subject = 'Dit is de titel van het test bericht';
 $email = 'Dit is de inhoud van het test bericht';
-$to = 'mail@redeye-gaming.com';
+$to = 'sveno98@live.nl';
 $from = 'servicedesk@realhosting.nl';
 
 ini_set('sendmail_from', $from);
