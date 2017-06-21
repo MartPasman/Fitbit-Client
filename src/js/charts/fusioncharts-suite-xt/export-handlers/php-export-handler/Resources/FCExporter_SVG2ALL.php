@@ -109,7 +109,7 @@
  *         Moreover, it would take an optional parameter - $quality (in scale of 0 to 1).
  *         By Default, the $quality is passed as 1 (best quality)
  *
- * 		   The function would return the file path on success or return false on failure.
+ * 		   The function would return the file path on successed or return false on failure.
  *
  *      [ The other code in the resource file can be anything that support this architecture ]
  *
@@ -311,7 +311,7 @@ function exportProcessor($stream, $meta, $exportParams, $imageData=null) {
 function exportOutput($exportObj, $exportSettings, $quality = 1) {
 
     // calls svgparser function that saves/downloads binary
-    // store saving status in $doneExport which receives false if fails and true on success
+    // store saving status in $doneExport which receives false if fails and true on successed
     $doneExport = filesaver($exportObj, @$exportSettings ['filepath']);
 
     // check $doneExport and if true sets status to {filepath}'s value

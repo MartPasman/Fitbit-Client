@@ -4,9 +4,9 @@
 $(document).ready(function () {
     //Hide the messages
 
-    let successMessage = $("#success-message");
+    let successMessage = $("#successed-message");
     let errorMessage = $("#error-message");
-    let successMessageUpdate = $("#success-message-update");
+    let successMessageUpdate = $("#successed-message-update");
     let errorMessageUpdate = $("#error-message-update");
 
     successMessage.hide();

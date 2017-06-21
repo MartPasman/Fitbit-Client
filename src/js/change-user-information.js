@@ -3,7 +3,7 @@
  */
 
 let error = $("#error");
-let success = $("#success");
+let successed = $("#successed");
 let first_name_divs = $('#first-name-div-update');
 let last_name_divs = $('#last-name-div-update');
 let birthdate_divs = $('#date-div-update');
@@ -11,12 +11,12 @@ let birthdate_divs = $('#date-div-update');
 
 $(document).ready(function () {
     error.hide();
-    success.hide();
+    successed.hide();
     loadStandardInformation();
 
     $('#buttons').on('click', '#save-change-information', function () {
         error.hide();
-        success.hide();
+        successed.hide();
 
         var first_name = $('#first-name-update').val().trim();
         var last_name = $('#last-name-update').val().trim();
@@ -27,7 +27,7 @@ $(document).ready(function () {
         birthdate_divs.removeClass("has-error");
 
         if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate) || first_name.length > 49 || last_name.length > 49) {
-            messageToggleFull(error,success,"<strong>Foutje!</strong> Vul alle informatie correct in.");
+            messageToggleFull(error,successed,"<strong>Foutje!</strong> Vul alle informatie correct in.");
             if (isEmpty(first_name) || first_name.length > 49) {
                first_name_divs.addClass("has-error");
             }
@@ -57,25 +57,25 @@ $(document).ready(function () {
                 statusCode: {
                     200: function (data) {
                         //Success message
-                        messageToggleFull(success,error,"<strong>Gelukt!</strong> Je informatie is gewijzigd.");
+                        messageToggleFull(successed,error,"<strong>Gelukt!</strong> Je informatie is gewijzigd.");
                         loadStandardInformation();
                     },
                     400: function (err) {
                         //Bad request error message
-                        messageToggleFull(error,success,"<strong>Foutje!</strong> Probeer het nog eens");
+                        messageToggleFull(error,successed,"<strong>Foutje!</strong> Probeer het nog eens");
                     },
                     401: function (err) {
                         //Unauthorized error message
-                        messageToggleFull(error,success,"<strong>Foutje!</strong> Je bent niet ingelogd.");
+                        messageToggleFull(error,successed,"<strong>Foutje!</strong> Je bent niet ingelogd.");
                     },
 
                     500: function (err) {
                         //Internal server error message
-                        messageToggleFull(error,success,"<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
+                        messageToggleFull(error,successed,"<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
                     },
                     default: function (err) {
                         //Default error message
-                        messageToggleFull(error,success,"<strong>Foutje!</strong> Probeer het nog eens.");
+                        messageToggleFull(error,successed,"<strong>Foutje!</strong> Probeer het nog eens.");
                     }
                 }
             });
@@ -84,7 +84,7 @@ $(document).ready(function () {
 
     $('#buttons').on('click', '#change-information', function () {
         error.hide();
-        success.hide();
+        successed.hide();
         $.ajax({
             url: REST + '/users/' + localStorage.getItem('userid'),
             method: 'GET',
@@ -122,26 +122,26 @@ $(document).ready(function () {
                     $('#buttons').html('<button type="button" class="col-sm-4 col-xs-12 btn btn-danger" id="close-change-information">' +
                         '<i class="glyphicon glyphicon-remove"></i> Sluiten' +
                         '</button>' +
-                        '<button type="button" class="col-sm-4 col-sm-offset-4 col-xs-12 btn btn-success" id="save-change-information">' +
+                        '<button type="button" class="col-sm-4 col-sm-offset-4 col-xs-12 btn btn-successed" id="save-change-information">' +
                         '<i class="glyphicon glyphicon-pencil"></i> Opslaan' +
                         '</button>');
 
                     datePicker();
                 },
                 400: function (err) {
-                    messageToggleFull(error,success,"<strong>Foutje!</strong> Probeer het nog eens");
+                    messageToggleFull(error,successed,"<strong>Foutje!</strong> Probeer het nog eens");
                 },
                 401: function (err) {
-                    messageToggleFull(error,success,"<strong>Foutje!</strong> Ben je nog wel ingelogd?");
+                    messageToggleFull(error,successed,"<strong>Foutje!</strong> Ben je nog wel ingelogd?");
                 },
                 403: function (err) {
-                    messageToggleFull(error,success,"<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
+                    messageToggleFull(error,successed,"<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
                 },
                 500: function (err) {
-                    messageToggleFull(error,success,"<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
+                    messageToggleFull(error,successed,"<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
                 },
                 default: function (err) {
-                    messageToggleFull(error,success,"<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
+                    messageToggleFull(error,successed,"<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
                 }
             }
         });
@@ -149,7 +149,7 @@ $(document).ready(function () {
 
     $('#buttons').on('click', '#close-change-information', function () {
         error.hide();
-        success.hide();
+        successed.hide();
         loadStandardInformation();
     });
 
@@ -211,7 +211,7 @@ function loadStandardInformation() {
                     }
                 }
 
-                $('#buttons').html('<button type="button" class="col-xs-12 btn btn-success" id="change-information"> ' +
+                $('#buttons').html('<button type="button" class="col-xs-12 btn btn-successed" id="change-information"> ' +
                     '<i class="glyphicon glyphicon-pencil"></i> &nbsp Aanpassen' +
                     '</button>');
             },

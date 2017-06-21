@@ -27,7 +27,7 @@ $(document).ready(function () {
     // check if a Fitbit connect result message is in the query parameters
     checkFitbitConnectMessage();
 
-    successCompetition = $('#success-competition');
+    successCompetition = $('#successed-competition');
     errorCompetition = $('#error-competition');
     successCompetition.addClass('hidden');
     errorCompetition.addClass('hidden');
@@ -36,7 +36,7 @@ $(document).ready(function () {
     modalEdit = $('#edit-modal');
     modalNewAccount = $('#account-modal');
     errorMessageEdit = $('#error-message-edit');
-    successMessageEdit = $('#success-message-edit');
+    successMessageEdit = $('#successed-message-edit');
     userList = $("#userlist");
     inactiveUserList = $('#userlist-inactive');
 
@@ -650,10 +650,10 @@ function updateUser(data) {
 }
 
 /**
- * Set the error or success message when editing a user
+ * Set the error or successed message when editing a user
  * @param heading
  * @param body
- * @param error boolean if it is an error or success message
+ * @param error boolean if it is an error or successed message
  */
 function setEditErrorSuccessMessage(heading, body, error) {
     const html = '<b>' + heading + '</b><br/>' + body;
@@ -669,7 +669,7 @@ function setEditErrorSuccessMessage(heading, body, error) {
 }
 
 /**
- * Check the query params if a success/error message was passed on from connecting a Fitbit
+ * Check the query params if a successed/error message was passed on from connecting a Fitbit
  */
 function checkFitbitConnectMessage() {
     const json = getQueryParams();
@@ -681,7 +681,7 @@ function checkFitbitConnectMessage() {
     switch (parseInt(json.statusCode)) {
         case 201:
             title = 'Fitbit verbonden';
-            body = '<span class="success glyphicon glyphicon-ok"></span> De Fitbit is succesvol aan de gebruiker verbonden.';
+            body = '<span class="successed glyphicon glyphicon-ok"></span> De Fitbit is succesvol aan de gebruiker verbonden.';
             break;
         case 403:
             body = 'De Fitbit is niet aan de gebruiker verbonden.<br/>Een Fitbit mag slechts aan één gebruiker verbonden zijn.';

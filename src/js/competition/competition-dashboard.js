@@ -181,7 +181,7 @@ function createHTML(users, data) {
     }
 
     $('#slides').append(html);
-    //showusers(data.success);
+    //showusers(data.successed);
     makeBarCharts(users, data);
     notifyLoader('ranking');
 }

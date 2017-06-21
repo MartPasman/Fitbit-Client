@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     const accountModal = $('#account-modal');
     const errorMsg = $("#error-message-new");
-    const successMsg = $("#success-message-new");
+    const successMsg = $("#successed-message-new");
 
     $('[data-toggle="tooltip"]').tooltip();
 
