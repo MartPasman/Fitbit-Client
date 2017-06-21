@@ -2,40 +2,40 @@
  * Created by sveno on 29-5-2017.
  */
 
-let err = $("#err");
-let successed = $("#successed");
+let errors = $("#error");
+let successed = $("#success");
 let first_name_divs = $('#first-name-div-update');
 let last_name_divs = $('#last-name-div-update');
 let birthdate_divs = $('#date-div-update');
 
 
 $(document).ready(function () {
-    err.hide();
+    errors.hide();
     successed.hide();
     loadStandardInformation();
 
     $('#buttons').on('click', '#save-change-information', function () {
-        err.hide();
+        errors.hide();
         successed.hide();
 
         var first_name = $('#first-name-update').val().trim();
         var last_name = $('#last-name-update').val().trim();
         var birthdate = $('#date-update').val().trim();
 
-        first_name_divs.removeClass("has-err");
-        last_name_divs.removeClass("has-err");
-        birthdate_divs.removeClass("has-err");
+        first_name_divs.removeClass("has-error");
+        last_name_divs.removeClass("has-error");
+        birthdate_divs.removeClass("has-error");
 
         if (isEmpty(first_name) || isEmpty(last_name) || isEmpty(birthdate) || first_name.length > 49 || last_name.length > 49) {
-            messageToggleFull(err,successed,"<strong>Foutje!</strong> Vul alle informatie correct in.");
+            messageToggleFull(errors,successed,"<strong>Foutje!</strong> Vul alle informatie correct in.");
             if (isEmpty(first_name) || first_name.length > 49) {
-               first_name_divs.addClass("has-err");
+               first_name_divs.addClass("has-error");
             }
             if (isEmpty(last_name) || last_name.length > 49) {
-                last_name_divs.addClass("has-err");
+                last_name_divs.addClass("has-error");
             }
             if (isEmpty(birthdate)) {
-                birthdate_divs.addClass("has-err");
+                birthdate_divs.addClass("has-error");
             }
         } else {
 
@@ -57,25 +57,25 @@ $(document).ready(function () {
                 statusCode: {
                     200: function (data) {
                         //Success message
-                        messageToggleFull(successed,err,"<strong>Gelukt!</strong> Je informatie is gewijzigd.");
+                        messageToggleFull(successed,errors,"<strong>Gelukt!</strong> Je informatie is gewijzigd.");
                         loadStandardInformation();
                     },
                     400: function (err) {
-                        //Bad request err message
-                        messageToggleFull(err,successed,"<strong>Foutje!</strong> Probeer het nog eens");
+                        //Bad request error message
+                        messageToggleFull(errors,successed,"<strong>Foutje!</strong> Probeer het nog eens");
                     },
                     401: function (err) {
-                        //Unauthorized err message
-                        messageToggleFull(err,successed,"<strong>Foutje!</strong> Je bent niet ingelogd.");
+                        //Unauthorized error message
+                        messageToggleFull(errors,successed,"<strong>Foutje!</strong> Je bent niet ingelogd.");
                     },
 
                     500: function (err) {
-                        //Internal server err message
-                        messageToggleFull(err,successed,"<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
+                        //Internal server error message
+                        messageToggleFull(errors,successed,"<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
                     },
                     default: function (err) {
-                        //Default err message
-                        messageToggleFull(err,successed,"<strong>Foutje!</strong> Probeer het nog eens.");
+                        //Default error message
+                        messageToggleFull(errors,successed,"<strong>Foutje!</strong> Probeer het nog eens.");
                     }
                 }
             });
@@ -83,7 +83,7 @@ $(document).ready(function () {
     });
 
     $('#buttons').on('click', '#change-information', function () {
-        err.hide();
+        errors.hide();
         successed.hide();
         $.ajax({
             url: REST + '/users/' + localStorage.getItem('userid'),
@@ -122,33 +122,33 @@ $(document).ready(function () {
                     $('#buttons').html('<button type="button" class="col-sm-4 col-xs-12 btn btn-danger" id="close-change-information">' +
                         '<i class="glyphicon glyphicon-remove"></i> Sluiten' +
                         '</button>' +
-                        '<button type="button" class="col-sm-4 col-sm-offset-4 col-xs-12 btn btn-successed" id="save-change-information">' +
+                        '<button type="button" class="col-sm-4 col-sm-offset-4 col-xs-12 btn btn-success" id="save-change-information">' +
                         '<i class="glyphicon glyphicon-pencil"></i> Opslaan' +
                         '</button>');
 
                     datePicker();
                 },
                 400: function (err) {
-                    messageToggleFull(err,successed,"<strong>Foutje!</strong> Probeer het nog eens");
+                    messageToggleFull(errors,successed,"<strong>Foutje!</strong> Probeer het nog eens");
                 },
                 401: function (err) {
-                    messageToggleFull(err,successed,"<strong>Foutje!</strong> Ben je nog wel ingelogd?");
+                    messageToggleFull(errors,successed,"<strong>Foutje!</strong> Ben je nog wel ingelogd?");
                 },
                 403: function (err) {
-                    messageToggleFull(err,successed,"<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
+                    messageToggleFull(errors,successed,"<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
                 },
                 500: function (err) {
-                    messageToggleFull(err,successed,"<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
+                    messageToggleFull(errors,successed,"<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
                 },
                 default: function (err) {
-                    messageToggleFull(err,successed,"<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
+                    messageToggleFull(errors,successed,"<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
                 }
             }
         });
     });
 
     $('#buttons').on('click', '#close-change-information', function () {
-        err.hide();
+        errors.hide();
         successed.hide();
         loadStandardInformation();
     });
@@ -211,39 +211,24 @@ function loadStandardInformation() {
                     }
                 }
 
-                $('#buttons').html('<button type="button" class="col-xs-12 btn btn-successed" id="change-information"> ' +
+                $('#buttons').html('<button type="button" class="col-xs-12 btn btn-success" id="change-information"> ' +
                     '<i class="glyphicon glyphicon-pencil"></i> &nbsp Aanpassen' +
                     '</button>');
             },
             400: function (err) {
-                err.html("<strong>Foutje!</strong> Probeer het later nog eens.");
-                if (err.is(':hidden')) {
-                    err.toggle();
-                }
+                messageToggleFull(errors,successed,"<strong>Foutje!</strong> Probeer het later nog eens.");
             },
             401: function (err) {
-                err.html("<strong>Foutje!</strong> Ben je wel ingelogd?");
-                if (err.is(':hidden')) {
-                    err.toggle();
-                }
+                messageToggleFull(errors,successed,"<strong>Foutje!</strong> Ben je wel ingelogd?");
             },
             403: function (err) {
-                err.html("<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
-                if (err.is(':hidden')) {
-                    err.toggle();
-                }
+                messageToggleFull(errors,successed,"<strong>Foutje!</strong> Dit account is op inactief gesteld! neem contact op met de administrator.");
             },
             500: function (err) {
-                err.html("<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
-                if (err.is(':hidden')) {
-                    err.toggle();
-                }
+                messageToggleFull(errors,successed,"<strong>Foutje!</strong> Je kan hier niks aandoen. Probeer het later opnieuw.");
             },
             default: function (err) {
-                err.html("<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
-                if (err.is(':hidden')) {
-                    err.toggle();
-                }
+                messageToggleFull(errors,successed,"<strong>Foutje!</strong> Er ging iets mis. Probeer het opnieuw.");
             }
         }
     });

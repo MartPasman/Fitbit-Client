@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
     const errorMsg = $("#error-msg");
-    const successMsg = $("#successed-msg");
+    const successMsg = $("#success-msg");
     const oldPass = $("#old-pass");
     const newPass1 = $("#new-pass1");
     const newPass2 = $("#new-pass2");

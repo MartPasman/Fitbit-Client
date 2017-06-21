@@ -106,7 +106,7 @@
  *         Moreover, it would take an optional parameter - $quality (in scale of 0 to 1).
  *         By Default, the $quality is passed as 1 (best quality)
  *
- *		   The function would return the file path on successed or return false on failure.
+ *		   The function would return the file path on success or return false on failure.
  *
  *      [ The other code in the resource file can be anything that support this architecture ]
  *
@@ -174,7 +174,7 @@ function exportOutput ( $exportObj, $exportSettings , $quality = 1 )
 	{
 		// in case of PNG check if 'imagepng' function exists.
 		// save the image as png
-		// store saving status in $doneExport which receives false if fails and true on successed
+		// store saving status in $doneExport which receives false if fails and true on success
 		case "png" :
 			if( function_exists ( "imagepng" ) ) {
 				$doneExport = imagepng ( $exportObj, @$exportSettings ['filepath' ], $quality*9 );
@@ -183,7 +183,7 @@ function exportOutput ( $exportObj, $exportSettings , $quality = 1 )
 
 		// in case of GIF check if 'imagegif' function exists.
 		// save the image as gif
-		// store saving status in $doneExport which receives false if fails and true on successed
+		// store saving status in $doneExport which receives false if fails and true on success
 		case "gif" :
 			if( function_exists ( "imagegif" ) ) {
 				// This is done as a fix to some PHP versions running on IIS
@@ -196,7 +196,7 @@ function exportOutput ( $exportObj, $exportSettings , $quality = 1 )
 
 		// in case of JPG/JPEG check if 'imagejpeg' function exists.
 		// save the image as jpg
-		// store saving status in $doneExport which receives false if fails and true on successed
+		// store saving status in $doneExport which receives false if fails and true on success
 		case "jpg" :
 		case "jpeg":
 			if( function_exists ( "imagejpeg" ) ) {

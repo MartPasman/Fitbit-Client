@@ -138,7 +138,7 @@ include("sanitizer.php");
  *         Moreover, it would take an optional parameter - $quality (in scale of 0 to 1).
  *         By Default, the $quality is passed as 1 (best quality)
  *
- * 		   The function would return the file path on successed or return false on failure.
+ * 		   The function would return the file path on success or return false on failure.
  *
  *      [ The other code in the resource file can be anything that support this architecture ]
  *
@@ -619,11 +619,11 @@ function getExporter($strFormat, $streamtype = "RLE") {
  *  processed export binary (image/PDF) to the output handler function if the
  *  export settings return a 'ready' flag set to 'true' or 'download'. The export
  *  process would stop here if the action is 'download'. In the other case,
- *  it gets back successed status from output handler function and returns it.
+ *  it gets back success status from output handler function and returns it.
  *
  *  @param 	$exportObj 		An export binary/object of mixed type (image/PDF)
  *  @param 	$exportParams	An array of export parameters
- *  @return 				export successed status ( filename if successed, false if not)
+ *  @return 				export success status ( filename if success, false if not)
  */
 function outputExportObject($exportObj, $exportParams) {
     // checks whether the export action is 'download'
@@ -635,7 +635,7 @@ function outputExportObject($exportObj, $exportParams) {
     $exportActionSettings = call_user_func('setup' . ($isDownload ? 'Download' : 'Server'), $exportParams['exportfilename'], $exportParams['exportformat'], $exportParams['exporttargetwindow']);
     // check whether export setting gives a 'ready' flag to true/'download'
     // and call output handler
-    // return status back (filename if successed, false if not successed )
+    // return status back (filename if success, false if not success )
     return ( @$exportActionSettings ['ready'] ? exportOutput($exportObj, $exportActionSettings, 1) : false );
 }
 
@@ -644,7 +644,7 @@ function outputExportObject($exportObj, $exportParams) {
  *  It parses the exported status through parser function parseExportedStatus,
  *  builds proper response string using buildResponse function and flushes the response
  *  string to the output stream and terminates the program.
- *  @param	$status		exported status ( false if failed/error, filename as string if successed)
+ *  @param	$status		exported status ( false if failed/error, filename as string if success)
  *         	$meta		array containing meta descriptions of the chart like width, height
  * 			$msg		custom message to be added as statusMessage
  *
@@ -657,7 +657,7 @@ function flushStatus($status, $meta, $msg = '') {
  *  Parses the exported status and builds an array of export status information. As per
  *  status it builds a status array which contains statusCode (0/1), statusMesage, fileName,
  *  width, height, DOMId and notice in some cases.
- *  @param	$status		exported status ( false if failed/error, filename as stirng if successed)
+ *  @param	$status		exported status ( false if failed/error, filename as stirng if success)
  *         	$meta		array containing meta descriptions of the chart like width, height and DOMId
  * 			$msg		custom message to be added as statusMessage
  * 	@return			 	array of status information
@@ -674,7 +674,7 @@ function parseExportedStatus($status, $meta, $msg = '') {
     // Add DOMId
     $arrStatus [] = "DOMId=" . @$meta["DOMId"];
 
-    // add file URI , width and height when status successed
+    // add file URI , width and height when status success
     // provide 0 as width and height on failure
     $arrStatus [] = "height=" . ( @$status ? @$meta ['height'] : 0 );
     $arrStatus [] = "width=" . ( @$status ? @$meta ['width'] : 0 );
@@ -682,8 +682,8 @@ function parseExportedStatus($status, $meta, $msg = '') {
 
     // add status message . Priority 1 is a custom message if provided
     $arrStatus [] = "statusMessage=" . ( trim(@$msg) ? @$msg :
-                    ( $status ? "successed" : "failure" ));
-    // add statusCode to 1 on successed
+                    ( $status ? "success" : "failure" ));
+    // add statusCode to 1 on success
     $arrStatus [] = "statusCode=" . ( @$status ? "1" : "0" );
 
     // return status information

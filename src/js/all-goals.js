@@ -69,7 +69,7 @@ $(document).ready(function () {
 
         if (isEmpty(steps) || isEmpty(start) || isEmpty(end)) {
             //Sets a error
-            $("#successed-message-update").hide();
+            $("#success-message-update").hide();
             messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Vul wel alle informatie in.");
 
             //Make not correctly filled in input group red
@@ -109,7 +109,7 @@ $(document).ready(function () {
                     201: function () {
                         //Success message
                         errorMessageUpdate.hide();
-                        $("#successed-message-update").show();
+                        $("#success-message-update").show();
                     },
                     401: function () {
                         //show error message
@@ -240,7 +240,7 @@ function changeGoal(id) {
 
                 $("#item-modal").modal("hide");
 
-                $("#successed-message-update").hide();
+                $("#success-message-update").hide();
                 errorMessageUpdate.hide();
                 $("#steps-update").val(data.goals.goal);
                 $("#start-date-update").val(start.getDate() + '/' + start_month + '/' + start.getFullYear());
