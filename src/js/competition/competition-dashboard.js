@@ -38,9 +38,9 @@ function notifyLoader(id) {
                 active: false,
                 // [boolean] Generate the play and stop buttons.
                 // You cannot use your own buttons. Sorry.
-                effect: 'slide',
+                effect: 'fade',
                 // [string] Can be either "slide" or "fade".
-                interval: 20 * 1000,
+                interval: 1 * 1000,
                 // [number] Time spent on each slide in milliseconds.
                 auto: true,
                 // [boolean] Start playing the slideshow on load.
