@@ -127,6 +127,60 @@ $(document).ready(function () {
     });
 
     // on clicking, save details about the next competition
+    $('#comp-shared-goal-submit-button ').click(function () {
+        let goal = $('#comp-shared-goal').val().trim();
+
+        // check for errors
+        if (goal === '') {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een getal in.');
+            errorCompetition.removeClass('hidden');
+        } else if (isNaN(goal)) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een geldig getal in.');
+            errorCompetition.removeClass('hidden');
+        } else if (goal > 999999999) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Doel mag niet hoger zijn dan 999999999.');
+            errorCompetition.removeClass('hidden');
+        } else if (goal < 0) {
+            successCompetition.addClass('hidden');
+            errorCompetition.text('Voer een getal in groter dan 0.');
+            errorCompetition.removeclass('hidden');
+        } else {
+
+            // save changes
+            $.ajax({
+                url: REST + '/competitions/changesharedgoal',
+                method: 'PUT',
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                },
+                data: {
+                    goal: goal
+                },
+                statusCode: {
+                    201: function (data) {
+                        errorCompetition.addClass('hidden');
+                        successCompetition.removeClass('hidden');
+
+                        // update UI
+                        $('#show-last-shared-goal').text('Punten voor de volgende competitie: ' + goal + " punten.");
+
+                    },
+                    401: logout,
+                    404: function (err) {
+
+                    },
+                    500: function (err) {
+
+                    }
+                }
+            });
+        }
+    });
+
+    // on clicking, save details about the next competition
     $('#comp-days-submit-button').click(function () {
         let days = $('#comp-days').val().trim();
 
