@@ -45,7 +45,7 @@ $url = $amsterdam;
         <div id="slides">
 
             <!-- Shared goals -->
-            <div class="container-fluid block">
+            <div class="container-fluid block chart-container">
                 <div class="container">
                     <h1>Gezamenlijke doelstellingen</h1>
                 </div>
