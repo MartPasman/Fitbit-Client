@@ -6,7 +6,9 @@ include './include/header.php';
 
 <!-- today -->
 <div id="today">
-
+    <button type="button" class="btn btn-default pdf" id="pdf">
+        <span class="glyphicon glyphicon-download-alt"></span> Exporteer
+    </button>
 </div>
 
 <div class="container">

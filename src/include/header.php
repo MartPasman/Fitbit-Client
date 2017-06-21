@@ -44,4 +44,3 @@
 
 <!-- log out functionality and dynamic menu bar -->
 <script src="../js/header.js" type="text/javascript"></script>
-<script src="../js/clock.js" type="text/javascript"></script>

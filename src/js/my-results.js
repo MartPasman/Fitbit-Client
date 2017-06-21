@@ -249,14 +249,3 @@ const loadGoalsHistory = function (data) {
         goalHistory.append(html);
     }
 };
-
-function startTimeResults() {
-    let today = new Date();
-    let h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    $('#today').html(getTodaysDate() + " " + h + ":" + m + ":" + s + '<button type="button" class="btn btn-default pdf" id="pdf"> <span class="glyphicon glyphicon-download-alt"></span> Exporteer </button>');
-    let t = setTimeout(startTimeResults, 500);
-}
