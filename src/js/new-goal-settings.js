@@ -51,7 +51,7 @@ $(document).ready(function () {
             end = dateparts2[2] + '-' + dateparts2[1] + '-' + dateparts2[0];
 
             // check dates
-            if (new Date(start) < new Date() || new Date(end) < new Date(start)) {
+            if (new Date(start) < new Date(getYYYYMMDD(new Date(), '-')) || new Date(end) < new Date(start)) {
                 messageToggleFull(errorMessage, successMessage, 'De begindatum moet in de toekomst liggen en de einddatum moet na de startdatum liggen.');
                 return;
             }
