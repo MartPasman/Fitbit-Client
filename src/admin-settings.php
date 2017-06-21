@@ -37,10 +37,10 @@ include './include/header.php';
 
                             <div class="panel-body">
                                 <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-                                    <div class="alert alert-danger" role="alert" id="error">
+                                    <div class="alert alert-danger" role="alert" id="error" hidden>
                                         <strong>Oeps!</strong> Er ging iets mis.
                                     </div>
-                                    <div class="alert alert-success" role="alert" id="success">
+                                    <div class="alert alert-success" role="alert" id="success" hidden>
                                         <strong>Gelukt!</strong> Je informatie is nu geupdate.
                                     </div>
 
