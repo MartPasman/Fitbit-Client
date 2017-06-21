@@ -26,6 +26,8 @@ $(document).ready(function () {
                     if (data.success.achieved) {
                         progressBar.css('background-color', 'green');
                     }
+
+                    notifyLoader('goal');
                 },
                 default: function (err) {
                     console.log(err.message);
