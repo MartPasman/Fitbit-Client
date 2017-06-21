@@ -553,3 +553,8 @@ input[type="month"].form-control {
     display: inline;
     width: 70%;
 }
+
+#comp-shared-goal{
+    display: inline;
+    width:70%;
+}

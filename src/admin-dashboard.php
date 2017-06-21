@@ -450,8 +450,8 @@ include './include/header.php';
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
-                            <input type="number" class="form-control" id="comp-days" placeholder="Aantal punten">
-                            <button type="button" style="display: inline; float: right;" id="comp-days-submit-button" class="btn btn-primary">
+                            <input type="number" class="form-control" id="comp-shared-goal" placeholder="Aantal punten">
+                            <button type="button" style="display: inline; float: right;" id="comp-shared-goal-submit-button" class="btn btn-primary">
                                 Opslaan
                             </button>
                         </div>
