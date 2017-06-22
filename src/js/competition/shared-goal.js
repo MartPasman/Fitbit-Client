@@ -57,7 +57,7 @@ function drawSharedGoalChart(data) {
         categories[0].category.push({label: data[i].period});
     }
 
-    drawMultiSeriesLineChart('#shared-goal-chart', categories, datasets, 'Periode', 'Score', '', w, h);
+    drawMultiSeriesColumnChart('#shared-goal-chart', categories, datasets, 'Periode', 'Score', '', w, h);
 
     notifyLoader('shared');
 }
