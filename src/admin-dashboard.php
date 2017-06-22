@@ -443,7 +443,7 @@ include './include/header.php';
 
                     <form id="competition-form-shared-goal">
                         <br>
-                        <h4>Aantal punten voor de volgende gezamelijke doelstelling</h4>
+                        <h4>Aantal punten voor de volgende gezamenlijke doelstelling</h4>
                         <br/>
                         <span id="show-current-shared-goal"></span><br/>
                         <span id="show-last-shared-goal"></span><br/>
