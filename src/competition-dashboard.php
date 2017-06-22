@@ -12,8 +12,8 @@ $elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
 // Bears
 $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
-// Family Guy
-$family = 'https://www.youtube.com/embed/nY17vVKZaG8';
+// Zandvoort
+$zandvoort = 'https://www.youtube.com/watch?v=iCQJDwL_kBs';
 
 // More
 // https://www.youtube.com/user/exploreTeam
@@ -22,7 +22,7 @@ $family = 'https://www.youtube.com/embed/nY17vVKZaG8';
 $input = array(
     $elephants,
     $bears,
-    $family);
+    $zandvoort);
 
 $url = $input[array_rand($input)];
 ?>
