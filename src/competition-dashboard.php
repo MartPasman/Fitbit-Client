@@ -61,7 +61,7 @@ $url = $amsterdam;
             <!-- Social page -->
             <div class="container-fluid">
                 <div id="bar-div" class="progress">
-                    <span id="perc-span"><strong id="percentage"></strong></span>
+                    <span style="position: absolute; left: 0;" id="perc-span"><strong id="percentage"></strong></span>
                     <div id="progress-bar" class="progress-bar progress-bar-danger  progress-bar-striped active"
                          role="progressbar"
                          aria-valuemin="0" aria-valuemax="100">
