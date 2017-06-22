@@ -57,9 +57,11 @@ function drawSharedGoalChart(data) {
 
         if (i === data.length - 1) {
             categories[0].category.push({
-                vLine: true,
-                dashed: true,
-                label: 'Huidige doelstelling'
+                vLine: 1,
+                dashed: 1,
+                label: 'Huidige doelstelling',
+                showLabelBorder: 0,
+                alpha: .5
             });
         }
         categories[0].category.push({label: data[i].period});
