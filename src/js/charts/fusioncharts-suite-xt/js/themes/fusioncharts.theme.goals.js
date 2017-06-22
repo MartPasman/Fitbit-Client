@@ -86,12 +86,12 @@ FusionCharts.register("theme", {
                 lineThickness: 14
             }
         },
-        msline: {
+        mscolumn2d: {
             chart: {
                 valueBorderColor: "#999",
                 valueBorderRadius: 4,
                 valueBgColor: "#fff",
-                lineThickness: 14,
+                placeValuesInside: 0,
                 baseFontSize: 24,
                 legendIconScale: 2,
                 setAdaptiveYMin: 1,
