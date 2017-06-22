@@ -195,7 +195,7 @@ include './include/header.php';
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                             class="sr-only">Sluit</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Pas account aan</h3>
+                <h3 class="modal-title" id="line-modal-label">Pas account aan</h3>
             </div>
 
             <div class="modal-body">

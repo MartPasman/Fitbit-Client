@@ -407,7 +407,6 @@ function loadUsers(users) {
     // append all users in the UI
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
-        console.dir(user);
 
         let html = "<div class='user row'>";
         if (user.active) {

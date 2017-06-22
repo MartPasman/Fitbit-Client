@@ -114,7 +114,6 @@ $(document).ready(function () {
         let dateparts = birthday.split('/');
         // change to universal date YYYY-MM-DD
         birthday = dateparts[2] + '/' + dateparts[1] + '/' + dateparts[0];
-
         $.ajax({
             url: REST + '/accounts',
             method: 'POST',
@@ -169,27 +168,6 @@ $(document).ready(function () {
         successMsg.addClass('hidden');
     });
 
-    $("input[type=password]").keyup(function () {
-        let newPass1 = $('#new-password1');
-        let newPass2 = $('#new-password2');
-        let newIcon1 = $('#icon1');
-        let newIcon2 = $('#icon2');
 
-        if (newPass1.val().length >= 8) {
-            changeIcon(newIcon1, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
-        } else if (newPass1.val().length >= 1) {
-            changeIcon(newIcon1, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
-        } else {
-            changeIcon(newIcon1, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
-        }
-
-        if (newPass2.val().length >= 8 && newPass2.val() === newPass1.val()) {
-            changeIcon(newIcon2, "glyphicon-lock", "glyphicon-remove", "glyphicon-ok", "#00A41E");
-        } else if (newPass2.val().length >= 1) {
-            changeIcon(newIcon2, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
-        } else {
-            changeIcon(newIcon2, "glyphicon-ok", "glyphicon-remove", "glyphicon-lock", "#000000");
-        }
-    });
 });
 
