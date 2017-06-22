@@ -39,8 +39,7 @@ $url = $input[array_rand($input)];
         <div class='container'>
             <div class='page-error'>
                 <span class='glyphicon glyphicon-exclamation-sign'></span><br/>
-                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichten. Bezoek dit dashboard op een groter
-                scherm of herlaad de pagina nadat u dit scherm hebt vergroot.
+                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichtigen. Bezoek dit dashboard op een groter scherm of verhoog uw resolutie.
             </div>
         </div>
     </div>
