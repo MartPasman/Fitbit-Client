@@ -39,7 +39,8 @@ $url = $input[array_rand($input)];
         <div class='container'>
             <div class='page-error'>
                 <span class='glyphicon glyphicon-exclamation-sign'></span><br/>
-                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichtigen. Bezoek dit dashboard op een groter scherm of verhoog uw resolutie.
+                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichtigen. Bezoek dit dashboard op een groter
+                scherm of verhoog uw resolutie.
             </div>
         </div>
     </div>
@@ -47,12 +48,18 @@ $url = $input[array_rand($input)];
     <div id="container-social" class="container-fluid">
         <div id="slides">
 
-            <!-- Live page -->
-            <div id="live-player-container">
+            <!-- Shared goals -->
+            <div class="container-fluid block chart-container">
+                <div class="container">
+                    <h1>Gezamenlijke doelstellingen</h1>
+                </div>
 
-                <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
-                        src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
-                </iframe>
+                <div id="shared-goal-chart" class="block-error">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
+                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
+                        geladen worden.
+                    </div>
+                </div>
             </div>
 
             <!-- Social page -->
@@ -120,18 +127,12 @@ $url = $input[array_rand($input)];
                 </div>
             </div>
 
-            <!-- Shared goals -->
-            <div class="container-fluid block chart-container">
-                <div class="container">
-                    <h1>Gezamenlijke doelstellingen</h1>
-                </div>
+            <!-- Live page -->
+            <div id="live-player-container">
 
-                <div id="shared-goal-chart" class="block-error">
-                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
-                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
-                        geladen worden.
-                    </div>
-                </div>
+                <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
+                        src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
+                </iframe>
             </div>
 
             <!-- Other pages will be appended -->
