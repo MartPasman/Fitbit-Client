@@ -237,8 +237,8 @@ function loadStandardInformation() {
 $("input[type=text]").keyup(function () {
     let first =  $('#first-name-update');
     let last = $('#last-name-update');
-    let first_name = first.val().trim();
-    let last_name = last.val().trim();
+    let first_name = $('#first-name-update').val().trim();
+    let last_name = $('#last-name-update').val().trim();
 
     if(first_name.length > 49){
         first.removeClass('glyphicon-user');
