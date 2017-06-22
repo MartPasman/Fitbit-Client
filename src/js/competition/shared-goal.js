@@ -31,7 +31,7 @@ $(document).ready(function () {
 function drawSharedGoalChart(data) {
 
     const container = $('#shared-goal-chart').parent();
-    const w = container.width() - ($(window).width() * .1), h = 600;
+    const w = container.width() - ($(window).width() * .1), h = container.height() - 50;
     container.css('padding-left', ($(window).width() * .1 * .5) + 'px');
 
     const datasets = [
