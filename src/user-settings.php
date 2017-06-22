@@ -45,10 +45,10 @@ include './include/header.php';
                             <div class="panel-heading"><h2>Mijn gegevens</h2></div>
                             <div class="panel-body row">
                                 <div class="col-xs-12 col-md-8 col-md-offset-2">
-                                    <div class="alert alert-danger" role="alert" id="error">
+                                    <div class="alert alert-danger" role="alert" id="error" hidden>
                                         <strong>Oeps!</strong> Er ging iets mis.
                                     </div>
-                                    <div class="alert alert-success" role="alert" id="success">
+                                    <div class="alert alert-success" role="alert" id="success" hidden>
                                         <strong>Gelukt!</strong> Je informatie is nu geüpdated.
                                     </div>
 
