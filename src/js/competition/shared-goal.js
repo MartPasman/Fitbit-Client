@@ -31,7 +31,7 @@ $(document).ready(function () {
 function drawSharedGoalChart(data) {
 
     const container = $('#shared-goal-chart').parent();
-    const w = container.width() - ($(window).width() * .1), h = container.height() - 50;
+    const w = container.width() - ($(window).width() * .1), h = container.height() - 150;
     container.css('padding-left', ($(window).width() * .1 * .5) + 'px');
 
     const datasets = [
@@ -59,9 +59,7 @@ function drawSharedGoalChart(data) {
             categories[0].category.push({
                 vLine: 1,
                 dashed: 1,
-                label: 'Huidige doelstelling',
-                showLabelBorder: 0,
-                alpha: .5
+                showLabelBorder: 0
             });
         }
         categories[0].category.push({label: data[i].period});
