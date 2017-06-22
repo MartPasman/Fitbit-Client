@@ -80,17 +80,17 @@ FusionCharts.register("theme", {
         },
         line: {
             chart: {
-                valueBorderColor: "#999",
+                valueBorderColor: "#999999",
                 valueBorderRadius: 4,
-                valueBgColor: "#fff",
+                valueBgColor: "#ffffff",
                 lineThickness: 14
             }
         },
         mscolumn2d: {
             chart: {
-                valueBorderColor: "#999",
+                valueBorderColor: "#999999",
                 valueBorderRadius: 4,
-                valueBgColor: "#fff",
+                valueBgColor: "#ffffff",
                 placeValuesInside: 0,
                 baseFontSize: 24,
                 legendIconScale: 2,

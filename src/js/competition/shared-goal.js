@@ -54,6 +54,14 @@ function drawSharedGoalChart(data) {
     for (let i = 0; i < data.length; i++) {
         datasets[0].data.push({value: data[i].goal});
         datasets[1].data.push({value: data[i].score});
+
+        if (i === data.length - 1) {
+            categories[0].category.push({
+                vLine: true,
+                dashed: true,
+                label: 'Huidige doelstelling'
+            });
+        }
         categories[0].category.push({label: data[i].period});
     }
 
