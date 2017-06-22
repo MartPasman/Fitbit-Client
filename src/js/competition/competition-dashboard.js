@@ -84,7 +84,7 @@ function setResizeButton() {
 }
 
 function checkScreenSize() {
-    if (window.innerWidth < 1480 || window.innerHeight < 734 || window.innerHeight > window.innerWidth) {
+    if (window.innerWidth < 1200 || window.innerHeight < 600 || window.innerHeight > window.innerWidth) {
         $("#message").show();
         $('#today').removeClass('load');
         $('#slides').hide();

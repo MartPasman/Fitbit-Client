@@ -111,6 +111,10 @@ $(document).ready(function () {
                         errorMessageUpdate.hide();
                         $("#success-message-update").show();
                     },
+                    400: function () {
+                        //show error message
+                        messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Er is verkeerde data meegegeven.");
+                    },
                     401: function () {
                         //show error message
                         messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Je bent niet ingelogd.");
@@ -174,6 +178,10 @@ function loadGoals(offset) {
                 allGoalsView.html(html);
 
             },
+            400: function () {
+                //show error message
+                messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Er is verkeerde data meegegeven.");
+            },
             401: function () {
                 //Show error message
                 messageToggle(errorMessageAll, "<strong>Foutje!</strong> Je bent niet ingelogd.");
@@ -202,11 +210,14 @@ function removeGoal(id, offset) {
             201: function () {
                 loadGoals(offset)
             },
+            400: function () {
+                //show error message
+                messageToggle(errorMessageAll, "<strong>Foutje!</strong> Er is verkeerde data meegegeven.");
+            },
             401: function () {
                 //show error message
                 messageToggle(errorMessageAll, "<strong>Foutje!</strong> Je bent niet ingelogd.");
             },
-
             500: function () {
                 //Show error message
                 messageToggle(errorMessageAll, "<strong>Foutje!</strong> Het is niet jou fout probeer het later nog eens.");
@@ -248,11 +259,14 @@ function changeGoal(id) {
                 $("#update-button").val(data.goals._id);
                 $("#update-modal").modal("show");
             },
+            400: function () {
+                //show error message
+                messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Er is verkeerde data meegegeven.");
+            },
             401: function () {
                 //show error message
                 messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Je bent niet ingelogd.");
             },
-
             500: function () {
                 //Show error message
                 messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Het is niet jouw fout probeer het later nog eens.");
