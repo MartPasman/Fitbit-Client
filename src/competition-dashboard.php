@@ -13,7 +13,7 @@ $elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
 $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
 // Zandvoort
-$zandvoort = 'https://www.youtube.com/watch?v=iCQJDwL_kBs';
+$zandvoort = 'https://www.youtube.com/embed/iCQJDwL_kBs';
 
 // More
 // https://www.youtube.com/user/exploreTeam
