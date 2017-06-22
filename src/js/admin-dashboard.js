@@ -49,6 +49,12 @@ $(document).ready(function () {
     // get all users and load them in the UI
     getUsers();
 
+
+    // on clicking the new account link button
+    $("#new-account").click(function () {
+        modalNewAccount.modal();
+    });
+
     // get some details about the current competition
     $.ajax({
         url: REST + '/competitions',
@@ -364,7 +370,7 @@ function getUsers() {
             404: function () {
                 userList.addClass("block-error");
                 userList.html("<span class='glyphicon glyphicon-exclamation-sign'></span> <br/>" +
-                    "Er zijn geen deelnemers bekend.")
+                    "Er zijn geen deelnemers bekend.");
             },
             500: function () {
                 userList.addClass("block-error");
@@ -527,11 +533,6 @@ function loadUsers(users) {
 
     // enable tooltips
     $('[data-toggle="tooltip"]').tooltip();
-
-    // on clicking the new account link button
-    $("#new-account").click(function () {
-        modalNewAccount.modal();
-    });
 
     // on clicking the edit button, edit account
     editButton.click(editAccount);

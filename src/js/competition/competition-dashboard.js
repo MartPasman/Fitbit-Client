@@ -161,7 +161,7 @@ function getUsers() {
                 loadWithOffset(response)
             },
             404: function (errlr) {
-                console.log(errlr);
+                loadWithOffset([])
             },
             403: function (err) {
                 console.log(err);
