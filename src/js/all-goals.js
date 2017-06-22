@@ -268,10 +268,3 @@ function changeGoal(id) {
 function isEmpty(str) {
     return (!str || 0 === str.length);
 }
-
-function messageToggle(object, message){
-    object.html(message);
-    if (object.is(':hidden')) {
-        object.toggle();
-    }
-}

@@ -21,17 +21,17 @@ $(document).ready(function () {
         var new2 = newPass2.val().trim();
 
         if (isEmpty(old) || isEmpty(new1) || isEmpty(new2)) {
-            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Vul wel alle informatie in.");
+            messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> Vul wel alle informatie in.");
             return;
         }
 
         if (new1 !== new2) {
-            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> De wachtwoorden zijn niet gelijk aan elkaar.");
+            messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> De wachtwoorden zijn niet gelijk aan elkaar.");
             return;
         }
 
         if (old.length < 8 || new1.length < 8 || new2.length < 8) {
-            messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Een van de wachtwoorden is niet lang genoeg.");
+            messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> Een van de wachtwoorden is niet lang genoeg.");
             return;
         }
 
@@ -49,24 +49,24 @@ $(document).ready(function () {
             statusCode: {
                 201: function (data) {
                     //Success message
-                    messageToggle(successMsg, errorMsg, "<strong>Gelukt!</strong> Je wachtwoord is nu veranderd.");
+                    messageToggleFull(successMsg, errorMsg, "<strong>Gelukt!</strong> Je wachtwoord is nu veranderd.");
                 },
                 400: function (err) {
                     //Unauthorized error message
-                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
+                    messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
                 },
                 401: function (err) {
                     //Unauthorized error message
-                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Verkeerd wachtwoord ingevoerd.");
+                    messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> Verkeerd wachtwoord ingevoerd.");
                     changeIcon(oldIcon, "glyphicon-lock", "glyphicon-ok", "glyphicon-remove", "#ff0000");
                 },
                 500: function (err) {
                     //Internal server error message
-                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Het is niet jou fout, probeer het later nog eens.");
+                    messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> Het is niet jou fout, probeer het later nog eens.");
                 },
                 default: function (err) {
                     //Default error message
-                    messageToggle(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
+                    messageToggleFull(errorMsg, successMsg, "<strong>Foutje!</strong> Probeer het nog eens.");
                 }
             }
 
@@ -106,17 +106,4 @@ function isEmpty(str) {
 }
 
 
-function changeIcon(object, remove1, remove2, add, color){
-    object.removeClass(remove1);
-    object.removeClass(remove2);
-    object.addClass(add);
-    object.css("color", color);
-}
 
-function messageToggle(object, objecthide, message){
-    objecthide.hide();
-    object.html(message);
-    if (object.is(':hidden')) {
-        object.toggle();
-    }
-}

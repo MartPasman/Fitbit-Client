@@ -471,7 +471,5 @@ include './include/header.php';
 <script src="js/admin-dashboard.js"></script>
 <script src="js/sign-up.js"></script>
 
-<link rel="stylesheet" href="css/button.css">
-
 <!-- end of body -->
 <?php include './include/footer.php'; ?>

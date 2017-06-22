@@ -220,7 +220,7 @@ const loadGoalsHistory = function (data) {
 
         // calculate the right font-size depending on the amount of excess characters
         let fontSize = 1;
-        let progressChars = goal.goal.toString().length + goal.progress.toString().length - 8; // 8 = max characters
+        let progressChars = goal.goal.toString().length + goal.progress.toString().length - 7; // 8 = max characters
         if (progressChars > 0) {
             fontSize -= 0.1 + (progressChars * 0.08);
             if (fontSize < 0.1) {
