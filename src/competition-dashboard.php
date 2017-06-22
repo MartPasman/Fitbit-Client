@@ -12,8 +12,8 @@ $elephants = 'https://www.youtube.com/embed/BaS2ofdeHPU';
 // Bears
 $bears = 'https://www.youtube.com/embed/pHvmGucGm_E';
 
-// Family Guy
-$family = 'https://www.youtube.com/embed/nY17vVKZaG8';
+// Zandvoort
+$zandvoort = 'https://www.youtube.com/embed/iCQJDwL_kBs';
 
 // More
 // https://www.youtube.com/user/exploreTeam
@@ -22,7 +22,7 @@ $family = 'https://www.youtube.com/embed/nY17vVKZaG8';
 $input = array(
     $elephants,
     $bears,
-    $family);
+    $zandvoort);
 
 $url = $input[array_rand($input)];
 ?>
@@ -39,8 +39,8 @@ $url = $input[array_rand($input)];
         <div class='container'>
             <div class='page-error'>
                 <span class='glyphicon glyphicon-exclamation-sign'></span><br/>
-                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichten. Bezoek dit dashboard op een groter
-                scherm of herlaad de pagina nadat u dit scherm hebt vergroot.
+                Te klein.<br/>Dit scherm is te klein om deze pagina te bezichtigen. Bezoek dit dashboard op een groter
+                scherm of verhoog uw resolutie.
             </div>
         </div>
     </div>
@@ -54,6 +54,20 @@ $url = $input[array_rand($input)];
                 <iframe id="live-player" class="youtube-player" type="text/html" frameborder="0"
                         src="<?php echo $url; ?>?vq=hd1080&amp;autoplay=1&amp;autohide=1&amp;controls=0&amp;rel=0&amp;fs=1&amp;wmode=transparent&amp;showinfo=0&amp;modestbranding=0&amp;theme=dark&amp;color=red&amp;enablejsapi=1&amp;html5=1">
                 </iframe>
+            </div>
+
+            <!-- Shared goals -->
+            <div class="container-fluid block chart-container">
+                <div class="container">
+                    <h1>Gezamenlijke doelstellingen</h1>
+                </div>
+
+                <div id="shared-goal-chart" class="block-error">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
+                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
+                        geladen worden.
+                    </div>
+                </div>
             </div>
 
             <!-- Social page -->
@@ -118,20 +132,6 @@ $url = $input[array_rand($input)];
                     <h2>Verjaardagen</h2>
                     <hr/>
                     <h3 id="no-birthdays">Niemand is jarig deze week</h3>
-                </div>
-            </div>
-
-            <!-- Shared goals -->
-            <div class="container-fluid block chart-container">
-                <div class="container">
-                    <h1>Gezamenlijke doelstellingen</h1>
-                </div>
-
-                <div id="shared-goal-chart" class="block-error">
-                    <span class="glyphicon glyphicon-exclamation-sign"></span><br/>
-                    <div id="shared-goal-chart-error">De gezamenlijke doelstellingen kunnen momenteel helaas niet
-                        geladen worden.
-                    </div>
                 </div>
             </div>
 

@@ -103,7 +103,7 @@ function drawBarChart(selector, data, xName, yName, valuePrefix, width, height) 
  * @param width         the width of the chart
  * @param height        the height of the chart
  */
-function drawMultiSeriesLineChart(selector, categories, dataset, xName, yName, valuePrefix, width, height) {
+function drawMultiSeriesColumnChart(selector, categories, dataset, xName, yName, valuePrefix, width, height) {
     if (selector === undefined || categories === undefined || dataset === undefined) return console.error("selector parameter or data parameter undefined or empty!");
     if (xName === '' || yName === '' || xName === undefined || yName === undefined) return console.error("xName parameter or yName parameter empty in drawColumnChart call!");
 
@@ -111,7 +111,7 @@ function drawMultiSeriesLineChart(selector, categories, dataset, xName, yName, v
     console.dir(dataset);
 
     return $(selector).insertFusionCharts({
-        type: 'msline',
+        type: 'mscolumn2d',
         width: width,
         height: height,
         dataFormat: 'json',

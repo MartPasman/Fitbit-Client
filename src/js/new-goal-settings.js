@@ -80,6 +80,10 @@ $(document).ready(function () {
                         messageToggleFull(successMessage, errorMessage, "<strong>Gelukt!</strong> Veel succes met je nieuwe doelstelling.");
                         getGoalsHistory();
                     },
+                    400: function () {
+                        //show error message
+                        messageToggle(errorMessageUpdate, "<strong>Foutje!</strong> Er is verkeerde data meegegeven.");
+                    },
                     401: logout,
                     500: function () {
                         //Internal server error message

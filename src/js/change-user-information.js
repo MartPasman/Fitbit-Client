@@ -237,27 +237,29 @@ function loadStandardInformation() {
 $("input[type=text]").keyup(function () {
     let first =  $('#first-name-update');
     let last = $('#last-name-update');
-    let first_name = first.val().trim();
-    let last_name = last.val().trim();
+    if(first !== undefined && last !== undefined) {
+        let first_name = first.val().trim();
+        let last_name = last.val().trim();
 
-    if(first_name.length > 49){
-        first.removeClass('glyphicon-user');
-        first.addClass('glyphicon-remove');
-        first.css("color", "#ff0000");
-    }else{
-        first.removeClass('glyphicon-remove');
-        first.addClass('glyphicon-user');
-        first.css("color", "#000000");
-    }
+        if (first_name.length > 49) {
+            first.removeClass('glyphicon-user');
+            first.addClass('glyphicon-remove');
+            first.css("color", "#ff0000");
+        } else {
+            first.removeClass('glyphicon-remove');
+            first.addClass('glyphicon-user');
+            first.css("color", "#000000");
+        }
 
-    if(last_name.length > 49){
-        last.removeClass('glyphicon-user');
-        last.addClass('glyphicon-remove');
-        last.css("color", "#ff0000");
-    }else{
-        first.removeClass('glyphicon-remove');
-        first.addClass('glyphicon-user');
-        first.css("color", "#000000");
+        if (last_name.length > 49) {
+            last.removeClass('glyphicon-user');
+            last.addClass('glyphicon-remove');
+            last.css("color", "#ff0000");
+        } else {
+            first.removeClass('glyphicon-remove');
+            first.addClass('glyphicon-user');
+            first.css("color", "#000000");
+        }
     }
 });
 
